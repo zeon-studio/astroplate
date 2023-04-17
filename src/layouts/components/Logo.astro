@@ -28,7 +28,7 @@ const { theme_switcher }: { theme_switcher: boolean } = config.settings;
       <>
         <Image
           src={src ? src : logo}
-          class={`${theme_switcher && "dark:hidden"}`}
+          class={`inline-block ${theme_switcher && "dark:hidden"}`}
           width={logo_width.replace("px", "") * 2}
           height={logo_height.replace("px", "") * 2}
           alt={title}

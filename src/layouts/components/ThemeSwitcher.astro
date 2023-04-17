@@ -10,6 +10,7 @@ const {className} = Astro.props;
   <div class={`theme-switcher ${className}`}>
     <input id="theme-switcher" data-theme-switcher type="checkbox" />
     <label for="theme-switcher">
+      <span class="sr-only">theme switcher</span>
       <span>
         <!-- sun -->
         <svg
