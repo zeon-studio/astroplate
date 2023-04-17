@@ -30,7 +30,7 @@
   "navigation_button": {
     "enable": true,
     "label": "Get Started",
-    "link": "#"
+    "link": "https://github.com/zeon-studio/astroplate"
   },
 
   "disqus": {

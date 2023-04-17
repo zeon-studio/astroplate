@@ -7,7 +7,7 @@ banner:
   button:
     enable: true
     label: "Get Started For Free"
-    link: "#"
+    link: "https://github.com/zeon-studio/astroplate"
 
 # Features
 features:
@@ -36,7 +36,7 @@ features:
     button:
       enable: true
       label: "Get Started Now"
-      link: "#"
+      link: "https://github.com/zeon-studio/astroplate"
 
   - title: "The Top Reasons to Choose Astro for Your Next Project"
     image: "/images/service-3.png"
