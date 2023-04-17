@@ -1,0 +1,64 @@
+---
+import { Image } from "@astrojs/image/components";
+import config from "@config/config.json";
+
+const { src, srcDarkmode } = Astro.props;
+const {
+  logo,
+  logo_darkmode,
+  logo_width,
+  logo_height,
+  logo_text,
+  title,
+}: {
+  logo: string;
+  logo_darkmode: string;
+  logo_width: any;
+  logo_height: any;
+  logo_text: string;
+  title: string;
+} = config.site;
+
+const { theme_switcher }: { theme_switcher: boolean } = config.settings;
+---
+
+<a href="/" class="navbar-brand inline-block">
+  {
+    src || srcDarkmode || logo || logo_darkmode ? (
+      <>
+        <Image
+          src={src ? src : logo}
+          class={`${theme_switcher && "dark:hidden"}`}
+          width={logo_width.replace("px", "") * 2}
+          height={logo_height.replace("px", "") * 2}
+          alt={title}
+          fit={"contain"}
+          background={"rgba(0,0,0,0)"}
+          style={{
+            height: logo_height.replace("px", "") + "px",
+            width: logo_width.replace("px", "") + "px",
+          }}
+        />
+        {theme_switcher && (
+          <Image
+            src={srcDarkmode ? srcDarkmode : logo_darkmode}
+            class={"hidden dark:inline-block"}
+            width={logo_width.replace("px", "") * 2}
+            height={logo_height.replace("px", "") * 2}
+            alt={title}
+            fit={"contain"}
+            background={"rgba(0,0,0,0)"}
+            style={{
+              height: logo_height.replace("px", "") + "px",
+              width: logo_width.replace("px", "") + "px",
+            }}
+          />
+        )}
+      </>
+    ) : logo_text ? (
+      logo_text
+    ) : (
+      title
+    )
+  }
+</a>

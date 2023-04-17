@@ -1,0 +1,150 @@
+---
+import TwSizeIndicator from "@components/TwSizeIndicator.astro";
+import config from "@config/config.json";
+import theme from "@config/theme.json";
+import { plainify } from "@lib/utils/textConverter";
+import Footer from "@partials/Footer.astro";
+import Header from "@partials/Header.astro";
+import "@styles/main.scss";
+
+// font families
+const pf = theme.fonts.font_family.primary;
+const sf = theme.fonts.font_family.secondary;
+
+// types for frontmatters
+export interface Props {
+  title?: string;
+  meta_title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  canonical?: string;
+}
+
+// distructure frontmatters
+const { title, meta_title, description, image, noindex, canonical } =
+  Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- favicon -->
+    <link rel="shortcut icon" href={config.site.favicon} />
+    <!-- theme meta -->
+    <meta name="theme-name" content="astroplate" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#fff"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#000"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- google font css -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href={`https://fonts.googleapis.com/css2?family=${pf}${
+        sf ? "&family=" + sf : ""
+      }&display=swap`}
+      rel="stylesheet"
+    />
+
+    <!-- responsive meta -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=5"
+    />
+
+    <!-- title -->
+    <title>
+      {plainify(meta_title ? meta_title : title ? title : config.site.title)}
+    </title>
+
+    <!-- canonical url -->
+    {canonical && <link rel="canonical" href={canonical} item-prop="url" />}
+
+    <!-- noindex robots -->
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+
+    <!-- meta-description -->
+    <meta
+      name="description"
+      content={plainify(
+        description ? description : config.metadata.meta_description
+      )}
+    />
+
+    <!-- author from config.json -->
+    <meta name="author" content={config.metadata.meta_author} />
+
+    <!-- og-title -->
+    <meta
+      property="og:title"
+      content={plainify(
+        meta_title ? meta_title : title ? title : config.site.title
+      )}
+    />
+
+    <!-- og-description -->
+    <meta
+      property="og:description"
+      content={plainify(
+        description ? description : config.metadata.meta_description
+      )}
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content={`${config.site.base_url}/${Astro.url.pathname.replace("/", "")}`}
+    />
+
+    <!-- twitter-title -->
+    <meta
+      name="twitter:title"
+      content={plainify(
+        meta_title ? meta_title : title ? title : config.site.title
+      )}
+    />
+
+    <!-- twitter-description -->
+    <meta
+      name="twitter:description"
+      content={plainify(
+        description ? description : config.metadata.meta_description
+      )}
+    />
+
+    <!-- og-image -->
+    <meta
+      property="og:image"
+      content={`${config.site.base_url}${
+        image ? image : config.metadata.meta_image
+      }`}
+    />
+
+    <!-- twitter-image -->
+    <meta
+      name="twitter:image"
+      content={`${config.site.base_url}${
+        image ? image : config.metadata.meta_image
+      }`}
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <TwSizeIndicator />
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

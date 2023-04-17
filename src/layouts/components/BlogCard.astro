@@ -1,0 +1,55 @@
+---
+import { Image } from "@astrojs/image/components";
+import config from "@config/config.json";
+import { humanize, plainify, slugify } from "@lib/utils/textConverter";
+import { FaRegFolder, FaRegUserCircle } from "react-icons/fa/index.js";
+
+const { summary_length, blog_folder } = config.settings;
+const { data } = Astro.props;
+const { title, image, date, author, categories } = data.data;
+---
+
+<div class="bg-body dark:bg-darkmode-body">
+  {
+    image && (
+      <Image
+        class="mb-6 w-full rounded"
+        src={image}
+        alt={title}
+        width={445}
+        height={230}
+      />
+    )
+  }
+  <h4 class="mb-3">
+    <a href={`/${blog_folder}/${data.slug}`}>
+      {title}
+    </a>
+  </h4>
+  <ul class="mb-4">
+    <li class="mr-4 inline-block">
+      <a href={`/authors/${slugify(author)}`}>
+        <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
+        {humanize(author)}
+      </a>
+    </li>
+    <li class="mr-4 inline-block">
+      <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
+      {
+        categories.map((category: string, index: number) => (
+          <a href={`/categories/${slugify(category)}`}>
+            {humanize(category)}
+            {index !== categories.length - 1 && ","}
+          </a>
+        ))
+      }
+    </li>
+  </ul>
+  <p class="mb-6">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
+  <a
+    class="btn btn-outline-primary btn-sm"
+    href={`/${blog_folder}/${data.slug}`}
+  >
+    read more
+  </a>
+</div>

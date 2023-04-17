@@ -1,0 +1,117 @@
+---
+import { Image } from "@astrojs/image/components";
+import BlogCard from "@components/BlogCard.astro";
+import Share from "@components/Share.astro";
+import config from "@config/config.json";
+import Disqus from "@function-components/Disqus";
+import { getSinglePage } from "@lib/contentParser.astro";
+import dateFormat from "@lib/utils/dateFormat";
+import similerItems from "@lib/utils/similarItems";
+import { humanize, markdownify, slugify } from "@lib/utils/textConverter";
+import {
+  FaRegClock,
+  FaRegFolder,
+  FaRegUserCircle,
+} from "react-icons/fa/index.js";
+
+const { blog_folder } = config.settings;
+const posts = await getSinglePage(blog_folder);
+const { post } = Astro.props;
+const similarPosts = similerItems(post, posts, post.slug);
+const { Content } = await post.render();
+const { title, description, author, categories, image, date, tags } = post.data;
+---
+
+<section class="section pt-7">
+  <div class="container">
+    <div class="row justify-center">
+      <article class="lg:col-10">
+        {
+          image && (
+            <div class="mb-10">
+              <Image
+                src={image}
+                height={500}
+                width={1200}
+                alt={title}
+                class="w-full rounded"
+              />
+            </div>
+          )
+        }
+        <h1 set:html={markdownify(title)} class="h2 mb-4" />
+        <ul class="mb-4">
+          <li class="mr-4 inline-block">
+            <a href={`/authors/${slugify(author)}`}>
+              <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
+              {humanize(author)}
+            </a>
+          </li>
+          <li class="mr-4 inline-block">
+            <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
+            {
+              categories.map((category: string, index: number) => (
+                <a href={`/categories/${slugify(category)}`}>
+                  {humanize(category)}
+                  {index !== categories.length - 1 && ","}
+                </a>
+              ))
+            }
+          </li>
+          <li class="mr-4 inline-block">
+            <FaRegClock className={"mr-2 -mt-1 inline-block"} />
+            {dateFormat(date)}
+          </li>
+        </ul>
+        <div class="content mb-10">
+          <Content />
+        </div>
+        <div class="row items-start justify-between">
+          <div class="mb-10 flex items-center lg:col-5 lg:mb-0">
+            <h5 class="mr-3">Tags :</h5>
+            <ul>
+              {
+                tags.map((tag: string) => (
+                  <li class="inline-block">
+                    <a
+                      class="m-1 block rounded bg-theme-light px-3 py-1 hover:bg-primary hover:text-white dark:bg-darkmode-theme-light dark:hover:bg-darkmode-primary dark:hover:text-dark"
+                      href={`/tags/${slugify(tag)}`}
+                    >
+                      {humanize(tag)}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+          <div class="flex items-center lg:col-4">
+            <h5 class="mr-3">Share :</h5>
+            <Share
+              className="social-icons"
+              title={title}
+              description={description}
+              slug={post.slug}
+            />
+          </div>
+        </div>
+        <div class="mt-20">
+          <Disqus client:load />
+        </div>
+      </article>
+    </div>
+
+    <!-- Related posts -->
+    <div class="section pb-0">
+      <h2 class="h3 mb-12 text-center">Related Posts</h2>
+      <div class="row justify-center">
+        {
+          similarPosts.map((post) => (
+            <div class="lg:col-4">
+              <BlogCard data={post} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

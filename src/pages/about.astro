@@ -1,0 +1,41 @@
+---
+import { Image } from "@astrojs/image/components";
+import Base from "@layouts/Base.astro";
+import { markdownify } from "@lib/utils/textConverter";
+import { getEntryBySlug } from "astro:content";
+
+const entry = await getEntryBySlug("pages", "about");
+const { Content } = await entry.render();
+const { title, description, meta_title, image } = entry.data;
+---
+
+<Base
+  title={title}
+  meta_title={meta_title}
+  description={description}
+  image={image}
+>
+  <section class="section-sm">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="text-center md:col-10 lg:col-7">
+          {
+            image && (
+              <Image
+                class="mx-auto mb-6 rounded-lg"
+                src={image}
+                width={200}
+                height={200}
+                alt={title}
+              />
+            )
+          }
+          <h2 set:html={markdownify(title)} class="h3 mb-6" />
+          <div class="content">
+            <Content />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

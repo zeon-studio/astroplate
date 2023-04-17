@@ -1,0 +1,52 @@
+{
+  "name": "astroplate",
+  "version": "1.0.0",
+  "description": "Astro and Tailwindcss boilerplate",
+  "author": "zeon.studio",
+  "license": "MIT",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "json": "node scripts/jsonGenerator.js",
+    "format": "prettier -w ."
+  },
+  "dependencies": {
+    "@astrojs/image": "^0.16.6",
+    "@astrojs/mdx": "^0.19.0",
+    "@astrojs/rss": "^2.3.2",
+    "astro": "^2.3.0",
+    "astro-auto-import": "^0.2.1",
+    "date-fns": "^2.29.3",
+    "date-fns-tz": "^2.0.0",
+    "disqus-react": "^1.1.5",
+    "fuse.js": "^6.6.2",
+    "github-slugger": "^2.0.0",
+    "gray-matter": "^4.0.3",
+    "marked": "^4.3.0",
+    "prop-types": "^15.8.1",
+    "react-icons": "^4.8.0",
+    "react-lite-youtube-embed": "^2.3.52",
+    "remark-collapse": "^0.1.2",
+    "remark-toc": "^8.0.1",
+    "swiper": "^9.2.2"
+  },
+  "devDependencies": {
+    "@astrojs/react": "^2.1.1",
+    "@astrojs/sitemap": "^1.2.2",
+    "@astrojs/tailwind": "^3.1.1",
+    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/typography": "^0.5.9",
+    "@types/marked": "^4.0.8",
+    "@types/react": "^18.0.35",
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.7",
+    "prettier-plugin-astro": "^0.8.0",
+    "prettier-plugin-tailwindcss": "^0.2.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.62.0",
+    "sharp": "^0.32.0",
+    "tailwind-bootstrap-grid": "^5.0.1",
+    "tailwindcss": "^3.3.1"
+  }
+}

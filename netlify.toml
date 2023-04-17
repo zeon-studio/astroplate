@@ -1,0 +1,12 @@
+[build]
+publish = "dist"
+command = "yarn build"
+
+[[headers]]
+for = "/*" # This defines which paths this specific [[headers]] block will cover.
+
+[headers.values]
+X-Frame-Options = "DENY"
+X-XSS-Protection = "1; mode=block"
+Referrer-Policy = "same-origin"
+Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"

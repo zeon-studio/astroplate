@@ -1,0 +1,39 @@
+---
+import config from "@config/config.json";
+import Base from "@layouts/Base.astro";
+import { getAllTaxonomy, getTaxonomy } from "@lib/taxonomyParser.astro";
+import { humanize } from "@lib/utils/textConverter";
+import PageHeader from "@partials/PageHeader.astro";
+
+const { blog_folder } = config.settings;
+const categories = await getTaxonomy(blog_folder, "categories");
+const allCategories = await getAllTaxonomy(blog_folder, "categories");
+---
+
+<Base title={"Categories"}>
+  <PageHeader title={"Categories"} />
+  <section class="section">
+    <div class="container text-center">
+      <ul class="space-x-4">
+        {
+          categories.map((category: any) => {
+            const count = allCategories.filter((c) => c === category).length;
+            return (
+              <li class="inline-block">
+                <a
+                  href={`/categories/${category}`}
+                  class="rounded bg-theme-light px-4 py-2 text-xl text-dark dark:bg-darkmode-theme-light dark:text-darkmode-dark"
+                >
+                  {humanize(category)}{" "}
+                  <span class="ml-2 rounded bg-body px-2 dark:bg-darkmode-body">
+                    {count}
+                  </span>
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </section>
+</Base>

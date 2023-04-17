@@ -1,0 +1,22 @@
+---
+import Base from "@layouts/Base.astro";
+import { markdownify } from "@lib/utils/textConverter";
+import { getEntryBySlug } from "astro:content";
+const entry = await getEntryBySlug("pages", "404");
+const { Content } = await entry.render();
+---
+
+<Base title={entry.data.title}>
+  <section class="section-sm">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="text-center sm:col-10 md:col-8 lg:col-6">
+          <img class="mb-8 w-full" src="images/404.png" alt="page not found" />
+          <h1 class="h2 mb-4" set:html={markdownify(entry.data.title)} />
+          <Content />
+          <a href="/" class="btn btn-primary mt-8">Back To Home</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
