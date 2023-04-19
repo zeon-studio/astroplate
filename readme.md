@@ -4,7 +4,7 @@
 <p align=center> Made with ♥ by <a href="https://zeon.studio/"/> Zeon Studio </a> </a>
 </p>
 
-<h2 align="center"> <a target="_blank" href="https://astroplate.netlify.app/" rel="nofollow">Demo</a> | <a  target="_blank" href="https://pagespeed.web.dev/analysis/https-astroplate-netlify-app/utpbxg4qlk?form_factor=desktop">Page Speed (100%)</a>
+<h2 align="center"> <a target="_blank" href="https://astroplate.netlify.app/" rel="nofollow">Demo</a> | <a  target="_blank" href="https://pagespeed.web.dev/analysis/https-astroplate-netlify-app/yzx3foum3w?form_factor=desktop">Page Speed (100%)</a>
 </h2>
 
 
