@@ -88,7 +88,7 @@ const { banner, features } = homepage.data;
                   {feature.bulletpoints.map((bullet: string) => (
                     <li class="relative mb-4 pl-6">
                       <FaCheck className={"absolute left-0 top-1.5"} />
-                      {markdownify(bullet)}
+                      <span set:html={markdownify(bullet)} />
                     </li>
                   ))}
                 </ul>

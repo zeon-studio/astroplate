@@ -20,7 +20,7 @@ features:
     - "Build with Astro and TailwindCSS for easy and customizable styling"
     - "Fully responsive on all devices"
     - "SEO-optimized for better search engine rankings"
-    - "Open-source and free for personal and commercial use"
+    - "**Open-source and free** for personal and commercial use"
     button:
       enable: false
       label: "Get Started Now"

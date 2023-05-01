@@ -102,7 +102,7 @@ const Search = ({ searchList }: Props) => {
         )} */}
         <div className="row">
           {searchResults?.length < 1 ? (
-            <div className="mx-auto text-center">
+            <div className="mx-auto pt-5 text-center">
               <img
                 className="mx-auto mb-6"
                 src="/images/no-search-found.png"
