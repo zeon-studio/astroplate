@@ -87,7 +87,7 @@ npm run build
 
 
 <!-- reporting issue -->
-## 🐛 Reporting Issues
+## 🐞 Reporting Issues
 
 We use GitHub Issues as the official bug tracker for this Template. Please Search [existing issues](https://github.com/zeon-studio/astroplate/issues). It’s possible someone has already reported the same problem.
 If your problem or idea has not been addressed yet, feel free to [open a new issue](https://github.com/zeon-studio/astroplate/issues).
