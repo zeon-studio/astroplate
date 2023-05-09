@@ -27,11 +27,11 @@ export default defineConfig({
     }),
     AutoImport({
       imports: [
-        "@shortcodes/Button",
-        "@shortcodes/Accordion",
-        "@shortcodes/Notice",
-        "@shortcodes/Video",
-        "@shortcodes/Youtube",
+        "@/shortcodes/Button",
+        "@/shortcodes/Accordion",
+        "@/shortcodes/Notice",
+        "@/shortcodes/Video",
+        "@/shortcodes/Youtube",
       ],
     }),
     mdx(),

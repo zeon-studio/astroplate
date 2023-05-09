@@ -1,8 +1,8 @@
 ---
-import AuthorCard from "@components/AuthorCard.astro";
-import Base from "@layouts/Base.astro";
-import { getSinglePage } from "@lib/contentParser.astro";
-import PageHeader from "@partials/PageHeader.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import Base from "@/layouts/Base.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import PageHeader from "@/partials/PageHeader.astro";
 import { getEntryBySlug } from "astro:content";
 
 const authorIndex = await getEntryBySlug<any, string>("authors", "_index");

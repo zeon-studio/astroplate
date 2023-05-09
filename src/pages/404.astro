@@ -1,6 +1,6 @@
 ---
-import Base from "@layouts/Base.astro";
-import { markdownify } from "@lib/utils/textConverter";
+import Base from "@/layouts/Base.astro";
+import { markdownify } from "@/lib/utils/textConverter";
 import { getEntryBySlug } from "astro:content";
 const entry = await getEntryBySlug("pages", "404");
 const { Content } = await entry.render();

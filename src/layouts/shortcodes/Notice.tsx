@@ -1,4 +1,4 @@
-import { humanize } from "@lib/utils/textConverter";
+import { humanize } from "@/lib/utils/textConverter";
 
 function Notice({ type, children }: { type: string; children: any }) {
   return (

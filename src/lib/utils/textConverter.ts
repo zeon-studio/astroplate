@@ -1,6 +1,11 @@
 import { slug } from 'github-slugger';
 import { marked } from "marked";
 
+marked.use({
+  mangle: false,
+  headerIds: false,
+});
+
 // slugify
 export const slugify = (content: string) => {
   if (!content) return null;

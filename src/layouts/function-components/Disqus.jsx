@@ -1,4 +1,4 @@
-import config from "@config/config.json";
+import config from "@/config/config.json";
 import { DiscussionEmbed } from "disqus-react";
 import React from "react";
 

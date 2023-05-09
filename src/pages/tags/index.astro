@@ -1,9 +1,9 @@
 ---
-import config from "@config/config.json";
-import Base from "@layouts/Base.astro";
-import { getAllTaxonomy, getTaxonomy } from "@lib/taxonomyParser.astro";
-import { humanize } from "@lib/utils/textConverter";
-import PageHeader from "@partials/PageHeader.astro";
+import config from "@/config/config.json";
+import Base from "@/layouts/Base.astro";
+import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
+import { humanize } from "@/lib/utils/textConverter";
+import PageHeader from "@/partials/PageHeader.astro";
 
 const { blog_folder } = config.settings;
 const tags = await getTaxonomy(blog_folder, "tags");

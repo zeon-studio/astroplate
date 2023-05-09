@@ -1,11 +1,11 @@
 ---
-import BlogCard from "@components/BlogCard.astro";
-import config from "@config/config.json";
-import Base from "@layouts/Base.astro";
-import { getSinglePage } from "@lib/contentParser.astro";
-import { getTaxonomy } from "@lib/taxonomyParser.astro";
-import taxonomyFilter from "@lib/utils/taxonomyFilter";
-import PageHeader from "@partials/PageHeader.astro";
+import BlogCard from "@/components/BlogCard.astro";
+import config from "@/config/config.json";
+import Base from "@/layouts/Base.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { getTaxonomy } from "@/lib/taxonomyParser.astro";
+import taxonomyFilter from "@/lib/utils/taxonomyFilter";
+import PageHeader from "@/partials/PageHeader.astro";
 
 export async function getStaticPaths() {
   const categories = await getTaxonomy(
