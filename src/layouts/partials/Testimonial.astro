@@ -1,6 +1,6 @@
 ---
-import { Image } from "@astrojs/image/components";
 import { markdownify } from "@/lib/utils/textConverter";
+import { Image } from "@astrojs/image/components";
 const { testimonial } = Astro.props;
 ---
 
@@ -39,9 +39,10 @@ const { testimonial } = Astro.props;
                             />
                           </svg>
                         </div>
-                        <blockquote class="mt-8">
-                          {markdownify(item.content)}
-                        </blockquote>
+                        <blockquote
+                          class="mt-8"
+                          set:html={markdownify(item.content)}
+                        />
                         <div class="mt-11 flex items-center">
                           <div class="text-dark dark:text-white">
                             <Image
@@ -86,6 +87,12 @@ const { testimonial } = Astro.props;
     modules: [Pagination, Autoplay],
     spaceBetween: 24,
     loop: true,
+    loopedSlides: 2,
+    centeredSlides: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
     pagination: {
       el: ".testimonial-slider-pagination",
       type: "bullets",
