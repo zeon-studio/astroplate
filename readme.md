@@ -2,12 +2,10 @@
 
 <p align=center>Astroplate is a free starter template built with Astro, TailwindCSS & TypeScript, providing everything you need to jumpstart your Astro project and save valuable time.</p>
 
-<p align=center> Made with ♥ by <a href="https://zeon.studio/"/> Zeon Studio </a> </a>
-</p>
+<p align=center> Made with ♥ by <a href="https://zeon.studio/">Zeon Studio</a></p>
 
-<h2 align="center"> <a target="_blank" href="https://astroplate.netlify.app/" rel="nofollow">👀 Demo</a> | <a  target="_blank" href="https://pagespeed.web.dev/analysis/https-astroplate-netlify-app/yzx3foum3w?form_factor=desktop">Page Speed (100%)🚀 </a>
+<h2 align="center"> <a target="_blank" href="https://astroplate.netlify.app/" rel="nofollow">👀 Demo</a> | <a  target="_blank" href="https://pagespeed.web.dev/analysis/https-astroplate-netlify-app/yzx3foum3w?form_factor=desktop">Page Speed (100%)🚀</a>
 </h2>
-
 
 <p align=center>
   <a href="https://github.com/withastro/astro/releases/tag/astro%402.0.11" alt="Contributors">
@@ -23,8 +21,7 @@
     <img src="https://img.shields.io/github/contributors/zeon-studio/astroplate" alt="contributors"></a>
 </p>
 
-
-## 📌 Key Features 
+## 📌 Key Features
 
 - 👥 Multi-Authors
 - 🎯 Similar Posts Suggestion
@@ -38,7 +35,7 @@
 - 💬 Disqus Comment
 - 🔳 Syntax Highlighting
 
-### 📄 15+ Pre-designed Pages 
+### 📄 15+ Pre-designed Pages
 
 - 🏠 Homepage
 - 👤 About
@@ -58,15 +55,13 @@
 
 ## 🔗 Integrations
 
-- astro/react 
+- astro/react
 - astro/sitemap
-- astro/tailwind 
-
-
+- astro/tailwind
 
 ## 🚀 Getting Started
 
-### 📦 Dependencies 
+### 📦 Dependencies
 
 - astro 2.3+
 - node v18+
@@ -85,13 +80,11 @@ npm run dev
 npm run build
 ```
 
-
 <!-- reporting issue -->
 ## 🐞 Reporting Issues
 
 We use GitHub Issues as the official bug tracker for this Template. Please Search [existing issues](https://github.com/zeon-studio/astroplate/issues). It’s possible someone has already reported the same problem.
 If your problem or idea has not been addressed yet, feel free to [open a new issue](https://github.com/zeon-studio/astroplate/issues).
-
 
 <!-- licence -->
 ## 📝 License
@@ -104,5 +97,4 @@ Copyright (c) 2023 - Present, Designed & Developed by [Zeon Studio](https://zeon
 
 ## 💻 Need Custom Development Services?
 
-If you need a custom theme, theme customization, or complete website development services from scratch you can [Hire Us](https://zeon.studio/). 
-
+If you need a custom theme, theme customization, or complete website development services from scratch you can [Hire Us](https://zeon.studio/).
