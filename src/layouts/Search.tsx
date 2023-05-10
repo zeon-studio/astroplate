@@ -1,7 +1,7 @@
 import config from "@/config/config.json";
 import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
 import Fuse from "fuse.js";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   FaRegFolder,
   FaRegUserCircle,
@@ -131,7 +131,7 @@ const Search = ({ searchList }: Props) => {
                     />
                   )}
                   <h4 className="mb-3">
-                    <a href={`/${blog_folder}/${item.data.slug}`}>
+                    <a href={`/${blog_folder}/${item.slug}`}>
                       {item.data.title}
                     </a>
                   </h4>
@@ -164,7 +164,7 @@ const Search = ({ searchList }: Props) => {
                   </p>
                   <a
                     className="btn btn-outline-primary btn-sm"
-                    href={`/${blog_folder}/${item.data.slug}`}
+                    href={`/${blog_folder}/${item.slug}`}
                   >
                     read more
                   </a>

@@ -14,10 +14,10 @@ export const slugify = (content: string) => {
 };
 
 // markdownify
-export const markdownify = (content: string) => {
+export const markdownify = (content: string, div?:boolean) => {
   if (!content) return null;
 
-  return marked.parseInline(content);
+  return div? marked.parse(content) : marked.parseInline(content);
 };
 
 // humanize
