@@ -5,7 +5,7 @@ import { getSinglePage } from "@/lib/contentParser.astro";
 import PageHeader from "@/partials/PageHeader.astro";
 import { getEntryBySlug } from "astro:content";
 
-const authorIndex = await getEntryBySlug<any, string>("authors", "_index");
+const authorIndex = await getEntryBySlug<any, string>("authors", "index");
 const authors = await getSinglePage("authors");
 ---
 

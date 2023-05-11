@@ -11,7 +11,7 @@ import PostSidebar from "@/partials/PostSidebar.astro";
 import { getEntryBySlug } from "astro:content";
 
 const { blog_folder } = config.settings;
-const postIndex = await getEntryBySlug<any, string>(blog_folder, "_index");
+const postIndex = await getEntryBySlug<any, string>(blog_folder, "index");
 const posts = await getSinglePage(blog_folder);
 const allCategories = await getAllTaxonomy(blog_folder, "categories");
 const categories = await getTaxonomy(blog_folder, "categories");
