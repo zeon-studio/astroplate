@@ -1,3 +1,4 @@
+import React from "react";
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 
@@ -8,7 +9,7 @@ const Youtube = ({
 }: {
   id: string;
   title: string;
-  rest: any;
+  [key: string]: any;
 }) => {
   return (
     <LiteYouTubeEmbed

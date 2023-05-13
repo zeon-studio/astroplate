@@ -1,3 +1,4 @@
+import React from "react";
 function Video({
   title,
   width = 500,
@@ -6,10 +7,10 @@ function Video({
   ...rest
 }: {
   title: string;
-  width?: number;
-  height?: string;
+  width: number;
+  height: number | "auto";
   src: string;
-  rest: any;
+  [key: string]: any;
 }) {
   return (
     <video
