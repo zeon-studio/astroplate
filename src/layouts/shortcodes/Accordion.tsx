@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 const Accordion = ({
   title,
@@ -6,8 +6,8 @@ const Accordion = ({
   className,
 }: {
   title: string;
-  children: any;
-  className: string | null;
+  children: React.ReactNode;
+  className?: string;
 }) => {
   const [show, setShow] = useState(false);
 
