@@ -1,6 +1,6 @@
 import { marked } from "marked";
 import { number } from "prop-types";
-import React, { useEffect, useRef, useState } from "react";
+import React, {useState } from "react";
 
 function Tabs({ children }: { children: any }) {
 const [active,setAvtive]=useState(0)
