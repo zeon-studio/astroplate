@@ -30,7 +30,7 @@
     "fuse.js": "^6.6.2",
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.3",
-    "marked": "^5.0.1",
+    "marked": "^5.0.2",
     "postcss": "^8.4.23",
     "prettier": "^2.8.8",
     "prettier-plugin-astro": "^0.8.0",
