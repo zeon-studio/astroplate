@@ -6,12 +6,12 @@ import Disqus from "@/function-components/Disqus";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import dateFormat from "@/lib/utils/dateFormat";
 import similerItems from "@/lib/utils/similarItems";
-import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
+import { humanize,markdownify,slugify } from "@/lib/utils/textConverter";
 import { Image } from "@astrojs/image/components";
 import {
-  FaRegClock,
-  FaRegFolder,
-  FaRegUserCircle,
+FaRegClock,
+FaRegFolder,
+FaRegUserCircle,
 } from "react-icons/fa/index.js";
 
 const { blog_folder } = config.settings;
@@ -94,9 +94,7 @@ const { title, description, author, categories, image, date, tags } = post.data;
             />
           </div>
         </div>
-        <div class="mt-20">
-          <Disqus client:load />
-        </div>
+        <Disqus className="mt-20" client:load />
       </article>
     </div>
 
