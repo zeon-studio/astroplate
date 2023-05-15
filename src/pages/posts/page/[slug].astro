@@ -12,7 +12,7 @@ import { getEntryBySlug } from "astro:content";
 
 const { blog_folder } = config.settings;
 const { slug } = Astro.params;
-const postIndex = await getEntryBySlug<any, string>(blog_folder, "index");
+const postIndex = await getEntryBySlug<any, string>(blog_folder, "-index");
 const posts = await getSinglePage(blog_folder);
 const allCategories = await getAllTaxonomy(blog_folder, "categories");
 const categories = await getTaxonomy(blog_folder, "categories");

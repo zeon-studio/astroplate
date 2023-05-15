@@ -118,10 +118,10 @@
 .accordion {
   @apply mb-6 overflow-hidden rounded-lg border border-border bg-theme-light dark:border-darkmode-border dark:bg-darkmode-theme-light;
   &-header {
-    @apply flex cursor-pointer items-center justify-between px-8 py-4 text-lg text-dark dark:bg-darkmode-theme-light dark:text-darkmode-light;
+    @apply flex w-full cursor-pointer items-center justify-between px-8 py-4 text-lg text-dark dark:bg-darkmode-theme-light dark:text-darkmode-light;
   }
   &-icon {
-    @apply h-[.8em] w-[.8em] rotate-[-90deg] transition-transform duration-200;
+    @apply ml-auto h-[.8em] w-[.8em] rotate-[-90deg] transition-transform duration-200;
   }
   &-content {
     @apply max-h-0 overflow-hidden px-8 py-0;

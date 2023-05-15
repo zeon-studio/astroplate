@@ -1,44 +1,63 @@
 import { marked } from "marked";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-function Tabs({ children }: { children: any }) {
-  const [active, setAvtive] = useState(0);
+const Tabs = ({ children }: any) => {
+  const [active, setActive] = useState(0);
+  const [defaultFocus, setDefaultFocus] = useState(false);
 
-  const tabItems = Array.from(
+  const tabRefs: any = useRef([]);
+  useEffect(() => {
+    if (defaultFocus) {
+      tabRefs.current[active]?.focus();
+    } else {
+      setDefaultFocus(true);
+    }
+  }, [active]);
+
+  const tabLinks = Array.from(
     children.props.value.matchAll(
       /<div\s+data-name="([^"]+)"[^>]*>(.*?)<\/div>/gs
     ),
     (match: RegExpMatchArray) => ({ name: match[1], children: match[0] })
   );
 
+  const handleKeyDown = (event: any, index: number) => {
+    if (event.key === "Enter" || event.key === " ") {
+      setActive(index);
+    } else if (event.key === "ArrowRight") {
+      setActive((active + 1) % tabLinks.length);
+    } else if (event.key === "ArrowLeft") {
+      setActive((active - 1 + tabLinks.length) % tabLinks.length);
+    }
+  };
+
   return (
     <div className="tab">
       <ul className="tab-nav">
-        {tabItems.map((item: any, index: number) => (
+        {tabLinks.map((item: any, index: number) => (
           <li
             key={index}
             className={`tab-nav-item ${index === active && "active"}`}
-            onClick={() => setAvtive(index)}
+            role="tab"
+            tabIndex={index === active ? 0 : -1}
+            onKeyDown={(event) => handleKeyDown(event, index)}
+            onClick={() => setActive(index)}
+            ref={(ref) => (tabRefs.current[index] = ref)}
           >
             {item.name}
           </li>
         ))}
       </ul>
-
-      <div className="tab-content">
-        {tabItems.map((item, i) => (
-          <div
-            className={`tab-content-panel ${
-              active === i ? "active" : "hidden"
-            }`}
-            dangerouslySetInnerHTML={{
-              __html: marked.parse(item.children),
-            }}
-          />
-        ))}
-      </div>
+      {tabLinks.map((item, i) => (
+        <div
+          className={active === i ? "tab-content block px-5" : "hidden"}
+          dangerouslySetInnerHTML={{
+            __html: marked.parseInline(item.children),
+          }}
+        />
+      ))}
     </div>
   );
-}
+};
 
 export default Tabs;
