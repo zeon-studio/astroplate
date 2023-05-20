@@ -14,15 +14,15 @@ const allTags = await getAllTaxonomy(blog_folder, "tags");
   <PageHeader title={"Tags"} />
   <section class="section">
     <div class="container text-center">
-      <ul class="space-x-4">
+      <ul>
         {
           tags.map((tag: any) => {
             const count = allTags.filter((c) => c === tag).length;
             return (
-              <li class="inline-block">
+              <li class="m-3 inline-block">
                 <a
                   href={`/tags/${tag}`}
-                  class="rounded bg-theme-light px-4 py-2 text-xl text-dark dark:bg-darkmode-theme-light dark:text-darkmode-dark"
+                  class="block rounded bg-theme-light px-4 py-2 text-xl text-dark dark:bg-darkmode-theme-light dark:text-darkmode-dark"
                 >
                   {humanize(tag)}{" "}
                   <span class="ml-2 rounded bg-body px-2 dark:bg-darkmode-body">
