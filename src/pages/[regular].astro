@@ -3,7 +3,7 @@ import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import PageHeader from "@/partials/PageHeader.astro";
 
-export async function getStaticPaths() {
+export async function getStaticPaths(): Promise<{params: {regular: string}}[]> {
   const pages = await getSinglePage("pages");
 
   const paths = pages.map((page) => ({

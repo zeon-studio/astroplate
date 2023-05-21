@@ -1,11 +1,14 @@
 ---
-const { section, currentPage, totalPages } = Astro.props;
+type Pagination = {
+  section?: string, currentPage?: number, totalPages?: number
+}
+const { section, currentPage=1, totalPages=1 }: Pagination = Astro.props;
 
 const indexPageLink = currentPage === 2;
 const hasPrevPage = currentPage > 1;
-const hasNextPage = totalPages > currentPage;
+const hasNextPage = totalPages > currentPage!;
 
-let pageList = [];
+let pageList: number[] = [];
 for (let i = 1; i <= totalPages; i++) {
   pageList.push(i);
 }

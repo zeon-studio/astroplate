@@ -19,7 +19,7 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 const posts = await getSinglePage(config.settings.blog_folder);
-const filterByCategories = taxonomyFilter(posts, "tags", tag);
+const filterByCategories = taxonomyFilter(posts, "tags", tag!);
 ---
 
 <Base title={tag}>

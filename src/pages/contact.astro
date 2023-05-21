@@ -5,7 +5,7 @@ import PageHeader from "@/partials/PageHeader.astro";
 import { getEntryBySlug } from "astro:content";
 
 const entry = await getEntryBySlug("pages", "contact");
-const { contact_form_action } = config.params;
+const { contact_form_action }: {contact_form_action: string} = config.params;
 const { title, description, meta_title, image } = entry.data;
 ---
 

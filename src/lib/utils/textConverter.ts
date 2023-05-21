@@ -7,22 +7,18 @@ marked.use({
 });
 
 // slugify
-export const slugify = (content: string) => {
-  if (!content) return null;
+export const slugify = (content: string): string => {
 
   return slug(content);
 };
 
 // markdownify
-export const markdownify = (content: string, div?:boolean) => {
-  if (!content) return null;
-
+export const markdownify = (content: string, div?:boolean): string => {
   return div? marked.parse(content) : marked.parseInline(content);
 };
 
 // humanize
-export const humanize = (content: string) => {
-  if (!content) return null;
+export const humanize = (content: string): string => {
 
   return content
     .replace(/^[\s_]+|[\s_]+$/g, "")
@@ -33,9 +29,7 @@ export const humanize = (content: string) => {
 };
 
 // plainify
-export const plainify = (content: string) => {
-  if (!content) return null;
-
+export const plainify = (content: string): string => {
   const filterBrackets = content.replace(/<\/?[^>]+(>|$)/gm, "");
   const filterSpaces = filterBrackets.replace(/[\r\n]\s*[\r\n]/gm, "");
   const stripHTML = htmlEntityDecoder(filterSpaces);

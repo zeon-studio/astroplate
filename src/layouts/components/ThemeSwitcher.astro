@@ -1,8 +1,8 @@
 ---
 import config from "@/config/config.json";
 
-const { theme_switcher, default_theme } = config.settings;
-const {className} = Astro.props;
+const { theme_switcher, default_theme }: { theme_switcher: boolean, default_theme: string } = config.settings;
+const {className}: {className?: string} = Astro.props;
 ---
 
 {

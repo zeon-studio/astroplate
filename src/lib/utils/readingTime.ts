@@ -1,5 +1,5 @@
 // content reading
-const readingTime = (content: string) => {
+const readingTime = (content: string): string => {
   const WPS = 275 / 60;
 
   let images = 0;

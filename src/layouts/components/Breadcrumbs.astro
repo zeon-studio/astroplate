@@ -1,7 +1,7 @@
 ---
 import { humanize } from "@/lib/utils/textConverter";
 
-const { className } = Astro.props;
+const { className }: {className?: string} = Astro.props;
 
 const paths = Astro.url.pathname.split("/").filter((x) => x);
 let parts = [

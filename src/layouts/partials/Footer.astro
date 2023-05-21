@@ -5,6 +5,8 @@ import config from "@/config/config.json";
 import menu from "@/config/menu.json";
 import social from "@/config/social.json";
 import { markdownify } from "@/lib/utils/textConverter";
+
+const {footer}: {footer: {name: string, url: string}[]} = menu;
 ---
 
 <footer class="bg-theme-light dark:bg-darkmode-theme-light">
@@ -16,7 +18,7 @@ import { markdownify } from "@/lib/utils/textConverter";
       <div class="mb-8 text-center lg:col-6 lg:mb-0">
         <ul>
           {
-            menu.footer.map((menu) => (
+            footer.map((menu) => (
               <li class="m-3 inline-block">
                 <a href={menu.url}>{menu.name}</a>
               </li>
