@@ -6,11 +6,22 @@ import Testimonial from "@/partials/Testimonial.astro";
 import { Image } from "@astrojs/image/components";
 import { getEntryBySlug } from "astro:content";
 import { FaCheck } from "react-icons/fa/index.js";
+import type { Button, Feature } from "types";
+
+interface Homepage {
+  banner: {
+    title: string
+    content: string,
+    image: string,
+    button: Button,
+  }
+  features: Feature[]
+}
 
 const homepage = await getEntryBySlug("homepage", "index");
 const testimonial = await getEntryBySlug("sections", "testimonial");
 const call_to_action = await getEntryBySlug("sections", "call-to-action");
-const { banner, features } = homepage.data;
+const { banner, features }: Homepage = homepage.data;
 ---
 
 <Base>
@@ -50,13 +61,7 @@ const { banner, features } = homepage.data;
   {
     features.map(
       (
-        feature: {
-          button: any;
-          image: string;
-          bulletpoints: any;
-          content: string;
-          title: string;
-        },
+        feature,
         index: number
       ) => (
         <section class={`section-sm ${index % 2 === 0 && "bg-gradient"}`}>

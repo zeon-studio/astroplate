@@ -1,7 +1,7 @@
 // similer products
 const similerItems = (currentItem: any, allItems: any, slug: string) => {
-  let categories: [] = [];
-  let tags: [] = [];
+  let categories: string[] = [];
+  let tags: string[] = [];
 
   // set categories
   if (currentItem.data.categories.length > 0) {

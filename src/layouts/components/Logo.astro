@@ -2,7 +2,7 @@
 import { Image } from "@astrojs/image/components";
 import config from "@/config/config.json";
 
-const { src, srcDarkmode } = Astro.props;
+const { src, srcDarkmode } : {src?: string, srcDarkmode?: string} = Astro.props;
 const {
   logo,
   logo_darkmode,
