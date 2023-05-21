@@ -7,8 +7,14 @@ import {
   IoLogoTwitter,
 } from "react-icons/io5/index.js";
 
-const { base_url }: {base_url: string} = config.site;
-const { title, description, slug, className }: {title?: string, description?: string, slug?: string, className?: string} = Astro.props;
+const { base_url }: { base_url: string } = config.site;
+const {
+  title,
+  description,
+  slug,
+  className,
+}: { title?: string; description?: string; slug?: string; className?: string } =
+  Astro.props;
 ---
 
 <ul class={`${className}`}>

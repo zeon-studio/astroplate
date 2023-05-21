@@ -1,14 +1,15 @@
 ---
-import { Image } from "@astrojs/image/components";
 import BlogCard from "@/components/BlogCard.astro";
 import Social from "@/components/Social.astro";
 import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import { slugify } from "@/lib/utils/textConverter";
-import type { Blog_folder } from "types";
+import { Image } from "@astrojs/image/components";
 
-export async function getStaticPaths(): Promise<{params: {single: string}, props: {author: string}}[]> {
+export async function getStaticPaths(): Promise<
+  { params: { single: string }; props: { author: string } }[]
+> {
   const authors = await getSinglePage("authors");
 
   const paths = authors.map((author) => ({
@@ -20,7 +21,7 @@ export async function getStaticPaths(): Promise<{params: {single: string}, props
   return paths;
 }
 
-const { blog_folder }: Blog_folder = config.settings;
+const { blog_folder }: { blog_folder: string } = config.settings;
 const { author } = Astro.props;
 const { title, social, meta_title, description, image } = author.data;
 const { Content } = await author.render();

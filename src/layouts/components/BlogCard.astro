@@ -4,7 +4,10 @@ import config from "@/config/config.json";
 import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
 import { FaRegFolder, FaRegUserCircle } from "react-icons/fa/index.js";
 
-const { summary_length, blog_folder }: {summary_length: number, blog_folder: string} = config.settings;
+const {
+  summary_length,
+  blog_folder,
+}: { summary_length: number; blog_folder: string } = config.settings;
 const { data } = Astro.props;
 const { title, image, date, author, categories } = data.data;
 ---

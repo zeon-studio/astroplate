@@ -1,4 +1,4 @@
-import { slug } from 'github-slugger';
+import { slug } from "github-slugger";
 import { marked } from "marked";
 
 marked.use({
@@ -8,18 +8,16 @@ marked.use({
 
 // slugify
 export const slugify = (content: string): string => {
-
   return slug(content);
 };
 
 // markdownify
-export const markdownify = (content: string, div?:boolean): string => {
-  return div? marked.parse(content) : marked.parseInline(content);
+export const markdownify = (content: string, div?: boolean): string => {
+  return div ? marked.parse(content) : marked.parseInline(content);
 };
 
 // humanize
 export const humanize = (content: string): string => {
-
   return content
     .replace(/^[\s_]+|[\s_]+$/g, "")
     .replace(/[_\s]+/g, " ")
