@@ -7,9 +7,7 @@ import { getSinglePage } from "@/lib/contentParser.astro";
 import { slugify } from "@/lib/utils/textConverter";
 import { Image } from "@astrojs/image/components";
 
-export async function getStaticPaths(): Promise<
-  { params: { single: string }; props: { author: string } }[]
-> {
+export async function getStaticPaths() {
   const authors = await getSinglePage("authors");
 
   const paths = authors.map((author) => ({

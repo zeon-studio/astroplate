@@ -7,9 +7,7 @@ import { getTaxonomy } from "@/lib/taxonomyParser.astro";
 import taxonomyFilter from "@/lib/utils/taxonomyFilter";
 import PageHeader from "@/partials/PageHeader.astro";
 
-export async function getStaticPaths(): Promise<
-  { params: { category: string } }[]
-> {
+export async function getStaticPaths() {
   const categories = await getTaxonomy(
     config.settings.blog_folder,
     "categories"
