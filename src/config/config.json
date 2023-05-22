@@ -19,7 +19,7 @@
     "default_theme": "system",
     "pagination": 2,
     "summary_length": 200,
-    "blog_folder": "posts"
+    "blog_folder": "blog"
   },
 
   "params": {
