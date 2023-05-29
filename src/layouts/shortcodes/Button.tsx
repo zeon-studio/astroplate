@@ -1,19 +1,19 @@
 import React from "react";
 
 const Button = ({
-  href,
+  label,
+  link,
   style,
   rel,
-  children,
 }: {
-  href: string;
-  style: string | null;
-  rel: string | null;
-  children: string;
+  label: string;
+  link: string;
+  style?: string;
+  rel?: string;
 }) => {
   return (
     <a
-      href={href}
+      href={link}
       target="_blank"
       rel={`noopener noreferrer ${
         rel ? (rel === "follow" ? "" : rel) : "nofollow"
@@ -22,7 +22,7 @@ const Button = ({
         style === "outline" ? "btn-outline-primary" : "btn-primary"
       }`}
     >
-      {children}
+      {label}
     </a>
   );
 };
