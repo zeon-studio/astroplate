@@ -1,13 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const rootDirs = [
-  "src/pages",
-  "src/lib",
-  "src/hooks",
-  "src/layouts",
-  "src/styles",
-];
+const rootDirs = ["src/pages", "src/hooks", "src/layouts", "src/styles"];
 
 const configFiles = [
   {
@@ -32,7 +26,6 @@ function removeDarkModeFromFiles(filePath, regexPatterns) {
 
 function removeDarkModeFromPages(directoryPath) {
   const files = fs.readdirSync(directoryPath);
-  console.log(files);
 
   files.forEach((file) => {
     const filePath = path.join(directoryPath, file);
