@@ -3,10 +3,10 @@ import Base from "@/layouts/Base.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 import CallToAction from "@/partials/CallToAction.astro";
 import Testimonial from "@/partials/Testimonial.astro";
+import type { Button, Feature } from "@/types";
 import { Image } from "@astrojs/image/components";
 import { getEntryBySlug } from "astro:content";
 import { FaCheck } from "react-icons/fa/index.js";
-import type { Button, Feature } from "types";
 
 interface Homepage {
   banner: {
