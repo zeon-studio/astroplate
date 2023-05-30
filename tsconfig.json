@@ -13,6 +13,7 @@
     "incremental": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
+      "@/function-components/*": ["./src/layouts/function-components/*"],
       "@/components/*": ["./src/layouts/components/*"],
       "@/shortcodes/*": ["./src/layouts/shortcodes/*"],
       "@/partials/*": ["./src/layouts/partials/*"],
