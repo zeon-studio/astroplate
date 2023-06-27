@@ -8,14 +8,13 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "jsx": "react",
-    "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "@/function-components/*": ["./src/layouts/function-components/*"],
       "@/components/*": ["./src/layouts/components/*"],
       "@/shortcodes/*": ["./src/layouts/shortcodes/*"],
+      "@/helpers/*": ["./src/layouts/helpers/*"],
       "@/partials/*": ["./src/layouts/partials/*"],
       "@/*": ["./src/*"]
     }

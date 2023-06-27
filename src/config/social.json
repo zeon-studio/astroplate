@@ -1,33 +1,24 @@
 {
-  "facebook": "https://facebook.com/",
-  "twitter": "https://twitter.com/",
-  "mastodon": "https://mastodon.com/",
-  "instagram": "https://instagram.com/",
-  "youtube": "",
-  "linkedin": "",
-  "github": "",
-  "gitlab": "",
-  "discord": "",
-  "slack": "",
-  "medium": "",
-  "codepen": "",
-  "bitbucket": "",
-  "dribbble": "",
-  "behance": "",
-  "pinterest": "",
-  "soundcloud": "",
-  "tumblr": "",
-  "reddit": "",
-  "vk": "",
-  "whatsapp": "",
-  "snapchat": "",
-  "vimeo": "",
-  "tiktok": "",
-  "foursquare": "",
-  "rss": "",
-  "email": "",
-  "phone": "",
-  "address": "",
-  "skype": "",
-  "website": ""
+  "main": [
+    {
+      "name": "facebook",
+      "icon": "FaFacebook",
+      "link": "https://www.facebook.com/"
+    },
+    {
+      "name": "twitter",
+      "icon": "FaTwitter",
+      "link": "https://twitter.com/"
+    },
+    {
+      "name": "github",
+      "icon": "FaGithub",
+      "link": "https://www.github.com/"
+    },
+    {
+      "name": "linkedin",
+      "icon": "FaLinkedin",
+      "link": "https://www.linkedin.com/"
+    }
+  ]
 }
