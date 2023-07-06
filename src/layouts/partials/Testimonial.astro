@@ -79,9 +79,10 @@ const { testimonial } = Astro.props;
 }
 
 <script>
-  import Swiper, { Autoplay, Pagination } from "swiper";
-  import "swiper/css";
-  import "swiper/css/pagination";
+import { Swiper } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Autoplay, Pagination } from "swiper/modules";
 
   new Swiper(".testimonial-slider", {
     modules: [Pagination, Autoplay],
