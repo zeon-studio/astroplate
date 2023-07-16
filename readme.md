@@ -2,7 +2,7 @@
 
 <p align=center>Astroplate is a free starter template built with Astro, TailwindCSS & TypeScript, providing everything you need to jumpstart your Astro project and save valuable time.</p>
 
-<p align=center> Made with ♥ by <a href="https://zeon.studio/">Zeon Studio</a></p>
+<p align=center>Made with ♥ by <a href="https://zeon.studio/">Zeon Studio</a></p>
 
 <h2 align="center"> <a target="_blank" href="https://astroplate.netlify.app/" rel="nofollow">👀 Demo</a> | <a  target="_blank" href="https://pagespeed.web.dev/analysis/https-astroplate-netlify-app/yzx3foum3w?form_factor=desktop">Page Speed (100%)🚀</a>
 </h2>
@@ -67,6 +67,12 @@
 - node v18+
 - npm v9.5+
 - tailwind v3.3+
+
+### 👉 Install Dependencies
+
+```
+npm install
+```
 
 ### 👉 Development Command
 
