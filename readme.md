@@ -86,6 +86,13 @@ npm run dev
 npm run build
 ```
 
+### 👉 Build and Run With Docker
+
+```bash
+docker build -t astroplate .
+docker run -p 3000:3000 astroplate
+```
+
 <!-- reporting issue -->
 ## 🐞 Reporting Issues
 
