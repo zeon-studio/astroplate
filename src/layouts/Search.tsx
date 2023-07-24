@@ -155,7 +155,7 @@ const Search = ({ searchList }: Props) => {
                             {humanize(category)}
                             {index !== item.data.categories.length - 1 && ", "}
                           </a>
-                        )
+                        ),
                       )}
                     </li>
                   </ul>

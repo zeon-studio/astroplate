@@ -15,12 +15,12 @@ const similerItems = (currentItem: any, allItems: any, slug: string) => {
 
   // filter by categories
   const filterByCategories = allItems.filter((item: any) =>
-    categories.find((category) => item.data.categories.includes(category))
+    categories.find((category) => item.data.categories.includes(category)),
   );
 
   // filter by tags
   const filterByTags = allItems.filter((item: any) =>
-    tags.find((tag) => item.data.tags.includes(tag))
+    tags.find((tag) => item.data.tags.includes(tag)),
   );
 
   // merged after filter

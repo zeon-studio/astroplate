@@ -22,14 +22,14 @@ const Tabs = ({ children }: { children: React.ReactElement }) => {
 
   const tabLinks = Array.from(
     children.props.value.matchAll(
-      /<div\s+data-name="([^"]+)"[^>]*>(.*?)<\/div>/gs
+      /<div\s+data-name="([^"]+)"[^>]*>(.*?)<\/div>/gs,
     ),
-    (match: RegExpMatchArray) => ({ name: match[1], children: match[0] })
+    (match: RegExpMatchArray) => ({ name: match[1], children: match[0] }),
   );
 
   const handleKeyDown = (
     event: React.KeyboardEvent<EventTarget>,
-    index: number
+    index: number,
   ) => {
     if (event.key === "Enter" || event.key === " ") {
       setActive(index);
@@ -57,7 +57,7 @@ const Tabs = ({ children }: { children: React.ReactElement }) => {
             >
               {item.name}
             </li>
-          )
+          ),
         )}
       </ul>
       {tabLinks.map((item: { name: string; children: string }, i: number) => (

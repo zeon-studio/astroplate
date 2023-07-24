@@ -5,7 +5,7 @@ const useTheme = (): string => {
 
   useEffect(() => {
     setThemeValue(
-      document.documentElement.classList.contains("dark") ? "dark" : "light"
+      document.documentElement.classList.contains("dark") ? "dark" : "light",
     );
   }, []);
 

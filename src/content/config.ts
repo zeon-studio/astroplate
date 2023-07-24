@@ -31,7 +31,7 @@ const authorsCollection = defineCollection({
             icon: z.string().optional(),
             link: z.string().optional(),
           })
-          .optional()
+          .optional(),
       )
       .optional(),
     draft: z.boolean().optional(),
