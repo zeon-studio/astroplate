@@ -51,6 +51,7 @@ const { testimonial } = Astro.props;
                               class="rounded-full"
                               src={item.avatar}
                               alt={item.name}
+                              format="webp"
                             />
                           </div>
                           <div class="ml-4">
@@ -66,7 +67,7 @@ const { testimonial } = Astro.props;
                         </div>
                       </div>
                     </div>
-                  )
+                  ),
                 )}
               </div>
               <div class="testimonial-slider-pagination mt-9 flex items-center justify-center text-center" />
@@ -79,10 +80,10 @@ const { testimonial } = Astro.props;
 }
 
 <script>
-import { Swiper } from "swiper";
-import "swiper/css";
-import "swiper/css/pagination";
-import { Autoplay, Pagination } from "swiper/modules";
+  import { Swiper } from "swiper";
+  import "swiper/css";
+  import "swiper/css/pagination";
+  import { Autoplay, Pagination } from "swiper/modules";
 
   new Swiper(".testimonial-slider", {
     modules: [Pagination, Autoplay],

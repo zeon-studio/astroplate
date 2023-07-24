@@ -1,6 +1,6 @@
 ---
-import { Image } from "@astrojs/image/components";
 import config from "@/config/config.json";
+import { Image } from "@astrojs/image/components";
 
 const { src, srcDarkmode }: { src?: string; srcDarkmode?: string } =
   Astro.props;
@@ -39,6 +39,7 @@ const { theme_switcher }: { theme_switcher: boolean } = config.settings;
             height: logo_height.replace("px", "") + "px",
             width: logo_width.replace("px", "") + "px",
           }}
+          format="webp"
         />
         {theme_switcher && (
           <Image
@@ -53,6 +54,7 @@ const { theme_switcher }: { theme_switcher: boolean } = config.settings;
               height: logo_height.replace("px", "") + "px",
               width: logo_width.replace("px", "") + "px",
             }}
+            format="webp"
           />
         )}
       </>

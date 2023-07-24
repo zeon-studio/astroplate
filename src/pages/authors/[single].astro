@@ -25,7 +25,7 @@ const { title, social, meta_title, description, image } = author.data;
 const { Content } = await author.render();
 const posts = await getSinglePage(blog_folder);
 const postFilterByAuthor = posts.filter(
-  (post) => slugify(post.data.author) === slugify(title)
+  (post) => slugify(post.data.author) === slugify(title),
 );
 ---
 
@@ -49,6 +49,7 @@ const postFilterByAuthor = posts.filter(
                 height={200}
                 width={200}
                 alt={title}
+                format="webp"
               />
             )
           }
