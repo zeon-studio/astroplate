@@ -1,20 +1,23 @@
 ---
 import Base from "@/layouts/Base.astro";
-import { markdownify } from "@/lib/utils/textConverter";
-import { getEntryBySlug } from "astro:content";
-const entry = await getEntryBySlug("pages", "404");
-const { Content } = await entry.render();
 ---
 
-<Base title={entry.data.title}>
-  <section class="section-sm">
+<Base title="Page Not Found">
+  <section class="section-sm text-center">
     <div class="container">
       <div class="row justify-center">
-        <div class="text-center sm:col-10 md:col-8 lg:col-6">
-          <img class="mb-8 w-full" src="/images/404.png" alt="page not found" />
-          <h1 class="h2 mb-4" set:html={markdownify(entry.data.title)} />
-          <Content />
-          <a href="/" class="btn btn-primary mt-8">Back To Home</a>
+        <div class="sm:col-10 md:col-8 lg:col-6">
+          <span
+            class="text-[8rem] block font-bold text-dark dark:text-darkmode-dark"
+          >
+            404
+          </span>
+          <h1 class="h2 mb-4">Page not found</h1>
+          <div class="content">
+            The page you are looking for might have been removed, had its name
+            changed, or is temporarily unavailable.
+          </div>
+          <a href="/" class="btn btn-primary mt-8">Back to home</a>
         </div>
       </div>
     </div>
