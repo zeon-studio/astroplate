@@ -18,7 +18,7 @@ interface Homepage {
   features: Feature[];
 }
 
-const homepage = await getEntryBySlug("homepage", "index");
+const homepage = await getEntryBySlug("homepage", "-index");
 const testimonial = await getEntryBySlug("sections", "testimonial");
 const call_to_action = await getEntryBySlug("sections", "call-to-action");
 const { banner, features }: Homepage = homepage.data;
