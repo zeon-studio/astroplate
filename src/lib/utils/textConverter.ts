@@ -7,17 +7,17 @@ marked.use({
 });
 
 // slugify
-export const slugify = (content: string): string => {
+export const slugify = (content: string) => {
   return slug(content);
 };
 
 // markdownify
-export const markdownify = (content: string, div?: boolean): string => {
+export const markdownify = (content: string, div?: boolean) => {
   return div ? marked.parse(content) : marked.parseInline(content);
 };
 
 // humanize
-export const humanize = (content: string): string => {
+export const humanize = (content: string) => {
   return content
     .replace(/^[\s_]+|[\s_]+$/g, "")
     .replace(/[_\s]+/g, " ")
@@ -27,15 +27,16 @@ export const humanize = (content: string): string => {
 };
 
 // plainify
-export const plainify = (content: string): string => {
-  const filterBrackets = content.replace(/<\/?[^>]+(>|$)/gm, "");
+export const plainify = (content: string) => {
+  const parseMarkdown = marked.parse(content);
+  const filterBrackets = parseMarkdown.replace(/<\/?[^>]+(>|$)/gm, "");
   const filterSpaces = filterBrackets.replace(/[\r\n]\s*[\r\n]/gm, "");
   const stripHTML = htmlEntityDecoder(filterSpaces);
   return stripHTML;
 };
 
 // strip entities for plainify
-const htmlEntityDecoder = (htmlWithEntities: string): string => {
+const htmlEntityDecoder = (htmlWithEntities: string) => {
   let entityList: { [key: string]: string } = {
     "&nbsp;": " ",
     "&lt;": "<",
