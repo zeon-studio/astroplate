@@ -5,7 +5,7 @@ import { slugify } from "./utils/textConverter";
 // get all taxonomies from frontmatter
 export const getTaxonomy = async (collection: string, name: string) => {
   const singlePages = await getSinglePage(collection);
-  const taxonomyPages = singlePages.map((page) => page.data[name]);
+  const taxonomyPages = singlePages.map((page: any) => page.data[name]);
   let taxonomies: string[] = [];
   for (let i = 0; i < taxonomyPages.length; i++) {
     const categoryArray = taxonomyPages[i];
@@ -19,7 +19,7 @@ export const getTaxonomy = async (collection: string, name: string) => {
 
 export const getAllTaxonomy = async (collection: string, name: string) => {
   const singlePages = await getSinglePage(collection);
-  const taxonomyPages = singlePages.map((page) => page.data[name]);
+  const taxonomyPages = singlePages.map((page: any) => page.data[name]);
   let taxonomies: string[] = [];
   for (let i = 0; i < taxonomyPages.length; i++) {
     const categoryArray = taxonomyPages[i];
