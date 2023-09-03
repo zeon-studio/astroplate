@@ -1,7 +1,7 @@
 ---
 import Base from "@/layouts/Base.astro";
 import { markdownify } from "@/lib/utils/textConverter";
-import { Image } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import { getEntryBySlug } from "astro:content";
 
 const about = await getEntryBySlug("about", "-index");
