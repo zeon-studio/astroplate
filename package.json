@@ -1,6 +1,6 @@
 {
   "name": "astroplate",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Astro and Tailwindcss boilerplate",
   "author": "zeon.studio",
   "license": "MIT",
@@ -13,7 +13,6 @@
     "remove-darkmode": "node scripts/removeDarkmode.js && yarn format"
   },
   "dependencies": {
-    "@astrojs/image": "^0.17.3",
     "@astrojs/mdx": "^1.0.0",
     "@astrojs/react": "^3.0.0",
     "@astrojs/rss": "^3.0.0",
