@@ -23,7 +23,7 @@
   },
 
   "params": {
-    "contact_form_action": "#",
+    "contact_form_action": "https://fabform.io/f/{form-id}",
     "copyright": "Designed And Developed by [Zeon Studio](https://zeon.studio)"
   },
 
