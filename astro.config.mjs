@@ -53,4 +53,7 @@ export default defineConfig({
     },
     extendDefaultPlugins: true,
   },
+  build: {
+    format: config.site.trailing_slash ? 'directory' : 'file'
+  },
 });
