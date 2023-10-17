@@ -44,30 +44,33 @@ const { className }: { className?: string } = Astro.props;
   )
 }
 
-<script is:inline define:vars={{ defaultTheme: default_theme }}>
-  var darkMode = defaultTheme === "dark" ? true : false;
-  var themeSwitch = document.querySelectorAll("[data-theme-switcher]");
-  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    darkMode = true;
+<script>
+  function toggleTheme(themeSwitch: NodeListOf<Element>) {
+    const currentTheme = localStorage.getItem("theme");
+    const isDarkTheme = currentTheme === "dark";
+
+    themeSwitch.forEach((sw: any) => (sw.checked = isDarkTheme));
+    document.documentElement.classList.toggle("dark", isDarkTheme);
   }
-  if (localStorage.getItem("theme") === "dark") {
-    darkMode = true;
-  } else if (localStorage.getItem("theme") === "light") {
-    darkMode = false;
-  }
-  if (darkMode) {
-    document.documentElement.classList.toggle("dark");
-  }
-  document.addEventListener("DOMContentLoaded", () => {
-    [].forEach.call(themeSwitch, function (ts) {
-      ts.checked = darkMode ? true : false;
-      ts.addEventListener("click", () => {
-        document.documentElement.classList.toggle("dark");
-        localStorage.setItem(
-          "theme",
-          document.documentElement.classList.contains("dark") ? "dark" : "light"
-        );
+
+  const setDarkMode = () => {
+    const themeSwitch = document.querySelectorAll("[data-theme-switcher]");
+
+    toggleTheme(themeSwitch);
+
+    themeSwitch.forEach((sw) => {
+      sw.addEventListener("click", function () {
+        const currentTheme = localStorage.getItem("theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+        localStorage.setItem("theme", newTheme);
+        toggleTheme(themeSwitch);
       });
     });
-  });
+  };
+
+  // Runs on initial navigation
+  setDarkMode();
+  // Runs on view transitions navigation
+  document.addEventListener("astro:after-swap", setDarkMode);
 </script>
