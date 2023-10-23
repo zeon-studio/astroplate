@@ -85,28 +85,31 @@ const { testimonial } = Astro.props;
   import "swiper/css/pagination";
   import { Autoplay, Pagination } from "swiper/modules";
 
-  new Swiper(".testimonial-slider", {
-    modules: [Pagination, Autoplay],
-    spaceBetween: 24,
-    loop: true,
-    loopedSlides: 2,
-    centeredSlides: true,
-    autoplay: {
-      delay: 2500,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: ".testimonial-slider-pagination",
-      type: "bullets",
-      clickable: true,
-    },
-    breakpoints: {
-      768: {
-        slidesPerView: 2,
+  // astro:page-load event is fired when the page is loaded
+  document.addEventListener("astro:page-load", () => {
+    new Swiper(".testimonial-slider", {
+      modules: [Pagination, Autoplay],
+      spaceBetween: 24,
+      loop: true,
+      loopedSlides: 2,
+      centeredSlides: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
       },
-      992: {
-        slidesPerView: 3,
+      pagination: {
+        el: ".testimonial-slider-pagination",
+        type: "bullets",
+        clickable: true,
       },
-    },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+        },
+        992: {
+          slidesPerView: 3,
+        },
+      },
+    });
   });
 </script>
