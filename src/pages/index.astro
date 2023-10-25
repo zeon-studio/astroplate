@@ -5,7 +5,7 @@ import CallToAction from "@/partials/CallToAction.astro";
 import Testimonial from "@/partials/Testimonial.astro";
 import type { Button, Feature } from "@/types";
 import { Image } from "astro:assets";
-import { getEntryBySlug } from "astro:content";
+import { getEntry } from "astro:content";
 import { FaCheck } from "react-icons/fa/index.js";
 
 interface Homepage {
@@ -18,9 +18,9 @@ interface Homepage {
   features: Feature[];
 }
 
-const homepage = await getEntryBySlug("homepage", "-index");
-const testimonial = await getEntryBySlug("sections", "testimonial");
-const call_to_action = await getEntryBySlug("sections", "call-to-action");
+const homepage = await getEntry("homepage", "-index");
+const testimonial = await getEntry("sections", "testimonial");
+const call_to_action = await getEntry("sections", "call-to-action");
 const { banner, features }: Homepage = homepage.data;
 ---
 

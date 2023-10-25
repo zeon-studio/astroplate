@@ -8,10 +8,10 @@ import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import PageHeader from "@/partials/PageHeader.astro";
 import PostSidebar from "@/partials/PostSidebar.astro";
-import { getEntryBySlug } from "astro:content";
+import { getEntry } from "astro:content";
 
 const { blog_folder } = config.settings;
-const postIndex = await getEntryBySlug<any, string>(blog_folder, "-index");
+const postIndex = await getEntry<any, string>(blog_folder, "-index");
 const posts = await getSinglePage(blog_folder);
 const allCategories = await getAllTaxonomy(blog_folder, "categories");
 const categories = await getTaxonomy(blog_folder, "categories");
