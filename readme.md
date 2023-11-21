@@ -92,7 +92,19 @@ npm run build
 
 ```bash
 docker build -t astroplate .
-docker run -p 3000:3000 astroplate
+# or
+# docker --build-arg=npm build -t astroplate .
+# or
+# docker --build-arg=pnpm build -t astroplate .
+docker run -p 3000:80 astroplate
+# or
+# docker run --rm -p 3000:80 astroplate
+```
+
+To access the shell within the container:
+
+```bash
+docker run -it --rm astroplate ash
 ```
 
 <!-- reporting issue -->

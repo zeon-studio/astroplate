@@ -1,7 +1,11 @@
+ARG INSTALLER=yarn
+
 FROM node:18-alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
+ARG INSTALLER
+
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
@@ -9,10 +13,10 @@ WORKDIR /app
 # Install dependencies based on the preferred package manager
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN \
-  if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
-  elif [ -f package-lock.json ]; then npm ci; \
-  elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm i --frozen-lockfile; \
-  else echo "Lockfile not found." && exit 1; \
+  if [ "${INSTALLER}" == "yarn" ]; then yarn --frozen-lockfile; \
+  elif [ "${INSTALLER}" == "npm" ]; then npm ci; \
+  elif [ "${INSTALLER}" == "pnpm" ]; then yarn global add pnpm && pnpm i --frozen-lockfile; \
+  else echo "Valid installer not set." && exit 1; \
   fi
 
 
@@ -22,34 +26,18 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Next.js collects completely anonymous telemetry data about general usage.
-# Learn more here: https://nextjs.org/telemetry
-# Uncomment the following line in case you want to disable telemetry during the build.
-# ENV NEXT_TELEMETRY_DISABLED 1
+# RUN chmod u+x ./installer && ./installer
+ARG INSTALLER
+RUN \
+  if [ "${INSTALLER}" == "yarn" ]; then yarn build; \
+  elif [ "${INSTALLER}" == "npm" ]; then npm run build; \
+  elif [ "${INSTALLER}" == "pnpm" ]; then pnpm run build; \
+  else echo "Valid installer not set." && exit 1; \
+  fi
 
-RUN yarn build
+# Production image, copy all the files and run nginx
+FROM nginx:alpine AS runner
+COPY ./config/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-# If using npm comment out above and use below instead
-# RUN npm run build
-
-# Production image, copy all the files and run next
-FROM base AS runner
-WORKDIR /app
-
-ENV NODE_ENV production
-# Uncomment the following line in case you want to disable telemetry during runtime.
-# ENV NEXT_TELEMETRY_DISABLED 1
-
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 astro
-
-COPY --from=builder /app/public ./public
-
-USER astro
-
-EXPOSE 3000
-
-ENV PORT 3000
-ENV HOSTNAME localhost
-
-CMD ["node", "server.js"]
+WORKDIR /usr/share/nginx/html
