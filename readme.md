@@ -93,9 +93,10 @@ npm run build
 ```bash
 docker build -t astroplate .
 # or
-# docker --build-arg=npm build -t astroplate .
+# docker --build-arg INSTALLER=npm build -t astroplate .
 # or
-# docker --build-arg=pnpm build -t astroplate .
+# docker --build-arg INSTALLER=pnpm build -t astroplate .
+
 docker run -p 3000:80 astroplate
 # or
 # docker run --rm -p 3000:80 astroplate
