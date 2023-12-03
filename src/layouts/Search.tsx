@@ -25,7 +25,7 @@ interface SearchResult {
   refIndex: number;
 }
 
-const Search = ({ searchList }: Props) => {
+const SearchLayout = ({ searchList }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputVal, setInputVal] = useState("");
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
@@ -178,4 +178,4 @@ const Search = ({ searchList }: Props) => {
   );
 };
 
-export default Search;
+export default SearchLayout;

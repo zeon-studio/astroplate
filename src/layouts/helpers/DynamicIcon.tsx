@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { type FC } from "react";
 import type { IconType } from "react-icons";
 import * as FaIcons from "react-icons/fa6/index.js";
 // import * as AiIcons from "react-icons/ai/index.js";

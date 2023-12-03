@@ -3,19 +3,22 @@ import BlogCard from "@/components/BlogCard.astro";
 import Pagination from "@/components/Pagination.astro";
 import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
-import { getSinglePage } from "@/lib/contentParser.astro";
 import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import PageHeader from "@/partials/PageHeader.astro";
 import PostSidebar from "@/partials/PostSidebar.astro";
-import { getEntry } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 
-const { blog_folder } = config.settings;
-const postIndex = await getEntry<any, string>(blog_folder, "-index");
-const posts = await getSinglePage(blog_folder);
-const allCategories = await getAllTaxonomy(blog_folder, "categories");
-const categories = await getTaxonomy(blog_folder, "categories");
-const tags = await getTaxonomy(blog_folder, "tags");
+const COLLECTION_FOLDER = "blog";
+
+const postIndex = await getEntry(COLLECTION_FOLDER, "-index");
+const posts = await getCollection(
+  COLLECTION_FOLDER,
+  ({ data, slug }) => !data.draft && slug !== "-index",
+);
+const allCategories = await getAllTaxonomy(COLLECTION_FOLDER, "categories");
+const categories = await getTaxonomy(COLLECTION_FOLDER, "categories");
+const tags = await getTaxonomy(COLLECTION_FOLDER, "tags");
 const sortedPosts = sortByDate(posts);
 const totalPages: number = Math.ceil(posts.length / config.settings.pagination);
 const currentPosts = sortedPosts.slice(0, config.settings.pagination);
@@ -43,7 +46,7 @@ const currentPosts = sortedPosts.slice(0, config.settings.pagination);
             }
           </div>
           <Pagination
-            section={blog_folder}
+            section={COLLECTION_FOLDER}
             currentPage={1}
             totalPages={totalPages}
           />

@@ -1,13 +1,12 @@
 ---
-import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
-import Search from "@/layouts/Search";
-import { getSinglePage } from "@/lib/contentParser.astro";
+import SearchLayout from "@/layouts/Search";
+import { getCollection } from "astro:content";
 
-const { blog_folder } = config.settings;
-
-// Retrieve all articles
-const posts = await getSinglePage(blog_folder);
+const posts = await getCollection(
+  "blog",
+  ({ data, slug }) => !data.draft && slug !== "-index",
+);
 
 // List of items to search in
 const searchList = posts.map((item) => ({
@@ -18,5 +17,5 @@ const searchList = posts.map((item) => ({
 ---
 
 <Base title={`Search`}>
-  <Search client:load searchList={searchList} />
+  <SearchLayout client:load searchList={searchList} />
 </Base>

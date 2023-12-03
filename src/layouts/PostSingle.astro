@@ -1,23 +1,26 @@
 ---
 import BlogCard from "@/components/BlogCard.astro";
 import Share from "@/components/Share.astro";
-import config from "@/config/config.json";
 import Disqus from "@/helpers/Disqus";
-import { getSinglePage } from "@/lib/contentParser.astro";
 import dateFormat from "@/lib/utils/dateFormat";
-import similerItems from "@/lib/utils/similarItems";
+import similarItems from "@/lib/utils/similarItems";
 import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 import {
   FaRegClock,
   FaRegFolder,
   FaRegUserCircle,
 } from "react-icons/fa/index.js";
 
-const { blog_folder } = config.settings;
-const posts = await getSinglePage(blog_folder);
+const COLLECTION_FOLDER = "blog";
 const { post } = Astro.props;
-const similarPosts = similerItems(post, posts, post.slug);
+
+const posts = await getCollection(
+  COLLECTION_FOLDER,
+  ({ data, slug }) => !data.draft && slug !== "-index",
+);
+const similarPosts = similarItems(post, posts);
 const { Content } = await post.render();
 const { title, description, author, categories, image, date, tags } = post.data;
 ---

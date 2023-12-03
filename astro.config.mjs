@@ -53,7 +53,4 @@ export default defineConfig({
     },
     extendDefaultPlugins: true,
   },
-  build: {
-    format: "file",
-  },
 });
