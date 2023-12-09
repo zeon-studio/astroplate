@@ -1,12 +1,10 @@
 ---
 import Base from "@/layouts/Base.astro";
 import SearchLayout from "@/layouts/Search";
-import { getCollection } from "astro:content";
+import { getSinglePage } from "@/lib/contentParser.astro";
 
-const posts = await getCollection(
-  "blog",
-  ({ data, slug }) => !data.draft && slug !== "-index",
-);
+const BLOG_FOLDER = "blog";
+const posts = await getSinglePage(BLOG_FOLDER);
 
 // List of items to search in
 const searchList = posts.map((item) => ({

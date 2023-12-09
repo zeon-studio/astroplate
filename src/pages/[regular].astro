@@ -1,15 +1,13 @@
 ---
 import Base from "@/layouts/Base.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
 import PageHeader from "@/partials/PageHeader.astro";
-import { getCollection } from "astro:content";
 
+// get static paths for all pages
 export async function getStaticPaths() {
   const COLLECTION_FOLDER = "pages";
 
-  const pages = await getCollection(
-    COLLECTION_FOLDER,
-    ({ data }) => !data.draft,
-  );
+  const pages = await getSinglePage(COLLECTION_FOLDER);
 
   const paths = pages.map((page) => ({
     params: {

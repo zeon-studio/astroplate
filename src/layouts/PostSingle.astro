@@ -2,11 +2,11 @@
 import BlogCard from "@/components/BlogCard.astro";
 import Share from "@/components/Share.astro";
 import Disqus from "@/helpers/Disqus";
+import { getSinglePage } from "@/lib/contentParser.astro";
 import dateFormat from "@/lib/utils/dateFormat";
 import similarItems from "@/lib/utils/similarItems";
 import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
 import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
 import {
   FaRegClock,
   FaRegFolder,
@@ -16,10 +16,7 @@ import {
 const COLLECTION_FOLDER = "blog";
 const { post } = Astro.props;
 
-const posts = await getCollection(
-  COLLECTION_FOLDER,
-  ({ data, slug }) => !data.draft && slug !== "-index",
-);
+const posts = await getSinglePage(COLLECTION_FOLDER);
 const similarPosts = similarItems(post, posts);
 const { Content } = await post.render();
 const { title, description, author, categories, image, date, tags } = post.data;

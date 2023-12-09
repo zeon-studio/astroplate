@@ -3,23 +3,21 @@ import BlogCard from "@/components/BlogCard.astro";
 import Pagination from "@/components/Pagination.astro";
 import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
 import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import PageHeader from "@/partials/PageHeader.astro";
 import PostSidebar from "@/partials/PostSidebar.astro";
-import { getCollection, getEntry } from "astro:content";
+import { getEntry } from "astro:content";
 
-const COLLECTION_FOLDER = "blog";
+const BLOG_FOLDER = "blog";
 
 const { slug } = Astro.params;
-const postIndex = await getEntry(COLLECTION_FOLDER, "-index");
-const posts = await getCollection(
-  COLLECTION_FOLDER,
-  ({ data, slug }) => !data.draft && slug !== "-index",
-);
-const allCategories = await getAllTaxonomy(COLLECTION_FOLDER, "categories");
-const categories = await getTaxonomy(COLLECTION_FOLDER, "categories");
-const tags = await getTaxonomy(COLLECTION_FOLDER, "tags");
+const postIndex = await getEntry(BLOG_FOLDER, "-index");
+const posts = await getSinglePage(BLOG_FOLDER);
+const allCategories = await getAllTaxonomy(BLOG_FOLDER, "categories");
+const categories = await getTaxonomy(BLOG_FOLDER, "categories");
+const tags = await getTaxonomy(BLOG_FOLDER, "tags");
 const sortedPosts = sortByDate(posts);
 const totalPages = Math.ceil(posts.length / config.settings.pagination);
 const currentPage = slug && !isNaN(Number(slug)) ? Number(slug) : 1;
@@ -28,11 +26,8 @@ const indexOfFirstPost = indexOfLastPost - config.settings.pagination;
 const currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
 
 export async function getStaticPaths() {
-  const COLLECTION_FOLDER = "blog";
-  const posts = await getCollection(
-    COLLECTION_FOLDER,
-    ({ data, slug }) => !data.draft && slug !== "-index",
-  );
+  const BLOG_FOLDER = "blog";
+  const posts = await getSinglePage(BLOG_FOLDER);
   const totalPages = Math.ceil(posts.length / config.settings.pagination);
   const paths = [];
 
@@ -69,7 +64,7 @@ export async function getStaticPaths() {
             }
           </div>
           <Pagination
-            section={COLLECTION_FOLDER}
+            section={BLOG_FOLDER}
             currentPage={currentPage}
             totalPages={totalPages}
           />

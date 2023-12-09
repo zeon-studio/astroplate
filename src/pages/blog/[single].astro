@@ -1,14 +1,11 @@
 ---
 import Base from "@/layouts/Base.astro";
 import PostSingle from "@/layouts/PostSingle.astro";
-import { getCollection } from "astro:content";
+import { getSinglePage } from "@/lib/contentParser.astro";
 
 export async function getStaticPaths() {
-  const COLLECTION_FOLDER = "blog";
-  const posts = await getCollection(
-    COLLECTION_FOLDER,
-    ({ data, slug }) => !data.draft && slug !== "-index",
-  );
+  const BLOG_FOLDER = "blog";
+  const posts = await getSinglePage(BLOG_FOLDER);
 
   const paths = posts.map((post) => ({
     params: {
