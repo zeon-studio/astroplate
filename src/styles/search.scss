@@ -1,0 +1,96 @@
+.search {
+  &-modal {
+    @apply z-50 fixed top-0 left-0 w-full h-full flex items-start justify-center invisible opacity-0;
+    &.show {
+      @apply visible opacity-100;
+    }
+    &-overlay {
+      @apply fixed top-0 left-0 w-full h-full bg-black opacity-50;
+    }
+  }
+  &-wrapper {
+    @apply bg-white dark:bg-darkmode-body w-[660px] max-w-[96%] mt-24 rounded shadow-lg relative z-10;
+    &-header {
+      @apply p-4 relative;
+      &-input {
+        @apply border border-solid w-full focus:ring-0 focus:border-dark border-border rounded-[4px] h-12 pr-4 pl-10 transition duration-200 outline-none dark:bg-darkmode-theme-light dark:text-darkmode-text dark:border-darkmode-border dark:focus:border-darkmode-primary;
+      }
+    }
+    &-body {
+      @apply dark:bg-darkmode-theme-light dark:shadow-none max-h-[calc(100vh-350px)] overflow-y-auto bg-theme-light shadow-[inset_0_2px_18px_#ddd] p-4 rounded;
+    }
+    &-footer {
+      @apply text-xs select-none leading-none md:flex items-center px-3.5 py-2 hidden;
+      kbd {
+        @apply bg-theme-light dark:bg-darkmode-theme-light text-xs leading-none text-center mr-[3px] px-1 py-0.5 rounded-[3px];
+      }
+      span:not(:last-child) {
+        @apply mr-4;
+      }
+      span:last-child {
+        @apply ml-auto;
+      }
+    }
+  }
+  &-result {
+    &-empty {
+      @apply text-center cursor-text select-none px-0 py-8;
+    }
+    &-group {
+      @apply mb-4;
+      &-title {
+        @apply text-lg text-dark dark:text-darkmode-dark mb-[5px] px-3;
+      }
+    }
+    &-item {
+      @apply rounded border bg-white dark:bg-darkmode-body dark:border-darkmode-border flex items-start mb-1 p-4 scroll-my-[30px] border-solid border-border relative;
+      mark {
+        @apply bg-yellow-200 rounded-[2px];
+      }
+      &-title {
+        @apply text-lg font-bold text-dark dark:text-darkmode-dark leading-none;
+      }
+      &-link::after {
+        @apply absolute top-0 right-0 bottom-0 left-0 z-10 content-[""];
+      }
+      &-image {
+        @apply shrink-0 mr-3.5;
+        img {
+          @apply w-[60px] h-[60px] md:w-[100px] md:h-[100px] rounded-[4px] object-cover;
+        }
+      }
+      &-description {
+        @apply text-sm line-clamp-1 mt-1;
+      }
+      &-content {
+        @apply mx-0 my-1.5 empty:hidden line-clamp-1;
+      }
+      &-taxonomies {
+        @apply text-sm flex flex-wrap items-center text-light dark:text-darkmode-light;
+        svg {
+          @apply inline-block mr-1;
+        }
+      }
+
+      &-active,
+      &:focus,
+      &:hover {
+        @apply bg-dark dark:bg-dark;
+        .search-result-item {
+          &-title {
+            @apply text-white;
+          }
+          &-description {
+            @apply text-white/80;
+          }
+          &-content {
+            @apply text-white/90;
+          }
+          &-taxonomies {
+            @apply text-white/90;
+          }
+        }
+      }
+    }
+  }
+}

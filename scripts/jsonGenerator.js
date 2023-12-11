@@ -1,44 +1,80 @@
 const fs = require("fs");
 const path = require("path");
 const matter = require("gray-matter");
-const config = require("../src/config/config.json");
-const { blog_folder } = config.settings;
-const jsonDir = "./.json";
+
+const CONTENT_DEPTH = 2;
+const JSON_FOLDER = "./.json";
+const BLOG_FOLDER = "src/content/blog";
 
 // get data from markdown
-const getData = (folder) => {
+const getData = (folder, groupDepth) => {
   const getPath = fs.readdirSync(path.join(folder));
-  const sanitizeData = getPath.filter((item) => item.includes(".md"));
-  const filterData = sanitizeData.filter((item) => item.match(/^(?!_)/));
-  const getData = filterData.map((filename) => {
-    const file = fs.readFileSync(path.join(folder, filename), "utf-8");
-    const { data } = matter(file);
-    const content = matter(file).content;
-    const slug = data.slug ? data.slug : filename.replace(".md", "");
+  const removeIndex = getPath.filter((item) => item.match(/^(?!-)/));
 
-    return {
-      frontmatter: data,
-      content: content,
-      slug: slug,
-    };
+  const getPaths = removeIndex.map((filename) => {
+    const filepath = path.join(folder, filename);
+    const stats = fs.statSync(filepath);
+    const isFolder = stats.isDirectory();
+
+    if (isFolder) {
+      return getData(filepath, groupDepth);
+    } else if (filename.endsWith(".md") || filename.endsWith(".mdx")) {
+      const file = fs.readFileSync(path.join(folder, filename), "utf-8");
+      const { data } = matter(file);
+      const content = matter(file).content;
+      const removeExtension = filepath.replace(/\.[^/.]+$/, "");
+      const slug = data.slug
+        ? data.slug
+        : removeExtension
+            .split("/")
+            .slice(CONTENT_DEPTH, removeExtension.split("/").length)
+            .join("/");
+
+      const group = removeExtension.split("/")[Number(groupDepth)];
+
+      return {
+        group: group,
+        slug: slug,
+        frontmatter: data,
+        content: content,
+      };
+    }
   });
-  const publishedPages = getData.filter(
-    (page) => !page.frontmatter?.draft && page
+
+  const publishedPages = getPaths.filter(
+    (page) => !page.frontmatter?.draft && page,
   );
   return publishedPages;
 };
 
-// get post data
-const posts = getData(`src/content/${blog_folder}`);
+// flatten nested arrays
+const flatten = (arr) => {
+  return arr.reduce((result, element) => {
+    if (Array.isArray(element)) {
+      result.push(...flatten(element));
+    } else {
+      result.push(element);
+    }
+    return result;
+  }, []);
+};
 
 try {
-  // creare folder if it doesn't exist
-  if (!fs.existsSync(jsonDir)) {
-    fs.mkdirSync(jsonDir);
+  // create folder if it doesn't exist
+  if (!fs.existsSync(JSON_FOLDER)) {
+    fs.mkdirSync(JSON_FOLDER);
   }
 
-  // create posts.json file
-  fs.writeFileSync(`${jsonDir}/posts.json`, JSON.stringify(posts));
+  // create json files
+  fs.writeFileSync(
+    `${JSON_FOLDER}/posts.json`,
+    JSON.stringify(flatten(getData(BLOG_FOLDER, 2))),
+  );
+
+  // merger json files for search
+  const posts = require(`../${JSON_FOLDER}/posts.json`);
+  const search = [...posts];
+  fs.writeFileSync(`${JSON_FOLDER}/search.json`, JSON.stringify(search));
 } catch (err) {
   console.error(err);
 }
