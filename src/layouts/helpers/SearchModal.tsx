@@ -8,34 +8,8 @@ const SearchModal = () => {
 
   // handle input change
   const handleSearch = (e: React.FormEvent<HTMLInputElement>) => {
-    setSearchString(e.currentTarget.value.toLowerCase());
+    setSearchString(e.currentTarget.value.replace("\\", "").toLowerCase());
   };
-
-  // set input value from url
-  useEffect(() => {
-    const searchUrl = new URLSearchParams(window.location.search);
-    const searchStr = searchUrl.get("q");
-    searchStr && setSearchString(searchStr.toLowerCase());
-
-    // set cursor position
-    setTimeout(function () {
-      searchInputRef.current!.selectionStart =
-        searchInputRef.current!.selectionEnd = searchStr?.length || 0;
-    }, 50);
-  }, []);
-
-  // update url
-  useEffect(() => {
-    if (searchString.length > 0) {
-      const searchParams = new URLSearchParams(window.location.search);
-      searchParams.set("s", searchString);
-      const newRelativePathQuery =
-        window.location.pathname + "?" + searchParams.toString();
-      history.pushState(null, "", newRelativePathQuery);
-    } else {
-      history.pushState(null, "", window.location.pathname);
-    }
-  }, [searchString]);
 
   // generate search result
   const doSearch = (searchData: ISearchItem[]) => {
