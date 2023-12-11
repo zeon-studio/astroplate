@@ -1,9 +1,8 @@
 import searchData from ".json/search.json";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchResult, { type ISearchItem } from "./SearchResult";
 
 const SearchModal = () => {
-  const searchInputRef = useRef<HTMLInputElement>(null);
   const [searchString, setSearchString] = useState("");
 
   // handle input change
@@ -169,7 +168,6 @@ const SearchModal = () => {
             onChange={handleSearch}
             autoFocus
             autoComplete="off"
-            ref={searchInputRef}
           />
         </div>
         <SearchResult searchResult={searchResult} searchString={searchString} />
