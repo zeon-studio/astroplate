@@ -34,8 +34,8 @@
           "url": "/categories"
         },
         {
-          "name": "Search",
-          "url": "/search"
+          "name": "Tags",
+          "url": "/tags"
         },
         {
           "name": "404 Page",

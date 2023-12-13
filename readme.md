@@ -10,8 +10,8 @@
 </h2>
 
 <p align=center>
-  <a href="https://github.com/withastro/astro/releases/tag/astro%403.6.0" alt="Contributors">
-    <img src="https://img.shields.io/static/v1?label=ASTRO&message=3.6&color=000&logo=astro" />
+  <a href="https://github.com/withastro/astro/releases/tag/astro%404.0.0" alt="Contributors">
+    <img src="https://img.shields.io/static/v1?label=ASTRO&message=4.0&color=000&logo=astro" />
   </a>
 
   <a href="https://github.com/zeon-studio/astroplate/blob/main/LICENSE">
@@ -65,9 +65,9 @@
 
 ### 📦 Dependencies
 
-- astro 2.3+
-- node v18+
-- npm v9.5+
+- astro 4.0+
+- node v20.10+
+- npm v10.2+
 - tailwind v3.3+
 
 ### 👉 Install Dependencies
