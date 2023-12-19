@@ -8,10 +8,10 @@ const BLOG_FOLDER = "src/content/blog";
 
 // get data from markdown
 const getData = (folder, groupDepth) => {
-  const getPath = fs.readdirSync(path.join(folder));
-  const removeIndex = getPath.filter((item) => item.match(/^(?!-)/));
+  const getPath = fs.readdirSync(folder);
+  const removeIndex = getPath.filter((item) => !item.startsWith("-"));
 
-  const getPaths = removeIndex.map((filename) => {
+  const getPaths = removeIndex.flatMap((filename) => {
     const filepath = path.join(folder, filename);
     const stats = fs.statSync(filepath);
     const isFolder = stats.isDirectory();
@@ -19,18 +19,16 @@ const getData = (folder, groupDepth) => {
     if (isFolder) {
       return getData(filepath, groupDepth);
     } else if (filename.endsWith(".md") || filename.endsWith(".mdx")) {
-      const file = fs.readFileSync(path.join(folder, filename), "utf-8");
-      const { data } = matter(file);
-      const content = matter(file).content;
-      const removeExtension = filepath.replace(/\.[^/.]+$/, "");
-      const slug = data.slug
-        ? data.slug
-        : removeExtension
-            .split("/")
-            .slice(CONTENT_DEPTH, removeExtension.split("/").length)
-            .join("/");
-
-      const group = removeExtension.split("/")[Number(groupDepth)];
+      const file = fs.readFileSync(filepath, "utf-8");
+      const { data, content } = matter(file);
+      const pathParts = filepath.split(path.sep);
+      const slug =
+        data.slug ||
+        pathParts
+          .slice(CONTENT_DEPTH)
+          .join("/")
+          .replace(/\.[^/.]+$/, "");
+      const group = pathParts[groupDepth];
 
       return {
         group: group,
@@ -38,6 +36,8 @@ const getData = (folder, groupDepth) => {
         frontmatter: data,
         content: content,
       };
+    } else {
+      return [];
     }
   });
 
@@ -45,18 +45,6 @@ const getData = (folder, groupDepth) => {
     (page) => !page.frontmatter?.draft && page,
   );
   return publishedPages;
-};
-
-// flatten nested arrays
-const flatten = (arr) => {
-  return arr.reduce((result, element) => {
-    if (Array.isArray(element)) {
-      result.push(...flatten(element));
-    } else {
-      result.push(element);
-    }
-    return result;
-  }, []);
 };
 
 try {
@@ -68,7 +56,7 @@ try {
   // create json files
   fs.writeFileSync(
     `${JSON_FOLDER}/posts.json`,
-    JSON.stringify(flatten(getData(BLOG_FOLDER, 2))),
+    JSON.stringify(getData(BLOG_FOLDER, 2)),
   );
 
   // merger json files for search
