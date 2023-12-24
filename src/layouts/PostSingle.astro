@@ -6,12 +6,12 @@ import { getSinglePage } from "@/lib/contentParser.astro";
 import dateFormat from "@/lib/utils/dateFormat";
 import similarItems from "@/lib/utils/similarItems";
 import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
-import { Image } from "astro:assets";
 import {
   FaRegClock,
   FaRegFolder,
   FaRegUserCircle,
 } from "react-icons/fa/index.js";
+import ImageMod from "./components/ImageMod.astro";
 
 const COLLECTION_FOLDER = "blog";
 const { post } = Astro.props;
@@ -29,7 +29,7 @@ const { title, description, author, categories, image, date, tags } = post.data;
         {
           image && (
             <div class="mb-10">
-              <Image
+              <ImageMod
                 src={image}
                 height={500}
                 width={1200}

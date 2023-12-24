@@ -1,10 +1,10 @@
 ---
+import ImageMod from "@/components/ImageMod.astro";
 import Base from "@/layouts/Base.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 import CallToAction from "@/partials/CallToAction.astro";
 import Testimonial from "@/partials/Testimonial.astro";
 import type { Button, Feature } from "@/types";
-import { Image } from "astro:assets";
 import { getEntry } from "astro:content";
 import { FaCheck } from "react-icons/fa/index.js";
 
@@ -43,7 +43,7 @@ const { banner, features }: Homepage = homepage.data;
         {
           banner.image && (
             <div class="col-12">
-              <Image
+              <ImageMod
                 src={banner.image}
                 height={380}
                 width={1200}
@@ -67,7 +67,7 @@ const { banner, features }: Homepage = homepage.data;
             <div
               class={`mb:md-0 mb-6 md:col-5 ${index % 2 !== 0 && "md:order-2"}`}
             >
-              <Image
+              <ImageMod
                 src={feature.image}
                 height={480}
                 width={520}

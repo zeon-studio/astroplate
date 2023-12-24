@@ -2,8 +2,8 @@
 import config from "@/config/config.json";
 import dateFormat from "@/lib/utils/dateFormat";
 import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
-import { Image } from "astro:assets";
 import { FaRegFolder, FaRegUserCircle } from "react-icons/fa/index.js";
+import ImageMod from "./ImageMod.astro";
 
 const {
   summary_length,
@@ -16,7 +16,7 @@ const { title, image, date, author, categories } = data.data;
 <div class="bg-body dark:bg-darkmode-body">
   {
     image && (
-      <Image
+      <ImageMod
         class="mb-6 w-full rounded"
         src={image}
         alt={title}

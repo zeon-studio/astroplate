@@ -1,10 +1,10 @@
 ---
 import BlogCard from "@/components/BlogCard.astro";
+import ImageMod from "@/components/ImageMod.astro";
 import Social from "@/components/Social.astro";
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import { slugify } from "@/lib/utils/textConverter";
-import { Image } from "astro:assets";
 
 // get all static paths for authors
 export async function getStaticPaths() {
@@ -46,7 +46,7 @@ const postFilterByAuthor = posts.filter(
         <div class="text-center lg:col-4">
           {
             image && (
-              <Image
+              <ImageMod
                 src={image}
                 class="mx-auto mb-10 rounded"
                 height={200}

@@ -1,7 +1,7 @@
 ---
+import ImageMod from "@/components/ImageMod.astro";
 import Base from "@/layouts/Base.astro";
 import { markdownify } from "@/lib/utils/textConverter";
-import { Image } from "astro:assets";
 import { getEntry } from "astro:content";
 
 const about = await getEntry("about", "-index");
@@ -21,7 +21,7 @@ const { title, description, meta_title, image } = about.data;
         <div class="text-center md:col-10 lg:col-7">
           {
             image && (
-              <Image
+              <ImageMod
                 class="mx-auto mb-6 rounded-lg"
                 src={image}
                 width={200}

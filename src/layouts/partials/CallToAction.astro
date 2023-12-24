@@ -1,6 +1,6 @@
 ---
+import ImageMod from "@/components/ImageMod.astro";
 import { markdownify } from "@/lib/utils/textConverter";
-import { Image } from "astro:assets";
 const { call_to_action } = Astro.props;
 ---
 
@@ -11,7 +11,7 @@ const { call_to_action } = Astro.props;
         <div class="rounded-xl bg-theme-light px-4 py-16 dark:bg-darkmode-theme-light xl:p-20">
           <div class="row items-center justify-between">
             <div class="mb-10 md:col-5 lg:col-4 md:order-2 md:mb-0">
-              <Image
+              <ImageMod
                 class="w-full"
                 src={call_to_action.data.image}
                 width={392}
