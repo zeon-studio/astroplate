@@ -56,7 +56,9 @@ const { title, meta_title, description, image, noindex, canonical } =
       href={`https://fonts.googleapis.com/css2?family=${pf}${
         sf ? "&family=" + sf : ""
       }&display=swap`}
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      onload="this.rel='stylesheet'"
     />
 
     <!-- responsive meta -->
