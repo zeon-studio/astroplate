@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  @apply bg-body font-primary font-normal leading-relaxed text-text dark:bg-darkmode-body dark:text-darkmode-text;
+  @apply bg-body dark:bg-darkmode-body font-primary font-normal leading-relaxed text-text dark:text-darkmode-text;
 }
 
 h1,
