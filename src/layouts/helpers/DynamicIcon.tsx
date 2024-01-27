@@ -1,13 +1,13 @@
 import React, { type FC } from "react";
 import type { IconType } from "react-icons";
-import * as FaIcons from "react-icons/fa6/index.js";
-// import * as AiIcons from "react-icons/ai/index.js";
-// import * as BsIcons from "react-icons/bs/index.js";
-// import * as FiIcons from "react-icons/fi/index.js";
-// import * as Io5Icons from "react-icons/io5/index.js";
-// import * as RiIcons from "react-icons/ri/index.js";
-// import * as TbIcons from "react-icons/tb/index.js";
-// import * as TfiIcons from "react-icons/tfi/index.js";
+import * as FaIcons from "react-icons/fa6";
+// import * as AiIcons from "react-icons/ai";
+// import * as BsIcons from "react-icons/bs";
+// import * as FiIcons from "react-icons/fi";
+// import * as Io5Icons from "react-icons/io5";
+// import * as RiIcons from "react-icons/ri";
+// import * as TbIcons from "react-icons/tb";
+// import * as TfiIcons from "react-icons/tfi";
 
 type IconMap = Record<string, IconType>;
 
