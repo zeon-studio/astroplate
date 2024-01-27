@@ -21,6 +21,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "astro": "^4.0.9",
     "astro-auto-import": "^0.4.2",
+    "astro-font": "^0.0.77",
     "date-fns": "^3.0.6",
     "disqus-react": "^1.1.5",
     "github-slugger": "^2.0.0",
@@ -52,8 +53,8 @@
     "prettier-plugin-astro": "^0.12.3",
     "prettier-plugin-tailwindcss": "^0.5.10",
     "sass": "^1.69.7",
-    "tailwindcss": "^3.4.0",
     "tailwind-bootstrap-grid": "^5.1.0",
+    "tailwindcss": "^3.4.0",
     "typescript": "5.3.3"
   }
 }
