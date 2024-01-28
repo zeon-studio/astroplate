@@ -1,5 +1,4 @@
 ---
-import { AstroFont } from "astro-font";
 import TwSizeIndicator from "@/components/TwSizeIndicator.astro";
 import config from "@/config/config.json";
 import theme from "@/config/theme.json";
@@ -7,6 +6,7 @@ import { plainify } from "@/lib/utils/textConverter";
 import Footer from "@/partials/Footer.astro";
 import Header from "@/partials/Header.astro";
 import "@/styles/main.scss";
+import { AstroFont } from "astro-font";
 import { ViewTransitions } from "astro:transitions";
 import SearchModal from "./helpers/SearchModal";
 
@@ -69,7 +69,7 @@ const { title, meta_title, description, image, noindex, canonical } =
           src: [],
           preload: false,
           display: "swap",
-          name: fontPrimary,
+          name: fontPrimary!,
           fallback: "sans-serif",
           cssVariable: "font-primary",
           googleFontsURL: `https://fonts.googleapis.com/css2?family=${pf}&display=swap`,
@@ -78,7 +78,7 @@ const { title, meta_title, description, image, noindex, canonical } =
           src: [],
           preload: false,
           display: "swap",
-          name: fontSecondary,
+          name: fontSecondary!,
           fallback: "sans-serif",
           cssVariable: "font-secondary",
           googleFontsURL: `https://fonts.googleapis.com/css2?family=${sf}&display=swap`,
