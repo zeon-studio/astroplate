@@ -34,7 +34,14 @@ const { banner, features }: Homepage = homepage.data;
           <p set:html={markdownify(banner.content)} class="mb-8" />
           {
             banner.button.enable && (
-              <a class="btn btn-primary" href={banner.button.link}>
+              <a
+                class="btn btn-primary"
+                href={banner.button.link}
+                target={
+                  banner.button.link.startsWith("http") ? "_blank" : "_self"
+                }
+                rel="noopener"
+              >
                 {banner.button.label}
               </a>
             )
