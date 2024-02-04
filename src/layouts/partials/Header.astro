@@ -75,6 +75,7 @@ const { pathname } = Astro.url;
                     <li class="nav-dropdown-item">
                       <a
                         href={child.url}
+                        aria-label={child.name}
                         class={`nav-dropdown-link block ${
                           (pathname === `${child.url}/` ||
                             pathname === child.url) &&

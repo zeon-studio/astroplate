@@ -1,6 +1,6 @@
 .search {
   &-modal {
-    @apply z-50 fixed top-0 left-0 w-full h-full flex items-start justify-center invisible opacity-0;
+    @apply z-50 fixed -top-10 left-0 w-full h-full flex items-start justify-center invisible opacity-0;
     &.show {
       @apply visible opacity-100;
     }
