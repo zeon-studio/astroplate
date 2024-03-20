@@ -16,7 +16,7 @@ const { className }: { className?: string } = Astro.props;
         <span class="sr-only">theme switcher</span>
         <span>
           <svg
-            class="absolute left-[4px] top-[4px] z-10 opacity-100 dark:opacity-0"
+            class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 opacity-100 dark:opacity-0"
             viewBox="0 0 56 56"
             fill="#fff"
             height="16"
@@ -25,7 +25,7 @@ const { className }: { className?: string } = Astro.props;
             <path d="M30 4.6c0-1-.9-2-2-2a2 2 0 0 0-2 2v5c0 1 .9 2 2 2s2-1 2-2Zm9.6 9a2 2 0 0 0 0 2.8c.8.8 2 .8 2.9 0L46 13a2 2 0 0 0 0-2.9 2 2 0 0 0-3 0Zm-26 2.8c.7.8 2 .8 2.8 0 .8-.7.8-2 0-2.9L13 10c-.7-.7-2-.8-2.9 0-.7.8-.7 2.1 0 3ZM28 16a12 12 0 0 0-12 12 12 12 0 0 0 12 12 12 12 0 0 0 12-12 12 12 0 0 0-12-12Zm23.3 14c1.1 0 2-.9 2-2s-.9-2-2-2h-4.9a2 2 0 0 0-2 2c0 1.1 1 2 2 2ZM4.7 26a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4.9c1 0 2-.9 2-2s-1-2-2-2Zm37.8 13.6a2 2 0 0 0-3 0 2 2 0 0 0 0 2.9l3.6 3.5a2 2 0 0 0 2.9 0c.8-.8.8-2.1 0-3ZM10 43.1a2 2 0 0 0 0 2.9c.8.7 2.1.8 3 0l3.4-3.5c.8-.8.8-2.1 0-2.9-.8-.8-2-.8-2.9 0Zm20 3.4c0-1.1-.9-2-2-2a2 2 0 0 0-2 2v4.9c0 1 .9 2 2 2s2-1 2-2Z" />
           </svg>
           <svg
-            class="absolute left-[4px] top-[4px] z-10 opacity-0 dark:opacity-100"
+            class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 opacity-0 dark:opacity-100"
             viewBox="0 0 24 24"
             fill="none"
             height="16"
@@ -47,11 +47,18 @@ const { className }: { className?: string } = Astro.props;
 <script>
   import { settings } from "@/config/config.json";
   const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
-  
-  matchMedia.addEventListener('change', () => toggleTheme(document.querySelectorAll("[data-theme-switcher]")));
+
+  matchMedia.addEventListener("change", () =>
+    toggleTheme(document.querySelectorAll("[data-theme-switcher]"))
+  );
 
   function toggleTheme(themeSwitch: NodeListOf<Element>) {
-    const defaulTheme =  settings.default_theme ==="system" ? matchMedia.matches ? "dark" : "light" : settings.default_theme;
+    const defaulTheme =
+      settings.default_theme === "system"
+        ? matchMedia.matches
+          ? "dark"
+          : "light"
+        : settings.default_theme;
     const currentTheme = localStorage.getItem("theme") || defaulTheme;
     const isDarkTheme = currentTheme === "dark";
     themeSwitch.forEach((sw: any) => (sw.checked = isDarkTheme));
@@ -63,7 +70,12 @@ const { className }: { className?: string } = Astro.props;
     toggleTheme(themeSwitch);
     themeSwitch.forEach((sw) => {
       sw.addEventListener("click", function () {
-        const defaulTheme =  settings.default_theme ==="system" ? matchMedia.matches ? "dark" : "light" : settings.default_theme;
+        const defaulTheme =
+          settings.default_theme === "system"
+            ? matchMedia.matches
+              ? "dark"
+              : "light"
+            : settings.default_theme;
         const currentTheme = localStorage.getItem("theme") || defaulTheme;
         const newTheme = currentTheme === "light" ? "dark" : "light";
         localStorage.setItem("theme", newTheme);
