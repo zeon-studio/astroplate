@@ -18,6 +18,8 @@
     "theme_switcher": true,
     "default_theme": "system",
     "pagination": 2,
+    "pagination_category": 3,
+    "pagination_tag": 3,
     "summary_length": 200,
     "blog_folder": "blog"
   },
