@@ -1,0 +1,73 @@
+---
+import BlogCard from "@/components/BlogCard.astro";
+import Pagination from "@/components/Pagination.astro";
+import config from "@/config/config.json";
+import Base from "@/layouts/Base.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { getTaxonomy } from "@/lib/taxonomyParser.astro";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import taxonomyFilter from "@/lib/utils/taxonomyFilter";
+import PageHeader from "@/partials/PageHeader.astro";
+
+const BLOG_FOLDER = "blog";
+const { tag, slug } = Astro.params;
+const PAGINATION_SECTION = "tags/" + tag;
+
+const posts = await getSinglePage(BLOG_FOLDER);
+const filterByTags = taxonomyFilter(posts, "tags", tag!);
+const sortedPosts = sortByDate(filterByTags);
+
+const totalPages = Math.ceil(sortedPosts.length / config.settings.pagination_tag);
+const currentPage = slug && !isNaN(Number(slug)) ? Number(slug) : 1;
+const indexOfLastPost = currentPage * config.settings.pagination_tag;
+const indexOfFirstPost = indexOfLastPost - config.settings.pagination_tag;
+const currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+export async function getStaticPaths() {
+  const BLOG_FOLDER = "blog";
+  const posts = await getSinglePage(BLOG_FOLDER);
+  const tags = await getTaxonomy(BLOG_FOLDER, "tags");
+  
+  const allPaths: any[] = [];
+  tags.map(async (tag) => {
+    const filterByTags = taxonomyFilter(posts, "tags", tag);
+    const sortedPosts = sortByDate(filterByTags);
+    const totalPages = Math.ceil(sortedPosts.length / config.settings.pagination_tag);
+
+    if (totalPages > 1) {
+      for (let i = 1; i < totalPages; i++) {
+        allPaths.push({
+          params: {
+            tag,
+            slug: (i + 1).toString(),
+          },
+        });
+      }
+    }
+  });
+
+  return allPaths;
+}
+---
+
+<Base title={tag}>
+  <PageHeader title={tag} />
+  <div class="section-sm">
+    <div class="container">
+      <div class="row">
+        {
+          currentPosts.map((post) => (
+            <div class="mb-14 md:col-6 lg:col-4">
+              <BlogCard data={post} />
+            </div>
+          ))
+        }
+      </div>
+      <Pagination
+        section={PAGINATION_SECTION}
+        currentPage={currentPage}
+        totalPages={totalPages}
+      />
+    </div>
+  </div>
+</Base>
