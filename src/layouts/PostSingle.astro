@@ -101,7 +101,7 @@ const { title, description, author, categories, image, date, tags } = post.data;
       <div class="row justify-center">
         {
           similarPosts.map((post) => (
-            <div class="mb-14 lg:col-4">
+            <div class="lg:col-4 md:col-6 mb-14">
               <BlogCard data={post} />
             </div>
           ))
