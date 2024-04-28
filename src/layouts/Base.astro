@@ -18,12 +18,12 @@ let fontPrimary, fontSecondary;
 if (theme.fonts.font_family.primary) {
   fontPrimary = theme.fonts.font_family.primary
     .replace(/\+/g, " ")
-    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;]+/gi, "");
+    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;.]+/gi, "");
 }
 if (theme.fonts.font_family.secondary) {
   fontSecondary = theme.fonts.font_family.secondary
     .replace(/\+/g, " ")
-    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;]+/gi, "");
+    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;.]+/gi, "");
 }
 
 // types for frontmatters
@@ -36,7 +36,7 @@ export interface Props {
   canonical?: string;
 }
 
-// distructure frontmatters
+// destructure frontmatter
 const { title, meta_title, description, image, noindex, canonical } =
   Astro.props;
 ---
@@ -107,7 +107,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta
       name="description"
       content={plainify(
-        description ? description : config.metadata.meta_description,
+        description ? description : config.metadata.meta_description
       )}
     />
 
@@ -120,7 +120,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta
       property="og:title"
       content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title,
+        meta_title ? meta_title : title ? title : config.site.title
       )}
     />
 
@@ -128,7 +128,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta
       property="og:description"
       content={plainify(
-        description ? description : config.metadata.meta_description,
+        description ? description : config.metadata.meta_description
       )}
     />
     <meta property="og:type" content="website" />
@@ -141,7 +141,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta
       name="twitter:title"
       content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title,
+        meta_title ? meta_title : title ? title : config.site.title
       )}
     />
 
@@ -149,7 +149,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta
       name="twitter:description"
       content={plainify(
-        description ? description : config.metadata.meta_description,
+        description ? description : config.metadata.meta_description
       )}
     />
 
