@@ -31,7 +31,7 @@ let {
 src = `/public${src}`;
 
 // Glob pattern to load images from the /public/images folder
-const images = import.meta.glob("/public/images/**/*.{jpeg,jpg,png,gif}");
+const images = import.meta.glob("/public/images/**/*.{jpeg,jpg,png,svg,gif}");
 
 // Check if the source path is valid
 const isValidPath = images[src] ? true : false;
@@ -44,7 +44,7 @@ const isValidPath = images[src] ? true : false;
 ---
 
 {
-  isValidPath && (
+  isValidPath ? (
     <Image
       src={images[src]() as Promise<{ default: ImageMetadata }>}
       alt={alt}
@@ -56,5 +56,18 @@ const isValidPath = images[src] ? true : false;
       format={format}
       style={style}
     />
+  ) : (
+    <Image
+      src={"/images/image-placeholder.png"}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      decoding={decoding}
+      class={className}
+      format={format}
+      style={style}
+    />
   )
 }
+
