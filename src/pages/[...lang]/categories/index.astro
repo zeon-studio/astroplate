@@ -1,0 +1,47 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
+import { humanize } from "@/lib/utils/textConverter";
+import PageHeader from "@/partials/PageHeader.astro";
+import config from "@/config/config.json";
+import type { ContentEntryMap } from "astro:content";
+
+export function getStaticPaths() {
+  const {supported } = config.language;
+  const paths = supported.map((lang) => ({ params: { lang: lang || undefined } }));
+  return paths;
+}
+
+const { lang } = Astro.params;
+const langCollection: keyof ContentEntryMap = lang as keyof ContentEntryMap;
+const categories = await getTaxonomy(langCollection, "categories");
+const allCategories = await getAllTaxonomy(langCollection, "categories");
+---
+
+<Base title={"Categories"}>
+  <PageHeader title={"Categories"} />
+  <section class="section">
+    <div class="container text-center">
+      <ul>
+        {
+          categories.map((category: string) => {
+            const count = allCategories.filter((c) => c === category).length;
+            return (
+              <li class="m-3 inline-block">
+                <a
+                  href={`/${lang === "en" ? "categories" + "/" : lang}/categories/${category}`}
+                  class="block rounded bg-theme-light px-4 py-2 text-xl text-dark dark:bg-darkmode-theme-light dark:text-darkmode-dark"
+                >
+                  {humanize(category)}{" "}
+                  <span class="ml-2 rounded bg-body px-2 dark:bg-darkmode-body">
+                    {count}
+                  </span>
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </section>
+</Base>

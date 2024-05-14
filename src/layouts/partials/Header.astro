@@ -2,24 +2,17 @@
 import Logo from "@/components/Logo.astro";
 import ThemeSwitcher from "@/components/ThemeSwitcher.astro";
 import config from "@/config/config.json";
-import menu from "@/config/menu.json";
+import { getLangFromUrl, languages, useTranslations } from "@/lib/utils/i18nUtils";
+import { loadMenu } from "@/lib/utils/loadMenu";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import { IoSearch } from "react-icons/io5";
 
-export interface ChildNavigationLink {
-  name: string;
-  url: string;
-}
-
-export interface NavigationLink {
-  name: string;
-  url: string;
-  hasChildren?: boolean;
-  children?: ChildNavigationLink[];
-}
-
-const { main }: { main: NavigationLink[] } = menu;
+const lang = getLangFromUrl(Astro.url);
+const menu = loadMenu(lang);
 const { navigation_button, settings } = config;
 const { pathname } = Astro.url;
+
+const t = useTranslations(lang as any);
 ---
 
 <header class={`header z-30 ${settings.sticky_header && "sticky top-0"}`}>
@@ -46,20 +39,23 @@ const { pathname } = Astro.url;
       </svg>
     </label>
     <!-- /navbar toggler -->
+
     <ul
       id="nav-menu"
       class="navbar-nav order-3 hidden w-full pb-6 lg:order-1 lg:flex lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8"
     >
       {
-        main.map((menu) => (
+        menu.main.map((menu: any) => (
           <>
             {menu.hasChildren ? (
               <li class="nav-item nav-dropdown group relative">
                 <span
                   class={`nav-link inline-flex items-center ${
-                    menu.children?.map(({ url }) => url).includes(pathname) ||
                     menu.children
-                      ?.map(({ url }) => `${url}/`)
+                      ?.map(({ url }: { url: any }) => url)
+                      .includes(pathname) ||
+                    menu.children
+                      ?.map(({ url }: { url: any }) => `${url}/`)
                       .includes(pathname)
                       ? "active"
                       : ""
@@ -71,10 +67,10 @@ const { pathname } = Astro.url;
                   </svg>
                 </span>
                 <ul class="nav-dropdown-list hidden group-hover:block lg:invisible lg:absolute lg:block lg:opacity-0 lg:group-hover:visible lg:group-hover:opacity-100">
-                  {menu.children?.map((child) => (
+                  {menu.children?.map((child: any) => (
                     <li class="nav-dropdown-item">
                       <a
-                        href={child.url}
+                        href={getRelativeLocaleUrl(lang, child.url)}
                         aria-label={child.name}
                         class={`nav-dropdown-link block ${
                           (pathname === `${child.url}/` ||
@@ -91,7 +87,7 @@ const { pathname } = Astro.url;
             ) : (
               <li class="nav-item">
                 <a
-                  href={menu.url}
+                  href={getRelativeLocaleUrl(lang, menu.url)}
                   class={`nav-link block ${
                     (pathname === `${menu.url}/` || pathname === menu.url) &&
                     "active"
@@ -104,6 +100,7 @@ const { pathname } = Astro.url;
           </>
         ))
       }
+
       {
         navigation_button.enable && (
           <li class="mt-4 inline-block lg:hidden">
@@ -111,13 +108,58 @@ const { pathname } = Astro.url;
               class="btn btn-outline-primary btn-sm"
               href={navigation_button.link}
             >
-              {navigation_button.label}
+              {t('get_started')}
             </a>
           </li>
         )
       }
     </ul>
+
     <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
+      <!-- Language dropdown -->
+      <div class="nav-item nav-dropdown group relative border mr-5">
+        <span
+          class={`nav-link inline-flex items-center ${
+            languages
+              .map((child) => getRelativeLocaleUrl(child, "/"))
+              .includes(pathname)
+              ? "active"
+              : ""
+          }`}
+        >
+          {lang}
+          <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+            <path
+              d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+            ></path>
+          </svg>
+        </span>
+        <ul
+          class="nav-dropdown-list hidden group-hover:block lg:invisible lg:absolute lg:block lg:opacity-0 lg:group-hover:visible lg:group-hover:opacity-100"
+        >
+          {
+            languages.map((child: string) => (
+              <li class="nav-dropdown-item">
+                <a
+                  href={
+                    child === "en"
+                      ? pathname.replace(`/${lang}`, "")
+                      : `/${child}${pathname.replace(`/${lang}`, "")}`
+                  }
+                  aria-label={child}
+                  class={`nav-dropdown-link block ${
+                    pathname.startsWith(`/${child}`) && "active"
+                  }`}
+                >
+                  {child}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <!-- End Language dropdown -->
+
       {
         settings.search && (
           <button
@@ -136,7 +178,7 @@ const { pathname } = Astro.url;
             class="btn btn-outline-primary btn-sm hidden lg:inline-block"
             href={navigation_button.link}
           >
-            {navigation_button.label}
+             {t('get_started')}
           </a>
         )
       }

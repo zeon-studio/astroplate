@@ -1,0 +1,42 @@
+[
+  {
+    "id": "get_started",
+    "translation": "Get Started"
+  },
+  {
+    "id": "read_more",
+    "translation": "Read More"
+  },
+  {
+    "id": "full_name",
+    "translation": "Full Name"
+  },
+  {
+    "id": "working_mail",
+    "translation": "Working Mail"
+  },
+	{
+    "id": "anything_else",
+    "translation": "Anything else?"
+  },
+  {
+    "id": "contact_message_placeholder",
+    "translation": "Message goes here..."
+  },
+  {
+    "id": "submit",
+    "translation": "Submit"
+  },
+  {
+    "id": "page_not_found",
+    "translation": "Page Not Found"
+  },
+  {
+    "id": "page_not_found_content",
+    "translation": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable."
+  },
+  {
+    "id": "back_to_home",
+    "translation": "Back to home"
+  }
+]

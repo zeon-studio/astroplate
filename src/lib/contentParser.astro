@@ -1,16 +1,56 @@
 ---
+// import {
+//   getCollection,
+//   type CollectionEntry,
+//   type CollectionKey,
+// } from "astro:content";
+
+// export const getSinglePage = async <C extends CollectionKey>(
+//   collectionName: C,
+// ): Promise<CollectionEntry<C>[]> => {
+//   const allPages = await getCollection(collectionName);
+//   const removeIndex = allPages.filter((data) => data.id.match(/^(?!-)/));
+//   const removeDrafts = removeIndex.filter((data) => !data.data.draft);
+//   return removeDrafts;
+// };
+
 import {
   getCollection,
   type CollectionEntry,
   type CollectionKey,
+  type ContentEntryMap,
 } from "astro:content";
+
+import config from "@/config/config.json";
 
 export const getSinglePage = async <C extends CollectionKey>(
   collectionName: C,
+  lang: keyof ContentEntryMap
 ): Promise<CollectionEntry<C>[]> => {
-  const allPages = await getCollection(collectionName);
-  const removeIndex = allPages.filter((data) => data.id.match(/^(?!-)/));
-  const removeDrafts = removeIndex.filter((data) => !data.data.draft);
+  const { defaultLang } = config.language;
+  const langCollection: keyof ContentEntryMap = lang as keyof ContentEntryMap;
+
+  // Explicitly define the type of pages to CollectionEntry<C>[]
+  const pages: CollectionEntry<C>[] = await getCollection(langCollection || defaultLang, ({ id }) => {
+    return id.startsWith(collectionName) && !id.endsWith("-index.md");
+  }) as CollectionEntry<C>[];
+
+  const removeDrafts = pages.filter((data) => !data.data.draft);
   return removeDrafts;
+};
+
+
+export const getListPage = async <C extends CollectionKey>(
+  collectionName: C,
+  lang: keyof ContentEntryMap
+): Promise<CollectionEntry<C>[]> => {
+  const { defaultLang } = config.language;
+  const langCollection: keyof ContentEntryMap = lang as keyof ContentEntryMap;
+  // Fetch the collection based on the language
+  const pages: CollectionEntry<C>[] = await getCollection(langCollection || defaultLang, ({ id }) => {
+    return id.startsWith(collectionName);
+  }) as CollectionEntry<C>[];
+
+  return pages;
 };
 ---

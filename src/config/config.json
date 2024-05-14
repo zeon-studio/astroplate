@@ -12,6 +12,11 @@
     "logo_text": "Astroplate"
   },
 
+  "language": {
+    "defaultLang": "en",
+    "supported": ["", "en", "fr", "ar"]
+  },
+
   "settings": {
     "search": true,
     "sticky_header": true,

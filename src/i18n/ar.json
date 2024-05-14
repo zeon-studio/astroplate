@@ -1,0 +1,42 @@
+[
+  {
+    "id": "get_started",
+    "translation": "البدء"
+  },
+  {
+    "id": "read_more",
+    "translation": "Read More"
+  },
+	{
+    "id": "full_name",
+    "translation": "الاسم الكامل"
+  },
+	{
+    "id": "working_mail",
+    "translation": "بريد العمل"
+  },
+	{
+    "id": "anything_else",
+    "translation": "أي شيء آخر؟"
+  },
+  {
+    "id": "contact_message_placeholder",
+    "translation": "الرسالة تذهب هنا..."
+  },
+  {
+    "id": "submit",
+    "translation": "يُقدِّم"
+  },
+  {
+    "id": "page_not_found",
+    "translation": "الصفحة غير موجودة"
+  },
+  {
+    "id": "page_not_found_content",
+    "translation": "ربما تمت إزالة الصفحة التي تبحث عنها، أو تم تغيير اسمها، أو أنها غير متاحة مؤقتًا."
+  },
+  {
+    "id": "back_to_home",
+    "translation": "العودة إلى المنزل"
+  }
+]

@@ -1,5 +1,18 @@
 ---
 import Base from "@/layouts/Base.astro";
+import config from "@/config/config.json";
+import { getLangFromUrl, useTranslations } from "@/lib/utils/i18nUtils";
+
+export function getStaticPaths() {
+  const {supported} = config.language;
+  const paths = supported.map((lang) => ({ params: { lang: lang || undefined } }));
+  return paths;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang as any);
+const {defaultLang} = config.language;
+const href = lang && lang !== defaultLang ? `/${lang}/` : "/";
 ---
 
 <Base title="Page Not Found">
@@ -12,14 +25,11 @@ import Base from "@/layouts/Base.astro";
           >
             404
           </span>
-          <h1 class="h2 mb-4">Page not found</h1>
+          <h1 class="h2 mb-4">{t("page_not_found")}</h1>
           <div class="content">
-            <p>
-              The page you are looking for might have been removed, had its name
-              changed, or is temporarily unavailable.
-            </p>
+            <p>{t("page_not_found_content")}</p>
           </div>
-          <a href="/" class="btn btn-primary mt-8">Back to home</a>
+          <a href={href} class="btn btn-primary mt-8">{t("back_to_home")}</a>
         </div>
       </div>
     </div>

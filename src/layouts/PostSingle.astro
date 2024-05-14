@@ -11,6 +11,7 @@ import ImageMod from "./components/ImageMod.astro";
 
 const COLLECTION_FOLDER = "blog";
 const { post } = Astro.props;
+const { lang } = Astro.params;
 
 const posts = await getSinglePage(COLLECTION_FOLDER);
 const similarPosts = similarItems(post, posts);
@@ -39,7 +40,7 @@ const { title, description, author, categories, image, date, tags } = post.data;
         <h1 set:html={markdownify(title)} class="h2 mb-4" />
         <ul class="mb-4">
           <li class="mr-4 inline-block">
-            <a href={`/authors/${slugify(author)}`}>
+            <a href={`/${lang === "en" ? "authors" + "/" : lang}/authors/${slugify(author)}`} >
               <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
               {humanize(author)}
             </a>
@@ -48,7 +49,9 @@ const { title, description, author, categories, image, date, tags } = post.data;
             <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
             {
               categories.map((category: string, index: number) => (
-                <a href={`/categories/${slugify(category)}`}>
+                <a
+                  href={`/${lang === "en" ? "categories" + "/" : lang}/categories/${slugify(category)}`}
+                >
                   {humanize(category)}
                   {index !== categories.length - 1 && ","}
                 </a>

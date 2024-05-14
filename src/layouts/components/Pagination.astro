@@ -1,10 +1,18 @@
 ---
+import { getLangFromUrl } from "@/lib/utils/i18nUtils";
+
+const lang = getLangFromUrl(Astro.url);
+
 type Pagination = {
   section?: string;
   currentPage?: number;
   totalPages?: number;
 };
-const { section, currentPage = 1, totalPages = 1 }: Pagination = Astro.props;
+const {
+  section,
+  currentPage = 1,
+  totalPages = 1
+}: Pagination = Astro.props;
 
 const indexPageLink = currentPage === 2;
 const hasPrevPage = currentPage > 1;
@@ -27,8 +35,8 @@ for (let i = 1; i <= totalPages; i++) {
         <a
           href={
             indexPageLink
-              ? `${section ? "/" + section : "/"}`
-              : `${section ? "/" + section : ""}/page/${currentPage - 1}`
+              ? `/${lang}/${section ? section : ""}`
+              : `/${lang}/${section ? section : ""}/page/${currentPage - 1}`
           }
           class="rounded px-2 py-1.5 text-dark hover:bg-theme-light dark:text-darkmode-dark dark:hover:bg-darkmode-theme-light"
         >
@@ -79,8 +87,8 @@ for (let i = 1; i <= totalPages; i++) {
           <a
             href={
               i === 0
-                ? `${section ? "/" + section : "/"}`
-                : `${section ? "/" + section : ""}/page/${pagination}`
+                ? `/${lang}/${section ? section : ""}`
+                : `/${lang}/${section ? section : ""}/page/${pagination}`
             }
             aria-current="page"
             class="rounded px-4 py-2 text-dark hover:bg-theme-light dark:text-darkmode-dark dark:hover:bg-darkmode-theme-light"
@@ -93,7 +101,7 @@ for (let i = 1; i <= totalPages; i++) {
       {/* next page */}
       {hasNextPage ? (
         <a
-          href={`${section ? "/" + section : ""}/page/${currentPage + 1}`}
+          href={`/${lang}/${section ? section : ""}/page/${currentPage + 1}`}
           class="rounded px-2 py-1.5 text-dark hover:bg-theme-light dark:text-darkmode-dark dark:hover:bg-darkmode-theme-light"
         >
           <span class="sr-only">Next</span>
@@ -132,3 +140,4 @@ for (let i = 1; i <= totalPages; i++) {
     </nav>
   )
 }
+

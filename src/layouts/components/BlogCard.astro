@@ -4,6 +4,7 @@ import dateFormat from "@/lib/utils/dateFormat";
 import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
 import { FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./ImageMod.astro";
+import { getLangFromUrl } from "@/lib/utils/i18nUtils";
 
 const {
   summary_length,
@@ -11,6 +12,9 @@ const {
 }: { summary_length: number; blog_folder: string } = config.settings;
 const { data } = Astro.props;
 const { title, image, date, author, categories } = data.data;
+
+const lang = getLangFromUrl(Astro.url);
+const path = Astro.url.pathname;
 ---
 
 <div class="bg-body dark:bg-darkmode-body">
@@ -27,13 +31,17 @@ const { title, image, date, author, categories } = data.data;
     )
   }
   <h4 class="mb-3">
-    <a href={`/${blog_folder}/${data.slug}`}>
+    <a
+      href={path.includes("/categories")
+        ? `/${lang === "en" ? "/" : lang}/blog/${data.slug}`
+        : `/${lang === "en" ? "/" : lang}/${data.slug}`}
+    >
       {title}
     </a>
   </h4>
   <ul class="mb-4">
     <li class="mr-4 inline-block">
-      <a href={`/authors/${slugify(author)}`}>
+      <a href={`/${lang}/authors/${slugify(author)}`}>
         <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
         {humanize(author)}
       </a>
@@ -42,7 +50,7 @@ const { title, image, date, author, categories } = data.data;
       <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
       {
         categories.map((category: string, index: number) => (
-          <a href={`/categories/${slugify(category)}`}>
+          <a href={`/${lang}/categories/${slugify(category)}`}>
             {humanize(category)}
             {index !== categories.length - 1 && ","}
           </a>
@@ -54,7 +62,9 @@ const { title, image, date, author, categories } = data.data;
   <p class="mb-6">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
   <a
     class="btn btn-outline-primary btn-sm"
-    href={`/${blog_folder}/${data.slug}`}
+    href={path.includes("/categories")
+    ? `/${lang === "en" ? "/" : lang}/blog/${data.slug}`
+    : `/${lang === "en" ? "/" : lang}/${data.slug}`}
   >
     read more
   </a>

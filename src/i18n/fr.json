@@ -1,0 +1,42 @@
+[
+  {
+    "id": "get_started",
+    "translation": "Commencer"
+  },
+  {
+    "id": "read_more",
+    "translation": "Read More"
+  },
+	{
+    "id": "full_name",
+    "translation": "Nom et prénom"
+  },
+	{
+    "id": "working_mail",
+    "translation": "Courrier de travail"
+  },
+	{
+    "id": "anything_else",
+    "translation": "Rien d'autre?"
+  },
+  {
+    "id": "contact_message_placeholder",
+    "translation": "Le message va ici..."
+  },
+  {
+    "id": "submit",
+    "translation": "Soumettre"
+  },
+  {
+    "id": "page_not_found",
+    "translation": "Page non trouvée"
+  },
+  {
+    "id": "page_not_found_content",
+    "translation": "La page que vous recherchez a peut-être été supprimée, son nom a changé ou est temporairement indisponible."
+  },
+  {
+    "id": "back_to_home",
+    "translation": "De retour à la maison"
+  }
+]
