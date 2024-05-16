@@ -2,7 +2,12 @@
 import Logo from "@/components/Logo.astro";
 import ThemeSwitcher from "@/components/ThemeSwitcher.astro";
 import config from "@/config/config.json";
-import { getLangFromUrl, languages, useTranslations } from "@/lib/utils/i18nUtils";
+import LanguageSwitcher from "@/helpers/LanguageSwitcher";
+import {
+  getLangFromUrl,
+  languages,
+  useTranslations,
+} from "@/lib/utils/i18nUtils";
 import { loadMenu } from "@/lib/utils/loadMenu";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { IoSearch } from "react-icons/io5";
@@ -108,7 +113,7 @@ const t = useTranslations(lang as any);
               class="btn btn-outline-primary btn-sm"
               href={navigation_button.link}
             >
-              {t('get_started')}
+              {t("get_started")}
             </a>
           </li>
         )
@@ -116,50 +121,6 @@ const t = useTranslations(lang as any);
     </ul>
 
     <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
-      <!-- Language dropdown -->
-      <div class="nav-item nav-dropdown group relative border mr-5">
-        <span
-          class={`nav-link inline-flex items-center ${
-            languages
-              .map((child) => getRelativeLocaleUrl(child, "/"))
-              .includes(pathname)
-              ? "active"
-              : ""
-          }`}
-        >
-          {lang}
-          <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
-            <path
-              d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-            ></path>
-          </svg>
-        </span>
-        <ul
-          class="nav-dropdown-list hidden group-hover:block lg:invisible lg:absolute lg:block lg:opacity-0 lg:group-hover:visible lg:group-hover:opacity-100"
-        >
-          {
-            languages.map((child: string) => (
-              <li class="nav-dropdown-item">
-                <a
-                  href={
-                    child === "en"
-                      ? pathname.replace(`/${lang}`, "")
-                      : `/${child}${pathname.replace(`/${lang}`, "")}`
-                  }
-                  aria-label={child}
-                  class={`nav-dropdown-link block ${
-                    pathname.startsWith(`/${child}`) && "active"
-                  }`}
-                >
-                  {child}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <!-- End Language dropdown -->
-
       {
         settings.search && (
           <button
@@ -172,13 +133,19 @@ const t = useTranslations(lang as any);
         )
       }
       <ThemeSwitcher className="mr-5" />
+      <LanguageSwitcher
+        client:load
+        lang={lang}
+        languages={languages}
+        pathname={pathname}
+      />
       {
         navigation_button.enable && (
           <a
             class="btn btn-outline-primary btn-sm hidden lg:inline-block"
             href={navigation_button.link}
           >
-             {t('get_started')}
+            {t("get_started")}
           </a>
         )
       }
