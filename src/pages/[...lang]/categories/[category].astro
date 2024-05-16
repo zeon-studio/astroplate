@@ -1,19 +1,17 @@
 ---
 import BlogCard from "@/components/BlogCard.astro";
-import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import { getTaxonomy } from "@/lib/taxonomyParser.astro";
+import { supportedLang } from "@/lib/utils/i18nUtils";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import taxonomyFilter from "@/lib/utils/taxonomyFilter";
 import PageHeader from "@/partials/PageHeader.astro";
 
 // get all static paths for categories
 export async function getStaticPaths() {
-  const { supported } = config.language;
-
   const paths = await Promise.all(
-    supported.map(async (lang) => {
+    supportedLang.map(async (lang) => {
       const categories = await getTaxonomy(lang, "categories");
 
       return categories.map((category) => ({

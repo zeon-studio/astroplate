@@ -1,6 +1,8 @@
+import languages from "@/config/language.json";
 import React from 'react';
 
-const LanguageSwitcher = ({ lang, languages, pathname }: { lang: string; languages: string[]; pathname: string }) => {
+const LanguageSwitcher = ({ lang, pathname }: { lang: string; pathname: string }) => {
+
 	return (
 		<div className="mr-5">
 			<select
@@ -12,20 +14,19 @@ const LanguageSwitcher = ({ lang, languages, pathname }: { lang: string; languag
 						: `/${selectedLang}${pathname.replace(`/${lang}`, "")}`;
 					window.location.href = newPath;
 				}}
-				value={languages.includes(lang) ? lang : 'en'}
+				value={lang}
 			>
-				{languages.map((child: string) => (
+				{languages.map((language) => (
 					<option
-						key={child}
-						value={child}
+						key={language.languageCode}
+						value={language.languageCode}
 					>
-						{child}
+						{language.languageName}
 					</option>
 				))}
 			</select>
 		</div>
-
 	)
 }
 
-export default LanguageSwitcher
+export default LanguageSwitcher;

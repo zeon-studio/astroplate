@@ -1,15 +1,13 @@
 ---
+import { supportedLang } from "@/lib/utils/i18nUtils";
 import { humanize } from "@/lib/utils/textConverter";
-import config from "@/config/config.json";
-
-const { supported } = config.language;
 
 const { className }: { className?: string } = Astro.props;
 
 const paths = Astro.url.pathname.split("/").filter((x) => x);
 
 let lang = "";
-if (supported.includes(paths[0])) {
+if (supportedLang.includes(paths[0])) {
   lang = paths.shift()!;
 }
 
@@ -17,7 +15,10 @@ let parts = [
   {
     label: "Home",
     href: `/${lang}`,
-    "aria-label": Astro.url.pathname === `/${lang}` || Astro.url.pathname === `/${lang}/` ? "page" : undefined,
+    "aria-label":
+      Astro.url.pathname === `/${lang}` || Astro.url.pathname === `/${lang}/`
+        ? "page"
+        : undefined,
   },
 ];
 
@@ -30,7 +31,6 @@ paths.forEach((label: string, i: number) => {
       "aria-label": Astro.url.pathname === href ? "page" : undefined,
     });
 });
-
 ---
 
 <nav aria-label="Breadcrumb" class={className}>

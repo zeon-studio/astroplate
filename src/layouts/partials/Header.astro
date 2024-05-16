@@ -3,21 +3,18 @@ import Logo from "@/components/Logo.astro";
 import ThemeSwitcher from "@/components/ThemeSwitcher.astro";
 import config from "@/config/config.json";
 import LanguageSwitcher from "@/helpers/LanguageSwitcher";
-import {
-  getLangFromUrl,
-  languages,
-  useTranslations,
-} from "@/lib/utils/i18nUtils";
+import { getLangFromUrl, getTranslations } from "@/lib/utils/i18nUtils";
 import { loadMenu } from "@/lib/utils/loadMenu";
+import type { ContentEntryMap } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { IoSearch } from "react-icons/io5";
 
 const lang = getLangFromUrl(Astro.url);
 const menu = loadMenu(lang);
+
 const { navigation_button, settings } = config;
 const { pathname } = Astro.url;
-
-const t = useTranslations(lang as any);
+const { get_started } = await getTranslations(lang as keyof ContentEntryMap);
 ---
 
 <header class={`header z-30 ${settings.sticky_header && "sticky top-0"}`}>
@@ -113,7 +110,7 @@ const t = useTranslations(lang as any);
               class="btn btn-outline-primary btn-sm"
               href={navigation_button.link}
             >
-              {t("get_started")}
+              {get_started}
             </a>
           </li>
         )
@@ -133,19 +130,14 @@ const t = useTranslations(lang as any);
         )
       }
       <ThemeSwitcher className="mr-5" />
-      <LanguageSwitcher
-        client:load
-        lang={lang}
-        languages={languages}
-        pathname={pathname}
-      />
+      <LanguageSwitcher client:load lang={lang} pathname={pathname} />
       {
         navigation_button.enable && (
           <a
             class="btn btn-outline-primary btn-sm hidden lg:inline-block"
             href={navigation_button.link}
           >
-            {t("get_started")}
+            {get_started}
           </a>
         )
       }

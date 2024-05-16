@@ -4,26 +4,29 @@ import Pagination from "@/components/Pagination.astro";
 import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
 import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
+import { supportedLang } from "@/lib/utils/i18nUtils";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import PageHeader from "@/partials/PageHeader.astro";
 import PostSidebar from "@/partials/PostSidebar.astro";
 import type { ContentEntryMap } from "astro:content";
 import { getCollection } from "astro:content";
-
 const BLOG_FOLDER = "blog";
 
 const { slug, lang } = Astro.params;
 
 const postIndex = await getCollection(
   lang as keyof ContentEntryMap,
-  ({ id }) => {
+  ({ id }: any) => {
     return id.startsWith(BLOG_FOLDER);
   }
 );
 
-const posts = await getCollection(lang as keyof ContentEntryMap, ({ id }) => {
-  return id.startsWith(BLOG_FOLDER) && !id.endsWith("-index.md");
-});
+const posts = await getCollection(
+  lang as keyof ContentEntryMap,
+  ({ id }: any) => {
+    return id.startsWith(BLOG_FOLDER) && !id.endsWith("-index.md");
+  }
+);
 
 const langCollection: keyof ContentEntryMap = lang as keyof ContentEntryMap;
 const allCategories = await getAllTaxonomy(langCollection, "categories");
@@ -37,14 +40,13 @@ const indexOfFirstPost = indexOfLastPost - config.settings.pagination;
 const currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
 
 export async function getStaticPaths() {
-  const { supported } = config.language;
   const BLOG_FOLDER = "blog";
 
   const paths = await Promise.all(
-    supported.map(async (lang) => {
+    supportedLang.map(async (lang) => {
       const posts = await getCollection(
         lang as keyof ContentEntryMap,
-        ({ id }) => {
+        ({ id }: any) => {
           return id.startsWith(BLOG_FOLDER) && !id.endsWith("-index.md");
         }
       );

@@ -1,42 +1,17 @@
-[
-  {
-    "id": "get_started",
-    "translation": "البدء"
-  },
-  {
-    "id": "read_more",
-    "translation": "Read More"
-  },
-	{
-    "id": "full_name",
-    "translation": "الاسم الكامل"
-  },
-	{
-    "id": "working_mail",
-    "translation": "بريد العمل"
-  },
-	{
-    "id": "anything_else",
-    "translation": "أي شيء آخر؟"
-  },
-  {
-    "id": "contact_message_placeholder",
-    "translation": "الرسالة تذهب هنا..."
-  },
-  {
-    "id": "submit",
-    "translation": "يُقدِّم"
-  },
-  {
-    "id": "page_not_found",
-    "translation": "الصفحة غير موجودة"
-  },
-  {
-    "id": "page_not_found_content",
-    "translation": "ربما تمت إزالة الصفحة التي تبحث عنها، أو تم تغيير اسمها، أو أنها غير متاحة مؤقتًا."
-  },
-  {
-    "id": "back_to_home",
-    "translation": "العودة إلى المنزل"
-  }
-]
+{
+  "full_name": "الاسم الكامل",
+  "full_name_placeholder": "أدخل اسمك الكامل",
+  "mail": "البريد الإلكتروني العملي",
+  "mail_placeholder": "john.doe@email.com",
+  "message": "هل هناك شيء آخر؟",
+  "message_placeholder": "رسالتك هنا...",
+  "submit": "إرسال",
+  "read_more": "اقرأ المزيد",
+  "page_not_found": "الصفحة غير موجودة",
+  "working_mail": "البريد الإلكتروني العملي",
+  "anything_else": "هل هناك شيء آخر؟",
+  "contact_message_placeholder": "رسالتك هنا...",
+  "page_not_found_content": "قد تمت إزالة الصفحة التي تبحث عنها، أو تغيير اسمها، أو أصبحت غير متوفرة مؤقتًا.",
+  "back_to_home": "العودة إلى الصفحة الرئيسية",
+  "get_started": "البدئة"
+}

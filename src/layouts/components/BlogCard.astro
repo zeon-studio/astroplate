@@ -1,20 +1,23 @@
 ---
 import config from "@/config/config.json";
 import dateFormat from "@/lib/utils/dateFormat";
+import { getLangFromUrl, getTranslations } from "@/lib/utils/i18nUtils";
 import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
+import type { ContentEntryMap } from "astro:content";
 import { FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./ImageMod.astro";
-import { getLangFromUrl } from "@/lib/utils/i18nUtils";
 
 const {
   summary_length,
   blog_folder,
 }: { summary_length: number; blog_folder: string } = config.settings;
+const { defaultLang } = config.language;
 const { data } = Astro.props;
 const { title, image, date, author, categories } = data.data;
 
 const lang = getLangFromUrl(Astro.url);
 const path = Astro.url.pathname;
+const { read_more } = await getTranslations(lang as keyof ContentEntryMap);
 ---
 
 <div class="bg-body dark:bg-darkmode-body">
@@ -33,8 +36,8 @@ const path = Astro.url.pathname;
   <h4 class="mb-3">
     <a
       href={path.includes("/categories")
-        ? `/${lang === "en" ? "/" : lang}/blog/${data.slug}`
-        : `/${lang === "en" ? "/" : lang}/${data.slug}`}
+        ? `${lang === defaultLang ? "" : `/${lang}`}/blog/${data.slug}`
+        : `${lang === defaultLang ? "" : `/${lang}`}/${data.slug}`}
     >
       {title}
     </a>
@@ -63,9 +66,9 @@ const path = Astro.url.pathname;
   <a
     class="btn btn-outline-primary btn-sm"
     href={path.includes("/categories")
-    ? `/${lang === "en" ? "/" : lang}/blog/${data.slug}`
-    : `/${lang === "en" ? "/" : lang}/${data.slug}`}
+      ? `${lang === defaultLang ? "" : `/${lang}`}/blog/${data.slug}`
+      : `${lang === defaultLang ? "" : `/${lang}`}/${data.slug}`}
   >
-    read more
+    {read_more}
   </a>
 </div>

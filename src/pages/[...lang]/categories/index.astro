@@ -1,14 +1,15 @@
 ---
 import Base from "@/layouts/Base.astro";
 import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
+import { supportedLang } from "@/lib/utils/i18nUtils";
 import { humanize } from "@/lib/utils/textConverter";
 import PageHeader from "@/partials/PageHeader.astro";
-import config from "@/config/config.json";
 import type { ContentEntryMap } from "astro:content";
 
 export function getStaticPaths() {
-  const {supported } = config.language;
-  const paths = supported.map((lang) => ({ params: { lang: lang || undefined } }));
+  const paths = supportedLang.map((lang) => ({
+    params: { lang: lang || undefined },
+  }));
   return paths;
 }
 

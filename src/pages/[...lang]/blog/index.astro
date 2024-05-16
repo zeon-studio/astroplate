@@ -5,14 +5,14 @@ import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
 import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
 import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
+import { supportedLang } from "@/lib/utils/i18nUtils";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import PageHeader from "@/partials/PageHeader.astro";
 import PostSidebar from "@/partials/PostSidebar.astro";
 import type { ContentEntryMap } from "astro:content";
 
 export function getStaticPaths() {
-  const { supported } = config.language;
-  const paths = supported.map((lang) => ({
+  const paths = supportedLang.map((lang) => ({
     params: { lang: lang || undefined },
   }));
   return paths;

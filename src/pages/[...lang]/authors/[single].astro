@@ -2,21 +2,22 @@
 import BlogCard from "@/components/BlogCard.astro";
 import ImageMod from "@/components/ImageMod.astro";
 import Social from "@/components/Social.astro";
-import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
+import { supportedLang } from "@/lib/utils/i18nUtils";
 import { slugify } from "@/lib/utils/textConverter";
 import type { ContentEntryMap } from "astro:content";
-import { getCollection } from "astro:content";
 
 // get all static paths for authors
 export async function getStaticPaths() {
-  const { supported } = config.language;
   const COLLECTION_FOLDER = "authors";
 
   const paths = await Promise.all(
-    supported.map(async (lang) => {
-      const authors = await getSinglePage(COLLECTION_FOLDER, lang as keyof ContentEntryMap);
+    supportedLang.map(async (lang) => {
+      const authors = await getSinglePage(
+        COLLECTION_FOLDER,
+        lang as keyof ContentEntryMap
+      );
 
       return authors.map((author) => ({
         params: {
@@ -25,7 +26,7 @@ export async function getStaticPaths() {
         },
         props: {
           author,
-          lang
+          lang,
         },
       }));
     })

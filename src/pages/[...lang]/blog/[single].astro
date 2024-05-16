@@ -1,18 +1,19 @@
 ---
-import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
 import PostSingle from "@/layouts/PostSingle.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
+import { supportedLang } from "@/lib/utils/i18nUtils";
 import type { ContentEntryMap } from "astro:content";
-import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const { supported } = config.language;
   const BLOG_FOLDER = "blog";
 
   const paths = await Promise.all(
-    supported.map(async (lang) => {
-      const posts = await getSinglePage(BLOG_FOLDER, lang as keyof ContentEntryMap);
+    supportedLang.map(async (lang) => {
+      const posts = await getSinglePage(
+        BLOG_FOLDER,
+        lang as keyof ContentEntryMap
+      );
 
       return posts.map((post) => ({
         params: {
@@ -31,6 +32,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { title, meta_title, description, image } = post.data;
 ---
+
 <Base
   title={title}
   meta_title={meta_title}

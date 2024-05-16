@@ -1,17 +1,21 @@
 ---
-import Base from "@/layouts/Base.astro";
 import config from "@/config/config.json";
-import { getLangFromUrl, useTranslations } from "@/lib/utils/i18nUtils";
+import Base from "@/layouts/Base.astro";
+import { getLangFromUrl, getTranslations } from "@/lib/utils/i18nUtils";
+import type { ContentEntryMap } from "astro:content";
+import { supportedLang } from "@/lib/utils/i18nUtils";
 
 export function getStaticPaths() {
-  const {supported} = config.language;
-  const paths = supported.map((lang) => ({ params: { lang: lang || undefined } }));
+  const paths = supportedLang.map((lang) => ({
+    params: { lang: lang || undefined },
+  }));
   return paths;
 }
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang as any);
-const {defaultLang} = config.language;
+const { page_not_found_content, page_not_found, back_to_home } =
+  await getTranslations(lang as keyof ContentEntryMap);
+const { defaultLang } = config.language;
 const href = lang && lang !== defaultLang ? `/${lang}/` : "/";
 ---
 
@@ -25,11 +29,11 @@ const href = lang && lang !== defaultLang ? `/${lang}/` : "/";
           >
             404
           </span>
-          <h1 class="h2 mb-4">{t("page_not_found")}</h1>
+          <h1 class="h2 mb-4">{page_not_found}</h1>
           <div class="content">
-            <p>{t("page_not_found_content")}</p>
+            <p>{page_not_found_content}</p>
           </div>
-          <a href={href} class="btn btn-primary mt-8">{t("back_to_home")}</a>
+          <a href={href} class="btn btn-primary mt-8">{back_to_home}</a>
         </div>
       </div>
     </div>
