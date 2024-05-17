@@ -1,7 +1,11 @@
 ---
-import { humanize } from "@/lib/utils/textConverter";
+import config from "@/config/config.json";
+import { getLangFromUrl } from "@/lib/utils/i18nUtils";
+import { humanize, slugify } from "@/lib/utils/textConverter";
+const { default_language } = config.settings;
 
 const { tags, categories, allCategories } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
 ---
 
 <div class="lg:col-4">
@@ -13,13 +17,13 @@ const { tags, categories, allCategories } = Astro.props;
         {
           categories.map((category: any) => {
             const count = allCategories.filter(
-              (c: any) => c === category
+              (c: any) => c === category,
             ).length;
             return (
               <li>
                 <a
                   class="flex justify-between hover:text-primary dark:hover:text-darkmode-primary"
-                  href={`/categories/${category}`}
+                  href={`${lang === default_language ? "" : `/${lang}`}/categories/${slugify(category)}`}
                 >
                   {humanize(category)} <span>({count})</span>
                 </a>
@@ -41,7 +45,7 @@ const { tags, categories, allCategories } = Astro.props;
               <li class="inline-block">
                 <a
                   class="m-1 block rounded bg-white px-3 py-1 hover:bg-primary hover:text-white dark:bg-darkmode-body dark:hover:bg-darkmode-primary dark:hover:text-dark"
-                  href={`/tags/${tag}`}
+                  href={`${lang === default_language ? "" : `/${lang}`}/tags/${slugify(tag)}`}
                 >
                   {humanize(tag)}
                 </a>

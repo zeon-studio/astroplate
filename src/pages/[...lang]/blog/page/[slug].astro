@@ -14,18 +14,18 @@ const BLOG_FOLDER = "blog";
 
 const { slug, lang } = Astro.params;
 
-const postIndex = await getCollection(
+const postIndex: any = await getCollection(
   lang as keyof ContentEntryMap,
   ({ id }: any) => {
     return id.startsWith(BLOG_FOLDER);
-  }
+  },
 );
 
 const posts = await getCollection(
   lang as keyof ContentEntryMap,
   ({ id }: any) => {
     return id.startsWith(BLOG_FOLDER) && !id.endsWith("-index.md");
-  }
+  },
 );
 
 const langCollection: keyof ContentEntryMap = lang as keyof ContentEntryMap;
@@ -48,7 +48,7 @@ export async function getStaticPaths() {
         lang as keyof ContentEntryMap,
         ({ id }: any) => {
           return id.startsWith(BLOG_FOLDER) && !id.endsWith("-index.md");
-        }
+        },
       );
 
       const totalPages = Math.ceil(posts.length / config.settings.pagination);
@@ -65,7 +65,7 @@ export async function getStaticPaths() {
       }
 
       return langPaths;
-    })
+    }),
   );
 
   return paths.flat();

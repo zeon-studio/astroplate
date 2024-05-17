@@ -1,5 +1,5 @@
 ---
 title: "Articles de blog"
 meta_title: ""
-description: "this is meta description"
+description: "Ceci est une méta-description"
 ---

@@ -1,51 +1,51 @@
 ---
 # Banner
 banner:
-  title: "القالب المبدئي المثالي الذي تحتاجه لبدء مشروعك الفلكي"
-  content: "Astroplate هو قالب بداية مجاني مصمم باستخدام Astro وTailwindCSS، وهو يوفر كل ما تحتاجه لبدء مشروع Astro الخاص بك وتوفير الوقت الثمين."
+  title: "القالب الابتدائي النهائي الذي تحتاجه لبدء مشروعك مع Astro"
+  content: "Astroplate هو قالب ابتدائي مجاني مبني باستخدام Astro وTailwindCSS، يوفر كل ما تحتاجه لبدء مشروعك مع Astro وتوفير الوقت الثمين."
   image: "/images/banner.png"
   button:
     enable: true
-    label: "Get Started For Free"
+    label: "ابدأ مجاناً"
     link: "https://github.com/zeon-studio/astroplate"
 
 # Features
 features:
-  - title: "What's Included in Astroplate"
+  - title: "ما الذي يتضمنه Astroplate"
     image: "/images/service-1.png"
-    content: "Astroplate is a comprehensive starter template that includes everything you need to get started with your Astro project. What's Included in Astroplate"
+    content: "Astroplate هو قالب ابتدائي شامل يتضمن كل ما تحتاجه للبدء في مشروعك مع Astro. ما الذي يتضمنه Astroplate"
     bulletpoints:
-      - "10+ Pre-build pages"
-      - "95+ Google Pagespeed Score"
-      - "Build with Astro and TailwindCSS for easy and customizable styling"
-      - "Fully responsive on all devices"
-      - "SEO-optimized for better search engine rankings"
-      - "**Open-source and free** for personal and commercial use"
+      - "أكثر من 10 صفحات جاهزة"
+      - "درجة 95+ في Google Pagespeed"
+      - "مبني باستخدام Astro وTailwindCSS لتصميم سهل وقابل للتخصيص"
+      - "متجاوب بالكامل على جميع الأجهزة"
+      - "محسن لمحركات البحث لتحسين تصنيفات محركات البحث"
+      - "**مفتوح المصدر ومجاني** للاستخدام الشخصي والتجاري"
     button:
       enable: false
-      label: "Get Started Now"
+      label: "ابدأ الآن"
       link: "#"
 
-  - title: "Discover the Key Features Of Astro"
+  - title: "اكتشف الميزات الرئيسية لـ Astro"
     image: "/images/service-2.png"
-    content: "Astro is an all-in-one web framework for building fast, content-focused websites. It offers a range of exciting features for developers and website creators. Some of the key features are:"
+    content: "Astro هو إطار عمل ويب شامل لبناء مواقع ويب سريعة ومركزة على المحتوى. يقدم مجموعة من الميزات المثيرة للمطورين ومنشئي المواقع. بعض الميزات الرئيسية هي:"
     bulletpoints:
-      - "Zero JS, by default: No JavaScript runtime overhead to slow you down."
-      - "Customizable: Tailwind, MDX, and 100+ other integrations to choose from."
-      - "UI-agnostic: Supports React, Preact, Svelte, Vue, Solid, Lit and more."
+      - "بدون جافا سكريبت افتراضيًا: لا يوجد عبء تشغيل جافا سكريبت لإبطائك."
+      - "قابل للتخصيص: Tailwind وMDX وأكثر من 100 تكامل آخر للاختيار من بينها."
+      - "محايد للواجهة: يدعم React وPreact وSvelte وVue وSolid وLit والمزيد."
     button:
       enable: true
-      label: "Get Started Now"
+      label: "ابدأ الآن"
       link: "https://github.com/zeon-studio/astroplate"
 
-  - title: "The Top Reasons to Choose Astro for Your Next Project"
+  - title: "أهم الأسباب لاختيار Astro لمشروعك القادم"
     image: "/images/service-3.png"
-    content: "With Astro, you can build modern and content-focused websites without sacrificing performance or ease of use."
+    content: "مع Astro، يمكنك بناء مواقع ويب حديثة ومركزة على المحتوى دون التضحية بالأداء أو سهولة الاستخدام."
     bulletpoints:
-      - "Instantly load static sites for better user experience and SEO."
-      - "Intuitive syntax and support for popular frameworks make learning and using Astro a breeze."
-      - "Use any front-end library or framework, or build custom components, for any project size."
-      - "Built on cutting-edge technology to keep your projects up-to-date with the latest web standards."
+      - "تحميل فوري للمواقع الثابتة لتحسين تجربة المستخدم وتحسين محركات البحث."
+      - "بناء الجملة البديهي والدعم للأطر الشعبية يجعل تعلم واستخدام Astro سهلًا."
+      - "استخدام أي مكتبة أو إطار عمل فرونت إند، أو بناء مكونات مخصصة، لأي حجم من المشاريع."
+      - "مبني على أحدث التقنيات للحفاظ على مشاريعك محدثة بأحدث معايير الويب."
     button:
       enable: false
       label: ""

@@ -23,6 +23,7 @@ export const getSinglePage = async <C extends CollectionKey>(
     },
   )) as CollectionEntry<C>[];
 
+  //@ts-ignore
   const removeDrafts = pages.filter((data) => !data.data.draft);
   return removeDrafts;
 };

@@ -1,23 +1,23 @@
 ---
-title: "كيفية بناء تطبيق بالتكنولوجيا الحديثة"
+title: "كيفية بناء تطبيق باستخدام التكنولوجيا الحديثة"
 meta_title: ""
-description: "this is meta description"
+description: "هذا هو الوصف الميتا"
 date: 2022-04-04T05:00:00Z
 image: "/images/image-placeholder.png"
-categories: ["Application", "Data", "Arabic"]
+categories: ["Application", "Data"]
 author: "John Doe"
 tags: ["nextjs", "tailwind"]
 draft: false
 ---
 
-لا داعي للقلق بشأن إنشاء rutrum على سبيل المثال، venenatis sollicitudin urna. Aliquam عصر فولوتبات. عدد صحيح الاتحاد الأوروبي ipsum sem. Ut bibendum lacus الدهليزي مكسيموس سوسكيبيت. السيرة الذاتية الرائعة nibh iaculis neque blandit euismod.
+لا أحد يريد حتى متابعة المكياج من جرة الرعاية المسمومة. لقد كانت عطلة نهاية الأسبوع. أنا لاعب كرة قدم متكامل. للشرب، تأخذ البحيرة أكبر رواق. كل هدف من أهداف الحياة لا يرضي Euismod.
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. لا حاجة إلى إنشاء aperiam. Itaque eligendi natus aperiam؟ استثناءات طاردة للسلبية خيار التعجيل السريع هو أديبيسسي دولوريم أوت إيوس!
+الشركة نفسها هي شركة ناجحة جدا. ولا أحد حتى يكلف نفسه عناء فتحه. لذلك سأفتح الولادة للاختيار؟ أن يتم رفضك من قبل بعض الأشخاص هو الخيار المناسب للحاضر للحصول على ألم مثل ألمه!
 
 ## التصميم الإبداعي
 
-Nam ut rutrum ex, venenatis sollicitudin urna. Aliquam عصر فولوتبات. عدد صحيح الاتحاد الأوروبي ipsum sem. Ut bibendum lacus الدهليزي مكسيموس suscipit. السيرة الذاتية الرائعة nibh iaculis neque blandit euismod.
+كمكياج من جرة السم لقد كانت عطلة نهاية الأسبوع. أنا لاعب كرة قدم متكامل. للشرب، البحيرة تأخذ أكبر شرفة. كل هدف من أهداف الحياة لا يرضي Euismod.
 
-> لوريم إيبسوم دولور الجلوس أميت كونسيكتور أديبيسينج إيليت. لا حاجة إلى إنشاء aperiam. Itaque eligendi natus aperiam؟ استثناءات طاردة للسلبية خيار التعجيل السريع هو أديبيسسي دولوريم أوت إيوس!
+> يجب أن يكون العميل نفسه قادرًا على متابعة عملية الترطيب. ولا أحد حتى يكلف نفسه عناء فتحه. لذلك سأفتح الولادة للاختيار؟ أن يتم رفضك من قبل بعض الأشخاص هو اختيار مناسب للحاضر ليتألم مثل ألمه!
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. لا حاجة إلى إنشاء aperiam. Itaque eligendi natus aperiam؟ استثناءات طاردة للسلبية خيار التعجيل السريع هو أديبيسسي دولوريم أوت إيوس!
+الشركة نفسها هي شركة ناجحة جدا. ولا أحد حتى يكلف نفسه عناء فتحه. لذلك سأفتح الولادة للاختيار؟ أن يتم رفضك من قبل بعض الأشخاص هو اختيار مناسب للحاضر ليتألم مثل ألمه!

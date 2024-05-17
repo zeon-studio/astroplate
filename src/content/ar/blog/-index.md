@@ -1,5 +1,5 @@
 ---
 title: "منشورات المدونة"
 meta_title: ""
-description: "this is meta description"
+description: "هذا هو الوصف الميتا"
 ---
