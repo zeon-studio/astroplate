@@ -7,11 +7,9 @@ import type { ContentEntryMap } from "astro:content";
 import { FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./ImageMod.astro";
 
-const {
-  summary_length,
-  blog_folder,
-}: { summary_length: number; blog_folder: string } = config.settings;
-const { defaultLang } = config.language;
+const { summary_length }: { summary_length: number; blog_folder: string } =
+  config.settings;
+const { default_language } = config.settings;
 const { data } = Astro.props;
 const { title, image, date, author, categories } = data.data;
 
@@ -34,17 +32,15 @@ const { read_more } = await getTranslations(lang as keyof ContentEntryMap);
     )
   }
   <h4 class="mb-3">
-    <a
-      href={path.includes("/categories")
-        ? `${lang === defaultLang ? "" : `/${lang}`}/blog/${data.slug}`
-        : `${lang === defaultLang ? "" : `/${lang}`}/${data.slug}`}
-    >
+    <a href={`${lang === default_language ? "" : `/${lang}`}/${data.slug}`}>
       {title}
     </a>
   </h4>
   <ul class="mb-4">
     <li class="mr-4 inline-block">
-      <a href={`/${lang}/authors/${slugify(author)}`}>
+      <a
+        href={`${lang === default_language ? "" : `/${lang}`}/authors/${slugify(author)}`}
+      >
         <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
         {humanize(author)}
       </a>
@@ -53,7 +49,9 @@ const { read_more } = await getTranslations(lang as keyof ContentEntryMap);
       <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
       {
         categories.map((category: string, index: number) => (
-          <a href={`/${lang}/categories/${slugify(category)}`}>
+          <a
+            href={`${lang === default_language ? "" : `/${lang}`}/categories/${slugify(category)}`}
+          >
             {humanize(category)}
             {index !== categories.length - 1 && ","}
           </a>
@@ -65,9 +63,7 @@ const { read_more } = await getTranslations(lang as keyof ContentEntryMap);
   <p class="mb-6">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
   <a
     class="btn btn-outline-primary btn-sm"
-    href={path.includes("/categories")
-      ? `${lang === defaultLang ? "" : `/${lang}`}/blog/${data.slug}`
-      : `${lang === defaultLang ? "" : `/${lang}`}/${data.slug}`}
+    href={`${lang === default_language ? "" : `/${lang}`}/${data.slug}`}
   >
     {read_more}
   </a>

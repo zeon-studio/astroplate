@@ -1,19 +1,25 @@
 ---
 import BlogCard from "@/components/BlogCard.astro";
 import Share from "@/components/Share.astro";
+import config from "@/config/config.json";
 import Disqus from "@/helpers/Disqus";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import dateFormat from "@/lib/utils/dateFormat";
 import similarItems from "@/lib/utils/similarItems";
 import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
+import type { ContentEntryMap } from "astro:content";
 import { FaRegClock, FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./components/ImageMod.astro";
+const { default_language } = config.settings;
 
 const COLLECTION_FOLDER = "blog";
 const { post } = Astro.props;
 const { lang } = Astro.params;
 
-const posts = await getSinglePage(COLLECTION_FOLDER);
+const posts = await getSinglePage(
+  COLLECTION_FOLDER,
+  lang as keyof ContentEntryMap,
+);
 const similarPosts = similarItems(post, posts);
 const { Content } = await post.render();
 const { title, description, author, categories, image, date, tags } = post.data;
@@ -40,7 +46,9 @@ const { title, description, author, categories, image, date, tags } = post.data;
         <h1 set:html={markdownify(title)} class="h2 mb-4" />
         <ul class="mb-4">
           <li class="mr-4 inline-block">
-            <a href={`/${lang === "en" ? "authors" + "/" : lang}/authors/${slugify(author)}`} >
+            <a
+              href={`/${lang === default_language ? "authors" + "/" : lang}/authors/${slugify(author)}`}
+            >
               <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
               {humanize(author)}
             </a>
@@ -50,7 +58,7 @@ const { title, description, author, categories, image, date, tags } = post.data;
             {
               categories.map((category: string, index: number) => (
                 <a
-                  href={`/${lang === "en" ? "categories" + "/" : lang}/categories/${slugify(category)}`}
+                  href={`/${lang === default_language ? "categories" + "/" : lang}/categories/${slugify(category)}`}
                 >
                   {humanize(category)}
                   {index !== categories.length - 1 && ","}

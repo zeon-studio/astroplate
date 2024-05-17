@@ -10,17 +10,17 @@ import config from "@/config/config.json";
 
 export const getSinglePage = async <C extends CollectionKey>(
   collectionName: C,
-  lang: keyof ContentEntryMap
+  lang: keyof ContentEntryMap,
 ): Promise<CollectionEntry<C>[]> => {
-  const { defaultLang } = config.language;
+  const { default_language } = config.settings;
   const langCollection: keyof ContentEntryMap = lang as keyof ContentEntryMap;
 
   // Explicitly define the type of pages to CollectionEntry<C>[]
   const pages: CollectionEntry<C>[] = (await getCollection(
-    langCollection || defaultLang,
+    langCollection || default_language,
     ({ id }: any) => {
       return id.startsWith(collectionName) && !id.endsWith("-index.md");
-    }
+    },
   )) as CollectionEntry<C>[];
 
   const removeDrafts = pages.filter((data) => !data.data.draft);
@@ -29,16 +29,16 @@ export const getSinglePage = async <C extends CollectionKey>(
 
 export const getListPage = async <C extends CollectionKey>(
   collectionName: C,
-  lang: keyof ContentEntryMap
+  lang: keyof ContentEntryMap,
 ): Promise<CollectionEntry<C>[]> => {
-  const { defaultLang } = config.language;
+  const { default_language } = config.settings;
   const langCollection: keyof ContentEntryMap = lang as keyof ContentEntryMap;
   // Fetch the collection based on the language
   const pages: CollectionEntry<C>[] = (await getCollection(
-    langCollection || defaultLang,
+    langCollection || default_language,
     ({ id }: any) => {
       return id.startsWith(collectionName);
-    }
+    },
   )) as CollectionEntry<C>[];
 
   return pages;

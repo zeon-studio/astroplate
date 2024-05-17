@@ -4,6 +4,8 @@ import Base from "@/layouts/Base.astro";
 import { getListPage } from "@/lib/contentParser.astro";
 import { supportedLang } from "@/lib/utils/i18nUtils";
 import { markdownify } from "@/lib/utils/textConverter";
+import type { ContentEntryMap } from "astro:content";
+import type { ContentCollectionKey } from "astro:content";
 
 export function getStaticPaths() {
   const paths = supportedLang.map((lang) => ({
@@ -13,7 +15,10 @@ export function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
-const about = await getListPage("about", lang);
+const about: any = await getListPage(
+  "about" as ContentCollectionKey,
+  lang as keyof ContentEntryMap,
+);
 
 const { Content } = await about[0].render();
 const { title, description, meta_title, image } = about[0].data;

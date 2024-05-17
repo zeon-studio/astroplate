@@ -1,9 +1,12 @@
 ---
 import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
-import { getLangFromUrl, getTranslations } from "@/lib/utils/i18nUtils";
+import {
+  getLangFromUrl,
+  getTranslations,
+  supportedLang,
+} from "@/lib/utils/i18nUtils";
 import type { ContentEntryMap } from "astro:content";
-import { supportedLang } from "@/lib/utils/i18nUtils";
 
 export function getStaticPaths() {
   const paths = supportedLang.map((lang) => ({
@@ -15,8 +18,8 @@ export function getStaticPaths() {
 const lang = getLangFromUrl(Astro.url);
 const { page_not_found_content, page_not_found, back_to_home } =
   await getTranslations(lang as keyof ContentEntryMap);
-const { defaultLang } = config.language;
-const href = lang && lang !== defaultLang ? `/${lang}/` : "/";
+const { default_language } = config.settings;
+const href = lang && lang !== default_language ? `/${lang}/` : "/";
 ---
 
 <Base title="Page Not Found">

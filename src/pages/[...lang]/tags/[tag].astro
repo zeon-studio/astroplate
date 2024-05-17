@@ -13,15 +13,15 @@ import type { ContentEntryMap } from "astro:content";
 export async function getStaticPaths() {
   const paths = await Promise.all(
     supportedLang.map(async (lang) => {
-      const categories = await getTaxonomy(lang, "categories");
+      const tags = await getTaxonomy(lang, "tags");
 
-      return categories.map((category) => ({
+      return tags.map((tag) => ({
         params: {
           lang: lang || undefined,
-          category: category,
+          tag: tag,
         },
         props: {
-          category,
+          tag,
         },
       }));
     }),
@@ -29,17 +29,17 @@ export async function getStaticPaths() {
   return paths.flat();
 }
 
-const { category, lang } = Astro.params;
+const { tag, lang } = Astro.params;
 
-// get posts by category
+// get posts by tag
 const BLOG_FOLDER = "blog";
 const posts = await getSinglePage(BLOG_FOLDER, lang as keyof ContentEntryMap);
-const filterByCategories = taxonomyFilter(posts, "categories", category!);
-const sortedPosts = sortByDate(filterByCategories);
+const filterByTags = taxonomyFilter(posts, "tags", tag!);
+const sortedPosts = sortByDate(filterByTags);
 ---
 
-<Base title={category}>
-  <PageHeader title={category} />
+<Base title={tag}>
+  <PageHeader title={tag} />
   <div class="section-sm pb-0">
     <div class="container">
       <div class="row">

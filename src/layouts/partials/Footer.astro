@@ -2,10 +2,13 @@
 import Logo from "@/components/Logo.astro";
 import Social from "@/components/Social.astro";
 import config from "@/config/config.json";
-import menu from "@/config/menu.json";
 import social from "@/config/social.json";
+import { getLangFromUrl } from "@/lib/utils/i18nUtils";
+import { loadMenu } from "@/lib/utils/loadMenu";
 import { markdownify } from "@/lib/utils/textConverter";
 
+const lang = getLangFromUrl(Astro.url);
+const menu = loadMenu(lang);
 const { footer }: { footer: { name: string; url: string }[] } = menu;
 ---
 

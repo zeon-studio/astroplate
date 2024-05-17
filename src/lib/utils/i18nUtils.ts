@@ -2,7 +2,7 @@ import config from "@/config/config.json";
 import languagesJSON from "@/config/language.json";
 import fs from "fs";
 import path from "path";
-const { defaultLang } = config.language;
+const { default_language } = config.settings;
 
 const menusFolderPath = "./src/config";
 
@@ -30,12 +30,16 @@ export function getLangFromUrl(url: URL): string {
   if (locales.hasOwnProperty(lang)) {
     return lang;
   }
-  return defaultLang;
+  return default_language;
 }
 
 export const getTranslations = async (lang: string) => {
-  const menu = await import(`../../config/menu.${lang || defaultLang}.json`);
-  const dictionary = await import(`../../i18n/${lang || defaultLang}.json`);
+  const menu = await import(
+    `../../config/menu.${lang || default_language}.json`
+  );
+  const dictionary = await import(
+    `../../i18n/${lang || default_language}.json`
+  );
   return { ...menu, ...dictionary };
 };
 
