@@ -1,20 +1,33 @@
 ---
 import config from "@/config/config.json";
+import languages from "@/config/language.json";
 import { slugify } from "@/lib/utils/textConverter";
 import type { ContentEntryMap } from "astro:content";
 import { getCollection } from "astro:content";
 
 // get taxonomy from frontmatter
-export const getTaxonomy = async (collection: any, name: string) => {
+export const getTaxonomy = async (collection: string, name: string) => {
   const { default_language } = config.settings;
-  const actualCollection =
-    collection !== ("" || undefined) ? collection : default_language;
+
+  const language = languages.find((l) => l.languageCode === collection);
+
+  let actualCollection = default_language;
+  if (language) {
+    actualCollection = language.contentDir;
+  } else {
+    const defaultLanguageMatch = languages.find(
+      (l) => l.languageCode === default_language,
+    );
+    if (defaultLanguageMatch) {
+      actualCollection = defaultLanguageMatch.contentDir;
+    }
+  }
 
   const singlePages = await getCollection(
     actualCollection as keyof ContentEntryMap,
     ({ id }: any) => {
       return id.startsWith("blog") && !id.endsWith("-index.md");
-    }
+    },
   );
   const taxonomyPages = singlePages.map((page: any) => page.data[name]);
   let taxonomies: string[] = [];
@@ -29,15 +42,28 @@ export const getTaxonomy = async (collection: any, name: string) => {
 };
 
 // get all taxonomies from frontmatter
-export const getAllTaxonomy = async (collection: any, name: string) => {
+export const getAllTaxonomy = async (collection: string, name: string) => {
   const { default_language } = config.settings;
-  const actualCollection =
-    collection !== ("" || undefined) ? collection : default_language;
+
+  const language = languages.find((l) => l.languageCode === collection);
+
+  let actualCollection = default_language;
+  if (language) {
+    actualCollection = language.contentDir;
+  } else {
+    const defaultLanguageMatch = languages.find(
+      (l) => l.languageCode === default_language,
+    );
+    if (defaultLanguageMatch) {
+      actualCollection = defaultLanguageMatch.contentDir;
+    }
+  }
+
   const singlePages = await getCollection(
     actualCollection as keyof ContentEntryMap,
     ({ id }: any) => {
       return id.startsWith("blog") && !id.endsWith("-index.md");
-    }
+    },
   );
   const taxonomyPages = singlePages.map((page: any) => page.data[name]);
   let taxonomies: string[] = [];

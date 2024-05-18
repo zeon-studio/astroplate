@@ -7,32 +7,19 @@ import {
 } from "astro:content";
 
 import config from "@/config/config.json";
+import languages from "@/config/language.json";
 
 export const getSinglePage = async <C extends CollectionKey>(
   collectionName: C,
-  lang: keyof ContentEntryMap
+  lang: keyof ContentEntryMap | undefined,
 ): Promise<CollectionEntry<C>[]> => {
   const { default_language } = config.settings;
-  const langCollection: keyof ContentEntryMap = lang as keyof ContentEntryMap;
 
-  const languages = [
-    {
-      languageName: "En",
-      languageCode: "en",
-      contentDir: "english",
-      weight: 1,
-    },
-    {
-      languageName: "Fr",
-      languageCode: "fr",
-      contentDir: "french",
-      weight: 2,
-    },
-  ];
+  // If lang is undefined, use the default language
+  const selectedLanguageCode = lang || default_language;
 
   const language = languages.find(
-    (l) =>
-      l.languageCode === langCollection || l.languageCode === default_language
+    (l: any) => l.languageCode === selectedLanguageCode,
   );
 
   if (!language) {
@@ -46,37 +33,26 @@ export const getSinglePage = async <C extends CollectionKey>(
     contentDir as any,
     ({ id }: any) => {
       return id.startsWith(collectionName) && !id.endsWith("-index.md");
-    }
+    },
   )) as CollectionEntry<C>[];
 
-  //@ts-ignore
+  // @ts-ignore
   const removeDrafts = pages.filter((data) => !data.data.draft);
+
   return removeDrafts;
 };
 
 export const getListPage = async <C extends CollectionKey>(
   collectionName: C,
-  lang: keyof ContentEntryMap
+  lang: keyof ContentEntryMap | undefined,
 ): Promise<CollectionEntry<C>[]> => {
   const { default_language } = config.settings;
 
-  const languages = [
-    {
-      languageName: "En",
-      languageCode: "en",
-      contentDir: "english",
-      weight: 1,
-    },
-    {
-      languageName: "Fr",
-      languageCode: "fr",
-      contentDir: "french",
-      weight: 2,
-    },
-  ];
+  // If lang is undefined, use the default language
+  const selectedLanguageCode = lang || default_language;
 
   const language = languages.find(
-    (l) => l.languageCode == lang || l.languageCode == default_language
+    (l: any) => l.languageCode == selectedLanguageCode,
   );
 
   if (!language) {
@@ -90,7 +66,7 @@ export const getListPage = async <C extends CollectionKey>(
     contentDir as any,
     ({ id }: any) => {
       return id.startsWith(collectionName);
-    }
+    },
   )) as CollectionEntry<C>[];
 
   return pages;

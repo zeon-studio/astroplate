@@ -16,7 +16,10 @@ export async function getStaticPaths() {
 
   const paths = await Promise.all(
     supportedLang.map(async (lang) => {
-      const categories = await getTaxonomy(lang, "categories");
+      const categories = await getTaxonomy(
+        lang as keyof ContentEntryMap,
+        "categories",
+      );
 
       return categories.map((category) => ({
         params: {
@@ -27,11 +30,14 @@ export async function getStaticPaths() {
           category,
         },
       }));
-    })
+    }),
   );
 
   // Handle default path (no lang)
-  const defaultCategories = await getTaxonomy(default_language, "categories");
+  const defaultCategories = await getTaxonomy(
+    default_language as keyof ContentEntryMap,
+    "categories",
+  );
   const defaultPaths = defaultCategories.map((category) => ({
     params: {
       lang: undefined,

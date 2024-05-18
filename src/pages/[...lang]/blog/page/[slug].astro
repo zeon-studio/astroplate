@@ -3,6 +3,7 @@ import BlogCard from "@/components/BlogCard.astro";
 import Pagination from "@/components/Pagination.astro";
 import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
+import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
 import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
 import { supportedLang } from "@/lib/utils/i18nUtils";
 import { sortByDate } from "@/lib/utils/sortFunctions";
@@ -14,24 +15,20 @@ const BLOG_FOLDER = "blog";
 
 const { slug, lang } = Astro.params;
 
-const postIndex: any = await getCollection(
+const postIndex: any = await getListPage(
+  BLOG_FOLDER,
   lang as keyof ContentEntryMap,
-  ({ id }: any) => {
-    return id.startsWith(BLOG_FOLDER);
-  },
 );
-
-const posts = await getCollection(
+const posts = await getSinglePage(BLOG_FOLDER, lang as keyof ContentEntryMap);
+const allCategories = await getAllTaxonomy(
   lang as keyof ContentEntryMap,
-  ({ id }: any) => {
-    return id.startsWith(BLOG_FOLDER) && !id.endsWith("-index.md");
-  },
+  "categories",
 );
-
-const langCollection: keyof ContentEntryMap = lang as keyof ContentEntryMap;
-const allCategories = await getAllTaxonomy(langCollection, "categories");
-const categories = await getTaxonomy(langCollection, "categories");
-const tags = await getTaxonomy(langCollection, "tags");
+const categories = await getTaxonomy(
+  lang as keyof ContentEntryMap,
+  "categories",
+);
+const tags = await getTaxonomy(lang as keyof ContentEntryMap, "tags");
 const sortedPosts = sortByDate(posts);
 const totalPages = Math.ceil(posts.length / config.settings.pagination);
 const currentPage = slug && !isNaN(Number(slug)) ? Number(slug) : 1;

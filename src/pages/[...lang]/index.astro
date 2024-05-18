@@ -2,14 +2,13 @@
 import ImageMod from "@/components/ImageMod.astro";
 import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
-import { getListPage } from "@/lib/contentParser.astro";
+import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
 import { supportedLang } from "@/lib/utils/i18nUtils";
 import { markdownify } from "@/lib/utils/textConverter";
 import CallToAction from "@/partials/CallToAction.astro";
 import Testimonial from "@/partials/Testimonial.astro";
 import type { Button, Feature } from "@/types";
 import type { ContentCollectionKey, ContentEntryMap } from "astro:content";
-import { getCollection } from "astro:content";
 import { FaCheck } from "react-icons/fa";
 const { default_language } = config.settings;
 
@@ -37,19 +36,14 @@ const homepage: any = await getListPage(
 );
 const { banner, features } = homepage[0].data;
 
-const testimonial = await getCollection(
-  (lang as keyof ContentEntryMap) || default_language,
-  ({ id }: any) => {
-    return id.startsWith("sections/testimonial") && !id.endsWith("-index.md");
-  },
+const testimonial = await getSinglePage(
+  "sections/testimonial" as ContentCollectionKey,
+  lang as keyof ContentEntryMap,
 );
-const call_to_action = await getCollection(
-  (lang as keyof ContentEntryMap) || default_language,
-  ({ id }: any) => {
-    return (
-      id.startsWith("sections/call-to-action") && !id.endsWith("-index.md")
-    );
-  },
+
+const call_to_action = await getSinglePage(
+  "sections/call-to-action" as ContentCollectionKey,
+  lang as keyof ContentEntryMap,
 );
 ---
 
