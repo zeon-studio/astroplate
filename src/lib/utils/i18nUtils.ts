@@ -5,20 +5,17 @@ import fs from "fs";
 import path from "path";
 const { default_language } = config.settings;
 
-const menusFolderPath = "./src/config";
+const locales: { [key: string]: any } = {};
 
-const locales = fs
-  .readdirSync(menusFolderPath)
-  .filter((file) => /^menu\.[a-z]{2}\.json$/.test(file))
-  .map((file) => {
-    const filePath = path.join(menusFolderPath, file);
-    const localeName = file.split(".")[1]; // Extract language code from file name
-    const localeData = JSON.parse(fs.readFileSync(filePath, "utf8"));
-    return { [localeName]: localeData };
-  })
-  .reduce((accumulator, locale) => {
-    return { ...accumulator, ...locale };
-  }, {});
+// Load menu and dictionary dynamically
+languagesJSON.forEach((language) => {
+  const { languageCode } = language;
+  import(`../../config/menu.${languageCode}.json`).then((menu) => {
+    import(`../../i18n/${languageCode}.json`).then((dictionary) => {
+      locales[languageCode] = { ...menu, ...dictionary };
+    });
+  });
+});
 
 // Extract all languages from the locales object
 const languages = Object.keys(locales);
@@ -47,7 +44,6 @@ export const getTranslations = async (lang: string) => {
 export const supportedLang = [""].concat(
   languagesJSON.map((lang) => lang.languageCode),
 );
-
 // Function to construct the URL based on trailing_slash value
 export const constructUrl = (
   url: string,

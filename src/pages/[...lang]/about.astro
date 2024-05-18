@@ -17,8 +17,10 @@ export function getStaticPaths() {
 const { lang } = Astro.params;
 const about: any = await getListPage(
   "about" as ContentCollectionKey,
-  lang as keyof ContentEntryMap,
+  lang as keyof ContentEntryMap
 );
+
+console.log(about);
 
 const { Content } = await about[0].render();
 const { title, description, meta_title, image } = about[0].data;

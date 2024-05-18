@@ -15,9 +15,35 @@ export const getSinglePage = async <C extends CollectionKey>(
   const { default_language } = config.settings;
   const langCollection: keyof ContentEntryMap = lang as keyof ContentEntryMap;
 
+  const languages = [
+    {
+      languageName: "En",
+      languageCode: "en",
+      contentDir: "english",
+      weight: 1,
+    },
+    {
+      languageName: "Fr",
+      languageCode: "fr",
+      contentDir: "french",
+      weight: 2,
+    },
+  ];
+
+  const language = languages.find(
+    (l) =>
+      l.languageCode === langCollection || l.languageCode === default_language
+  );
+
+  if (!language) {
+    throw new Error("Language not found");
+  }
+
+  const { contentDir } = language;
+
   // Explicitly define the type of pages to CollectionEntry<C>[]
   const pages: CollectionEntry<C>[] = (await getCollection(
-    langCollection || default_language,
+    contentDir as any,
     ({ id }: any) => {
       return id.startsWith(collectionName) && !id.endsWith("-index.md");
     }
@@ -33,10 +59,35 @@ export const getListPage = async <C extends CollectionKey>(
   lang: keyof ContentEntryMap
 ): Promise<CollectionEntry<C>[]> => {
   const { default_language } = config.settings;
-  const langCollection: keyof ContentEntryMap = lang as keyof ContentEntryMap;
+
+  const languages = [
+    {
+      languageName: "En",
+      languageCode: "en",
+      contentDir: "english",
+      weight: 1,
+    },
+    {
+      languageName: "Fr",
+      languageCode: "fr",
+      contentDir: "french",
+      weight: 2,
+    },
+  ];
+
+  const language = languages.find(
+    (l) => l.languageCode == lang || l.languageCode == default_language
+  );
+
+  if (!language) {
+    throw new Error("Language not found");
+  }
+
+  const { contentDir } = language;
+
   // Fetch the collection based on the language
   const pages: CollectionEntry<C>[] = (await getCollection(
-    langCollection || default_language,
+    contentDir as any,
     ({ id }: any) => {
       return id.startsWith(collectionName);
     }
