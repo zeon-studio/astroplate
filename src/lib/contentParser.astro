@@ -10,7 +10,7 @@ import config from "@/config/config.json";
 
 export const getSinglePage = async <C extends CollectionKey>(
   collectionName: C,
-  lang: keyof ContentEntryMap,
+  lang: keyof ContentEntryMap
 ): Promise<CollectionEntry<C>[]> => {
   const { default_language } = config.settings;
   const langCollection: keyof ContentEntryMap = lang as keyof ContentEntryMap;
@@ -20,7 +20,7 @@ export const getSinglePage = async <C extends CollectionKey>(
     langCollection || default_language,
     ({ id }: any) => {
       return id.startsWith(collectionName) && !id.endsWith("-index.md");
-    },
+    }
   )) as CollectionEntry<C>[];
 
   //@ts-ignore
@@ -30,7 +30,7 @@ export const getSinglePage = async <C extends CollectionKey>(
 
 export const getListPage = async <C extends CollectionKey>(
   collectionName: C,
-  lang: keyof ContentEntryMap,
+  lang: keyof ContentEntryMap
 ): Promise<CollectionEntry<C>[]> => {
   const { default_language } = config.settings;
   const langCollection: keyof ContentEntryMap = lang as keyof ContentEntryMap;
@@ -39,7 +39,7 @@ export const getListPage = async <C extends CollectionKey>(
     langCollection || default_language,
     ({ id }: any) => {
       return id.startsWith(collectionName);
-    },
+    }
   )) as CollectionEntry<C>[];
 
   return pages;

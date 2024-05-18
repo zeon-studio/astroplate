@@ -17,7 +17,7 @@ const lang = getLangFromUrl(Astro.url);
         {
           categories.map((category: any) => {
             const count = allCategories.filter(
-              (c: any) => c === category,
+              (c: any) => c === category
             ).length;
             return (
               <li>
