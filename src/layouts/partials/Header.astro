@@ -3,16 +3,21 @@ import Logo from "@/components/Logo.astro";
 import ThemeSwitcher from "@/components/ThemeSwitcher.astro";
 import config from "@/config/config.json";
 import LanguageSwitcher from "@/helpers/LanguageSwitcher";
-import { getLangFromUrl, getTranslations } from "@/lib/utils/i18nUtils";
+import {
+  constructUrl,
+  getLangFromUrl,
+  getTranslations,
+} from "@/lib/utils/i18nUtils";
 import { loadMenu } from "@/lib/utils/loadMenu";
 import type { ContentEntryMap } from "astro:content";
-import { getRelativeLocaleUrl } from "astro:i18n";
 import { IoSearch } from "react-icons/io5";
 
 const lang = getLangFromUrl(Astro.url);
 const menu = loadMenu(lang);
 
 const { navigation_button, settings } = config;
+const { default_language } = config.settings;
+const { trailing_slash } = config.site;
 const { pathname } = Astro.url;
 const { get_started } = await getTranslations(lang as keyof ContentEntryMap);
 ---
@@ -54,10 +59,14 @@ const { get_started } = await getTranslations(lang as keyof ContentEntryMap);
                 <span
                   class={`nav-link inline-flex items-center ${
                     menu.children
-                      ?.map(({ url }: { url: any }) => url)
-                      .includes(pathname) ||
-                    menu.children
-                      ?.map(({ url }: { url: any }) => `${url}/`)
+                      ?.map(({ url }: { url: any }) =>
+                        constructUrl(
+                          url,
+                          lang,
+                          default_language,
+                          trailing_slash
+                        )
+                      )
                       .includes(pathname)
                       ? "active"
                       : ""
@@ -72,12 +81,21 @@ const { get_started } = await getTranslations(lang as keyof ContentEntryMap);
                   {menu.children?.map((child: any) => (
                     <li class="nav-dropdown-item">
                       <a
-                        href={getRelativeLocaleUrl(lang, child.url)}
+                        href={constructUrl(
+                          child.url,
+                          lang,
+                          default_language,
+                          trailing_slash
+                        )}
                         aria-label={child.name}
                         class={`nav-dropdown-link block ${
-                          (pathname === `${child.url}/` ||
-                            pathname === child.url) &&
-                          "active"
+                          pathname ===
+                            constructUrl(
+                              child.url,
+                              lang,
+                              default_language,
+                              trailing_slash
+                            ) && "active"
                         }`}
                       >
                         {child.name}
@@ -89,10 +107,20 @@ const { get_started } = await getTranslations(lang as keyof ContentEntryMap);
             ) : (
               <li class="nav-item">
                 <a
-                  href={getRelativeLocaleUrl(lang, menu.url)}
+                  href={constructUrl(
+                    menu.url,
+                    lang,
+                    default_language,
+                    trailing_slash
+                  )}
                   class={`nav-link block ${
-                    (pathname === `${menu.url}/` || pathname === menu.url) &&
-                    "active"
+                    pathname ===
+                      constructUrl(
+                        menu.url,
+                        lang,
+                        default_language,
+                        trailing_slash
+                      ) && "active"
                   }`}
                 >
                   {menu.name}

@@ -1,5 +1,6 @@
 ---
 import config from "@/config/config.json";
+import { constructUrl, getLangFromUrl } from "@/lib/utils/i18nUtils";
 import ImageMod from "./ImageMod.astro";
 
 const { src, srcDarkmode }: { src?: string; srcDarkmode?: string } =
@@ -21,9 +22,14 @@ const {
 } = config.site;
 
 const { theme_switcher }: { theme_switcher: boolean } = config.settings;
+const { default_language } = config.settings;
+const { trailing_slash } = config.site;
+
+const lang = getLangFromUrl(Astro.url);
+const url = constructUrl("/", lang, default_language, trailing_slash);
 ---
 
-<a href="/" class="navbar-brand inline-block">
+<a href={url} class="navbar-brand inline-block">
   {
     src || srcDarkmode || logo || logo_darkmode ? (
       <>

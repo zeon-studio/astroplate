@@ -6,6 +6,7 @@ import social from "@/config/social.json";
 import { getLangFromUrl } from "@/lib/utils/i18nUtils";
 import { loadMenu } from "@/lib/utils/loadMenu";
 import { markdownify } from "@/lib/utils/textConverter";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
 const lang = getLangFromUrl(Astro.url);
 const menu = loadMenu(lang);
@@ -23,7 +24,7 @@ const { footer }: { footer: { name: string; url: string }[] } = menu;
           {
             footer.map((menu) => (
               <li class="m-3 inline-block">
-                <a href={menu.url}>{menu.name}</a>
+                <a href={getRelativeLocaleUrl(lang, menu.url)}>{menu.name}</a>
               </li>
             ))
           }

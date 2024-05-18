@@ -1,5 +1,6 @@
 import config from "@/config/config.json";
 import languagesJSON from "@/config/language.json";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import fs from "fs";
 import path from "path";
 const { default_language } = config.settings;
@@ -46,3 +47,36 @@ export const getTranslations = async (lang: string) => {
 export const supportedLang = [""].concat(
   languagesJSON.map((lang) => lang.languageCode),
 );
+
+// Function to construct the URL based on trailing_slash value
+export const constructUrl = (
+  url: string,
+  lang: string,
+  default_language: string,
+  trailing_slash: boolean,
+) => {
+  let constructedUrl;
+  if (url === "/") {
+    constructedUrl = lang === default_language ? "/" : `/${lang}`;
+  } else {
+    constructedUrl = getRelativeLocaleUrl(lang, url, {
+      normalizeLocale: false,
+    });
+  }
+  if (trailing_slash) {
+    if (!constructedUrl.endsWith("/")) {
+      constructedUrl += "/";
+    }
+  } else {
+    if (constructedUrl.endsWith("/")) {
+      constructedUrl = constructedUrl.slice(0, -1);
+    }
+  }
+
+  // Ensure home URL is absolute
+  if (constructedUrl === "") {
+    constructedUrl = "/";
+  }
+
+  return constructedUrl;
+};

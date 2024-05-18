@@ -10,11 +10,5 @@
     "languageCode": "fr",
     "contentDir": "fr",
     "weight": 2
-  },
-  {
-    "languageName": "Ar",
-    "languageCode": "ar",
-    "contentDir": "ar",
-    "weight": 3
   }
 ]
