@@ -1,5 +1,9 @@
 ---
-import { getLangFromUrl } from "@/lib/utils/i18nUtils";
+import { constructUrl, getLangFromUrl } from "@/lib/utils/i18nUtils";
+import config from "@/config/config.json";
+import type { ContentEntryMap } from "astro:content";
+const { default_language, default_language_in_path } = config.settings;
+const { trailing_slash } = config.site;
 
 const lang = getLangFromUrl(Astro.url);
 
@@ -8,11 +12,7 @@ type Pagination = {
   currentPage?: number;
   totalPages?: number;
 };
-const {
-  section,
-  currentPage = 1,
-  totalPages = 1
-}: Pagination = Astro.props;
+const { section, currentPage = 1, totalPages = 1 }: Pagination = Astro.props;
 
 const indexPageLink = currentPage === 2;
 const hasPrevPage = currentPage > 1;
@@ -22,6 +22,24 @@ let pageList: number[] = [];
 for (let i = 1; i <= totalPages; i++) {
   pageList.push(i);
 }
+
+const constructLocalizedUrl = (url: string) => {
+  if (lang === default_language) {
+    return constructUrl(
+      default_language_in_path ? `/${lang}${url}` : url,
+      lang,
+      default_language,
+      trailing_slash,
+    );
+  } else {
+    return constructUrl(
+      url,
+      lang as keyof ContentEntryMap,
+      default_language,
+      trailing_slash,
+    );
+  }
+};
 ---
 
 {
@@ -35,8 +53,10 @@ for (let i = 1; i <= totalPages; i++) {
         <a
           href={
             indexPageLink
-              ? `/${lang}/${section ? section : ""}`
-              : `/${lang}/${section ? section : ""}/page/${currentPage - 1}`
+              ? constructLocalizedUrl(`/${section ? section : ""}`)
+              : constructLocalizedUrl(
+                  `/${section ? section : ""}/page/${currentPage - 1}`,
+                )
           }
           class="rounded px-2 py-1.5 text-dark hover:bg-theme-light dark:text-darkmode-dark dark:hover:bg-darkmode-theme-light"
         >
@@ -85,23 +105,25 @@ for (let i = 1; i <= totalPages; i++) {
           </span>
         ) : (
           <a
-            href={
+            href={constructLocalizedUrl(
               i === 0
-                ? `/${lang}/${section ? section : ""}`
-                : `/${lang}/${section ? section : ""}/page/${pagination}`
-            }
+                ? `/${section ? section : ""}`
+                : `/${section ? section : ""}/page/${pagination}`,
+            )}
             aria-current="page"
             class="rounded px-4 py-2 text-dark hover:bg-theme-light dark:text-darkmode-dark dark:hover:bg-darkmode-theme-light"
           >
             {pagination}
           </a>
-        )
+        ),
       )}
 
       {/* next page */}
       {hasNextPage ? (
         <a
-          href={`/${lang}/${section ? section : ""}/page/${currentPage + 1}`}
+          href={constructLocalizedUrl(
+            `/${section ? section : ""}/page/${currentPage + 1}`,
+          )}
           class="rounded px-2 py-1.5 text-dark hover:bg-theme-light dark:text-darkmode-dark dark:hover:bg-darkmode-theme-light"
         >
           <span class="sr-only">Next</span>
@@ -140,4 +162,3 @@ for (let i = 1; i <= totalPages; i++) {
     </nav>
   )
 }
-

@@ -10,10 +10,14 @@ import { sortByDate } from "@/lib/utils/sortFunctions";
 import PageHeader from "@/partials/PageHeader.astro";
 import PostSidebar from "@/partials/PostSidebar.astro";
 import type { ContentEntryMap } from "astro:content";
-import { getCollection } from "astro:content";
 const BLOG_FOLDER = "blog";
+const { default_language } = config.settings;
 
-const { slug, lang } = Astro.params;
+let { slug, lang } = Astro.params;
+
+if (!lang) {
+  lang = default_language;
+}
 
 const postIndex: any = await getListPage(
   BLOG_FOLDER,
@@ -41,13 +45,10 @@ export async function getStaticPaths() {
 
   const paths = await Promise.all(
     supportedLang.map(async (lang) => {
-      const posts = await getCollection(
+      const posts = await getSinglePage(
+        BLOG_FOLDER,
         lang as keyof ContentEntryMap,
-        ({ id }: any) => {
-          return id.startsWith(BLOG_FOLDER) && !id.endsWith("-index.md");
-        },
       );
-
       const totalPages = Math.ceil(posts.length / config.settings.pagination);
       const langString = lang.toString();
       const langPaths = [];
@@ -55,7 +56,7 @@ export async function getStaticPaths() {
       for (let i = 1; i < totalPages; i++) {
         langPaths.push({
           params: {
-            lang: langString,
+            lang: langString || undefined,
             slug: (i + 1).toString(),
           },
         });

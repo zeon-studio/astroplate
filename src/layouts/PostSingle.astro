@@ -16,11 +16,15 @@ const { trailing_slash } = config.site;
 
 const COLLECTION_FOLDER = "blog";
 const { post } = Astro.props;
-const { lang } = Astro.params;
+let { lang } = Astro.params;
+
+if (!lang) {
+  lang = default_language;
+}
 
 const posts = await getSinglePage(
   COLLECTION_FOLDER,
-  lang as keyof ContentEntryMap
+  lang as keyof ContentEntryMap,
 );
 const similarPosts = similarItems(post, posts);
 const { Content } = await post.render();
@@ -32,14 +36,14 @@ const constructLocalizedUrl = (url: string) => {
       default_language_in_path ? `/${lang}${url}` : url,
       lang,
       default_language,
-      trailing_slash
+      trailing_slash,
     );
   } else {
     return constructUrl(
       url,
       lang as keyof ContentEntryMap,
       default_language,
-      trailing_slash
+      trailing_slash,
     );
   }
 };
@@ -77,7 +81,7 @@ const constructLocalizedUrl = (url: string) => {
               categories.map((category: string, index: number) => (
                 <a
                   href={constructLocalizedUrl(
-                    `/categories/${slugify(category)}`
+                    `/categories/${slugify(category)}`,
                   )}
                 >
                   {humanize(category)}
