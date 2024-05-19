@@ -1,6 +1,5 @@
 ---
 import ImageMod from "@/components/ImageMod.astro";
-import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
 import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
 import { supportedLang } from "@/lib/utils/i18nUtils";
@@ -10,8 +9,6 @@ import Testimonial from "@/partials/Testimonial.astro";
 import type { Button, Feature } from "@/types";
 import type { ContentCollectionKey, ContentEntryMap } from "astro:content";
 import { FaCheck } from "react-icons/fa";
-const { default_language } = config.settings;
-
 interface Homepage {
   banner: {
     title: string;
@@ -32,18 +29,18 @@ export function getStaticPaths() {
 const { lang } = Astro.params;
 const homepage: any = await getListPage(
   "homepage" as ContentCollectionKey,
-  lang as keyof ContentEntryMap,
+  lang as keyof ContentEntryMap
 );
-const { banner, features } = homepage[0].data;
+const { banner, features }: Homepage = homepage[0].data;
 
 const testimonial = await getSinglePage(
   "sections/testimonial" as ContentCollectionKey,
-  lang as keyof ContentEntryMap,
+  lang as keyof ContentEntryMap
 );
 
 const call_to_action = await getSinglePage(
   "sections/call-to-action" as ContentCollectionKey,
-  lang as keyof ContentEntryMap,
+  lang as keyof ContentEntryMap
 );
 ---
 

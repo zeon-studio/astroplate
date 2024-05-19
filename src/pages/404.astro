@@ -2,11 +2,13 @@
 import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
 import {
+  constructUrl,
   getLangFromUrl,
   getTranslations,
   supportedLang,
 } from "@/lib/utils/i18nUtils";
 import type { ContentEntryMap } from "astro:content";
+const { trailing_slash } = config.site;
 
 export function getStaticPaths() {
   const paths = supportedLang.map((lang) => ({
@@ -15,11 +17,23 @@ export function getStaticPaths() {
   return paths;
 }
 
-const lang = getLangFromUrl(Astro.url);
+let lang = getLangFromUrl(Astro.url);
+
+// Check if the current language is disabled
+const disabledLanguages = config.settings.disable_languages as string[];
+if (disabledLanguages.includes(lang)) {
+  // Redirect to the default language or handle as per your application logic
+  lang = config.settings.default_language;
+}
+
 const { page_not_found_content, page_not_found, back_to_home } =
   await getTranslations(lang as keyof ContentEntryMap);
-const { default_language } = config.settings;
-const href = lang && lang !== default_language ? `/${lang}/` : "/";
+const href = constructUrl(
+  "/",
+  lang,
+  config.settings.default_language,
+  trailing_slash
+);
 ---
 
 <Base title="Page Not Found">

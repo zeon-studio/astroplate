@@ -25,7 +25,15 @@ const { theme_switcher }: { theme_switcher: boolean } = config.settings;
 const { default_language } = config.settings;
 const { trailing_slash } = config.site;
 
-const lang = getLangFromUrl(Astro.url);
+let lang = getLangFromUrl(Astro.url);
+
+// Check if the current language is disabled
+const disabledLanguages = config.settings.disable_languages as string[];
+if (disabledLanguages.includes(lang)) {
+  // Redirect to the default language or handle as per your application logic
+  lang = default_language;
+}
+
 const url = constructUrl("/", lang, default_language, trailing_slash);
 ---
 

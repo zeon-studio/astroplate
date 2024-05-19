@@ -19,8 +19,10 @@ const LanguageSwitcher = ({
     return path;
   };
 
-  // Sort languages by weight
-  const sortedLanguages = languages.sort((a, b) => a.weight - b.weight);
+  // Sort languages by weight and filter out disabled languages
+  const sortedLanguages = languages
+    .filter(language => !config.settings.disable_languages.includes(language.languageCode))
+    .sort((a, b) => a.weight - b.weight);
 
   return (
     <div className="mr-5">

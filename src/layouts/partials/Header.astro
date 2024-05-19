@@ -9,27 +9,33 @@ import {
   getLangFromUrl,
   getTranslations,
 } from "@/lib/utils/i18nUtils";
-import { loadMenu } from "@/lib/utils/loadMenu";
 import type { ContentEntryMap } from "astro:content";
 import { IoSearch } from "react-icons/io5";
 
-const lang = getLangFromUrl(Astro.url);
-const menu = loadMenu(lang);
+let lang = getLangFromUrl(Astro.url);
+const menu = await getTranslations(lang as keyof ContentEntryMap);
 
 const { navigation_button, settings } = config;
 const { default_language } = config.settings;
 const { trailing_slash } = config.site;
 const { pathname } = Astro.url;
 const { get_started } = await getTranslations(lang as keyof ContentEntryMap);
+
+// Check if the current language is disabled
+const disabledLanguages = config.settings.disable_languages as string[];
+if (disabledLanguages.includes(lang)) {
+  // Redirect to the default language or handle as per your application logic
+  lang = default_language;
+}
 ---
 
 <header class={`header z-30 ${settings.sticky_header && "sticky top-0"}`}>
   <nav class="navbar container">
-    <!-- logo -->
+    {/* logo */}
     <div class="order-0">
       <Logo />
     </div>
-    <!-- navbar toggler -->
+    {/* navbar toggler */}
     <input id="nav-toggle" type="checkbox" class="hidden" />
     <label
       for="nav-toggle"
@@ -46,14 +52,14 @@ const { get_started } = await getTranslations(lang as keyof ContentEntryMap);
           transform="rotate(45 10 10)"></polygon>
       </svg>
     </label>
-    <!-- /navbar toggler -->
+    {/* /navbar toggler */}
 
     <ul
       id="nav-menu"
       class="navbar-nav order-3 hidden w-full pb-6 lg:order-1 lg:flex lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8"
     >
       {
-        menu.main.map((menu: any) => (
+        menu?.main.map((menu: any) => (
           <>
             {menu.hasChildren ? (
               <li class="nav-item nav-dropdown group relative">
@@ -131,7 +137,7 @@ const { get_started } = await getTranslations(lang as keyof ContentEntryMap);
           </>
         ))
       }
-
+      {/* Navigation button */}
       {
         navigation_button.enable && (
           <li class="mt-4 inline-block lg:hidden">
@@ -147,6 +153,7 @@ const { get_started } = await getTranslations(lang as keyof ContentEntryMap);
     </ul>
 
     <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
+      {/* Search button */}
       {
         settings.search && (
           <button
@@ -158,13 +165,15 @@ const { get_started } = await getTranslations(lang as keyof ContentEntryMap);
           </button>
         )
       }
+      {/* Theme switcher */}
       <ThemeSwitcher className="mr-5" />
+      {/* Language switcher */}
       {
         languages.length > 1 && (
           <LanguageSwitcher client:load lang={lang} pathname={pathname} />
         )
       }
-
+      {/* Navigation button */}
       {
         navigation_button.enable && (
           <a
@@ -177,4 +186,4 @@ const { get_started } = await getTranslations(lang as keyof ContentEntryMap);
       }
     </div>
   </nav>
-</header>
+</header>;

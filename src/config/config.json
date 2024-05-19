@@ -20,7 +20,8 @@
     "pagination": 2,
     "summary_length": 200,
     "blog_folder": "blog",
-    "default_language": "en"
+    "default_language": "en",
+    "disable_languages": []
   },
 
   "params": {

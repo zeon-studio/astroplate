@@ -1,8 +1,6 @@
 import config from "@/config/config.json";
 import languagesJSON from "@/config/language.json";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import fs from "fs";
-import path from "path";
 const { default_language } = config.settings;
 
 const locales: { [key: string]: any } = {};
@@ -31,20 +29,57 @@ export function getLangFromUrl(url: URL): string {
   return default_language;
 }
 
+// export const getTranslations = async (lang: string) => {
+//   const menu = await import(
+//     `../../config/menu.${lang || default_language}.json`
+//   );
+//   const dictionary = await import(
+//     `../../i18n/${lang || default_language}.json`
+//   );
+//   return { ...menu, ...dictionary };
+// };
+
+// export const supportedLang = [""].concat(
+//   languagesJSON.map((lang) => lang.languageCode),
+// );
+// Function to construct the URL based on trailing_slash value
+
 export const getTranslations = async (lang: string) => {
-  const menu = await import(
-    `../../config/menu.${lang || default_language}.json`
-  );
-  const dictionary = await import(
-    `../../i18n/${lang || default_language}.json`
-  );
-  return { ...menu, ...dictionary };
+  const {
+    default_language,
+    disable_languages,
+  }: { default_language: string; disable_languages: string[] } =
+    config.settings;
+
+  if (disable_languages.includes(lang)) {
+    lang = default_language;
+  }
+
+  let language = languagesJSON.find((l) => l.languageCode === lang);
+
+  if (!language) {
+    lang = default_language;
+    language = languagesJSON.find((l) => l.languageCode === default_language);
+  }
+
+  if (!language) {
+    throw new Error("Default language not found");
+  }
+
+  const contentDir = language.contentDir;
+
+  let menu, dictionary;
+  try {
+    menu = await import(`../../config/menu.${lang}.json`);
+    dictionary = await import(`../../i18n/${lang}.json`);
+  } catch (error) {
+    menu = await import(`../../config/menu.${default_language}.json`);
+    dictionary = await import(`../../i18n/${default_language}.json`);
+  }
+
+  return { ...menu.default, ...dictionary.default, contentDir };
 };
 
-export const supportedLang = [""].concat(
-  languagesJSON.map((lang) => lang.languageCode),
-);
-// Function to construct the URL based on trailing_slash value
 export const constructUrl = (
   url: string,
   lang: string,
@@ -76,3 +111,13 @@ export const constructUrl = (
 
   return constructedUrl;
 };
+
+const supportedLang = ["", ...languagesJSON.map((lang) => lang.languageCode)];
+const disabledLanguages = config.settings.disable_languages as string[];
+
+// Filter out disabled languages from supportedLang
+const filteredSupportedLang = supportedLang.filter(
+  (lang) => !disabledLanguages.includes(lang),
+);
+
+export { filteredSupportedLang as supportedLang };
