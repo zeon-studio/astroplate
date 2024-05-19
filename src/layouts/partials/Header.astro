@@ -16,7 +16,7 @@ let lang = getLangFromUrl(Astro.url);
 const menu = await getTranslations(lang as keyof ContentEntryMap);
 
 const { navigation_button, settings } = config;
-const { default_language } = config.settings;
+const { default_language, default_language_in_path } = config.settings;
 const { trailing_slash } = config.site;
 const { pathname } = Astro.url;
 const { get_started } = await getTranslations(lang as keyof ContentEntryMap);
@@ -27,6 +27,19 @@ if (disabledLanguages.includes(lang)) {
   // Redirect to the default language or handle as per your application logic
   lang = default_language;
 }
+
+const constructLocalizedUrl = (url: string) => {
+  if (lang === default_language) {
+    return constructUrl(
+      default_language_in_path ? `/${lang}${url}` : url,
+      lang,
+      default_language,
+      trailing_slash
+    );
+  } else {
+    return constructUrl(url, lang, default_language, trailing_slash);
+  }
+};
 ---
 
 <header class={`header z-30 ${settings.sticky_header && "sticky top-0"}`}>
@@ -67,12 +80,7 @@ if (disabledLanguages.includes(lang)) {
                   class={`nav-link inline-flex items-center ${
                     menu.children
                       ?.map(({ url }: { url: any }) =>
-                        constructUrl(
-                          url,
-                          lang,
-                          default_language,
-                          trailing_slash
-                        )
+                        constructLocalizedUrl(url)
                       )
                       .includes(pathname)
                       ? "active"
@@ -88,21 +96,11 @@ if (disabledLanguages.includes(lang)) {
                   {menu.children?.map((child: any) => (
                     <li class="nav-dropdown-item">
                       <a
-                        href={constructUrl(
-                          child.url,
-                          lang,
-                          default_language,
-                          trailing_slash
-                        )}
+                        href={constructLocalizedUrl(child.url)}
                         aria-label={child.name}
                         class={`nav-dropdown-link block ${
-                          pathname ===
-                            constructUrl(
-                              child.url,
-                              lang,
-                              default_language,
-                              trailing_slash
-                            ) && "active"
+                          pathname === constructLocalizedUrl(child.url) &&
+                          "active"
                         }`}
                       >
                         {child.name}
@@ -114,20 +112,9 @@ if (disabledLanguages.includes(lang)) {
             ) : (
               <li class="nav-item">
                 <a
-                  href={constructUrl(
-                    menu.url,
-                    lang,
-                    default_language,
-                    trailing_slash
-                  )}
+                  href={constructLocalizedUrl(menu.url)}
                   class={`nav-link block ${
-                    pathname ===
-                      constructUrl(
-                        menu.url,
-                        lang,
-                        default_language,
-                        trailing_slash
-                      ) && "active"
+                    pathname === constructLocalizedUrl(menu.url) && "active"
                   }`}
                 >
                   {menu.name}

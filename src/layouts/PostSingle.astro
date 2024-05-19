@@ -5,12 +5,14 @@ import config from "@/config/config.json";
 import Disqus from "@/helpers/Disqus";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import dateFormat from "@/lib/utils/dateFormat";
+import { constructUrl } from "@/lib/utils/i18nUtils";
 import similarItems from "@/lib/utils/similarItems";
 import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
 import type { ContentEntryMap } from "astro:content";
 import { FaRegClock, FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./components/ImageMod.astro";
-const { default_language } = config.settings;
+const { default_language, default_language_in_path } = config.settings;
+const { trailing_slash } = config.site;
 
 const COLLECTION_FOLDER = "blog";
 const { post } = Astro.props;
@@ -18,11 +20,29 @@ const { lang } = Astro.params;
 
 const posts = await getSinglePage(
   COLLECTION_FOLDER,
-  lang as keyof ContentEntryMap,
+  lang as keyof ContentEntryMap
 );
 const similarPosts = similarItems(post, posts);
 const { Content } = await post.render();
 const { title, description, author, categories, image, date, tags } = post.data;
+
+const constructLocalizedUrl = (url: string) => {
+  if (lang === default_language) {
+    return constructUrl(
+      default_language_in_path ? `/${lang}${url}` : url,
+      lang,
+      default_language,
+      trailing_slash
+    );
+  } else {
+    return constructUrl(
+      url,
+      lang as keyof ContentEntryMap,
+      default_language,
+      trailing_slash
+    );
+  }
+};
 ---
 
 <section class="section pt-7">
@@ -46,9 +66,7 @@ const { title, description, author, categories, image, date, tags } = post.data;
         <h1 set:html={markdownify(title)} class="h2 mb-4" />
         <ul class="mb-4">
           <li class="mr-4 inline-block">
-            <a
-              href={`/${lang === default_language ? "authors" + "/" : lang}/authors/${slugify(author)}`}
-            >
+            <a href={constructLocalizedUrl(`/authors/${slugify(author)}`)}>
               <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
               {humanize(author)}
             </a>
@@ -58,7 +76,9 @@ const { title, description, author, categories, image, date, tags } = post.data;
             {
               categories.map((category: string, index: number) => (
                 <a
-                  href={`/${lang === default_language ? "categories" + "/" : lang}/categories/${slugify(category)}`}
+                  href={constructLocalizedUrl(
+                    `/categories/${slugify(category)}`
+                  )}
                 >
                   {humanize(category)}
                   {index !== categories.length - 1 && ","}
@@ -83,7 +103,7 @@ const { title, description, author, categories, image, date, tags } = post.data;
                   <li class="inline-block">
                     <a
                       class="m-1 block rounded bg-theme-light px-3 py-1 hover:bg-primary hover:text-white dark:bg-darkmode-theme-light dark:hover:bg-darkmode-primary dark:hover:text-dark"
-                      href={`/tags/${slugify(tag)}`}
+                      href={constructLocalizedUrl(`/tags/${slugify(tag)}`)}
                     >
                       {humanize(tag)}
                     </a>

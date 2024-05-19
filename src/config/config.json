@@ -21,7 +21,8 @@
     "summary_length": 200,
     "blog_folder": "blog",
     "default_language": "en",
-    "disable_languages": []
+    "disable_languages": [],
+    "default_language_in_path": false
   },
 
   "params": {

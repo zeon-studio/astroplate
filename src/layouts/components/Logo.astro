@@ -22,7 +22,7 @@ const {
 } = config.site;
 
 const { theme_switcher }: { theme_switcher: boolean } = config.settings;
-const { default_language } = config.settings;
+const { default_language, default_language_in_path } = config.settings;
 const { trailing_slash } = config.site;
 
 let lang = getLangFromUrl(Astro.url);
@@ -34,10 +34,21 @@ if (disabledLanguages.includes(lang)) {
   lang = default_language;
 }
 
-const url = constructUrl("/", lang, default_language, trailing_slash);
+const constructLocalizedUrl = (url: string) => {
+  if (lang === default_language) {
+    return constructUrl(
+      default_language_in_path ? `/${lang}${url}` : url,
+      lang,
+      default_language,
+      trailing_slash
+    );
+  } else {
+    return constructUrl(url, lang, default_language, trailing_slash);
+  }
+};
 ---
 
-<a href={url} class="navbar-brand inline-block">
+<a href={constructLocalizedUrl("/")} class="navbar-brand inline-block">
   {
     src || srcDarkmode || logo || logo_darkmode ? (
       <>

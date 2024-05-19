@@ -1,7 +1,11 @@
 ---
 import config from "@/config/config.json";
 import dateFormat from "@/lib/utils/dateFormat";
-import { getLangFromUrl, getTranslations } from "@/lib/utils/i18nUtils";
+import {
+  constructUrl,
+  getLangFromUrl,
+  getTranslations,
+} from "@/lib/utils/i18nUtils";
 import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
 import type { ContentEntryMap } from "astro:content";
 import { FaRegFolder, FaRegUserCircle } from "react-icons/fa";
@@ -9,12 +13,26 @@ import ImageMod from "./ImageMod.astro";
 
 const { summary_length }: { summary_length: number; blog_folder: string } =
   config.settings;
-const { default_language } = config.settings;
+const { default_language, default_language_in_path } = config.settings;
+const { trailing_slash } = config.site;
 const { data } = Astro.props;
 const { title, image, date, author, categories } = data.data;
 
 const lang = getLangFromUrl(Astro.url);
 const { read_more } = await getTranslations(lang as keyof ContentEntryMap);
+
+const constructLocalizedUrl = (url: string) => {
+  if (lang === default_language) {
+    return constructUrl(
+      default_language_in_path ? `/${lang}${url}` : url,
+      lang,
+      default_language,
+      trailing_slash
+    );
+  } else {
+    return constructUrl(url, lang, default_language, trailing_slash);
+  }
+};
 ---
 
 <div class="bg-body dark:bg-darkmode-body">
@@ -31,26 +49,23 @@ const { read_more } = await getTranslations(lang as keyof ContentEntryMap);
     )
   }
   <h4 class="mb-3">
-    <a href={`${lang === default_language ? "" : `/${lang}`}/${data.slug}`}>
+    <a href={constructLocalizedUrl(`/${data.slug}`)}>
       {title}
     </a>
   </h4>
   <ul class="mb-4">
     <li class="mr-4 inline-block">
-      <a
-        href={`${lang === default_language ? "" : `/${lang}`}/authors/${slugify(author)}`}
-      >
+      <a href={constructLocalizedUrl(`/authors/${slugify(author)}`)}>
         <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
         {humanize(author)}
       </a>
     </li>
+
     <li class="mr-4 inline-block">
       <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
       {
         categories.map((category: string, index: number) => (
-          <a
-            href={`${lang === default_language ? "" : `/${lang}`}/categories/${slugify(category)}`}
-          >
+          <a href={constructLocalizedUrl(`/categories/${slugify(category)}`)}>
             {humanize(category)}
             {index !== categories.length - 1 && ","}
           </a>
@@ -62,7 +77,7 @@ const { read_more } = await getTranslations(lang as keyof ContentEntryMap);
   <p class="mb-6">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
   <a
     class="btn btn-outline-primary btn-sm"
-    href={`${lang === default_language ? "" : `/${lang}`}/${data.slug}`}
+    href={constructLocalizedUrl(`/${data.slug}`)}
   >
     {read_more}
   </a>

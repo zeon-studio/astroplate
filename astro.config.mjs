@@ -7,6 +7,16 @@ import { defineConfig, squooshImageService } from "astro/config";
 import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
 import config from "./src/config/config.json";
+import languagesJSON from "./src/config/language.json";
+const { default_language } = config.settings;
+
+const supportedLang = [...languagesJSON.map((lang) => lang.languageCode)];
+const disabledLanguages = config.settings.disable_languages;
+
+// Filter out disabled languages from supportedLang
+const filteredSupportedLang = supportedLang.filter(
+  (lang) => !disabledLanguages.includes(lang),
+);
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,11 +24,8 @@ export default defineConfig({
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
   i18n: {
-    locales: ["en", "fr", "ar"],
-    defaultLocale: "en",
-    routing: {
-      prefixDefaultLocale: false,
-    },
+    locales: filteredSupportedLang,
+    defaultLocale: default_language,
   },
   image: {
     service: squooshImageService(),

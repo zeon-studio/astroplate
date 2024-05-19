@@ -1,5 +1,5 @@
-import config from "@/config/config.json";
-import languagesJSON from "@/config/language.json";
+import config from "../../config/config.json";
+import languagesJSON from "../../config/language.json";
 import { getRelativeLocaleUrl } from "astro:i18n";
 const { default_language } = config.settings;
 
@@ -28,21 +28,6 @@ export function getLangFromUrl(url: URL): string {
   }
   return default_language;
 }
-
-// export const getTranslations = async (lang: string) => {
-//   const menu = await import(
-//     `../../config/menu.${lang || default_language}.json`
-//   );
-//   const dictionary = await import(
-//     `../../i18n/${lang || default_language}.json`
-//   );
-//   return { ...menu, ...dictionary };
-// };
-
-// export const supportedLang = [""].concat(
-//   languagesJSON.map((lang) => lang.languageCode),
-// );
-// Function to construct the URL based on trailing_slash value
 
 export const getTranslations = async (lang: string) => {
   const {
