@@ -2,6 +2,7 @@
 import Logo from "@/components/Logo.astro";
 import ThemeSwitcher from "@/components/ThemeSwitcher.astro";
 import config from "@/config/config.json";
+import languages from "@/config/language.json";
 import LanguageSwitcher from "@/helpers/LanguageSwitcher";
 import {
   constructUrl,
@@ -158,7 +159,12 @@ const { get_started } = await getTranslations(lang as keyof ContentEntryMap);
         )
       }
       <ThemeSwitcher className="mr-5" />
-      <LanguageSwitcher client:load lang={lang} pathname={pathname} />
+      {
+        languages.length > 1 && (
+          <LanguageSwitcher client:load lang={lang} pathname={pathname} />
+        )
+      }
+
       {
         navigation_button.enable && (
           <a
