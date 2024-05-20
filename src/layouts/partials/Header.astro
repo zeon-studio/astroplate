@@ -4,8 +4,7 @@ import ThemeSwitcher from "@/components/ThemeSwitcher.astro";
 import config from "@/config/config.json";
 import languages from "@/config/language.json";
 import LanguageSwitcher from "@/helpers/LanguageSwitcher";
-import { slugSelector } from "@/lib/languageParser.astro";
-import { getLangFromUrl, getTranslations } from "@/lib/utils/i18nUtils";
+import { getLangFromUrl, getTranslations, slugSelector } from "@/lib/utils/languageParser";
 import type { ContentEntryMap } from "astro:content";
 import { IoSearch } from "react-icons/io5";
 

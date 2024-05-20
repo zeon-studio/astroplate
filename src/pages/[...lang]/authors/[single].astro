@@ -4,7 +4,7 @@ import ImageMod from "@/components/ImageMod.astro";
 import Social from "@/components/Social.astro";
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
-import { supportedLang } from "@/lib/utils/i18nUtils";
+import { supportedLang } from "@/lib/utils/languageParser";
 import { slugify } from "@/lib/utils/textConverter";
 import type { ContentEntryMap } from "astro:content";
 
@@ -14,12 +14,12 @@ export async function getStaticPaths() {
 
   const paths = await Promise.all(
     supportedLang.map(async (lang) => {
-      const authors = await getSinglePage(
+      const authors: any = await getSinglePage(
         COLLECTION_FOLDER,
         lang as keyof ContentEntryMap
       );
 
-      return authors.map((author) => ({
+      return authors.map((author: any) => ({
         params: {
           lang: lang || undefined,
           single: author.slug.split("/").pop(),
@@ -42,7 +42,7 @@ const { Content } = await author.render();
 const BLOG_FOLDER = "blog";
 const posts = await getSinglePage(BLOG_FOLDER, lang as keyof ContentEntryMap);
 const postFilterByAuthor = posts.filter(
-  (post) => slugify(post.data.author) === slugify(title)
+  (post: any) => slugify(post.data.author) === slugify(title)
 );
 ---
 

@@ -2,7 +2,7 @@
 import Base from "@/layouts/Base.astro";
 import PostSingle from "@/layouts/PostSingle.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
-import { supportedLang } from "@/lib/utils/i18nUtils";
+import { supportedLang } from "@/lib/utils/languageParser";
 import type { ContentEntryMap } from "astro:content";
 
 export async function getStaticPaths() {

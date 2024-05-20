@@ -1,14 +1,14 @@
 ---
 import BlogCard from "@/components/BlogCard.astro";
+import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import { getTaxonomy } from "@/lib/taxonomyParser.astro";
-import { supportedLang } from "@/lib/utils/i18nUtils";
+import { supportedLang } from "@/lib/utils/languageParser";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import taxonomyFilter from "@/lib/utils/taxonomyFilter";
 import PageHeader from "@/partials/PageHeader.astro";
 import type { ContentEntryMap } from "astro:content";
-import config from "@/config/config.json";
 
 // get all static paths for categories
 export async function getStaticPaths() {
@@ -18,7 +18,7 @@ export async function getStaticPaths() {
     supportedLang.map(async (lang) => {
       const categories = await getTaxonomy(
         lang as keyof ContentEntryMap,
-        "categories",
+        "categories"
       );
 
       return categories.map((category) => ({
@@ -30,13 +30,13 @@ export async function getStaticPaths() {
           category,
         },
       }));
-    }),
+    })
   );
 
   // Handle default path (no lang)
   const defaultCategories = await getTaxonomy(
     default_language as keyof ContentEntryMap,
-    "categories",
+    "categories"
   );
   const defaultPaths = defaultCategories.map((category) => ({
     params: {

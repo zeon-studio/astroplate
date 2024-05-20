@@ -2,7 +2,7 @@
 import ImageMod from "@/components/ImageMod.astro";
 import Base from "@/layouts/Base.astro";
 import { getListPage } from "@/lib/contentParser.astro";
-import { supportedLang } from "@/lib/utils/i18nUtils";
+import { supportedLang } from "@/lib/utils/languageParser";
 import { markdownify } from "@/lib/utils/textConverter";
 import type { ContentCollectionKey, ContentEntryMap } from "astro:content";
 
@@ -16,7 +16,7 @@ export function getStaticPaths() {
 const { lang } = Astro.params;
 const about: any = await getListPage(
   "about" as ContentCollectionKey,
-  lang as keyof ContentEntryMap,
+  lang as keyof ContentEntryMap
 );
 
 const { Content } = await about[0].render();

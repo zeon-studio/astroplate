@@ -2,7 +2,7 @@
 import AuthorCard from "@/components/AuthorCard.astro";
 import Base from "@/layouts/Base.astro";
 import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
-import { supportedLang } from "@/lib/utils/i18nUtils";
+import { supportedLang } from "@/lib/utils/languageParser";
 import PageHeader from "@/partials/PageHeader.astro";
 import { type ContentEntryMap } from "astro:content";
 
@@ -18,11 +18,11 @@ export function getStaticPaths() {
 const { lang } = Astro.params;
 const authorIndex: any = await getListPage(
   COLLECTION_FOLDER,
-  lang as keyof ContentEntryMap,
+  lang as keyof ContentEntryMap
 );
 const authors = await getSinglePage(
   COLLECTION_FOLDER,
-  lang as keyof ContentEntryMap,
+  lang as keyof ContentEntryMap
 );
 ---
 

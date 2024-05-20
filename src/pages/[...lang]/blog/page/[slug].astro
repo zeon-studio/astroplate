@@ -5,7 +5,7 @@ import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
 import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
 import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
-import { supportedLang } from "@/lib/utils/i18nUtils";
+import { supportedLang } from "@/lib/utils/languageParser";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import PageHeader from "@/partials/PageHeader.astro";
 import PostSidebar from "@/partials/PostSidebar.astro";
@@ -21,16 +21,16 @@ if (!lang) {
 
 const postIndex: any = await getListPage(
   BLOG_FOLDER,
-  lang as keyof ContentEntryMap,
+  lang as keyof ContentEntryMap
 );
 const posts = await getSinglePage(BLOG_FOLDER, lang as keyof ContentEntryMap);
 const allCategories = await getAllTaxonomy(
   lang as keyof ContentEntryMap,
-  "categories",
+  "categories"
 );
 const categories = await getTaxonomy(
   lang as keyof ContentEntryMap,
-  "categories",
+  "categories"
 );
 const tags = await getTaxonomy(lang as keyof ContentEntryMap, "tags");
 const sortedPosts = sortByDate(posts);
@@ -47,7 +47,7 @@ export async function getStaticPaths() {
     supportedLang.map(async (lang) => {
       const posts = await getSinglePage(
         BLOG_FOLDER,
-        lang as keyof ContentEntryMap,
+        lang as keyof ContentEntryMap
       );
       const totalPages = Math.ceil(posts.length / config.settings.pagination);
       const langString = lang.toString();
@@ -63,7 +63,7 @@ export async function getStaticPaths() {
       }
 
       return langPaths;
-    }),
+    })
   );
 
   return paths.flat();

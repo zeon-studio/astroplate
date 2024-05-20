@@ -1,8 +1,11 @@
 ---
 import config from "@/config/config.json";
-import { slugSelector } from "@/lib/languageParser.astro";
 import dateFormat from "@/lib/utils/dateFormat";
-import { getLangFromUrl, getTranslations } from "@/lib/utils/i18nUtils";
+import {
+  getLangFromUrl,
+  getTranslations,
+  slugSelector,
+} from "@/lib/utils/languageParser";
 import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
 import type { ContentEntryMap } from "astro:content";
 import { FaRegFolder, FaRegUserCircle } from "react-icons/fa";

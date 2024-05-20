@@ -1,8 +1,7 @@
 ---
 import config from "@/config/config.json";
-import { slugSelector } from "@/lib/languageParser.astro";
-import { getLangFromUrl } from "@/lib/utils/i18nUtils";
 import ImageMod from "./ImageMod.astro";
+import { getLangFromUrl, slugSelector } from "@/lib/utils/languageParser";
 
 const { src, srcDarkmode }: { src?: string; srcDarkmode?: string } =
   Astro.props;

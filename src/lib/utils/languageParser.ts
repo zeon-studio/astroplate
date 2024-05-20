@@ -1,7 +1,6 @@
----
-import config from "@/config/config.json";
-import languagesJSON from "@/config/language.json";
 import { getRelativeLocaleUrl } from "astro:i18n";
+import config from "../../config/config.json";
+import languagesJSON from "../../config/language.json";
 const { default_language } = config.settings;
 
 const locales: { [key: string]: any } = {};
@@ -69,8 +68,9 @@ export const getTranslations = async (lang: string) => {
 const supportedLang = ["", ...languagesJSON.map((lang) => lang.languageCode)];
 const disabledLanguages = config.settings.disable_languages as string[];
 
+// Filter out disabled languages from supportedLang
 const filteredSupportedLang = supportedLang.filter(
-  (lang) => !disabledLanguages.includes(lang)
+  (lang) => !disabledLanguages.includes(lang),
 );
 
 export { filteredSupportedLang as supportedLang };
@@ -115,4 +115,3 @@ export const slugSelector = (url: string, lang: string) => {
 
   return constructedUrl;
 };
----

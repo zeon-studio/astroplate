@@ -4,7 +4,7 @@ import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import { getTaxonomy } from "@/lib/taxonomyParser.astro";
-import { supportedLang } from "@/lib/utils/i18nUtils";
+import { supportedLang } from "@/lib/utils/languageParser";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import taxonomyFilter from "@/lib/utils/taxonomyFilter";
 import PageHeader from "@/partials/PageHeader.astro";
@@ -27,13 +27,13 @@ export async function getStaticPaths() {
           tag,
         },
       }));
-    }),
+    })
   );
 
   // Handle default path (no lang)
   const defaultCategories = await getTaxonomy(
     default_language as keyof ContentEntryMap,
-    "tags",
+    "tags"
   );
   const defaultPaths = defaultCategories.map((tag) => ({
     params: {
