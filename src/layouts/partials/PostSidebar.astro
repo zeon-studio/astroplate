@@ -1,25 +1,10 @@
 ---
-import config from "@/config/config.json";
-import { constructUrl, getLangFromUrl } from "@/lib/utils/i18nUtils";
+import { slugSelector } from "@/lib/languageParser.astro";
+import { getLangFromUrl } from "@/lib/utils/i18nUtils";
 import { humanize } from "@/lib/utils/textConverter";
-const { default_language, default_language_in_path } = config.settings;
-const { trailing_slash } = config.site;
 
 const { tags, categories, allCategories } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
-
-const constructLocalizedUrl = (url: string) => {
-  if (lang === default_language) {
-    return constructUrl(
-      default_language_in_path ? `/${lang}${url}` : url,
-      lang,
-      default_language,
-      trailing_slash
-    );
-  } else {
-    return constructUrl(url, lang, default_language, trailing_slash);
-  }
-};
 ---
 
 <div class="lg:col-4">
@@ -37,7 +22,7 @@ const constructLocalizedUrl = (url: string) => {
               <li>
                 <a
                   class="flex justify-between hover:text-primary dark:hover:text-darkmode-primary"
-                  href={constructLocalizedUrl(`/categories/${category}`)}
+                  href={slugSelector(`/categories/${category}`, lang)}
                 >
                   {humanize(category)} <span>({count})</span>
                 </a>
@@ -59,7 +44,7 @@ const constructLocalizedUrl = (url: string) => {
               <li class="inline-block">
                 <a
                   class="m-1 block rounded bg-white px-3 py-1 hover:bg-primary hover:text-white dark:bg-darkmode-body dark:hover:bg-darkmode-primary dark:hover:text-dark"
-                  href={constructLocalizedUrl(`/tags/${tag}`)}
+                  href={slugSelector(`/tags/${tag}`, lang)}
                 >
                   {humanize(tag)}
                 </a>

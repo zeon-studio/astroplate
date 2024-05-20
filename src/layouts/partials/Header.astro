@@ -4,11 +4,8 @@ import ThemeSwitcher from "@/components/ThemeSwitcher.astro";
 import config from "@/config/config.json";
 import languages from "@/config/language.json";
 import LanguageSwitcher from "@/helpers/LanguageSwitcher";
-import {
-  constructUrl,
-  getLangFromUrl,
-  getTranslations,
-} from "@/lib/utils/i18nUtils";
+import { slugSelector } from "@/lib/languageParser.astro";
+import { getLangFromUrl, getTranslations } from "@/lib/utils/i18nUtils";
 import type { ContentEntryMap } from "astro:content";
 import { IoSearch } from "react-icons/io5";
 
@@ -16,30 +13,14 @@ let lang = getLangFromUrl(Astro.url);
 const menu = await getTranslations(lang as keyof ContentEntryMap);
 
 const { navigation_button, settings } = config;
-const { default_language, default_language_in_path } = config.settings;
-const { trailing_slash } = config.site;
+const { default_language } = config.settings;
 const { pathname } = Astro.url;
 const { get_started } = await getTranslations(lang as keyof ContentEntryMap);
 
-// Check if the current language is disabled
 const disabledLanguages = config.settings.disable_languages as string[];
 if (disabledLanguages.includes(lang)) {
-  // Redirect to the default language or handle as per your application logic
   lang = default_language;
 }
-
-const constructLocalizedUrl = (url: string) => {
-  if (lang === default_language) {
-    return constructUrl(
-      default_language_in_path ? `/${lang}${url}` : url,
-      lang,
-      default_language,
-      trailing_slash
-    );
-  } else {
-    return constructUrl(url, lang, default_language, trailing_slash);
-  }
-};
 ---
 
 <header class={`header z-30 ${settings.sticky_header && "sticky top-0"}`}>
@@ -79,8 +60,8 @@ const constructLocalizedUrl = (url: string) => {
                 <span
                   class={`nav-link inline-flex items-center ${
                     menu.children
-                      ?.map(({ url }: { url: any }) =>
-                        constructLocalizedUrl(url)
+                      ?.map(({ url }: { url: string }) =>
+                        slugSelector(url, lang)
                       )
                       .includes(pathname)
                       ? "active"
@@ -96,11 +77,10 @@ const constructLocalizedUrl = (url: string) => {
                   {menu.children?.map((child: any) => (
                     <li class="nav-dropdown-item">
                       <a
-                        href={constructLocalizedUrl(child.url)}
+                        href={slugSelector(child.url, lang)}
                         aria-label={child.name}
                         class={`nav-dropdown-link block ${
-                          pathname === constructLocalizedUrl(child.url) &&
-                          "active"
+                          pathname === slugSelector(child.url, lang) && "active"
                         }`}
                       >
                         {child.name}
@@ -112,9 +92,9 @@ const constructLocalizedUrl = (url: string) => {
             ) : (
               <li class="nav-item">
                 <a
-                  href={constructLocalizedUrl(menu.url)}
+                  href={slugSelector(menu.url, lang)}
                   class={`nav-link block ${
-                    pathname === constructLocalizedUrl(menu.url) && "active"
+                    pathname === slugSelector(menu.url, lang) && "active"
                   }`}
                 >
                   {menu.name}

@@ -1,9 +1,6 @@
 ---
-import { constructUrl, getLangFromUrl } from "@/lib/utils/i18nUtils";
-import config from "@/config/config.json";
-import type { ContentEntryMap } from "astro:content";
-const { default_language, default_language_in_path } = config.settings;
-const { trailing_slash } = config.site;
+import { slugSelector } from "@/lib/languageParser.astro";
+import { getLangFromUrl } from "@/lib/utils/i18nUtils";
 
 const lang = getLangFromUrl(Astro.url);
 
@@ -22,24 +19,6 @@ let pageList: number[] = [];
 for (let i = 1; i <= totalPages; i++) {
   pageList.push(i);
 }
-
-const constructLocalizedUrl = (url: string) => {
-  if (lang === default_language) {
-    return constructUrl(
-      default_language_in_path ? `/${lang}${url}` : url,
-      lang,
-      default_language,
-      trailing_slash,
-    );
-  } else {
-    return constructUrl(
-      url,
-      lang as keyof ContentEntryMap,
-      default_language,
-      trailing_slash,
-    );
-  }
-};
 ---
 
 {
@@ -53,9 +32,10 @@ const constructLocalizedUrl = (url: string) => {
         <a
           href={
             indexPageLink
-              ? constructLocalizedUrl(`/${section ? section : ""}`)
-              : constructLocalizedUrl(
+              ? slugSelector(`/${section ? section : ""}`, lang)
+              : slugSelector(
                   `/${section ? section : ""}/page/${currentPage - 1}`,
+                  lang
                 )
           }
           class="rounded px-2 py-1.5 text-dark hover:bg-theme-light dark:text-darkmode-dark dark:hover:bg-darkmode-theme-light"
@@ -105,24 +85,26 @@ const constructLocalizedUrl = (url: string) => {
           </span>
         ) : (
           <a
-            href={constructLocalizedUrl(
+            href={slugSelector(
               i === 0
                 ? `/${section ? section : ""}`
                 : `/${section ? section : ""}/page/${pagination}`,
+              lang
             )}
             aria-current="page"
             class="rounded px-4 py-2 text-dark hover:bg-theme-light dark:text-darkmode-dark dark:hover:bg-darkmode-theme-light"
           >
             {pagination}
           </a>
-        ),
+        )
       )}
 
       {/* next page */}
       {hasNextPage ? (
         <a
-          href={constructLocalizedUrl(
+          href={slugSelector(
             `/${section ? section : ""}/page/${currentPage + 1}`,
+            lang
           )}
           class="rounded px-2 py-1.5 text-dark hover:bg-theme-light dark:text-darkmode-dark dark:hover:bg-darkmode-theme-light"
         >

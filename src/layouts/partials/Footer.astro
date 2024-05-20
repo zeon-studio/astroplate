@@ -3,17 +3,10 @@ import Logo from "@/components/Logo.astro";
 import Social from "@/components/Social.astro";
 import config from "@/config/config.json";
 import social from "@/config/social.json";
-import {
-  constructUrl,
-  getLangFromUrl,
-  getTranslations,
-} from "@/lib/utils/i18nUtils";
+import { slugSelector } from "@/lib/languageParser.astro";
+import { getLangFromUrl, getTranslations } from "@/lib/utils/i18nUtils";
 import { markdownify } from "@/lib/utils/textConverter";
 import type { ContentEntryMap } from "astro:content";
-import { getRelativeLocaleUrl } from "astro:i18n";
-
-const { default_language, default_language_in_path } = config.settings;
-const { trailing_slash } = config.site;
 
 const lang = getLangFromUrl(Astro.url);
 const menu = await getTranslations(lang as keyof ContentEntryMap);
@@ -21,19 +14,6 @@ let footer: any = [];
 if (menu) {
   footer = menu.footer;
 }
-
-const constructLocalizedUrl = (url: string) => {
-  if (lang === default_language) {
-    return constructUrl(
-      default_language_in_path ? `/${lang}${url}` : url,
-      lang,
-      default_language,
-      trailing_slash
-    );
-  } else {
-    return constructUrl(url, lang, default_language, trailing_slash);
-  }
-};
 ---
 
 <footer class="bg-theme-light dark:bg-darkmode-theme-light">
@@ -47,7 +27,7 @@ const constructLocalizedUrl = (url: string) => {
           {
             footer.map((menu: any) => (
               <li class="m-3 inline-block">
-                <a href={constructLocalizedUrl(menu.url)}>{menu.name}</a>
+                <a href={slugSelector(menu.url, lang)}>{menu.name}</a>
               </li>
             ))
           }

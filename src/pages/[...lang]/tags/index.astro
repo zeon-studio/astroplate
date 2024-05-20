@@ -1,13 +1,13 @@
 ---
 import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
+import { slugSelector } from "@/lib/languageParser.astro";
 import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
-import { constructUrl, supportedLang } from "@/lib/utils/i18nUtils";
+import { supportedLang } from "@/lib/utils/i18nUtils";
 import { humanize } from "@/lib/utils/textConverter";
 import PageHeader from "@/partials/PageHeader.astro";
 import type { ContentEntryMap } from "astro:content";
-const { default_language, default_language_in_path } = config.settings;
-const { trailing_slash } = config.site;
+const { default_language } = config.settings;
 
 export function getStaticPaths() {
   const paths = supportedLang.map((lang) => ({
@@ -24,24 +24,6 @@ if (!lang) {
 const langCollection: keyof ContentEntryMap = lang as keyof ContentEntryMap;
 const tags = await getTaxonomy(langCollection, "tags");
 const allTags = await getAllTaxonomy(langCollection, "tags");
-
-const constructLocalizedUrl = (url: string) => {
-  if (lang === default_language) {
-    return constructUrl(
-      default_language_in_path ? `/${lang}${url}` : url,
-      lang,
-      default_language,
-      trailing_slash,
-    );
-  } else {
-    return constructUrl(
-      url,
-      lang as keyof ContentEntryMap,
-      default_language,
-      trailing_slash,
-    );
-  }
-};
 ---
 
 <Base title={"Tags"}>
@@ -55,7 +37,7 @@ const constructLocalizedUrl = (url: string) => {
             return (
               <li class="m-3 inline-block">
                 <a
-                  href={constructLocalizedUrl(`/tags/${tag}`)}
+                  href={slugSelector(`/tags/${tag}`, lang)}
                   class="block rounded bg-theme-light px-4 py-2 text-xl text-dark dark:bg-darkmode-theme-light dark:text-darkmode-dark"
                 >
                   {humanize(tag)}{" "}
