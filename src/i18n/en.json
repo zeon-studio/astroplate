@@ -1,7 +1,6 @@
 {
   "full_name": "Full Name",
   "full_name_placeholder": "Enter your full name",
-  "mail": "Work Email",
   "mail_placeholder": "john.doe@email.com",
   "message": "Anything else?",
   "message_placeholder": "Your message here...",
