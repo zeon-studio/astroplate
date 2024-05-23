@@ -11,19 +11,20 @@ if (supportedLang.includes(paths[0])) {
   lang = paths.shift()!;
 }
 
+let baseHref = lang ? `/${lang}` : "/";
 let parts = [
   {
     label: "Home",
-    href: `/${lang}`,
+    href: baseHref,
     "aria-label":
-      Astro.url.pathname === `/${lang}` || Astro.url.pathname === `/${lang}/`
+      Astro.url.pathname === baseHref || Astro.url.pathname === `${baseHref}/`
         ? "page"
         : undefined,
   },
 ];
 
 paths.forEach((label: string, i: number) => {
-  const href = `/${lang}/${paths.slice(0, i + 1).join("/")}`;
+  const href = `${baseHref}${paths.slice(0, i + 1).join("/")}`;
   label !== "page" &&
     parts.push({
       label: humanize(label.replace(".html", "").replace(/[-_]/g, " ")) || "",

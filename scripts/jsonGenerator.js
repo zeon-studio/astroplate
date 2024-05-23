@@ -9,11 +9,12 @@ const CONTENT_DEPTH = 3;
 const BLOG_FOLDER = "blog";
 
 // get data from markdown
-const getData = (folder, groupDepth) => {
+const getData = (folder, groupDepth, langIndex = 0) => {
   // get paths
   const getPaths = languages
-    .map((lang) => {
-      const dir = path.join(CONTENT_ROOT, lang.contentDir, folder);
+    .map((lang, index) => {
+      const langFolder = lang.contentDir ? lang.contentDir : lang.languageCode;
+      const dir = path.join(CONTENT_ROOT, folder, langFolder);
       return fs
         .readdirSync(dir)
         .filter(
@@ -27,7 +28,7 @@ const getData = (folder, groupDepth) => {
           const isFolder = stats.isDirectory();
 
           if (isFolder) {
-            return getData(filepath, groupDepth);
+            return getData(filepath, groupDepth, index);
           } else {
             const file = fs.readFileSync(filepath, "utf-8");
             const { data, content } = matter(file);
@@ -41,7 +42,7 @@ const getData = (folder, groupDepth) => {
             const group = pathParts[groupDepth];
 
             return {
-              lang: lang.languageCode,
+              lang: languages[langIndex].languageCode,
               group: group,
               slug: slug,
               frontmatter: data,

@@ -18,6 +18,11 @@ const { title, image, date, author, categories } = data.data;
 
 const lang = getLangFromUrl(Astro.url);
 const { read_more } = await getTranslations(lang as keyof ContentEntryMap);
+
+const slugParts = data.slug.split("/");
+slugParts[0] = "blog";
+const modifiedSlug = slugParts.join("/");
+data.slug = modifiedSlug;
 ---
 
 <div class="bg-body dark:bg-darkmode-body">

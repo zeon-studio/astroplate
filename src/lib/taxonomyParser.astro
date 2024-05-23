@@ -16,7 +16,7 @@ export const getTaxonomy = async (collection: string, name: string) => {
     actualCollection = language.contentDir;
   } else {
     const defaultLanguageMatch = languages.find(
-      (l) => l.languageCode === default_language,
+      (l) => l.languageCode === default_language
     );
     if (defaultLanguageMatch) {
       actualCollection = defaultLanguageMatch.contentDir;
@@ -24,10 +24,10 @@ export const getTaxonomy = async (collection: string, name: string) => {
   }
 
   const singlePages = await getCollection(
-    actualCollection as keyof ContentEntryMap,
+    "blog" as keyof ContentEntryMap,
     ({ id }: any) => {
-      return id.startsWith("blog") && !id.endsWith("-index.md");
-    },
+      return id.startsWith(actualCollection) && !id.endsWith("-index.md");
+    }
   );
   const taxonomyPages = singlePages.map((page: any) => page.data[name]);
   let taxonomies: string[] = [];
@@ -52,7 +52,7 @@ export const getAllTaxonomy = async (collection: string, name: string) => {
     actualCollection = language.contentDir;
   } else {
     const defaultLanguageMatch = languages.find(
-      (l) => l.languageCode === default_language,
+      (l) => l.languageCode === default_language
     );
     if (defaultLanguageMatch) {
       actualCollection = defaultLanguageMatch.contentDir;
@@ -60,10 +60,10 @@ export const getAllTaxonomy = async (collection: string, name: string) => {
   }
 
   const singlePages = await getCollection(
-    actualCollection as keyof ContentEntryMap,
+    "blog" as keyof ContentEntryMap,
     ({ id }: any) => {
-      return id.startsWith("blog") && !id.endsWith("-index.md");
-    },
+      return id.startsWith(actualCollection) && !id.endsWith("-index.md");
+    }
   );
   const taxonomyPages = singlePages.map((page: any) => page.data[name]);
   let taxonomies: string[] = [];

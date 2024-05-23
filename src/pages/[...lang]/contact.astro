@@ -4,7 +4,6 @@ import Base from "@/layouts/Base.astro";
 import { getListPage } from "@/lib/contentParser.astro";
 import { getTranslations, supportedLang } from "@/lib/utils/languageParser";
 import PageHeader from "@/partials/PageHeader.astro";
-import type { CollectionKey } from "astro:content";
 import { type ContentEntryMap } from "astro:content";
 
 export function getStaticPaths() {
@@ -15,10 +14,7 @@ export function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
-const contact: any = await getListPage(
-  "contact" as CollectionKey,
-  lang as keyof ContentEntryMap
-);
+const contact = await getListPage("contact", lang as keyof ContentEntryMap);
 
 const { contact_form_action }: { contact_form_action: string } = config.params;
 const { title, description, meta_title, image } = contact[0].data;

@@ -10,7 +10,7 @@ export async function getStaticPaths() {
     supportedLang.map(async (lang) => {
       const pages = await getSinglePage("pages", lang as keyof ContentEntryMap);
 
-      return pages.map((page: any) => ({
+      return pages.map((page) => ({
         params: {
           lang: lang || undefined,
           regular: page.slug.split("/").pop(),

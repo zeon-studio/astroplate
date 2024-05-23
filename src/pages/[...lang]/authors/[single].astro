@@ -14,12 +14,12 @@ export async function getStaticPaths() {
 
   const paths = await Promise.all(
     supportedLang.map(async (lang) => {
-      const authors: any = await getSinglePage(
+      const authors = await getSinglePage(
         COLLECTION_FOLDER,
         lang as keyof ContentEntryMap
       );
 
-      return authors.map((author: any) => ({
+      return authors.map((author) => ({
         params: {
           lang: lang || undefined,
           single: author.slug.split("/").pop(),
@@ -42,7 +42,7 @@ const { Content } = await author.render();
 const BLOG_FOLDER = "blog";
 const posts = await getSinglePage(BLOG_FOLDER, lang as keyof ContentEntryMap);
 const postFilterByAuthor = posts.filter(
-  (post: any) => slugify(post.data.author) === slugify(title)
+  (post) => slugify(post.data.author) === slugify(title)
 );
 ---
 
