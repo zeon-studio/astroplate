@@ -10,7 +10,6 @@ const BLOG_FOLDER = "blog";
 
 // get data from markdown
 const getData = (folder, groupDepth, langIndex = 0) => {
-  // get paths
   const getPaths = languages
     .map((lang, index) => {
       const langFolder = lang.contentDir ? lang.contentDir : lang.languageCode;
@@ -22,7 +21,7 @@ const getData = (folder, groupDepth, langIndex = 0) => {
             !filename.startsWith("-") &&
             (filename.endsWith(".md") || filename.endsWith(".mdx")),
         )
-        .map((filename) => {
+        .flatMap((filename) => {
           const filepath = path.join(dir, filename);
           const stats = fs.statSync(filepath);
           const isFolder = stats.isDirectory();
@@ -33,18 +32,26 @@ const getData = (folder, groupDepth, langIndex = 0) => {
             const file = fs.readFileSync(filepath, "utf-8");
             const { data, content } = matter(file);
             const pathParts = filepath.split(path.sep);
-            const slug =
-              data.slug ||
-              pathParts
+
+            let slug;
+            if (data.slug) {
+              const slugParts = data.slug.split("/");
+              slugParts[0] = BLOG_FOLDER;
+              slug = slugParts.join("/");
+            } else {
+              slug = pathParts
                 .slice(CONTENT_DEPTH)
                 .join("/")
                 .replace(/\.[^/.]+$/, "");
-            const group = pathParts[groupDepth];
+              slug = `${BLOG_FOLDER}/${slug.split("/").slice(1).join("/")}`;
+            }
+            data.slug = slug;
+            const group = "blog";
 
             return {
-              lang: languages[langIndex].languageCode,
+              lang: languages[index].languageCode, // Set the correct language code dynamically
               group: group,
-              slug: slug,
+              slug: data.slug,
               frontmatter: data,
               content: content,
             };
@@ -53,9 +60,7 @@ const getData = (folder, groupDepth, langIndex = 0) => {
     })
     .flat();
 
-  const publishedPages = getPaths.filter(
-    (page) => !page.frontmatter?.draft && page,
-  );
+  const publishedPages = getPaths.filter((page) => !page.frontmatter?.draft);
   return publishedPages;
 };
 
@@ -71,7 +76,7 @@ try {
     JSON.stringify(getData(BLOG_FOLDER, 3)),
   );
 
-  // merger json files for search
+  // merge json files for search
   const posts = require(`../${JSON_FOLDER}/posts.json`);
   const search = [...posts];
   fs.writeFileSync(`${JSON_FOLDER}/search.json`, JSON.stringify(search));

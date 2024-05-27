@@ -9,6 +9,7 @@ import "@/styles/main.scss";
 import { AstroFont } from "astro-font";
 import { ViewTransitions } from "astro:transitions";
 import SearchModal from "./helpers/SearchModal";
+import { getLangFromUrl } from "@/lib/utils/languageParser";
 
 // font families
 const pf = theme.fonts.font_family.primary;
@@ -40,6 +41,8 @@ export interface Props {
 // distructure frontmatters
 const { title, meta_title, description, image, noindex, canonical, lang } =
   Astro.props;
+
+const language = lang || getLangFromUrl(Astro.url);
 ---
 
 <!doctype html>
@@ -108,7 +111,7 @@ const { title, meta_title, description, image, noindex, canonical, lang } =
     <meta
       name="description"
       content={plainify(
-        description ? description : config.metadata.meta_description,
+        description ? description : config.metadata.meta_description
       )}
     />
 
@@ -121,7 +124,7 @@ const { title, meta_title, description, image, noindex, canonical, lang } =
     <meta
       property="og:title"
       content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title,
+        meta_title ? meta_title : title ? title : config.site.title
       )}
     />
 
@@ -129,7 +132,7 @@ const { title, meta_title, description, image, noindex, canonical, lang } =
     <meta
       property="og:description"
       content={plainify(
-        description ? description : config.metadata.meta_description,
+        description ? description : config.metadata.meta_description
       )}
     />
     <meta property="og:type" content="website" />
@@ -142,7 +145,7 @@ const { title, meta_title, description, image, noindex, canonical, lang } =
     <meta
       name="twitter:title"
       content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title,
+        meta_title ? meta_title : title ? title : config.site.title
       )}
     />
 
@@ -150,7 +153,7 @@ const { title, meta_title, description, image, noindex, canonical, lang } =
     <meta
       name="twitter:description"
       content={plainify(
-        description ? description : config.metadata.meta_description,
+        description ? description : config.metadata.meta_description
       )}
     />
 
@@ -174,7 +177,7 @@ const { title, meta_title, description, image, noindex, canonical, lang } =
   <body>
     <TwSizeIndicator />
     <Header />
-    <SearchModal client:load />
+    <SearchModal lang={language} client:load />
     <main id="main-content">
       <slot />
     </main>
