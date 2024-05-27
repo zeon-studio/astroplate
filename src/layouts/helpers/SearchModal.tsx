@@ -1,8 +1,11 @@
 import searchData from ".json/search.json";
 import React, { useEffect, useState } from "react";
 import SearchResult, { type ISearchItem } from "./SearchResult";
+import config from "@/config/config.json";
+const { default_language } = config.settings;
 
-const SearchModal = () => {
+const SearchModal = ({ lang }: { lang: string | undefined }) => {
+  lang = lang || default_language;
   const [searchString, setSearchString] = useState("");
 
   // handle input change
@@ -39,9 +42,13 @@ const SearchModal = () => {
     }
   };
 
+  // filter language specific search data
+  const filterSearchData = searchData.filter((item) => item.lang === lang);
+
+
   // get search result
   const startTime = performance.now();
-  const searchResult = doSearch(searchData);
+  const searchResult = doSearch(filterSearchData);
   const endTime = performance.now();
   const totalTime = ((endTime - startTime) / 1000).toFixed(3);
 
@@ -169,10 +176,15 @@ const SearchModal = () => {
             name="search"
             value={searchString}
             onChange={handleSearch}
+            autoFocus
             autoComplete="off"
           />
         </div>
-        <SearchResult searchResult={searchResult} searchString={searchString} />
+        <SearchResult
+          searchResult={searchResult}
+          searchString={searchString}
+          lang={lang}
+        />
         <div className="search-wrapper-footer">
           <span className="flex items-center">
             <kbd>

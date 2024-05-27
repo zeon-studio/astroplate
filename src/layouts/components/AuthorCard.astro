@@ -1,10 +1,12 @@
 ---
+import { getLangFromUrl, slugSelector } from "@/lib/utils/languageParser";
 import { plainify } from "@/lib/utils/textConverter";
 import ImageMod from "./ImageMod.astro";
 import Social from "./Social.astro";
 
 const { data } = Astro.props;
 const { title, image, social } = data.data;
+const lang = getLangFromUrl(Astro.url);
 ---
 
 <div
@@ -23,7 +25,7 @@ const { title, image, social } = data.data;
     )
   }
   <h4 class="mb-3">
-    <a href={`/authors/${data.slug}`}>{title}</a>
+    <a href={slugSelector(`/${data.slug}`, lang)}>{title}</a>
   </h4>
   <p class="mb-4">
     {plainify(data.body?.slice(0, 100))}

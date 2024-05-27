@@ -1,0 +1,74 @@
+---
+import BlogCard from "@/components/BlogCard.astro";
+import Pagination from "@/components/Pagination.astro";
+import config from "@/config/config.json";
+import Base from "@/layouts/Base.astro";
+import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
+import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
+import { supportedLang } from "@/lib/utils/languageParser";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import PageHeader from "@/partials/PageHeader.astro";
+import PostSidebar from "@/partials/PostSidebar.astro";
+import type { ContentEntryMap } from "astro:content";
+
+export function getStaticPaths() {
+  const paths = supportedLang.map((lang) => ({
+    params: { lang: lang || undefined },
+  }));
+  return paths;
+}
+const { lang } = Astro.params;
+const BLOG_FOLDER = "blog";
+const postIndex = await getListPage(
+  BLOG_FOLDER,
+  lang as keyof ContentEntryMap
+);
+const langCollection: keyof ContentEntryMap = lang as keyof ContentEntryMap;
+const posts = await getSinglePage(BLOG_FOLDER, lang as keyof ContentEntryMap);
+
+const allCategories = await getAllTaxonomy(langCollection, "categories");
+const categories = await getTaxonomy(langCollection, "categories");
+const tags = await getTaxonomy(langCollection, "tags");
+const sortedPosts = sortByDate(posts);
+const totalPages: number = Math.ceil(posts.length / config.settings.pagination);
+const currentPosts = sortedPosts.slice(0, config.settings.pagination);
+---
+
+<Base
+  title={postIndex[0].data.title}
+  meta_title={postIndex[0].data.meta_title}
+  image={postIndex[0].data.image}
+  description={postIndex[0].data.description}
+>
+  <PageHeader title={postIndex[0].data.title} />
+  <section class="section">
+    <div class="container">
+      <div class="row gx-5">
+        <!-- blog posts -->
+        <div class="lg:col-8">
+          <div class="row">
+            {
+              currentPosts.map((post) => (
+                <div class="mb-14 md:col-6">
+                  <BlogCard data={post} />
+                </div>
+              ))
+            }
+          </div>
+          <Pagination
+            section={BLOG_FOLDER}
+            currentPage={1}
+            totalPages={totalPages}
+          />
+        </div>
+
+        <!-- sidebar -->
+        <PostSidebar
+          categories={categories}
+          tags={tags}
+          allCategories={allCategories}
+        />
+      </div>
+    </div>
+  </section>
+</Base>

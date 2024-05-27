@@ -1,16 +1,28 @@
 ---
 import config from "@/config/config.json";
 import dateFormat from "@/lib/utils/dateFormat";
+import {
+  getLangFromUrl,
+  getTranslations,
+  slugSelector,
+} from "@/lib/utils/languageParser";
 import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
+import type { ContentEntryMap } from "astro:content";
 import { FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./ImageMod.astro";
 
-const {
-  summary_length,
-  blog_folder,
-}: { summary_length: number; blog_folder: string } = config.settings;
+const { summary_length }: { summary_length: number; blog_folder: string } =
+  config.settings;
 const { data } = Astro.props;
 const { title, image, date, author, categories } = data.data;
+
+const lang = getLangFromUrl(Astro.url);
+const { read_more } = await getTranslations(lang as keyof ContentEntryMap);
+
+const slugParts = data.slug.split("/");
+slugParts[0] = "blog";
+const modifiedSlug = slugParts.join("/");
+data.slug = modifiedSlug;
 ---
 
 <div class="bg-body dark:bg-darkmode-body">
@@ -27,22 +39,23 @@ const { title, image, date, author, categories } = data.data;
     )
   }
   <h4 class="mb-3">
-    <a href={`/${blog_folder}/${data.slug}`}>
+    <a href={slugSelector(`/${data.slug}`, lang)}>
       {title}
     </a>
   </h4>
   <ul class="mb-4">
     <li class="mr-4 inline-block">
-      <a href={`/authors/${slugify(author)}`}>
+      <a href={slugSelector(`/authors/${slugify(author)}`, lang)}>
         <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
         {humanize(author)}
       </a>
     </li>
+
     <li class="mr-4 inline-block">
       <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
       {
         categories.map((category: string, index: number) => (
-          <a href={`/categories/${slugify(category)}`}>
+          <a href={slugSelector(`/categories/${slugify(category)}`, lang)}>
             {humanize(category)}
             {index !== categories.length - 1 && ","}
           </a>
@@ -54,8 +67,8 @@ const { title, image, date, author, categories } = data.data;
   <p class="mb-6">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
   <a
     class="btn btn-outline-primary btn-sm"
-    href={`/${blog_folder}/${data.slug}`}
+    href={slugSelector(`/${data.slug}`, lang)}
   >
-    read more
+    {read_more}
   </a>
 </div>

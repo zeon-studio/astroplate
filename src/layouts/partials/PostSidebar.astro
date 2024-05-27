@@ -1,7 +1,9 @@
 ---
+import { getLangFromUrl, slugSelector } from "@/lib/utils/languageParser";
 import { humanize } from "@/lib/utils/textConverter";
 
 const { tags, categories, allCategories } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
 ---
 
 <div class="lg:col-4">
@@ -19,7 +21,7 @@ const { tags, categories, allCategories } = Astro.props;
               <li>
                 <a
                   class="flex justify-between hover:text-primary dark:hover:text-darkmode-primary"
-                  href={`/categories/${category}`}
+                  href={slugSelector(`/categories/${category}`, lang)}
                 >
                   {humanize(category)} <span>({count})</span>
                 </a>
@@ -41,7 +43,7 @@ const { tags, categories, allCategories } = Astro.props;
               <li class="inline-block">
                 <a
                   class="m-1 block rounded bg-white px-3 py-1 hover:bg-primary hover:text-white dark:bg-darkmode-body dark:hover:bg-darkmode-primary dark:hover:text-dark"
-                  href={`/tags/${tag}`}
+                  href={slugSelector(`/tags/${tag}`, lang)}
                 >
                   {humanize(tag)}
                 </a>

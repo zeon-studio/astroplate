@@ -1,3 +1,5 @@
+import type { ContentEntryMap } from "astro:content";
+
 export type Feature = {
   button: button;
   image: string;

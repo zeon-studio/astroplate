@@ -1,0 +1,78 @@
+---
+import BlogCard from "@/components/BlogCard.astro";
+import config from "@/config/config.json";
+import Base from "@/layouts/Base.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { getTaxonomy } from "@/lib/taxonomyParser.astro";
+import { supportedLang } from "@/lib/utils/languageParser";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import taxonomyFilter from "@/lib/utils/taxonomyFilter";
+import PageHeader from "@/partials/PageHeader.astro";
+import type { ContentEntryMap } from "astro:content";
+
+// get all static paths for categories
+export async function getStaticPaths() {
+  const { default_language } = config.settings;
+
+  const paths = await Promise.all(
+    supportedLang.map(async (lang) => {
+      const categories = await getTaxonomy(
+        lang as keyof ContentEntryMap,
+        "categories"
+      );
+
+      return categories.map((category) => ({
+        params: {
+          lang: lang || undefined,
+          category: category,
+        },
+        props: {
+          category,
+        },
+      }));
+    })
+  );
+
+  // Handle default path (no lang)
+  const defaultCategories = await getTaxonomy(
+    default_language as keyof ContentEntryMap,
+    "categories"
+  );
+  const defaultPaths = defaultCategories.map((category) => ({
+    params: {
+      lang: undefined,
+      category: category,
+    },
+    props: {
+      category,
+    },
+  }));
+
+  return [...paths.flat(), ...defaultPaths];
+}
+
+const { category, lang } = Astro.params;
+
+// get posts by category
+const BLOG_FOLDER = "blog";
+const posts = await getSinglePage(BLOG_FOLDER, lang as keyof ContentEntryMap);
+const filterByCategories = taxonomyFilter(posts, "categories", category!);
+const sortedPosts = sortByDate(filterByCategories);
+---
+
+<Base title={category}>
+  <PageHeader title={category} />
+  <div class="section-sm pb-0">
+    <div class="container">
+      <div class="row">
+        {
+          sortedPosts.map((post) => (
+            <div class="mb-14 md:col-6 lg:col-4">
+              <BlogCard data={post} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</Base>

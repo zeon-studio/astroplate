@@ -1,5 +1,30 @@
 ---
+import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
+import {
+  getLangFromUrl,
+  getTranslations,
+  supportedLang,
+  slugSelector,
+} from "@/lib/utils/languageParser";
+import type { ContentEntryMap } from "astro:content";
+
+export function getStaticPaths() {
+  const paths = supportedLang.map((lang) => ({
+    params: { lang: lang || undefined },
+  }));
+  return paths;
+}
+
+let lang = getLangFromUrl(Astro.url);
+
+const disabledLanguages = config.settings.disable_languages as string[];
+if (disabledLanguages.includes(lang)) {
+  lang = config.settings.default_language;
+}
+
+const { page_not_found_content, page_not_found, back_to_home } =
+  await getTranslations(lang as keyof ContentEntryMap);
 ---
 
 <Base title="Page Not Found">
@@ -12,14 +37,13 @@ import Base from "@/layouts/Base.astro";
           >
             404
           </span>
-          <h1 class="h2 mb-4">Page not found</h1>
+          <h1 class="h2 mb-4">{page_not_found}</h1>
           <div class="content">
-            <p>
-              The page you are looking for might have been removed, had its name
-              changed, or is temporarily unavailable.
-            </p>
+            <p>{page_not_found_content}</p>
           </div>
-          <a href="/" class="btn btn-primary mt-8">Back to home</a>
+          <a href={slugSelector("/", lang)} class="btn btn-primary mt-8"
+            >{back_to_home}</a
+          >
         </div>
       </div>
     </div>

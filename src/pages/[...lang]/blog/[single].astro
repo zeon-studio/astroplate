@@ -1,0 +1,43 @@
+---
+import Base from "@/layouts/Base.astro";
+import PostSingle from "@/layouts/PostSingle.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { supportedLang } from "@/lib/utils/languageParser";
+import type { ContentEntryMap } from "astro:content";
+
+export async function getStaticPaths() {
+  const BLOG_FOLDER = "blog";
+
+  const paths = await Promise.all(
+    supportedLang.map(async (lang) => {
+      const posts = await getSinglePage(
+        BLOG_FOLDER,
+        lang as keyof ContentEntryMap
+      );
+
+      return posts.map((post) => ({
+        params: {
+          lang: lang || undefined,
+          single: post.slug.split("/").pop(),
+        },
+        props: {
+          post,
+        },
+      }));
+    })
+  );
+  return paths.flat();
+}
+
+const { post } = Astro.props;
+const { title, meta_title, description, image } = post.data;
+---
+
+<Base
+  title={title}
+  meta_title={meta_title}
+  description={description}
+  image={image}
+>
+  <PostSingle post={post} />
+</Base>
