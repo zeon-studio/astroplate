@@ -53,4 +53,15 @@ export default defineConfig({
     },
     extendDefaultPlugins: true,
   },
+  vite: {
+    server: {
+      watch: {
+        ignored: [
+          "**/.direnv/**/*",
+          "**/node_modules/**/*",
+          "**/.git/**/*",
+        ],
+      },
+    },
+  },
 });
