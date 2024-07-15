@@ -38,8 +38,8 @@ jobs:
           ls "${{ github.workspace }}"
           cp -r "${{ github.workspace }}/dist" /html-blog/
 
-      - name: Workdir Clean-up
-        if: always()
-        run: |
-          echo "Removing working directory: ${{ github.workspace }}" ;
-          rm -rf "${{ github.workspace }}"/* ;
+      # - name: Workdir Clean-up
+      #   if: always()
+      #   run: |
+      #     echo "Removing working directory: ${{ github.workspace }}" ;
+      #     rm -rf "${{ github.workspace }}"/* ;
