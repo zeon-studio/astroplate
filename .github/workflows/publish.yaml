@@ -1,0 +1,69 @@
+name: Yarn Commit Checks
+
+on:
+  push:
+
+jobs:
+  github:
+    runs-on: bolt
+    # runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Blank slate
+        run: |
+          echo "Clean up ${{ github.workspace }}"
+          mkdir -p "${{ github.workspace }}"
+          rm -rf "${{ github.workspace }}"/*
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 22.4.0
+          registry-url: https://npm.pkg.github.com/
+
+      - name: Set up package
+        run: |
+          npm install -g yarn
+          yarn install
+
+      - name: Copy build
+        run: |
+          echo "Clean up ${{ github.workspace }}"
+          ls "${{ github.workspace }}"
+          cp -r "${{ github.workspace }}/dist" /nginx-blog/html/
+
+      # - name: Typescript check
+      #   run: |
+      #     yarn ci-check-typescript
+      #
+      # - name: Formatting check
+      #   run: |
+      #     yarn ci-check-format
+      #
+      # - name: Linting check
+      #   run: |
+      #     yarn ci-check-lint
+      #
+      # - name: Yarn integrity check
+      #   run: |
+      #     yarn ci-check-yarn-integrity
+      #
+      # - name: Yarn outdated check
+      #   run: |
+      #     yarn ci-check-yarn-outdated
+      #
+      # - name: Tests
+      #   run: |
+      #     yarn test
+
+      - name: Workdir Clean-up
+        if: always()
+        run: |
+          echo "Removing working directory: ${{ github.workspace }}" ;
+          rm -rf "${{ github.workspace }}"/* ;
