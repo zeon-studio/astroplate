@@ -34,7 +34,7 @@ jobs:
 
       - name: Clean HTML dir
         run: |
-          rm -rf /html-blog/
+          rm -rf /html-blog/{*,.*}
 
       - name: Copy build to HTML dir
         run: |
