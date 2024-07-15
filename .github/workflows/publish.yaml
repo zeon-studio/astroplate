@@ -3,6 +3,9 @@ name: Publish Astro Build
 on:
   push:
 
+env:
+  OUT: /html-blog
+
 jobs:
   publish-html:
     runs-on: ["blog"]
@@ -34,8 +37,8 @@ jobs:
 
       - name: Clean HTML dir
         run: |
-          rm -rf /html-blog/{*,.*}
+          rm -rf "${OUT}/"{*,.*};
 
       - name: Copy build to HTML dir
         run: |
-          cp -r "${{ github.workspace }}"/dist/* /html-blog/
+          cp -r "${{ github.workspace }}"/dist/* "${OUT}/"
