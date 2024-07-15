@@ -6,7 +6,6 @@ on:
 jobs:
   github:
     runs-on: self-hosted
-    # runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: read
@@ -38,30 +37,6 @@ jobs:
           echo "Clean up ${{ github.workspace }}"
           ls "${{ github.workspace }}"
           cp -r "${{ github.workspace }}/dist" /html-blog/
-
-      # - name: Typescript check
-      #   run: |
-      #     yarn ci-check-typescript
-      #
-      # - name: Formatting check
-      #   run: |
-      #     yarn ci-check-format
-      #
-      # - name: Linting check
-      #   run: |
-      #     yarn ci-check-lint
-      #
-      # - name: Yarn integrity check
-      #   run: |
-      #     yarn ci-check-yarn-integrity
-      #
-      # - name: Yarn outdated check
-      #   run: |
-      #     yarn ci-check-yarn-outdated
-      #
-      # - name: Tests
-      #   run: |
-      #     yarn test
 
       - name: Workdir Clean-up
         if: always()
