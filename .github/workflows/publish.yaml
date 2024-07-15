@@ -30,7 +30,7 @@ jobs:
       - name: Set up package
         run: |
           npm install -g yarn
-          yarn install
+          yarn build
 
       - name: Copy build
         run: |
