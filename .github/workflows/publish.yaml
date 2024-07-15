@@ -32,6 +32,10 @@ jobs:
           npm install
           npm run build
 
-      - name: Move to output
+      - name: Clean HTML dir
+        run: |
+          rm -rf /html-blog/
+
+      - name: Copy build to HTML dir
         run: |
           cp -r "${{ github.workspace }}"/dist/* /html-blog/
