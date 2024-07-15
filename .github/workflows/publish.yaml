@@ -28,6 +28,7 @@ jobs:
 
       - name: Set up package
         run: |
+          npm install -g yarn
           npm install
           npm run build
 
