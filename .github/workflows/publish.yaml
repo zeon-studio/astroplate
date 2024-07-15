@@ -4,37 +4,14 @@ on:
   push:
 
 jobs:
-  github:
+  publish-html:
     runs-on: ["blog"]
-    defaults:
-      run:
-        shell: bash
+    # defaults:
+    #   run:
+    #     shell: bash
     steps:
-      # - name: Blank slate
-      #   run: |
-      #     echo "Clean up ${{ github.workspace }}"
-      #     mkdir -p "${{ github.workspace }}"
-      #     rm -rf "${{ github.workspace }}"/*
-
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-          # cache: "npm"
-      # - name: Set up package
-      #   run: |
-      #     npm install -g yarn
-      #     yarn install
-      #     yarn build
-      #
-      # - name: Copy build
-      #   run: |
-      #     echo "Clean up ${{ github.workspace }}"
-      #     ls "${{ github.workspace }}"
-      #     cp -r "${{ github.workspace }}/dist" /html-blog/
-
-      # - name: Workdir Clean-up
-      #   if: always()
-      #   run: |
-      #     echo "Removing working directory: ${{ github.workspace }}" ;
-      #     rm -rf "${{ github.workspace }}"/* ;
+          node-version: 22.4.0
+          registry-url: https://npm.pkg.github.com/
