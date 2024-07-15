@@ -5,7 +5,7 @@ on:
 
 jobs:
   github:
-    runs-on: ["astrorunner"]
+    runs-on: ["blog"]
     defaults:
       run:
         shell: bash
