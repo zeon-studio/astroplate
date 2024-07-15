@@ -5,26 +5,25 @@ on:
 
 jobs:
   github:
-    runs-on: self-hosted
-    permissions:
-      packages: write
-      contents: read
+    runs-on: ["self-hosted", "Linux", "X64"]
+    # permissions:
+    #   packages: write
+    #   contents: read
     defaults:
       run:
         shell: bash
     steps:
-      - name: Blank slate
-        run: |
-          echo "Clean up ${{ github.workspace }}"
-          mkdir -p "${{ github.workspace }}"
-          rm -rf "${{ github.workspace }}"/*
+      # - name: Blank slate
+      #   run: |
+      #     echo "Clean up ${{ github.workspace }}"
+      #     mkdir -p "${{ github.workspace }}"
+      #     rm -rf "${{ github.workspace }}"/*
 
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 22.4.0
-          registry-url: https://npm.pkg.github.com/
 
       - name: Set up package
         run: |
