@@ -37,7 +37,7 @@ jobs:
         run: |
           echo "Clean up ${{ github.workspace }}"
           ls "${{ github.workspace }}"
-          cp -r "${{ github.workspace }}/dist" /nginx-blog/html/
+          cp -r "${{ github.workspace }}/dist" /html-blog/
 
       # - name: Typescript check
       #   run: |
