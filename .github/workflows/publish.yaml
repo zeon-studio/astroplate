@@ -6,12 +6,28 @@ on:
 jobs:
   publish-html:
     runs-on: ["blog"]
-    # defaults:
-    #   run:
-    #     shell: bash
+    permissions:
+      packages: write
+      contents: read
+    defaults:
+      run:
+        shell: bash
     steps:
-      - uses: actions/setup-node@v4
+      - name: Blank slate
+        run: |
+          echo "Clean up ${{ github.workspace }}"
+          mkdir -p "${{ github.workspace }}"
+          rm -rf "${{ github.workspace }}"/*
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v3
         with:
           node-version: 22.4.0
           registry-url: https://npm.pkg.github.com/
-      - uses: actions/checkout@v4
+
+      - name: Set up package
+        run: |
+          npm install -g yarn
+          yarn install
+          yarn build
