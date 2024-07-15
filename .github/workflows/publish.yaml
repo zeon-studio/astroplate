@@ -5,10 +5,7 @@ on:
 
 jobs:
   github:
-    runs-on: ["self-hosted", "Linux", "X64"]
-    # permissions:
-    #   packages: write
-    #   contents: read
+    runs-on: ["astrorunner"]
     defaults:
       run:
         shell: bash
@@ -25,17 +22,17 @@ jobs:
         with:
           node-version: 22.4.0
 
-      - name: Set up package
-        run: |
-          npm install -g yarn
-          yarn install
-          yarn build
-
-      - name: Copy build
-        run: |
-          echo "Clean up ${{ github.workspace }}"
-          ls "${{ github.workspace }}"
-          cp -r "${{ github.workspace }}/dist" /html-blog/
+      # - name: Set up package
+      #   run: |
+      #     npm install -g yarn
+      #     yarn install
+      #     yarn build
+      #
+      # - name: Copy build
+      #   run: |
+      #     echo "Clean up ${{ github.workspace }}"
+      #     ls "${{ github.workspace }}"
+      #     cp -r "${{ github.workspace }}/dist" /html-blog/
 
       # - name: Workdir Clean-up
       #   if: always()
