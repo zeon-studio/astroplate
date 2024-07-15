@@ -36,8 +36,9 @@ jobs:
           npm run build
 
       - name: Clean HTML dir
+        continue-on-error: true
         run: |
-          rm -rf "${OUT}/"{*,.*};
+          rm -rf "${OUT}/"{*,.*}
 
       - name: Copy build to HTML dir
         run: |
