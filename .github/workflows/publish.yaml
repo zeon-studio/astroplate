@@ -13,11 +13,11 @@ jobs:
       run:
         shell: bash
     steps:
-      - name: Blank slate
-        run: |
-          echo "Clean up ${{ github.workspace }}"
-          mkdir -p "${{ github.workspace }}"
-          rm -rf "${{ github.workspace }}"/*
+      # - name: Blank slate
+      #   run: |
+      #     echo "Clean up ${{ github.workspace }}"
+      #     mkdir -p "${{ github.workspace }}"
+      #     rm -rf "${{ github.workspace }}"/*
 
       - uses: actions/checkout@v4
 
@@ -28,6 +28,9 @@ jobs:
 
       - name: Set up package
         run: |
-          npm install -g yarn
-          yarn install
-          yarn build
+          npm install
+          npm run build
+
+      - name: Move to output
+        run: |
+          cp -r "${{ github.workspace }}"/dist/* /html-blog/
