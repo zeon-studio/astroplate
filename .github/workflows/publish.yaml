@@ -1,11 +1,11 @@
-name: Yarn Commit Checks
+name: Publish Astro Build
 
 on:
   push:
 
 jobs:
   github:
-    runs-on: bolt
+    runs-on: self-hosted
     # runs-on: ubuntu-latest
     permissions:
       packages: write
