@@ -26,14 +26,16 @@ jobs:
 
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 22.4.0
-          registry-url: https://npm.pkg.github.com/
+          # registry-url: https://npm.pkg.github.com/
+          cache: "yarn"
 
       - name: Set up package
         run: |
           npm install -g yarn
+          # yarn install --frozen-lockfile # optional, --immutable
           npm install
           npm run build
 
