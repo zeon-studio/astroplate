@@ -36,6 +36,9 @@ jobs:
         run: |
           npm install -g yarn
           yarn install --frozen-lockfile # optional, --immutable
+
+      - name: Build blog
+        run: |
           yarn run build
 
       - name: Clean HTML dir
