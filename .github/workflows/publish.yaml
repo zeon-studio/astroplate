@@ -41,7 +41,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         continue-on-error: true
         run: |
-          find "${OUT}" -name . -o -prune -exec rm -rf -- {} +
+          find "${OUT}" -mindepth 1 -name . -o -prune -exec rm -rf -- {} +
 
       - name: Copy build to HTML dir
         if: github.ref == 'refs/heads/main'
