@@ -2,6 +2,8 @@ name: Publish Astro Build
 
 on:
   push:
+    branches:
+      - main
 
 env:
   OUT: /html-blog
