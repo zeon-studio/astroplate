@@ -33,17 +33,17 @@ jobs:
           yarn install --frozen-lockfile # optional, --immutable
 
       - name: Build blog
-        if: ${{ github.ref == 'ref/head/main' }}
+        if: github.ref == 'refs/heads/main'
         run: |
           yarn run build
 
       - name: Clean HTML dir
-        if: ${{ github.ref == 'ref/head/main' }}
+        if: github.ref == 'refs/heads/main'
         continue-on-error: true
         run: |
           find "${OUT}/" -name . -o -prune -exec rm -rf -- {} +
 
       - name: Copy build to HTML dir
-        if: ${{ github.ref == 'ref/head/main' }}
+        if: github.ref == 'refs/heads/main'
         run: |
           cp -r "${{ github.workspace }}"/dist/* "${OUT}/"
