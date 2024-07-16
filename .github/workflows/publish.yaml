@@ -18,11 +18,6 @@ jobs:
       run:
         shell: bash
     steps:
-      # - name: Blank slate
-      #   run: |
-      #     echo "Clean up ${{ github.workspace }}"
-      #     mkdir -p "${{ github.workspace }}"
-      #     rm -rf "${{ github.workspace }}"/*
 
       - uses: actions/checkout@v4
 
@@ -38,14 +33,17 @@ jobs:
           yarn install --frozen-lockfile # optional, --immutable
 
       - name: Build blog
+        if: ${{ github.ref == 'ref/head/main' }}
         run: |
           yarn run build
 
       - name: Clean HTML dir
+        if: ${{ github.ref == 'ref/head/main' }}
         continue-on-error: true
         run: |
-          rm -rf "${OUT}/"{*,.*}
+          find "${OUT}/" -name . -o -prune -exec rm -rf -- {} +
 
       - name: Copy build to HTML dir
+        if: ${{ github.ref == 'ref/head/main' }}
         run: |
           cp -r "${{ github.workspace }}"/dist/* "${OUT}/"
