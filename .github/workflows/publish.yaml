@@ -35,9 +35,8 @@ jobs:
       - name: Set up package
         run: |
           npm install -g yarn
-          # yarn install --frozen-lockfile # optional, --immutable
-          npm install
-          npm run build
+          yarn install --frozen-lockfile # optional, --immutable
+          yarn run build
 
       - name: Clean HTML dir
         continue-on-error: true
