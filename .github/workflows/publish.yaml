@@ -18,6 +18,16 @@ jobs:
       run:
         shell: bash
     steps:
+      - name: Extract branch name
+        id: extract_branch
+        run: |
+          echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+
+      - name: Testing branch name
+        env:
+          BRANCH: ${{ steps.extract_branch.outputs.branch }}
+        run: |
+          echo ${BRANCH}
 
       - uses: actions/checkout@v4
 
@@ -39,7 +49,6 @@ jobs:
 
       - name: Clean HTML dir
         if: github.ref == 'refs/heads/main'
-        continue-on-error: true
         run: |
           find "${OUT}" -mindepth 1 -name . -o -prune -exec rm -rf -- {} +
 
