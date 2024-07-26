@@ -81,15 +81,15 @@ const { title, description, author, categories, image, date, tags } = post.data;
               }
             </ul>
           </div>
-          <div class="flex items-center lg:col-4">
-            <h5 class="mr-3">Share :</h5>
+          <!-- <div class="flex items-center lg:col-4">
+             <h5 class="mr-3">Share :</h5>
             <Share
               className="social-icons"
               title={title}
               description={description}
               slug={post.slug}
-            />
-          </div>
+            /> 
+          </div> -->
         </div>
         <Disqus className="mt-20" client:load />
       </article>
