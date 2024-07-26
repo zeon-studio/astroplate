@@ -49,7 +49,7 @@ const { className }: { className?: string } = Astro.props;
   const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
 
   matchMedia.addEventListener("change", () =>
-    toggleTheme(document.querySelectorAll("[data-theme-switcher]"))
+    toggleTheme(document.querySelectorAll("[data-theme-switcher]")),
   );
 
   function toggleTheme(themeSwitch: NodeListOf<Element>) {

@@ -13,7 +13,7 @@ const { tags, categories, allCategories } = Astro.props;
         {
           categories.map((category: any) => {
             const count = allCategories.filter(
-              (c: any) => c === category
+              (c: any) => c === category,
             ).length;
             return (
               <li>
