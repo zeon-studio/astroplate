@@ -34,11 +34,11 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22.4.0
       - run: |
           corepack enable &&
           corepack install # use the in-repo yarn version
-          
+
       # https://github.com/actions/setup-node/issues/182
       - name: Setup Yarn in Node
         uses: actions/setup-node@v4
