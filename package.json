@@ -19,8 +19,12 @@
     "@astrojs/rss": "^4.0.5",
     "@astrojs/sitemap": "^3.1.2",
     "@astrojs/tailwind": "^5.1.0",
+    "@expressive-code/plugin-collapsible-sections": "^0.35.3",
+    "@expressive-code/plugin-line-numbers": "^0.35.3",
+    "add": "^2.0.6",
     "astro": "^4.6.1",
     "astro-auto-import": "^0.4.2",
+    "astro-expressive-code": "^0.35.3",
     "astro-font": "^0.0.80",
     "date-fns": "^3.6.0",
     "disqus-react": "^1.1.5",
@@ -36,7 +40,8 @@
     "react-lite-youtube-embed": "^2.4.0",
     "remark-collapse": "^0.1.2",
     "remark-toc": "^9.0.0",
-    "swiper": "^11.1.1"
+    "swiper": "^11.1.1",
+    "yarn": "^1.22.22"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",
