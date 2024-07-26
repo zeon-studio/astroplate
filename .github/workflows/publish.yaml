@@ -52,6 +52,8 @@ jobs:
       - name: Build blog
         if: github.ref == 'refs/heads/main'
         run: |
+          export NODE_OPTIONS=--max_old_space_size=1536
+          # https://www.stevefenton.co.uk/blog/2023/07/astro-javascript-heap-out-of-memory/
           yarn run build
 
       - name: Clean HTML dir
