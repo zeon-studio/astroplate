@@ -1,0 +1,67 @@
+---
+title: "Some Reminders for myself"
+meta_title: ""
+description: "this is meta description"
+date: 2024-07-26
+image: ""
+categories: ["Software", "Learning"]
+author: "IMOchoa"
+tags: ["Cpp", "Reminders"]
+draft: false
+---
+
+# variables vs parameters vs arguments
+
+```jsx {"1. Provide the value prop here:":5-6} del={"2. Remove the disabled and active states:":8-10} ins={"3. Add this to render the children inside the button:":12-15}
+// labeled-line-markers.jsx
+<button
+  role="button"
+  {...props}
+  value={value}
+  className={buttonClassName}
+  disabled={disabled}
+  active={active}
+>
+  {children &&
+    !active &&
+    (typeof children === "string" ? <span>{children}</span> : children)}
+</button>
+```
+
+```cpp n
+int var; // VARIABLE
+
+// FUNCTION DECLARATION
+int function fname(int a, int b, int c);
+//                     ^      ^      ^
+//                     |__PARAMETERS_|    (always R-values)
+
+
+// CALL SITE
+int result = fname(1, 2, 3);
+//                 ^  ^  ^
+//                ARGUMENTS  (can be L- or R-values)
+```
+
+# L-Values vs R-Values
+
+> L-value simply means an object that has an identifiable location in memory (i.e. having an address).
+
+> What are R-values? an object that has no identifiable location in memory (i.e. having an address)
+
+[I'm an inline-style link with title](https://www.geeksforgeeks.org/lvalue-and-rvalue-in-c-language/ "Google's Homepage")
+
+# Statements vs Expressions
+
+- **Statements** are instructions that perform some action and do **not** return a value:
+  ```rust
+  let y = 6;
+  ```
+- **Expressions** evaluate to a resulting value (eg. macros & functions)
+
+```rust
+	let y ={
+    let x = 3;
+    x + 1
+	};
+```
