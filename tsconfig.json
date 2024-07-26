@@ -20,5 +20,5 @@
     }
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.astro"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules",".direnv"]
 }
