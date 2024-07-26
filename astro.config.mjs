@@ -38,7 +38,19 @@ export default defineConfig({
 
     ]
   }), expressiveCode({
+    // [Dark, Light] themes. Should switch in the future
+    themes: ["one-dark-pro"],
     plugins: [pluginLineNumbers(),pluginCollapsibleSections()],
+    defaultProps: {
+      // Disable line numbers by default
+      showLineNumbers: false,
+      // But enable line numbers for certain languages
+      overridesByLang: {
+        'js,ts,html': {
+          showLineNumbers: true,
+        },
+      },
+    },
 }
 ),  mdx()],
   markdown: {
