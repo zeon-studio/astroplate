@@ -178,5 +178,24 @@ const { title, meta_title, description, image, noindex, canonical } =
       <slot />
     </main>
     <Footer />
+    <script>
+      function scriptInit() {
+        // Dropdown Menu Toggler For Mobile
+        // ----------------------------------------
+        const dropdownMenuToggler: NodeListOf<HTMLElement> =
+          document.querySelectorAll(".nav-dropdown > .nav-link");
+
+        dropdownMenuToggler.forEach((toggler) => {
+          toggler?.addEventListener("click", (e: Event) => {
+            const target = e.target as HTMLElement;
+            target && target.parentElement?.classList.toggle("active");
+          });
+        });
+      }
+
+      document.addEventListener("astro:page-load", () => {
+        scriptInit();
+      });
+    </script>
   </body>
 </html>

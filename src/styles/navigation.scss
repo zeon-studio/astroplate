@@ -8,7 +8,7 @@ input#nav-toggle:checked + label #hide-button {
 }
 
 input#nav-toggle:checked ~ #nav-menu {
-  @apply block;
+  @apply max-lg:block;
 }
 
 .header {
@@ -37,14 +37,45 @@ input#nav-toggle:checked ~ #nav-menu {
 
 .nav-link {
   @apply text-dark hover:text-primary dark:text-darkmode-dark dark:hover:text-darkmode-primary block p-3 font-semibold transition lg:px-2 lg:py-3;
+
+  .arrow-icon {
+    @apply relative -z-10 inline-block align-[-2px] ml-1.5 text-xs/snug transition-transform duration-300;
+  }
 }
 
 .nav-dropdown {
   @apply mr-0;
+
+  // For Large Devices (Dropdown Arrow Icon)
+  &:hover .nav-link .arrow-icon {
+    @apply lg:rotate-180 lg:transform;
+  }
+
+  // For Small Devices
+  &.active {
+    // Dropdown Arrow Icon
+    .nav-link {
+      .arrow-icon {
+        @apply max-lg:rotate-180 max-lg:transform;
+      }
+      .icon {
+        @apply max-lg:rotate-180;
+      }
+    }
+
+    // Show Dropdown Menu On Click
+    .nav-dropdown-list {
+      @apply max-lg:block;
+    }
+  }
 }
 
 .nav-dropdown-list {
-  @apply z-10 min-w-[180px] rounded bg-body p-4 shadow dark:bg-darkmode-body;
+  @apply mx-auto min-w-[180px] max-w-[200px] rounded bg-body dark:bg-dark p-3 shadow lg:border dark:lg:border-transparent;
+
+  .nav-dropdown-link {
+    @apply block rounded px-3 py-1.5 font-medium text-dark/70 transition hover:bg-primary/5 dark:hover:bg-white/10 dark:hover:text-light hover:text-primary;
+  }
 }
 
 .nav-dropdown-item {
