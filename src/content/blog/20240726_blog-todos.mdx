@@ -1,0 +1,190 @@
+---
+title: "Some Reminders for myself"
+meta_title: ""
+description: "this is meta description"
+date: 2024-07-26
+image: ""
+categories: ["Software", "Nomenclature"]
+author: "IMOchoa"
+tags: ["Cpp", "Reminders"]
+draft: true
+---
+
+# variables vs parameters vs arguments
+
+```jsx {"1. Provide the value prop here:":5-6} del={"2. Remove the disabled and active states:":8-10} ins={"3. Add this to render the children inside the button:":12-15}
+// labeled-line-markers.jsx
+<button
+  role="button"
+  {...props}
+  value={value}
+  className={buttonClassName}
+  disabled={disabled}
+  active={active}
+>
+  {children &&
+    !active &&
+    (typeof children === "string" ? <span>{children}</span> : children)}
+</button>
+```
+
+```cpp n
+int var; // VARIABLE
+
+// FUNCTION DECLARATION
+int function fname(int a, int b, int c);
+//                     ^      ^      ^
+//                     |__PARAMETERS_|    (always R-values)
+
+
+// CALL SITE
+int result = fname(1, 2, 3);
+//                 ^  ^  ^
+//                ARGUMENTS  (can be L- or R-values)
+```
+
+# L-Values vs R-Values
+
+> L-value simply means an object that has an identifiable location in memory (i.e. having an address).
+
+> What are R-values? an object that has no identifiable location in memory (i.e. having an address)
+
+[I'm an inline-style link with title](https://www.geeksforgeeks.org/lvalue-and-rvalue-in-c-language/ "Google's Homepage")
+
+# Statements vs Expressions
+
+- **Statements** are instructions that perform some action and do **not** return a value:
+  ```rust
+  let y = 6;
+  ```
+- **Expressions** evaluate to a resulting value (eg. macros & functions)
+
+```rust
+	let y ={
+    let x = 3;
+    x + 1
+	};
+```
+
+- AI podcast summaries
+- embedding diagrams using cog & plantuml
+
+## Using pikchr
+
+`nix-shell -p python311Packages.cogapp --command "cog -rec <file.svg>"`
+`-z` to ignore `[[[end]]]`
+SVG file:
+
+`nix-shell -p python311Packages.cogapp pikchr --command "cog -re test.svg" && cat test.svg`
+
+```svg
+<!--
+[[[cog
+import cog
+from subprocess import Popen, PIPE, STDOUT
+
+diagram="""
+box move box
+box move box
+"""
+diagram = "\n".join(diagram.split())
+
+p = Popen(
+    ["pikchr", "-"+"-svg-only", "-"],
+    stdout=PIPE,
+    stdin=PIPE,
+    stderr=PIPE,
+    text=True,
+)
+stdout_data = p.communicate(input=diagram)[0]
+cog.out(stdout_data)
+p.close()
+# or p.exit()
+]]]-->
+<svg xmlns='http://www.w3.org/2000/svg' class="pikchr" viewBox="0 0 580.32 76.32">
+...
+</svg>
+<!-- [[[end]]] -->
+```
+
+`nix-shell -p pikchr --command "pikchr /tmp/hoho.txt"`
+
+- easy github actions with docker
+- practical decorators talk
+- vimcasts summaries
+- docker CE vs docker IO
+- using {} to separate traefik labels
+- docker squashing & logging
+- vim folding in files
+
+```bash
+
+# {{{1 GUI properties
+
+# |  {{{1 Border props
+
+#    |  {{{1 Top border
+
+# vim:fdm=marker:fen:fdl=0:
+
+```
+
+will require highlighting!
+
+nomenclature
+
+# variables vs parameters vs arguments
+
+```jsx {"1. Provide the value prop here:":5-6} del={"2. Remove the disabled and active states:":8-10} ins={"3. Add this to render the children inside the button:":12-15}
+// labeled-line-markers.jsx
+<button
+  role="button"
+  {...props}
+  value={value}
+  className={buttonClassName}
+  disabled={disabled}
+  active={active}
+>
+  {children &&
+    !active &&
+    (typeof children === "string" ? <span>{children}</span> : children)}
+</button>
+```
+
+```cpp n
+int var; // VARIABLE
+
+// FUNCTION DECLARATION
+int function fname(int a, int b, int c);
+//                     ^      ^      ^
+//                     |__PARAMETERS_|    (always R-values)
+
+
+// CALL SITE
+int result = fname(1, 2, 3);
+//                 ^  ^  ^
+//                ARGUMENTS  (can be L- or R-values)
+```
+
+# L-Values vs R-Values
+
+> L-value simply means an object that has an identifiable location in memory (i.e. having an address).
+
+> What are R-values? an object that has no identifiable location in memory (i.e. having an address)
+
+[I'm an inline-style link with title](https://www.geeksforgeeks.org/lvalue-and-rvalue-in-c-language/ "Google's Homepage")
+
+# Statements vs Expressions
+
+- **Statements** are instructions that perform some action and do **not** return a value:
+  ```rust
+  let y = 6;
+  ```
+- **Expressions** evaluate to a resulting value (eg. macros & functions)
+
+```rust
+	let y ={
+    let x = 3;
+    x + 1
+	};
+```
