@@ -1,5 +1,5 @@
 import config from "@/config/config.json";
-import languages from "@/config/language.json";
+import languages from "@/config/language.json"; ``
 import React from "react";
 
 const LanguageSwitcher = ({
@@ -21,11 +21,12 @@ const LanguageSwitcher = ({
 
   // Sort languages by weight and filter out disabled languages
   const sortedLanguages = languages
+    // @ts-ignore
     .filter(language => !config.settings.disable_languages.includes(language.languageCode))
     .sort((a, b) => a.weight - b.weight);
 
   return (
-    <div className="mr-5">
+    <div className={`mr-5 ${sortedLanguages.length > 1 ? "block" : "hidden"}`}>
       <select
         className="border border-dark text-dark bg-transparent dark:border-darkmode-primary dark:text-white py-1 rounded-sm cursor-pointer focus:ring-0 focus:border-dark dark:focus:border-darkmode-primary"
         onChange={(e) => {

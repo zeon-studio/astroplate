@@ -76,7 +76,7 @@ const filteredSupportedLang = supportedLang.filter(
 export { filteredSupportedLang as supportedLang };
 
 export const slugSelector = (url: string, lang: string) => {
-  const { default_language, default_language_in_path } = config.settings;
+  const { default_language, default_language_in_subdir } = config.settings;
   const { trailing_slash } = config.site;
 
   let constructedUrl;
@@ -108,7 +108,7 @@ export const slugSelector = (url: string, lang: string) => {
 
   // Add language path if necessary
   if (lang === default_language) {
-    constructedUrl = default_language_in_path
+    constructedUrl = default_language_in_subdir
       ? `/${lang}${constructedUrl}`
       : constructedUrl;
   }
