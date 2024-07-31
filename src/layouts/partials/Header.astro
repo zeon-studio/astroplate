@@ -2,33 +2,37 @@
 import Logo from "@/components/Logo.astro";
 import ThemeSwitcher from "@/components/ThemeSwitcher.astro";
 import config from "@/config/config.json";
-import menu from "@/config/menu.json";
+import languages from "@/config/language.json";
+import LanguageSwitcher from "@/helpers/LanguageSwitcher";
+import {
+  getLangFromUrl,
+  getTranslations,
+  slugSelector,
+} from "@/lib/utils/languageParser";
+import type { ContentEntryMap } from "astro:content";
 import { IoSearch } from "react-icons/io5";
 
-export interface ChildNavigationLink {
-  name: string;
-  url: string;
-}
+let lang = getLangFromUrl(Astro.url);
+const menu = await getTranslations(lang as keyof ContentEntryMap);
 
-export interface NavigationLink {
-  name: string;
-  url: string;
-  hasChildren?: boolean;
-  children?: ChildNavigationLink[];
-}
-
-const { main }: { main: NavigationLink[] } = menu;
 const { navigation_button, settings } = config;
+const { default_language } = config.settings;
 const { pathname } = Astro.url;
+const { get_started } = await getTranslations(lang as keyof ContentEntryMap);
+
+const disabledLanguages = config.settings.disable_languages as string[];
+if (disabledLanguages.includes(lang)) {
+  lang = default_language;
+}
 ---
 
 <header class={`header z-30 ${settings.sticky_header && "sticky top-0"}`}>
   <nav class="navbar container">
-    <!-- logo -->
+    {/* logo */}
     <div class="order-0">
       <Logo />
     </div>
-    <!-- navbar toggler -->
+    {/* navbar toggler */}
     <input id="nav-toggle" type="checkbox" class="hidden" />
     <label
       for="nav-toggle"
@@ -45,21 +49,23 @@ const { pathname } = Astro.url;
           transform="rotate(45 10 10)"></polygon>
       </svg>
     </label>
-    <!-- /navbar toggler -->
+    {/* /navbar toggler */}
+
     <ul
       id="nav-menu"
       class="navbar-nav order-3 hidden w-full pb-6 lg:order-1 lg:flex lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8"
     >
       {
-        main.map((menu) => (
+        menu?.main.map((menu: any) => (
           <>
             {menu.hasChildren ? (
               <li class="nav-item nav-dropdown group relative">
                 <span
                   class={`nav-link inline-flex items-center ${
-                    menu.children?.map(({ url }) => url).includes(pathname) ||
                     menu.children
-                      ?.map(({ url }) => `${url}/`)
+                      ?.map(({ url }: { url: string }) =>
+                        slugSelector(url, lang)
+                      )
                       .includes(pathname)
                       ? "active"
                       : ""
@@ -71,15 +77,13 @@ const { pathname } = Astro.url;
                   </svg>
                 </span>
                 <ul class="nav-dropdown-list hidden group-hover:block lg:invisible lg:absolute lg:block lg:opacity-0 lg:group-hover:visible lg:group-hover:opacity-100">
-                  {menu.children?.map((child) => (
+                  {menu.children?.map((child: any) => (
                     <li class="nav-dropdown-item">
                       <a
-                        href={child.url}
+                        href={slugSelector(child.url, lang)}
                         aria-label={child.name}
                         class={`nav-dropdown-link block ${
-                          (pathname === `${child.url}/` ||
-                            pathname === child.url) &&
-                          "active"
+                          pathname === slugSelector(child.url, lang) && "active"
                         }`}
                       >
                         {child.name}
@@ -91,10 +95,9 @@ const { pathname } = Astro.url;
             ) : (
               <li class="nav-item">
                 <a
-                  href={menu.url}
+                  href={slugSelector(menu.url, lang)}
                   class={`nav-link block ${
-                    (pathname === `${menu.url}/` || pathname === menu.url) &&
-                    "active"
+                    pathname === slugSelector(menu.url, lang) && "active"
                   }`}
                 >
                   {menu.name}
@@ -104,6 +107,7 @@ const { pathname } = Astro.url;
           </>
         ))
       }
+      {/* Navigation button */}
       {
         navigation_button.enable && (
           <li class="mt-4 inline-block lg:hidden">
@@ -111,13 +115,15 @@ const { pathname } = Astro.url;
               class="btn btn-outline-primary btn-sm"
               href={navigation_button.link}
             >
-              {navigation_button.label}
+              {get_started}
             </a>
           </li>
         )
       }
     </ul>
+
     <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
+      {/* Search button */}
       {
         settings.search && (
           <button
@@ -129,14 +135,20 @@ const { pathname } = Astro.url;
           </button>
         )
       }
+      {/* Theme switcher */}
       <ThemeSwitcher className="mr-5" />
+
+      {/* Language switcher */}
+      <LanguageSwitcher client:load lang={lang} pathname={pathname} />
+
+      {/* Navigation button */}
       {
         navigation_button.enable && (
           <a
             class="btn btn-outline-primary btn-sm hidden lg:inline-block"
             href={navigation_button.link}
           >
-            {navigation_button.label}
+            {get_started}
           </a>
         )
       }

@@ -1,0 +1,24 @@
+{
+  "main": [
+    { "name": "Accueil", "url": "/" },
+    { "name": "À propos", "url": "/about" },
+    { "name": "Éléments", "url": "/elements" },
+    {
+      "name": "Pages",
+      "url": "",
+      "hasChildren": true,
+      "children": [
+        { "name": "Contact", "url": "/contact" },
+        { "name": "Blog", "url": "/blog" },
+        { "name": "Auteurs", "url": "/authors" },
+        { "name": "Catégories", "url": "/categories" },
+        { "name": "Étiquettes", "url": "/tags" },
+        { "name": "Page 404", "url": "/404" }
+      ]
+    }
+  ],
+  "footer": [
+    { "name": "Éléments", "url": "/elements" },
+    { "name": "Politique de confidentialité", "url": "/privacy-policy" }
+  ]
+}

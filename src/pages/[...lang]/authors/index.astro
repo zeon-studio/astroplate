@@ -1,0 +1,44 @@
+---
+import AuthorCard from "@/components/AuthorCard.astro";
+import Base from "@/layouts/Base.astro";
+import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
+import { supportedLang } from "@/lib/utils/languageParser";
+import PageHeader from "@/partials/PageHeader.astro";
+import { type ContentEntryMap } from "astro:content";
+
+const COLLECTION_FOLDER = "authors";
+
+export function getStaticPaths() {
+  const paths = supportedLang.map((lang) => ({
+    params: { lang: lang || undefined },
+  }));
+  return paths;
+}
+
+const { lang } = Astro.params;
+const authorIndex = await getListPage(
+  COLLECTION_FOLDER,
+  lang as keyof ContentEntryMap
+);
+const authors = await getSinglePage(
+  COLLECTION_FOLDER,
+  lang as keyof ContentEntryMap
+);
+---
+
+<Base title={authorIndex[0].data.title}>
+  <PageHeader title={authorIndex[0].data.title} />
+  <section class="section-sm pb-0">
+    <div class="container">
+      <div class="row justify-center">
+        {
+          authors.map((author) => (
+            <div class="mb-14 md:col-6 lg:col-4">
+              <AuthorCard data={author} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>

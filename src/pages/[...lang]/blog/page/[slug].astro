@@ -1,0 +1,110 @@
+---
+import BlogCard from "@/components/BlogCard.astro";
+import Pagination from "@/components/Pagination.astro";
+import config from "@/config/config.json";
+import Base from "@/layouts/Base.astro";
+import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
+import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
+import { supportedLang } from "@/lib/utils/languageParser";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import PageHeader from "@/partials/PageHeader.astro";
+import PostSidebar from "@/partials/PostSidebar.astro";
+import type { ContentEntryMap } from "astro:content";
+const BLOG_FOLDER = "blog";
+const { default_language } = config.settings;
+
+let { slug, lang } = Astro.params;
+
+if (!lang) {
+  lang = default_language;
+}
+
+const postIndex: any = await getListPage(
+  BLOG_FOLDER,
+  lang as keyof ContentEntryMap
+);
+const posts = await getSinglePage(BLOG_FOLDER, lang as keyof ContentEntryMap);
+const allCategories = await getAllTaxonomy(
+  lang as keyof ContentEntryMap,
+  "categories"
+);
+const categories = await getTaxonomy(
+  lang as keyof ContentEntryMap,
+  "categories"
+);
+const tags = await getTaxonomy(lang as keyof ContentEntryMap, "tags");
+const sortedPosts = sortByDate(posts);
+const totalPages = Math.ceil(posts.length / config.settings.pagination);
+const currentPage = slug && !isNaN(Number(slug)) ? Number(slug) : 1;
+const indexOfLastPost = currentPage * config.settings.pagination;
+const indexOfFirstPost = indexOfLastPost - config.settings.pagination;
+const currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+export async function getStaticPaths() {
+  const BLOG_FOLDER = "blog";
+
+  const paths = await Promise.all(
+    supportedLang.map(async (lang) => {
+      const posts = await getSinglePage(
+        BLOG_FOLDER,
+        lang as keyof ContentEntryMap
+      );
+      const totalPages = Math.ceil(posts.length / config.settings.pagination);
+      const langString = lang.toString();
+      const langPaths = [];
+
+      for (let i = 1; i < totalPages; i++) {
+        langPaths.push({
+          params: {
+            lang: langString || undefined,
+            slug: (i + 1).toString(),
+          },
+        });
+      }
+
+      return langPaths;
+    })
+  );
+
+  return paths.flat();
+}
+---
+
+<Base
+  title={postIndex[0].data.title}
+  meta_title={postIndex[0].data.meta_title}
+  image={postIndex[0].data.image}
+  description={postIndex[0].data.description}
+>
+  <PageHeader title={postIndex[0].data.title} />
+  <section class="section">
+    <div class="container">
+      <div class="row gx-5">
+        <!-- blog posts -->
+        <div class="lg:col-8">
+          <div class="row">
+            {
+              currentPosts.map((post) => (
+                <div class="mb-14 md:col-6">
+                  <BlogCard data={post} />
+                </div>
+              ))
+            }
+          </div>
+          <Pagination
+            section={BLOG_FOLDER}
+            currentPage={currentPage}
+            totalPages={totalPages}
+          />
+        </div>
+
+        <!-- sidebar -->
+        <PostSidebar
+          categories={categories}
+          tags={tags}
+          allCategories={allCategories}
+        />
+      </div>
+    </div>
+  </section>
+</Base>

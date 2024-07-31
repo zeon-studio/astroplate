@@ -1,4 +1,8 @@
 ---
+import { getLangFromUrl, slugSelector } from "@/lib/utils/languageParser";
+
+const lang = getLangFromUrl(Astro.url);
+
 type Pagination = {
   section?: string;
   currentPage?: number;
@@ -27,8 +31,11 @@ for (let i = 1; i <= totalPages; i++) {
         <a
           href={
             indexPageLink
-              ? `${section ? "/" + section : "/"}`
-              : `${section ? "/" + section : ""}/page/${currentPage - 1}`
+              ? slugSelector(`/${section ? section : ""}`, lang)
+              : slugSelector(
+                  `/${section ? section : ""}/page/${currentPage - 1}`,
+                  lang
+                )
           }
           class="rounded px-2 py-1.5 text-dark hover:bg-theme-light dark:text-darkmode-dark dark:hover:bg-darkmode-theme-light"
         >
@@ -77,11 +84,12 @@ for (let i = 1; i <= totalPages; i++) {
           </span>
         ) : (
           <a
-            href={
+            href={slugSelector(
               i === 0
-                ? `${section ? "/" + section : "/"}`
-                : `${section ? "/" + section : ""}/page/${pagination}`
-            }
+                ? `/${section ? section : ""}`
+                : `/${section ? section : ""}/page/${pagination}`,
+              lang
+            )}
             aria-current="page"
             class="rounded px-4 py-2 text-dark hover:bg-theme-light dark:text-darkmode-dark dark:hover:bg-darkmode-theme-light"
           >
@@ -93,7 +101,10 @@ for (let i = 1; i <= totalPages; i++) {
       {/* next page */}
       {hasNextPage ? (
         <a
-          href={`${section ? "/" + section : ""}/page/${currentPage + 1}`}
+          href={slugSelector(
+            `/${section ? section : ""}/page/${currentPage + 1}`,
+            lang
+          )}
           class="rounded px-2 py-1.5 text-dark hover:bg-theme-light dark:text-darkmode-dark dark:hover:bg-darkmode-theme-light"
         >
           <span class="sr-only">Next</span>
