@@ -1,5 +1,5 @@
 import config from "@/config/config.json";
-import languages from "@/config/language.json"; ``
+import languages from "@/config/language.json";
 import React from "react";
 
 const LanguageSwitcher = ({
@@ -9,7 +9,7 @@ const LanguageSwitcher = ({
   lang: string;
   pathname: string;
 }) => {
-  const { default_language } = config.settings;
+  const { default_language, default_language_in_subdir } = config.settings;
 
   // Function to remove trailing slash if necessary
   const removeTrailingSlash = (path: string) => {
@@ -33,11 +33,17 @@ const LanguageSwitcher = ({
           const selectedLang = e.target.value;
           let newPath;
           const baseUrl = window.location.origin;
+
           if (selectedLang === default_language) {
-            newPath = `${baseUrl}${removeTrailingSlash(pathname.replace(`/${lang}`, ""))}`;
+            if (default_language_in_subdir) {
+              newPath = `${baseUrl}/${default_language}${removeTrailingSlash(pathname.replace(`/${lang}`, ""))}`;
+            } else {
+              newPath = `${baseUrl}${removeTrailingSlash(pathname.replace(`/${lang}`, ""))}`;
+            }
           } else {
             newPath = `/${selectedLang}${removeTrailingSlash(pathname.replace(`/${lang}`, ""))}`;
           }
+
           window.location.href = newPath;
         }}
         value={lang}

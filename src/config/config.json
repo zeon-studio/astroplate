@@ -22,7 +22,7 @@
     "blog_folder": "blog",
     "default_language": "en",
     "disable_languages": [],
-    "default_language_in_subdir": true
+    "default_language_in_subdir": false
   },
 
   "params": {
