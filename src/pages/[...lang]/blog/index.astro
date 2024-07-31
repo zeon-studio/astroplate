@@ -19,7 +19,7 @@ export function getStaticPaths() {
 }
 const { lang } = Astro.params;
 const BLOG_FOLDER = "blog";
-const postIndex: any = await getListPage(
+const postIndex = await getListPage(
   BLOG_FOLDER,
   lang as keyof ContentEntryMap
 );

@@ -6,18 +6,9 @@ import { supportedLang } from "@/lib/utils/languageParser";
 import { markdownify } from "@/lib/utils/textConverter";
 import CallToAction from "@/partials/CallToAction.astro";
 import Testimonial from "@/partials/Testimonial.astro";
-import type { Button, Feature } from "@/types";
-import type { ContentCollectionKey, ContentEntryMap } from "astro:content";
+import type { Feature } from "@/types";
+import type { ContentEntryMap } from "astro:content";
 import { FaCheck } from "react-icons/fa";
-interface Homepage {
-  banner: {
-    title: string;
-    content: string;
-    image: string;
-    button: Button;
-  };
-  features: Feature[];
-}
 
 export function getStaticPaths() {
   const paths = supportedLang.map((lang) => ({
@@ -27,20 +18,19 @@ export function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
-const homepage: any = await getListPage(
-  "homepage" as ContentCollectionKey,
-  lang as keyof ContentEntryMap
-);
-const { banner, features }: Homepage = homepage[0].data;
+const homepage = await getListPage("homepage", lang as keyof ContentEntryMap);
+const { banner, features } = homepage[0].data;
 
 const testimonial = await getSinglePage(
-  "sections/testimonial" as ContentCollectionKey,
-  lang as keyof ContentEntryMap
+  "sections",
+  lang as keyof ContentEntryMap,
+  "testimonial"
 );
 
 const call_to_action = await getSinglePage(
-  "sections/call-to-action" as ContentCollectionKey,
-  lang as keyof ContentEntryMap
+  "sections",
+  lang as keyof ContentEntryMap,
+  "call-to-action"
 );
 ---
 

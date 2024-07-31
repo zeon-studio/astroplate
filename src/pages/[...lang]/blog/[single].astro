@@ -10,12 +10,12 @@ export async function getStaticPaths() {
 
   const paths = await Promise.all(
     supportedLang.map(async (lang) => {
-      const posts: any = await getSinglePage(
+      const posts = await getSinglePage(
         BLOG_FOLDER,
         lang as keyof ContentEntryMap
       );
 
-      return posts.map((post: any) => ({
+      return posts.map((post) => ({
         params: {
           lang: lang || undefined,
           single: post.slug.split("/").pop(),

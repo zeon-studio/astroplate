@@ -4,7 +4,11 @@ import ThemeSwitcher from "@/components/ThemeSwitcher.astro";
 import config from "@/config/config.json";
 import languages from "@/config/language.json";
 import LanguageSwitcher from "@/helpers/LanguageSwitcher";
-import { getLangFromUrl, getTranslations, slugSelector } from "@/lib/utils/languageParser";
+import {
+  getLangFromUrl,
+  getTranslations,
+  slugSelector,
+} from "@/lib/utils/languageParser";
 import type { ContentEntryMap } from "astro:content";
 import { IoSearch } from "react-icons/io5";
 
@@ -133,12 +137,10 @@ if (disabledLanguages.includes(lang)) {
       }
       {/* Theme switcher */}
       <ThemeSwitcher className="mr-5" />
+
       {/* Language switcher */}
-      {
-        languages.length > 1 && (
-          <LanguageSwitcher client:load lang={lang} pathname={pathname} />
-        )
-      }
+      <LanguageSwitcher client:load lang={lang} pathname={pathname} />
+
       {/* Navigation button */}
       {
         navigation_button.enable && (

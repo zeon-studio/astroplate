@@ -9,7 +9,7 @@ import {
 import config from "@/config/config.json";
 import languages from "@/config/language.json";
 
-export const getSinglePage = async <C extends CollectionKey>(
+export const getSP = async <C extends CollectionKey>(
   collectionName: C,
   lang: keyof ContentEntryMap | undefined
 ): Promise<CollectionEntry<C>[]> => {
@@ -40,7 +40,7 @@ export const getSinglePage = async <C extends CollectionKey>(
   return removeDrafts;
 };
 
-export const getListPage = async <C extends CollectionKey>(
+export const getLP = async <C extends CollectionKey>(
   collectionName: C,
   lang: keyof ContentEntryMap | undefined
 ): Promise<CollectionEntry<C>[]> => {
@@ -62,6 +62,70 @@ export const getListPage = async <C extends CollectionKey>(
     contentDir as any,
     ({ id }: any) => {
       return id.startsWith(collectionName);
+    }
+  )) as CollectionEntry<C>[];
+
+  return pages;
+};
+
+export const getSinglePage = async <C extends CollectionKey>(
+  collectionName: C,
+  lang: keyof ContentEntryMap | undefined,
+  subCollectionName?: string
+): Promise<CollectionEntry<C>[]> => {
+  const { default_language } = config.settings;
+
+  const selectedLanguageCode = lang || default_language;
+
+  const language = languages.find(
+    (l: any) => l.languageCode === selectedLanguageCode
+  );
+
+  if (!language) {
+    throw new Error("Language not found");
+  }
+
+  const { contentDir } = language;
+
+  const path = subCollectionName
+    ? `${contentDir}/${subCollectionName}`
+    : contentDir;
+
+  const pages: CollectionEntry<C>[] = (await getCollection(
+    collectionName as any,
+    ({ id }: any) => {
+      return id.startsWith(path) && !id.endsWith("-index.md");
+    }
+  )) as CollectionEntry<C>[];
+
+  // @ts-ignore
+  const removeDrafts = pages.filter((data) => !data.data.draft);
+
+  return removeDrafts;
+};
+
+export const getListPage = async <C extends CollectionKey>(
+  collectionName: C,
+  lang: keyof ContentEntryMap | undefined
+): Promise<CollectionEntry<C>[]> => {
+  const { default_language } = config.settings;
+
+  const selectedLanguageCode = lang || default_language;
+
+  const language = languages.find(
+    (l: any) => l.languageCode == selectedLanguageCode
+  );
+
+  if (!language) {
+    throw new Error("Language not found");
+  }
+
+  const { contentDir } = language;
+
+  const pages: CollectionEntry<C>[] = (await getCollection(
+    collectionName as any,
+    ({ id }: any) => {
+      return id.startsWith(contentDir);
     }
   )) as CollectionEntry<C>[];
 

@@ -16,7 +16,7 @@ export function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
-const authorIndex: any = await getListPage(
+const authorIndex = await getListPage(
   COLLECTION_FOLDER,
   lang as keyof ContentEntryMap
 );

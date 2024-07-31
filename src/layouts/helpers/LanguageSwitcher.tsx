@@ -9,7 +9,7 @@ const LanguageSwitcher = ({
   lang: string;
   pathname: string;
 }) => {
-  const { default_language } = config.settings;
+  const { default_language, default_language_in_subdir } = config.settings;
 
   // Function to remove trailing slash if necessary
   const removeTrailingSlash = (path: string) => {
@@ -21,22 +21,29 @@ const LanguageSwitcher = ({
 
   // Sort languages by weight and filter out disabled languages
   const sortedLanguages = languages
+    // @ts-ignore
     .filter(language => !config.settings.disable_languages.includes(language.languageCode))
     .sort((a, b) => a.weight - b.weight);
 
   return (
-    <div className="mr-5">
+    <div className={`mr-5 ${sortedLanguages.length > 1 ? "block" : "hidden"}`}>
       <select
         className="border border-dark text-dark bg-transparent dark:border-darkmode-primary dark:text-white py-1 rounded-sm cursor-pointer focus:ring-0 focus:border-dark dark:focus:border-darkmode-primary"
         onChange={(e) => {
           const selectedLang = e.target.value;
           let newPath;
           const baseUrl = window.location.origin;
+
           if (selectedLang === default_language) {
-            newPath = `${baseUrl}${removeTrailingSlash(pathname.replace(`/${lang}`, ""))}`;
+            if (default_language_in_subdir) {
+              newPath = `${baseUrl}/${default_language}${removeTrailingSlash(pathname.replace(`/${lang}`, ""))}`;
+            } else {
+              newPath = `${baseUrl}${removeTrailingSlash(pathname.replace(`/${lang}`, ""))}`;
+            }
           } else {
             newPath = `/${selectedLang}${removeTrailingSlash(pathname.replace(`/${lang}`, ""))}`;
           }
+
           window.location.href = newPath;
         }}
         value={lang}
