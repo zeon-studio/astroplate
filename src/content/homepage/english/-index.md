@@ -18,10 +18,11 @@ features:
       - "VHS"
       - "8mm"
       - "Hi8"
+      - "Minidisc"
       - "Supplied to you via download, USB, or both"
     button:
       enable: true
-      label: "Get in touch"
+      label: "Pricing"
       link: "#"
 
   - title: "Sell Old Electronics"
@@ -36,8 +37,8 @@ features:
       - "Mass storage devices"
     button:
       enable: true
-      label: "Sell With Us"
-      link: "https://github.com/zeon-studio/astroplate"
+      label: "Message us on WhatsApp"
+      link: "https://wa.link/ul8pm9"
 
   - title: "Repair and Refurbish"
     image: "/images/service-3.png"
