@@ -1,10 +1,8 @@
 ---
 import config from "@/config/config.json";
 
-const {
-  theme_switcher,
-  default_theme,
-}: { theme_switcher: boolean; default_theme: string } = config.settings;
+const { theme_switcher }: { theme_switcher: boolean; default_theme: string } =
+  config.settings;
 const { className }: { className?: string } = Astro.props;
 ---
 
@@ -49,7 +47,7 @@ const { className }: { className?: string } = Astro.props;
   const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
 
   matchMedia.addEventListener("change", () =>
-    toggleTheme(document.querySelectorAll("[data-theme-switcher]"))
+    toggleTheme(document.querySelectorAll("[data-theme-switcher]")),
   );
 
   function toggleTheme(themeSwitch: NodeListOf<Element>) {
