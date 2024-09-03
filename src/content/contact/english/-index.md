@@ -10,6 +10,8 @@ draft: false
 * WhatsApp: [07984599771](wa.link/hpgb4s)
 * Email: [matt.canty@controlaltrepeat.net](email:matt.canty@controlaltrepeat.net)
 
+![image](/images/image-placeholder.png)
+
 
 ### Postal
 
