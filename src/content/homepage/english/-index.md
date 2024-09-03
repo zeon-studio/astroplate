@@ -22,8 +22,8 @@ features:
       - "Supplied to you via download, USB, or both"
     button:
       enable: true
-      label: "Pricing"
-      link: "#"
+      label: "Contact Us"
+      link: "/contact"
 
   - title: "Sell Old Electronics"
     image: "/images/service-2.png"
@@ -37,8 +37,8 @@ features:
       - "Mass storage devices"
     button:
       enable: true
-      label: "Message us on WhatsApp"
-      link: "https://wa.link/ul8pm9"
+      label: "Contact Us"
+      link: "/contact"
 
   - title: "Repair and Refurbish"
     image: "/images/service-3.png"
@@ -49,6 +49,6 @@ features:
       - "Install newer versions of Windows operating systems (Windows 11) or go Linux!"
     button:
       enable: false
-      label: ""
-      link: ""
+      label: "Contact Us"
+      link: "/contact"
 ---
