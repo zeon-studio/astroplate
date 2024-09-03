@@ -1,8 +1,8 @@
 {
-  "name": "astroplate",
+  "name": "control-alt-repeat",
   "version": "4.0.0",
-  "description": "Astro and Tailwindcss boilerplate",
-  "author": "zeon.studio",
+  "description": "We're aiming to reduce your electronic possessions going unloved or to waste.",
+  "author": "Control Alt Repeat",
   "license": "MIT",
   "packageManager": "yarn@1.22.19",
   "scripts": {
