@@ -1,15 +1,15 @@
 ---
 title: "Contact"
 meta_title: ""
-description: "this is meta description"
+description: "Control Alt Repeats contact information"
 draft: false
 ---
 
 ### DMs
 
-* Email: [matt.canty@controlaltrepeat.net](email:matt.canty@controlaltrepeat.net)
-* WhatsApp: [07984599771](wa.link/hpgb4s)
-  * Scan this QR code to open up a chat with us on WhatsApp
+* Email: [matt.canty@controlaltrepeat.net](mailto:matt.canty@controlaltrepeat.net)
+* WhatsApp: [07984599771](https://wa.link/hpgb4s)
+  * Scan this QR code on your phone to open up a chat with us on WhatsApp
   ![image](/images/whatsapp-qr.png)
 
 
