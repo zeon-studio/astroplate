@@ -7,10 +7,10 @@ draft: false
 
 ### DMs
 
-* WhatsApp: [07984599771](wa.link/hpgb4s)
 * Email: [matt.canty@controlaltrepeat.net](email:matt.canty@controlaltrepeat.net)
-
-![image](/images/image-placeholder.png)
+* WhatsApp: [07984599771](wa.link/hpgb4s)
+  * Scan this QR code to open up a chat with us on WhatsApp
+  ![image](/images/whatsapp-qr.png)
 
 
 ### Postal
