@@ -27,7 +27,7 @@ Which lawful basis we rely on may affect your data protection rights which are i
 * **Your right to erasure** - You have the right to ask us to delete your personal information. [You can read more about this right here][RTE].
 * **Your right to restriction of processing** - You have the right to ask us to limit how we can use your personal information. [You can read more about this right here][RTROP].
 * **Your right to object to processing** - You have the right to object to the processing of your personal data. [You can read more about this right here][RTO].
-* **Your right to data portability - You have the right to ask that we transfer the personal information you gave us to another organisation, or to you. [You can read more about this right here][RTDP].
+* **Your right to data portability** - You have the right to ask that we transfer the personal information you gave us to another organisation, or to you. [You can read more about this right here][RTDP].
 * **Your right to withdraw consent** – When we use consent as our lawful basis you have the right to withdraw your consent at any time. [You can read more about this right here][RTWC].
 
 If you make a request, we must respond to you without undue delay and in any event within one month.
