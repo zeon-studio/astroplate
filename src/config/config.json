@@ -33,7 +33,7 @@
   "navigation_button": {
     "enable": true,
     "label": "Contact Us",
-    "link": "https://github.com/Control-Alt-Repeat/website"
+    "link": "https://controlaltrepeat.net/contact/"
   },
 
   "disqus": {
