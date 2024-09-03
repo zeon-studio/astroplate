@@ -40,38 +40,10 @@ const {
   <section class="section-sm">
     <div class="container">
       <div class="row">
-        <div class="content">
-          <Content />
-        </div>
         <div class="mx-auto md:col-10 lg:col-6">
-          <form action={contact_form_action} method="POST">
-            <div class="mb-6">
-              <label for="email" class="form-label">
-                {working_mail}
-                <span class="text-red-500">*</span>
-              </label>
-              <input
-                id="email"
-                name="email"
-                class="form-input"
-                placeholder="john.doe@email.com"
-                type="email"
-              />
-            </div>
-            <div class="mb-6">
-              <label for="message" class="form-label">
-                {anything_else}
-                <span class="text-red-500">*</span>
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                class="form-input"
-                placeholder={contact_message_placeholder}
-                rows="8"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">{submit}</button>
-          </form>
+          <div class="content">
+            <Content />
+          </div>
         </div>
       </div>
     </div>
