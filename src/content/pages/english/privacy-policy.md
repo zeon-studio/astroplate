@@ -1,5 +1,5 @@
 ---
-title: "Privacy"
+title: "Privacy Policy"
 meta_title: ""
 description: "Control Alt Repeat Privacy Policy"
 draft: false

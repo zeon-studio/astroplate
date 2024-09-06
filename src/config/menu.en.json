@@ -1,7 +1,14 @@
 {
   "main": [
     { "name": "Home", "url": "/" },
-    { "name": "Contact", "url": "/contact" }
+    {
+      "name": "Services",
+      "url": "",
+      "hasChildren": true,
+      "children": [
+        { "name": "To Digital", "url": "/todigital" }
+      ]
+    }
   ],
   "footer": [
     { "name": "Privacy Policy", "url": "/privacy-policy" }
