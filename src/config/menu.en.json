@@ -11,6 +11,7 @@
     }
   ],
   "footer": [
+    { "name": "Feedback", "url": "https://docs.google.com/forms/d/e/1FAIpQLSfoYtDqo6BNAAu76BAL061qGeZBXpGs2mpwWgsDc7oBtRK-Lw/viewform" },
     { "name": "Privacy Policy", "url": "/privacy-policy" }
   ]
 }
