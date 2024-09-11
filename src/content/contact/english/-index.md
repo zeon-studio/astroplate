@@ -10,7 +10,7 @@ draft: false
 * Email: [matt.canty@controlaltrepeat.net](mailto:matt.canty@controlaltrepeat.net)
 * WhatsApp: [07984599771](https://wa.link/hpgb4s)
   * Scan this QR code on your phone to open up a chat with us on WhatsApp
-  ![image](/images/whatsapp-qr.png)
+![image](/images/whatsapp-qr.png)
 
 
 ### Postal
@@ -24,8 +24,9 @@ LA1 4XQ
 
 ### Locate Us
 
+* Open Street Map: [54.044994,-2.797446]https://www.openstreetmap.org/way/639187931#map=19/54.044994/-2.797446&layers=N
 * what3words: [carbon.clips.cube](https://what3words.com/carbon.clips.cube)
-* OS Maps: [54.045027,-2.797338](https://explore.osmaps.com/pin?lat=54.045027&lon=-2.797338&zoom=18.0000)
+* OS Maps: [54.044994,-2.797446](https://explore.osmaps.com/pin?lat=54.044994&lon=-2.797446&zoom=18.0000)
 * Google Maps: [54°02'41.3"N 2°47'52.0"W](https://maps.app.goo.gl/F4phV4RcQen2sjTM6)
 
 
