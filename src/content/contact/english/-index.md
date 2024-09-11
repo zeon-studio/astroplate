@@ -24,7 +24,7 @@ LA1 4XQ
 
 ### Locate Us
 
-* Open Street Map: [54.044994,-2.797446]https://www.openstreetmap.org/way/639187931#map=19/54.044994/-2.797446&layers=N
+* Open Street Map: [54.044994,-2.797446](https://www.openstreetmap.org/way/639187931#map=19/54.044994/-2.797446&layers=N)
 * what3words: [carbon.clips.cube](https://what3words.com/carbon.clips.cube)
 * OS Maps: [54.044994,-2.797446](https://explore.osmaps.com/pin?lat=54.044994&lon=-2.797446&zoom=18.0000)
 * Google Maps: [54°02'41.3"N 2°47'52.0"W](https://maps.app.goo.gl/F4phV4RcQen2sjTM6)
