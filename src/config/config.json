@@ -8,7 +8,7 @@
     "favicon_32": "/images/favicon-32x32.png",
     "favicon_16": "/images/favicon-16x16.png",
     "site_web_manifest": "/site.webmanifest",
-    "favicon": "/images/favicon.png",
+    "favicon": "/images/favicon-32x32.png",
     "logo": "/images/logo.png",
     "logo_darkmode": "/images/logo-darkmode.png",
     "logo_width": "150",
