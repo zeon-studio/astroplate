@@ -1,3 +1,4 @@
+
 ---
 # Banner
 banner:
@@ -11,23 +12,23 @@ banner:
 
 # Features
 features:
-  - title: "\"To Digital\" Services"
+  - title: "Digital Conversion Services"
     image: "/images/service-1.png"
-    content: "We have a growing range of devices to help you recover video, audio, and data from old media:"
+    content: "Preserve your precious memories with our growing range of media conversion solutions. We specialize in recovering video, audio, and data from outdated formats, including:"
     bulletpoints:
       - "VHS"
-      - "8mm"
       - "Hi8"
       - "Minidisc"
-      - "Supplied to you via download, USB, or both"
+      - "Computer drives (IDE/SATA/mSATA etc)"
+      - "Your media will be securely transferred and delivered via digital download, USB, or both—your choice."
     button:
       enable: true
       label: "Contact Us"
       link: "/contact"
 
-  - title: "Sell Old Electronics"
+  - title: "Reclaim Value from Your Electronics"
     image: "/images/service-2.png"
-    content: "We can help you recover value from electronics. All we take is a 20% commission from the final sale price:"
+    content: Turn your unused tech into cash with ease! We handle everything, from listing to sale, with just a 30% commission from the final sale price. We specialize in selling:"
     bulletpoints:
       - "Games console"
       - "Computer games"
@@ -40,15 +41,15 @@ features:
       label: "Contact Us"
       link: "/contact"
 
-  - title: "Repair and Refurbish"
+  - title: "Upgrade Your Laptop or PC for Better Performance"
     image: "/images/service-3.png"
-    content: "We can upgrade laptops or computers to give them more power and longer life. Often this is a simple process. However it may not always be possible with some types of laptop:"
+    content: "Breathe new life into your laptop or computer with our easy upgrade services. In many cases, a simple upgrade can significantly boost power and extend the life of your device. However, some laptops may have limitations, so we’ll assess your specific needs first. Our services include:"
     bulletpoints:
-      - "Increase the performance of you laptop or PC with a memory and RAM upgrade."
-      - "Replace broken laptop screens."
-      - "Install newer versions of Windows operating systems (Windows 11) or go Linux!"
+      - "Boost performance with a memory and RAM upgrade"
+      - "Replace broken laptop screens for a fresh, functional display"
+      - "Install the latest operating systems like Windows 11 or even switch to Linux"
     button:
-      enable: false
+      enable: true
       label: "Contact Us"
       link: "/contact"
 ---
