@@ -2,7 +2,7 @@
 # Banner
 banner:
   title: "Control Alt Repeat"
-  content: "Control Alt Repeat is a small company based in the North West of the UK. We're aiming to reduce electronic waste going unloved or to waste.<br />We can help with recoving old memories from tapes, selling your unused games consoles, or minor repairs and refurbishing. Read on to find out more about our services."
+  content: "Bringing New Life to Your Forgotten Tech<br /><br />We're a small, passionate company based in the North West of the UK, dedicated to reducing electronic waste. Whether it's recovering cherished memories from old tapes, selling unused game consoles, or performing minor repairs and refurbishments, we're here to ensure your old electronics find new purpose.<br /><br />Explore our services to see how we can help you give your gadgets a second chance."
   image: "/images/banner.png"
   button:
     enable: true
