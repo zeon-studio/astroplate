@@ -41,11 +41,58 @@ const {
     <div class="container">
       <div class="row">
         <div class="mx-auto md:col-10 lg:col-6">
-          <div class="content">
-            <Content />
-          </div>
+          <!-- Please note unpkg.com is unaffiliated with Google Maps Platform. -->
+          <script type="module" src="https://unpkg.com/@googlemaps/extended-component-library@0.6"></script>
+
+          <!-- Uses components from the Extended Component Library; see
+              https://github.com/googlemaps/extended-component-library for more information
+              on these HTML tags and how to configure them. -->
+          <gmpx-api-loader key="AIzaSyDqAzGkyiRkNF3apjyZfzZER0XMP_9M-lI" solution-channel="GMP_QB_locatorplus_v10_c"></gmpx-api-loader>
+          <gmpx-store-locator map-id="DEMO_MAP_ID"></gmpx-store-locator>
         </div>
       </div>
     </div>
   </section>
 </Base>
+
+<style>
+  gmpx-store-locator {
+    width: 100%;
+    height: 100%;
+
+    /* These parameters customize the appearance of Locator Plus. See the documentation at
+        https://github.com/googlemaps/extended-component-library/blob/main/src/store_locator/README.md
+        for more information. */
+    --gmpx-color-surface: #fff;
+    --gmpx-color-on-surface: #212121;
+    --gmpx-color-on-surface-variant: #757575;
+    --gmpx-color-primary: #1967d2;
+    --gmpx-color-outline: #e0e0e0;
+    --gmpx-fixed-panel-width-row-layout: 28.5em;
+    --gmpx-fixed-panel-height-column-layout: 65%;
+    --gmpx-font-family-base: "Roboto", sans-serif;
+    --gmpx-font-family-headings: "Roboto", sans-serif;
+    --gmpx-font-size-base: 0.875rem;
+    --gmpx-hours-color-open: #188038;
+    --gmpx-hours-color-closed: #d50000;
+    --gmpx-rating-color: #ffb300;
+    --gmpx-rating-color-empty: #e0e0e0;
+  }
+</style>
+<script>
+  const CONFIGURATION = {
+    "locations": [
+      {"title":"Control Alt Repeat","address1":"White Cross Business Park","address2":"Lancaster, United Kingdom","coords":{"lat":54.045101,"lng":-2.7973176},"placeId":"ChIJZ76Odhpje0gRYgpLOvuWr-c"}
+    ],
+    "mapOptions": {"center":{"lat":38.0,"lng":-100.0},"fullscreenControl":true,"mapTypeControl":false,"streetViewControl":false,"zoom":4,"zoomControl":true,"maxZoom":17,"mapId":""},
+    "mapsApiKey": "AIzaSyDqAzGkyiRkNF3apjyZfzZER0XMP_9M-lI",
+    "capabilities": {"input":false,"autocomplete":false,"directions":false,"distanceMatrix":false,"details":false,"actions":false}
+  };
+</script>
+<script type="module">
+  document.addEventListener('DOMContentLoaded', async () => {
+    await customElements.whenDefined('gmpx-store-locator');
+    const locator = document.querySelector('gmpx-store-locator');
+    locator.configureFromQuickBuilder(CONFIGURATION);
+  });
+</script>
