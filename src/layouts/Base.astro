@@ -9,7 +9,6 @@ import "@/styles/main.scss";
 import { AstroFont } from "astro-font";
 import { ViewTransitions } from "astro:transitions";
 import SearchModal from "./helpers/SearchModal";
-import { getLangFromUrl } from "@/lib/utils/languageParser";
 
 // font families
 const pf = theme.fonts.font_family.primary;
@@ -19,12 +18,12 @@ let fontPrimary, fontSecondary;
 if (theme.fonts.font_family.primary) {
   fontPrimary = theme.fonts.font_family.primary
     .replace(/\+/g, " ")
-    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;]+/gi, "");
+    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;.]+/gi, "");
 }
 if (theme.fonts.font_family.secondary) {
   fontSecondary = theme.fonts.font_family.secondary
     .replace(/\+/g, " ")
-    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;]+/gi, "");
+    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;.]+/gi, "");
 }
 
 // types for frontmatters
@@ -35,18 +34,15 @@ export interface Props {
   image?: string;
   noindex?: boolean;
   canonical?: string;
-  lang?: string;
 }
 
-// distructure frontmatters
-const { title, meta_title, description, image, noindex, canonical, lang } =
+// destructure frontmatter
+const { title, meta_title, description, image, noindex, canonical } =
   Astro.props;
-
-const language = lang || getLangFromUrl(Astro.url);
 ---
 
 <!doctype html>
-<html lang={language}>
+<html lang="en">
   <head>
     <!-- favicon -->
     <link rel="shortcut icon" href={config.site.favicon} />
@@ -111,7 +107,7 @@ const language = lang || getLangFromUrl(Astro.url);
     <meta
       name="description"
       content={plainify(
-        description ? description : config.metadata.meta_description,
+        description ? description : config.metadata.meta_description
       )}
     />
 
@@ -124,7 +120,7 @@ const language = lang || getLangFromUrl(Astro.url);
     <meta
       property="og:title"
       content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title,
+        meta_title ? meta_title : title ? title : config.site.title
       )}
     />
 
@@ -132,7 +128,7 @@ const language = lang || getLangFromUrl(Astro.url);
     <meta
       property="og:description"
       content={plainify(
-        description ? description : config.metadata.meta_description,
+        description ? description : config.metadata.meta_description
       )}
     />
     <meta property="og:type" content="website" />
@@ -145,7 +141,7 @@ const language = lang || getLangFromUrl(Astro.url);
     <meta
       name="twitter:title"
       content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title,
+        meta_title ? meta_title : title ? title : config.site.title
       )}
     />
 
@@ -153,7 +149,7 @@ const language = lang || getLangFromUrl(Astro.url);
     <meta
       name="twitter:description"
       content={plainify(
-        description ? description : config.metadata.meta_description,
+        description ? description : config.metadata.meta_description
       )}
     />
 
@@ -177,7 +173,7 @@ const language = lang || getLangFromUrl(Astro.url);
   <body>
     <TwSizeIndicator />
     <Header />
-    <SearchModal lang={language} client:load />
+    <SearchModal client:load />
     <main id="main-content">
       <slot />
     </main>

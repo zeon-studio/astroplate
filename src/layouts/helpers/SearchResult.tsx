@@ -1,9 +1,7 @@
-import { slugSelector } from "@/lib/utils/languageParser";
 import { plainify, titleify } from "@/lib/utils/textConverter";
 import React from "react";
 
 export interface ISearchItem {
-  lang: string;
   group: string;
   slug: string;
   frontmatter: {
@@ -35,13 +33,10 @@ export interface ISearchGroup {
 const SearchResult = ({
   searchResult,
   searchString,
-  lang
 }: {
   searchResult: ISearchItem[];
   searchString: string;
-  lang: string;
 }) => {
-
   // generate search result group
   const generateSearchGroup = (searchResult: ISearchItem[]) => {
     const joinDataByGroup: ISearchGroup[] = searchResult.reduce(
@@ -87,7 +82,6 @@ const SearchResult = ({
       ),
     );
   };
-
 
   // match underline
   const matchUnderline = (text: string, substring: string) => {
@@ -154,14 +148,12 @@ const SearchResult = ({
                         <img
                           src={item.frontmatter.image}
                           alt={item.frontmatter.title}
-                          width={100}
-                          height={100}
                         />
                       </div>
                     )}
                     <div className="search-result-item-body">
                       <a
-                        href={`${slugSelector(item.slug, lang)}`}
+                        href={`/${item.slug}`}
                         className="search-result-item-title search-result-item-link"
                       >
                         {matchUnderline(item.frontmatter.title, searchString)}
@@ -196,8 +188,8 @@ const SearchResult = ({
                                   {matchUnderline(category, searchString)}
                                   {item.frontmatter.categories &&
                                     index !==
-                                    item.frontmatter.categories.length -
-                                    1 && <>, </>}
+                                      item.frontmatter.categories.length -
+                                        1 && <>, </>}
                                 </span>
                               ),
                             )}
@@ -219,7 +211,7 @@ const SearchResult = ({
                                 {matchUnderline(tag, searchString)}
                                 {item.frontmatter.tags &&
                                   index !==
-                                  item.frontmatter.tags.length - 1 && <>, </>}
+                                    item.frontmatter.tags.length - 1 && <>, </>}
                               </span>
                             ))}
                           </div>

@@ -1,30 +1,18 @@
 ---
 import BlogCard from "@/components/BlogCard.astro";
 import Share from "@/components/Share.astro";
-import config from "@/config/config.json";
 import Disqus from "@/helpers/Disqus";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import dateFormat from "@/lib/utils/dateFormat";
-import { slugSelector } from "@/lib/utils/languageParser";
 import similarItems from "@/lib/utils/similarItems";
 import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
-import type { ContentEntryMap } from "astro:content";
 import { FaRegClock, FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./components/ImageMod.astro";
-const { default_language } = config.settings;
 
 const COLLECTION_FOLDER = "blog";
 const { post } = Astro.props;
-let { lang } = Astro.params;
 
-if (!lang) {
-  lang = default_language;
-}
-
-const posts = await getSinglePage(
-  COLLECTION_FOLDER,
-  lang as keyof ContentEntryMap
-);
+const posts = await getSinglePage(COLLECTION_FOLDER);
 const similarPosts = similarItems(post, posts);
 const { Content } = await post.render();
 const { title, description, author, categories, image, date, tags } = post.data;
@@ -51,7 +39,7 @@ const { title, description, author, categories, image, date, tags } = post.data;
         <h1 set:html={markdownify(title)} class="h2 mb-4" />
         <ul class="mb-4">
           <li class="mr-4 inline-block">
-            <a href={slugSelector(`/authors/${slugify(author)}`, lang)}>
+            <a href={`/authors/${slugify(author)}`}>
               <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
               {humanize(author)}
             </a>
@@ -60,9 +48,7 @@ const { title, description, author, categories, image, date, tags } = post.data;
             <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
             {
               categories.map((category: string, index: number) => (
-                <a
-                  href={slugSelector(`/categories/${slugify(category)}`, lang)}
-                >
+                <a href={`/categories/${slugify(category)}`}>
                   {humanize(category)}
                   {index !== categories.length - 1 && ","}
                 </a>
@@ -86,7 +72,7 @@ const { title, description, author, categories, image, date, tags } = post.data;
                   <li class="inline-block">
                     <a
                       class="m-1 block rounded bg-theme-light px-3 py-1 hover:bg-primary hover:text-white dark:bg-darkmode-theme-light dark:hover:bg-darkmode-primary dark:hover:text-dark"
-                      href={slugSelector(`/tags/${slugify(tag)}`, lang)}
+                      href={`/tags/${slugify(tag)}`}
                     >
                       {humanize(tag)}
                     </a>

@@ -1,6 +1,6 @@
 {
   "name": "astroplate",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "Astro and Tailwindcss boilerplate",
   "author": "zeon.studio",
   "license": "MIT",
@@ -10,10 +10,8 @@
     "build": "yarn generate-json && astro build",
     "preview": "astro preview",
     "format": "prettier -w ./src",
-    "check": "astro check",
     "generate-json": "node scripts/jsonGenerator.js",
-    "remove-darkmode": "node scripts/removeDarkmode.js && yarn format",
-    "remove-multilang": "node scripts/removeMultilang.js && yarn format"
+    "remove-darkmode": "node scripts/removeDarkmode.js && yarn format"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",

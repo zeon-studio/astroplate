@@ -2,21 +2,11 @@
 import Logo from "@/components/Logo.astro";
 import Social from "@/components/Social.astro";
 import config from "@/config/config.json";
+import menu from "@/config/menu.json";
 import social from "@/config/social.json";
-import {
-  getLangFromUrl,
-  getTranslations,
-  slugSelector,
-} from "@/lib/utils/languageParser";
 import { markdownify } from "@/lib/utils/textConverter";
-import type { ContentEntryMap } from "astro:content";
 
-const lang = getLangFromUrl(Astro.url);
-const menu = await getTranslations(lang as keyof ContentEntryMap);
-let footer: any = [];
-if (menu) {
-  footer = menu.footer;
-}
+const { footer }: { footer: { name: string; url: string }[] } = menu;
 ---
 
 <footer class="bg-theme-light dark:bg-darkmode-theme-light">
@@ -28,9 +18,9 @@ if (menu) {
       <div class="mb-8 text-center lg:col-6 lg:mb-0">
         <ul>
           {
-            footer.map((menu: any) => (
+            footer.map((menu) => (
               <li class="m-3 inline-block">
-                <a href={slugSelector(menu.url, lang)}>{menu.name}</a>
+                <a href={menu.url}>{menu.name}</a>
               </li>
             ))
           }

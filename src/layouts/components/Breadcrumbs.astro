@@ -1,30 +1,19 @@
 ---
-import { supportedLang } from "@/lib/utils/languageParser";
 import { humanize } from "@/lib/utils/textConverter";
 
 const { className }: { className?: string } = Astro.props;
 
 const paths = Astro.url.pathname.split("/").filter((x) => x);
-
-let lang = "";
-if (supportedLang.includes(paths[0])) {
-  lang = paths.shift()!;
-}
-
-let baseHref = lang ? `/${lang}` : "/";
 let parts = [
   {
     label: "Home",
-    href: baseHref,
-    "aria-label":
-      Astro.url.pathname === baseHref || Astro.url.pathname === `${baseHref}/`
-        ? "page"
-        : undefined,
+    href: "/",
+    "aria-label": Astro.url.pathname === "/" ? "page" : undefined,
   },
 ];
 
 paths.forEach((label: string, i: number) => {
-  const href = `${baseHref}${paths.slice(0, i + 1).join("/")}`;
+  const href = `/${paths.slice(0, i + 1).join("/")}`;
   label !== "page" &&
     parts.push({
       label: humanize(label.replace(".html", "").replace(/[-_]/g, " ")) || "",
@@ -39,7 +28,7 @@ paths.forEach((label: string, i: number) => {
     {
       parts.map(({ label, ...attrs }, index) => (
         <li class="mx-1 capitalize" role="listitem">
-          {index > 0 && <span class="inline-block mr-1">/</span>}
+          {index > 0 && <span class="inlin-block mr-1">/</span>}
           {index !== parts.length - 1 ? (
             <a class="text-primary dark:text-darkmode-primary" {...attrs}>
               {label}
