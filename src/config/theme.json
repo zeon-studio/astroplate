@@ -2,7 +2,7 @@
   "colors": {
     "default": {
       "theme_color": {
-        "primary": "#121212",
+        "primary": "#34558B",
         "body": "#fff",
         "border": "#eaeaea",
         "theme_light": "#f6f6f6",
@@ -16,7 +16,7 @@
     },
     "darkmode": {
       "theme_color": {
-        "primary": "#fff",
+        "primary": "#93920B",
         "body": "#1c1c1c",
         "border": "#3E3E3E",
         "theme_light": "#222222",
