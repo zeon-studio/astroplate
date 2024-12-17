@@ -1,51 +1,46 @@
 ---
 # Banner
 banner:
-  title: "The Ultimate Starter Template You Need To Start Your Astro Project"
-  content: "Astroplate is a free starter template built with Astro and TailwindCSS, providing everything you need to jumpstart your Astro project and save valuable time."
+  title: "Group Scheduling Made Simple"
+  content: "**Tired of endless back-and-forth messages to plan your next group event?** Say goodbye to scheduling headaches with our free, easy-to-use group scheduling tool!"
   image: "/images/banner.png"
   button:
     enable: true
-    label: "Get Started For Free"
-    link: "https://github.com/zeon-studio/astroplate"
+    label: "Download now - It's free!"
+    link: "https://play.google.com/store/apps/details?id=is.giorgio.app.parousia"
 
 # Features
 features:
-  - title: "What's Included in Astroplate"
+  - title: "Why Choose GRUP?"
     image: "/images/service-1.png"
-    content: "Astroplate is a comprehensive starter template that includes everything you need to get started with your Astro project. What's Included in Astroplate"
+    content: ""
     bulletpoints:
-      - "10+ Pre-build pages"
-      - "95+ Google Pagespeed Score"
-      - "Build with Astro and TailwindCSS for easy and customizable styling"
-      - "Fully responsive on all devices"
-      - "SEO-optimized for better search engine rankings"
-      - "**Open-source and free** for personal and commercial use"
+      - "🆓 **Free**: No hidden costs, no surprises - just pure scheduling bliss."
+      - "🚀 **Lightning Fast Setup**: Get your group organized in minutes, not hours."
+      - "📱 **Mobile Friendly**: Plan on-the-go with our intuitive mobile app."
+      - "👥 **Perfect for Any Group**: From sports teams to book clubs, we've got you covered."
     button:
       enable: false
       label: "Get Started Now"
       link: "#"
 
-  - title: "Discover the Key Features Of Astro"
+  - title: "Bring Your Group Together, Effortlessly"
     image: "/images/service-2.png"
-    content: "Astro is an all-in-one web framework for building fast, content-focused websites. It offers a range of exciting features for developers and website creators. Some of the key features are:"
-    bulletpoints:
-      - "Zero JS, by default: No JavaScript runtime overhead to slow you down."
-      - "Customizable: Tailwind, MDX, and 100+ other integrations to choose from."
-      - "UI-agnostic: Supports React, Preact, Svelte, Vue, Solid, Lit and more."
+    content: "Whether you're coordinating practice times for your local soccer team or finding the perfect date for your next book club meeting, our tool makes it a breeze."
+    bulletpoints: []
     button:
-      enable: true
+      enable: false
       label: "Get Started Now"
-      link: "https://github.com/zeon-studio/astroplate"
+      link: "#"
 
-  - title: "The Top Reasons to Choose Astro for Your Next Project"
+  - title: "How It Works"
     image: "/images/service-3.png"
     content: "With Astro, you can build modern and content-focused websites without sacrificing performance or ease of use."
     bulletpoints:
-      - "Instantly load static sites for better user experience and SEO."
-      - "Intuitive syntax and support for popular frameworks make learning and using Astro a breeze."
-      - "Use any front-end library or framework, or build custom components, for any project size."
-      - "Built on cutting-edge technology to keep your projects up-to-date with the latest web standards."
+      - "**Create Your Group**: Set up your team or club in seconds."
+      - "**Add Events**: Schedule practices, games, or meetings with ease."
+      - "**Invite Members**: Your group joins with a simple click."
+      - "**Stay Synced**: Automatic updates keep everyone informed."
     button:
       enable: false
       label: ""
