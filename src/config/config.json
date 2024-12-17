@@ -1,15 +1,15 @@
 {
   "site": {
-    "title": "Astroplate",
-    "base_url": "https://astroplate.netlify.app",
+    "title": "GRUP",
+    "base_url": "https://www.grup.rsvp",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
     "logo": "/images/logo.png",
     "logo_darkmode": "/images/logo-darkmode.png",
-    "logo_width": "150",
+    "logo_width": "118",
     "logo_height": "30",
-    "logo_text": "Astroplate"
+    "logo_text": "GRUP"
   },
 
   "settings": {
@@ -24,13 +24,13 @@
 
   "params": {
     "contact_form_action": "#",
-    "copyright": "Designed And Developed by [Zeon Studio](https://zeon.studio)"
+    "copyright": "© 2024 GRUP · All rights reserved."
   },
 
   "navigation_button": {
     "enable": true,
     "label": "Get Started",
-    "link": "https://github.com/zeon-studio/astroplate"
+    "link": "https://play.google.com/store/apps/details?id=is.giorgio.app.parousia"
   },
 
   "disqus": {
@@ -40,8 +40,8 @@
   },
 
   "metadata": {
-    "meta_author": "zeon.studio",
+    "meta_author": "GRUP",
     "meta_image": "/images/og-image.png",
-    "meta_description": "astro and tailwind boilerplate"
+    "meta_description": "Tired of endless back-and-forth messages to plan your next group event? Say goodbye to scheduling headaches with our free, easy-to-use group scheduling tool!"
   }
 }

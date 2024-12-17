@@ -6,7 +6,7 @@ banner:
   image: "/images/banner.png"
   button:
     enable: true
-    label: "Download now - It's free!"
+    label: "Download Now - It's Free!"
     link: "https://play.google.com/store/apps/details?id=is.giorgio.app.parousia"
 
 # Features
