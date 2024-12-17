@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "GRUP",
-    "base_url": "https://www.grup.rsvp",
+    "base_url": "https://grup-landing.pages.dev",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
