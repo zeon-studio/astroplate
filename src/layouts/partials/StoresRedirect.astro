@@ -1,0 +1,27 @@
+<script>
+  function redirectToStore() {
+    const userAgent = navigator.userAgent.toLowerCase();
+
+    if (/ipad|iphone|ipod/.test(userAgent)) {
+      window.location.href =
+        "https://apps.apple.com/us/app/shared-calendar-events-grup/id6473851276";
+    } else if (/android/.test(userAgent)) {
+      window.location.href =
+        "https://play.google.com/store/apps/details?id=is.giorgio.app.parousia";
+    } else {
+      window.location.href = "https://grup.rsvp";
+    }
+  }
+
+  // astro:page-load event is fired when the page is loaded
+  document.addEventListener("astro:page-load", () => {
+    const redirectButtons = document.getElementsByClassName("store-redirect");
+
+    Array.from(redirectButtons).forEach((button) => {
+      button.addEventListener("click", (e) => {
+        e.preventDefault();
+        redirectToStore();
+      });
+    });
+  });
+</script>

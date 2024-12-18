@@ -38,7 +38,7 @@ const { banner, features }: Homepage = homepage.data;
           {
             banner.button.enable && (
               <a
-                class="btn btn-primary"
+                class={`btn btn-primary ${banner.button.classname}`}
                 href={banner.button.link}
                 target={
                   banner.button.link.startsWith("http") ? "_blank" : "_self"
@@ -97,7 +97,10 @@ const { banner, features }: Homepage = homepage.data;
                 ))}
               </ul>
               {feature.button.enable && (
-                <a class="btn btn-primary mt-5" href={feature.button.link}>
+                <a
+                  class={`btn btn-primary mt-5 ${feature.button.classname}`}
+                  href={feature.button.link}
+                >
                   {feature.button.label}
                 </a>
               )}

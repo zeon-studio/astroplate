@@ -31,7 +31,7 @@ const { call_to_action } = Astro.props;
               />
               {call_to_action.data.button.enable && (
                 <a
-                  class="btn btn-primary"
+                  class={`btn btn-primary ${call_to_action.data.button.classname}`}
                   href={call_to_action.data.button.link}
                 >
                   {call_to_action.data.button.label}

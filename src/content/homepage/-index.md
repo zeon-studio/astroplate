@@ -7,7 +7,8 @@ banner:
   button:
     enable: true
     label: "Download Now - It's Free!"
-    link: "https://play.google.com/store/apps/details?id=is.giorgio.app.parousia"
+    link: "#"
+    classname: "store-redirect"
 
 # Features
 features:
