@@ -3,11 +3,14 @@ import AuthorCard from "@/components/AuthorCard.astro";
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import PageHeader from "@/partials/PageHeader.astro";
-import { getEntry } from "astro:content";
+import { getEntry, type CollectionEntry } from "astro:content";
 
 const COLLECTION_FOLDER = "authors";
 
-const authorIndex = await getEntry(COLLECTION_FOLDER, "-index");
+const authorIndex = (await getEntry(
+  COLLECTION_FOLDER,
+  "-index"
+)) as CollectionEntry<"authors">;
 const authors = await getSinglePage(COLLECTION_FOLDER);
 ---
 

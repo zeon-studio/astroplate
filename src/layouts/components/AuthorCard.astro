@@ -23,7 +23,7 @@ const { title, image, social } = data.data;
     )
   }
   <h4 class="mb-3">
-    <a href={`/authors/${data.slug}`}>{title}</a>
+    <a href={`/authors/${data.id}`}>{title}</a>
   </h4>
   <p class="mb-4">
     {plainify(data.body?.slice(0, 100))}

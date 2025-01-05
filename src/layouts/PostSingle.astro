@@ -8,13 +8,14 @@ import similarItems from "@/lib/utils/similarItems";
 import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
 import { FaRegClock, FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./components/ImageMod.astro";
+import { render } from "astro:content";
 
 const COLLECTION_FOLDER = "blog";
 const { post } = Astro.props;
 
 const posts = await getSinglePage(COLLECTION_FOLDER);
 const similarPosts = similarItems(post, posts);
-const { Content } = await post.render();
+const { Content } = await render(post);
 const { title, description, author, categories, image, date, tags } = post.data;
 ---
 
