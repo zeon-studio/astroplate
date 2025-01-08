@@ -8,11 +8,15 @@ import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import PageHeader from "@/partials/PageHeader.astro";
 import PostSidebar from "@/partials/PostSidebar.astro";
+import type { CollectionEntry } from "astro:content";
 import { getEntry } from "astro:content";
 
 const BLOG_FOLDER = "blog";
 
-const postIndex = await getEntry(BLOG_FOLDER, "-index");
+const postIndex = (await getEntry(
+  BLOG_FOLDER,
+  "-index"
+)) as CollectionEntry<"blog">;
 const posts = await getSinglePage(BLOG_FOLDER);
 const allCategories = await getAllTaxonomy(BLOG_FOLDER, "categories");
 const categories = await getTaxonomy(BLOG_FOLDER, "categories");
@@ -28,7 +32,7 @@ const currentPosts = sortedPosts.slice(0, config.settings.pagination);
   image={postIndex.data.image}
   description={postIndex.data.description}
 >
-  <PageHeader title={postIndex.data.title} />
+  <PageHeader title={postIndex?.data.title} />
   <section class="section">
     <div class="container">
       <div class="row gx-5">

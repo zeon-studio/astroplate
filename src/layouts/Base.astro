@@ -7,7 +7,7 @@ import Footer from "@/partials/Footer.astro";
 import Header from "@/partials/Header.astro";
 import "@/styles/main.scss";
 import { AstroFont } from "astro-font";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import SearchModal from "./helpers/SearchModal";
 
 // font families
@@ -111,7 +111,7 @@ const { title, meta_title, description, image, noindex, canonical } =
       )}
     />
 
-    <ViewTransitions />
+    <ClientRouter />
 
     <!-- author from config.json -->
     <meta name="author" content={config.metadata.meta_author} />

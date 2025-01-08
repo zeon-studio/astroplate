@@ -2,10 +2,11 @@
 import ImageMod from "@/components/ImageMod.astro";
 import Base from "@/layouts/Base.astro";
 import { markdownify } from "@/lib/utils/textConverter";
-import { getEntry } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { getEntry, render } from "astro:content";
 
-const about = await getEntry("about", "-index");
-const { Content } = await about.render();
+const about = (await getEntry("about", "-index")) as CollectionEntry<"about">;
+const { Content } = await render(about);
 const { title, description, meta_title, image } = about.data;
 ---
 

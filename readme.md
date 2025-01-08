@@ -66,7 +66,7 @@
 
 ### 📦 Dependencies
 
-- astro v4.12+
+- astro v5.1+
 - node v20.10+
 - npm v10.2+
 - tailwind v3.4+
