@@ -4,6 +4,7 @@ import { getSinglePage } from "@/lib/contentParser.astro";
 import { supportedLang } from "@/lib/utils/languageParser";
 import PageHeader from "@/partials/PageHeader.astro";
 import type { ContentEntryMap } from "astro:content";
+import { render } from "astro:content";
 
 export async function getStaticPaths() {
   const paths = await Promise.all(
@@ -13,7 +14,7 @@ export async function getStaticPaths() {
       return pages.map((page) => ({
         params: {
           lang: lang || undefined,
-          regular: page.slug.split("/").pop(),
+          regular: page.id.split("/").pop(),
         },
         props: {
           page,
@@ -26,7 +27,7 @@ export async function getStaticPaths() {
 
 const { page } = Astro.props;
 const { title, meta_title, description, image } = page.data;
-const { Content } = await page.render();
+const { Content } = await render(page);
 ---
 
 <Base

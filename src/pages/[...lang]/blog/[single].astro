@@ -18,7 +18,7 @@ export async function getStaticPaths() {
       return posts.map((post) => ({
         params: {
           lang: lang || undefined,
-          single: post.slug.split("/").pop(),
+          single: post.id.split("/").pop(),
         },
         props: {
           post,

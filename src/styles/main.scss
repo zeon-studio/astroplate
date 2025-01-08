@@ -1,18 +1,19 @@
+@use "sass:meta";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  @import "base";
+  @include meta.load-css("base");
 }
 
 @layer components {
-  @import "components";
-  @import "navigation";
-  @import "buttons";
-  @import "search";
+  @include meta.load-css("components");
+  @include meta.load-css("navigation");
+  @include meta.load-css("buttons");
+  @include meta.load-css("search");
 }
 
 @layer utilities {
-  @import "utilities";
+  @include meta.load-css("utilities");
 }

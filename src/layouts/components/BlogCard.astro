@@ -19,10 +19,10 @@ const { title, image, date, author, categories } = data.data;
 const lang = getLangFromUrl(Astro.url);
 const { read_more } = await getTranslations(lang as keyof ContentEntryMap);
 
-const slugParts = data.slug.split("/");
+const slugParts = data.id.split("/");
 slugParts[0] = "blog";
 const modifiedSlug = slugParts.join("/");
-data.slug = modifiedSlug;
+data.id = modifiedSlug;
 ---
 
 <div class="bg-body dark:bg-darkmode-body">
@@ -39,7 +39,7 @@ data.slug = modifiedSlug;
     )
   }
   <h4 class="mb-3">
-    <a href={slugSelector(`/${data.slug}`, lang)}>
+    <a href={slugSelector(`/${data.id}`, lang)}>
       {title}
     </a>
   </h4>
@@ -67,7 +67,7 @@ data.slug = modifiedSlug;
   <p class="mb-6">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
   <a
     class="btn btn-outline-primary btn-sm"
-    href={slugSelector(`/${data.slug}`, lang)}
+    href={slugSelector(`/${data.id}`, lang)}
   >
     {read_more}
   </a>

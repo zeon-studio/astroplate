@@ -11,7 +11,8 @@ if (supportedLang.includes(paths[0])) {
   lang = paths.shift()!;
 }
 
-let baseHref = lang ? `/${lang}` : "/";
+let baseHref = lang ? `/${lang}/` : "/";
+
 let parts = [
   {
     label: "Home",

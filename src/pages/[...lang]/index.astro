@@ -22,13 +22,13 @@ const homepage = await getListPage("homepage", lang as keyof ContentEntryMap);
 const { banner, features } = homepage[0].data;
 
 const testimonial = await getSinglePage(
-  "sections",
+  "testimonialSection",
   lang as keyof ContentEntryMap,
   "testimonial"
 );
 
 const call_to_action = await getSinglePage(
-  "sections",
+  "ctaSection",
   lang as keyof ContentEntryMap,
   "call-to-action"
 );

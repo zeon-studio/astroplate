@@ -8,7 +8,7 @@ import dateFormat from "@/lib/utils/dateFormat";
 import { slugSelector } from "@/lib/utils/languageParser";
 import similarItems from "@/lib/utils/similarItems";
 import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
-import type { ContentEntryMap } from "astro:content";
+import { render, type ContentEntryMap } from "astro:content";
 import { FaRegClock, FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./components/ImageMod.astro";
 const { default_language } = config.settings;
@@ -26,7 +26,7 @@ const posts = await getSinglePage(
   lang as keyof ContentEntryMap
 );
 const similarPosts = similarItems(post, posts);
-const { Content } = await post.render();
+const { Content } = await render(post);
 const { title, description, author, categories, image, date, tags } = post.data;
 ---
 
@@ -101,7 +101,7 @@ const { title, description, author, categories, image, date, tags } = post.data;
               className="social-icons"
               title={title}
               description={description}
-              slug={post.slug}
+              slug={post.id}
             />
           </div>
         </div>

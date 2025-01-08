@@ -6,7 +6,7 @@ import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import { supportedLang } from "@/lib/utils/languageParser";
 import { slugify } from "@/lib/utils/textConverter";
-import type { ContentEntryMap } from "astro:content";
+import { render, type ContentEntryMap } from "astro:content";
 
 // get all static paths for authors
 export async function getStaticPaths() {
@@ -22,7 +22,7 @@ export async function getStaticPaths() {
       return authors.map((author) => ({
         params: {
           lang: lang || undefined,
-          single: author.slug.split("/").pop(),
+          single: author.id.split("/").pop(),
         },
         props: {
           author,
@@ -36,7 +36,7 @@ export async function getStaticPaths() {
 
 const { author, lang } = Astro.props;
 const { title, social, meta_title, description, image } = author.data;
-const { Content } = await author.render();
+const { Content } = await render(author);
 
 // get all posts by author
 const BLOG_FOLDER = "blog";

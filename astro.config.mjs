@@ -3,11 +3,12 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import AutoImport from "astro-auto-import";
-import { defineConfig, squooshImageService } from "astro/config";
+import { defineConfig } from "astro/config";
 import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
 import config from "./src/config/config.json";
 import languagesJSON from "./src/config/language.json";
+import sharp from "sharp";
 const { default_language } = config.settings;
 
 const supportedLang = [...languagesJSON.map((lang) => lang.languageCode)];
@@ -28,7 +29,7 @@ export default defineConfig({
     defaultLocale: default_language,
   },
   image: {
-    service: squooshImageService(),
+    service: sharp(),
   },
   integrations: [
     react(),
