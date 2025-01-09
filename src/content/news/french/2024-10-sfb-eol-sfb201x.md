@@ -22,7 +22,7 @@ Pour les entreprises qui préfèrent rester sur une solution sur site, Microsoft
 ---
 
 ##### Sources
-[Microsoft - Techommunity](https://techcommunity.microsoft.com/blog/skype_for_business_blog/end-of-support-for-skype-for-business-server-2015-and-skype-for-business-server-/4268502)
+[Microsoft - Techcommunity](https://techcommunity.microsoft.com/blog/skype_for_business_blog/end-of-support-for-skype-for-business-server-2015-and-skype-for-business-server-/4268502)
 
 ---
 
