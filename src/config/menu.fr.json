@@ -3,6 +3,8 @@
     { "name": "Accueil", "url": "/" },
     { "name": "À propos", "url": "/about" },
     { "name": "Éléments", "url": "/elements" },
+    { "name": "News", "url": "/news" },
+    { "name": "Blog", "url": "/blog" },
     {
       "name": "Pages",
       "url": "",
