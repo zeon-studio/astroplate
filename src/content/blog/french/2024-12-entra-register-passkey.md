@@ -1,5 +1,5 @@
 ---
-title: "Inscrire une Passkey dans Entra"
+title: "Inscrire une Passkey avec son mobile dans Entra"
 meta_title: ""
 description: ""
 date: 2024-12-16T10:30:00-05:00
