@@ -1,7 +1,7 @@
 ---
 # Banner
 banner:
-  title: "ALLO"
+  title: "Le blog de Maxime"
   content: "Astroplate est un modèle de démarrage gratuit construit avec Astro et TailwindCSS, fournissant tout ce dont vous avez besoin pour démarrer votre projet Astro et gagner un temps précieux."
   image: "/images/banner.png"
   button:
