@@ -3,7 +3,7 @@ title: "Les Microsoft Teams Call Quality Data (CQD) QER en v5.0 !"
 meta_title: ""
 description: ""
 date: 2024-12-9T12:00:00-05:00
-image: "/images/blog/teams/teams_roadmap_470999_sms_thumbnail.png"
+image: "/images/blog/teams/teams_qerv5.0_thumbnail.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
 tags: ["Microsoft", "Microsoft 365", "Teams", "CQD", "QER", "Power BI"]
@@ -19,7 +19,6 @@ Les classificateurs intelligents de qualité des médias utilisent des algorithm
 ---
 
 ##### Fonctionnement des classificateurs
-
 Ces classificateurs évaluent la qualité des appels en prenant en compte divers facteurs tels que la performance du réseau, les capacités des appareils et les périphériques d'entrée1. Par exemple, si un utilisateur signale une mauvaise qualité audio, les classificateurs peuvent déterminer si le problème provient de la connexion réseau de l'utilisateur ou de celle d'un autre participant à l'appel.
 
 ![image](/images/blog/teams/teams_qerv5.0_001.png)
@@ -27,13 +26,11 @@ Ces classificateurs évaluent la qualité des appels en prenant en compte divers
 ---
 
 ##### Utilisation de Power BI pour analyser les données CQD
-
-Le QER v5.0 est intégré dans les modèles de requêtes Power BI pour le Call Quality Dashboard (CQD) de Microsoft Teams. Ces modèles permettent aux administrateurs de personnaliser et de distribuer des rapports détaillés sur la qualité des appels et des réunions. Les rapports incluent des métriques sur la santé des réunions, la fiabilité des médias, et l'impact des périphériques et des réseaux VPN sur la qualité des appels2.
+Le QER v5.0 est intégré dans les modèles de requêtes Power BI pour le Call Quality Dashboard (CQD) de Microsoft Teams. Ces modèles permettent aux administrateurs de personnaliser et de distribuer des rapports détaillés sur la qualité des appels et des réunions. Les rapports incluent des métriques sur la santé des réunions, la fiabilité des médias, et l'impact des périphériques et des réseaux VPN sur la qualité des appels.
 
 ---
 
 ##### Avantages du QER v5.0
-
 - Identification proactive : Le QER v5.0 aide les administrateurs à identifier les problématiques avant qu'elles ne s'aggravent, permettant une intervention rapide et efficace.
 - Rapports détaillés : Les rapports fournissent des détails sur la santé des utilisateurs, des réunions et des médias, offrant une vue complète de l'expérience utilisateur.
 - Flexibilité et personnalisation : Les modèles Power BI peuvent être personnalisés pour répondre aux besoins spécifiques de chaque organisation.
@@ -43,7 +40,6 @@ Le QER v5.0 est intégré dans les modèles de requêtes Power BI pour le Call Q
 ---
 
 ##### Conclusion
-
 Le Rapport de Qualité d'Expérience (QER) v5.0 pour Microsoft Teams représente une avancée significative dans la gestion de la qualité des appels et des réunions. Grâce aux classificateurs intelligents de qualité des médias et à l'intégration avec Power BI, les administrateurs disposent d'outils puissants pour assurer une expérience de communication optimale pour tous les utilisateurs.
 
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Les SMS arrivent dans Teams !"
+title: "Les SMS arrivent nativement dans Teams !"
 meta_title: ""
 description: ""
 date: 2024-12-6T10:00:00-05:00
@@ -11,9 +11,10 @@ draft: false
 ---
 ---
 
-Une belle fonctionnalité en approche du côté de Teams, la possibilité d'envoyer et recevoir des SMS depuis son client Microsoft Teams Windows, Mac, Android et iOS. Ceci m'a été demandé de nombreuses fois dans les derniers mois, d'autant plus que le Microsoft Teams Admin Center a un menu de rapports parle d'appels et SMS depuis très longtemps.
+##### Introduction
+Microsoft Teams continue d'évoluer pour offrir des solutions de communication et de collaboration toujours plus poussées. Parmi les fonctionnalités disponibles, l'intégration des SMS permet aux utilisateurs de Teams de communiquer facilement avec des participants externes via des messages texte.
 
-<br>
+---
 
 ##### Disponibilité
 Cette fonctionnalité sera disponible pour les utilisateurs ayant la fonctionnalité de téléphonie Teams Calling Plan aux États-Unis et au Canada seulement (pour commencer). Le déploiement sera progressif à partir de Février 2025.

@@ -1,17 +1,17 @@
 ---
-title: "Fin de vie pour Skype for Business 2015/2019 !"
+title: "Fin de support pour Skype for Business 2015/2019 !"
 meta_title: ""
 description: ""
 date: 2024-10-14T10:00:00-05:00
 image: "/images/blog/sfb/sfb_eol_thumbnail.png"
 categories: ["Skype for Business"]
 author: "Maxime Hiez"
-tags: ["Microsoft", "Microsoft 365", "Skype for Business", "EOL"]
+tags: ["Microsoft", "Microsoft 365", "Skype for Business", "EOS"]
 draft: false
 ---
 ---
 
-Microsoft a annoncé la fin de vie des versions 2015 et 2019 de Skype for Business pour Octobre 2025.
+Microsoft a annoncé la fin de support des versions 2015 et 2019 de Skype for Business pour Octobre 2025.
 
 Après le 14 octobre 2025, Microsoft ne fournira plus de support technique, de correctifs de sécurité ou de mises à jour pour Skype for Business 2015 et 2019. Les entreprises utilisant encore ces versions seront exposées à des risques de sécurité et à des problèmes de compatibilité. Il est donc crucial de planifier leur transition vers une autre solution avant cette date.
 

@@ -17,7 +17,6 @@ L'utilisation des iPads dans le milieu professionnel a considérablement augment
 ---
 
 ##### Plug & Play
-
 La configuration est simple :
 
 - Connectez votre caméra : Branchez votre caméra externe sur le port USB C de votre iPad.
@@ -28,8 +27,7 @@ La plupart des caméras compatibles USB-C sont supportées, offrant aux utilisat
 
 ---
 
-##### Conseils pour Optimiser Votre Expérience
-
+##### Conseils pour optimiser votre expérience
 - Assurez-vous que votre caméra est compatible : Vérifiez que votre caméra supporte la connectivité USB-C et que son firmware est à jour.
 - Le positionnement est clé : Utilisez des trépieds ou des supports pour un cadrage et une stabilité optimaux.
 - L'éclairage fait la différence : Positionnez-vous dans des zones bien éclairées ou utilisez des anneaux lumineux pour un look soigné.
