@@ -3,7 +3,7 @@ title: "Fin de vie pour Skype for Business 2015/2019 !"
 meta_title: ""
 description: ""
 date: 2024-10-14T10:00:00-05:00
-image: "/images/news/teams/sfb_eol_thumbnail.png"
+image: "/images/blog/sfb/sfb_eol_thumbnail.png"
 categories: ["Skype for Business"]
 author: "Maxime Hiez"
 tags: ["Microsoft", "Microsoft 365", "Skype for Business", "EOL"]

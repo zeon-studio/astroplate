@@ -3,7 +3,7 @@ title: "Activer Microsoft 365 Passkey dans Entra"
 meta_title: ""
 description: ""
 date: 2024-12-16T10:00:00-05:00
-image: "/images/image-placeholder.png"
+image: "/images/tuto/image-placeholder.png"
 categories: ["Entra"]
 author: "Maxime Hiez"
 tags: ["Microsoft", "Microsoft 365", "Entra", "Passkey", "Mot de passe", "Authenticator", "FIDO2", "MFA", "Sécurité"]

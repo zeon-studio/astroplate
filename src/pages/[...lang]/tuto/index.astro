@@ -1,5 +1,5 @@
 ---
-import BlogCard from "@/components/NewsCard.astro";
+import BlogCard from "@/components/TutoCard.astro";
 import Pagination from "@/components/Pagination.astro";
 import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
@@ -18,7 +18,7 @@ export function getStaticPaths() {
   return paths;
 }
 const { lang } = Astro.params;
-const BLOG_FOLDER = "news";
+const BLOG_FOLDER = "tuto";
 const postIndex = await getListPage(
   BLOG_FOLDER,
   lang as keyof ContentEntryMap

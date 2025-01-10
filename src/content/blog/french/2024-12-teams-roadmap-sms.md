@@ -3,7 +3,7 @@ title: "Les SMS arrivent dans Teams !"
 meta_title: ""
 description: ""
 date: 2024-12-6T10:00:00-05:00
-image: "/images/news/teams/teams_roadmap_470999_sms_thumbnail.png"
+image: "/images/blog/teams/teams_roadmap_470999_sms_thumbnail.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
 tags: ["Microsoft", "Microsoft 365", "Teams", "SMS", "Calling Plan"]
@@ -19,7 +19,7 @@ Une belle fonctionnalité en approche du côté de Teams, la possibilité d'envo
 Cette fonctionnalité sera disponible pour les utilisateurs ayant la fonctionnalité de téléphonie Teams Calling Plan aux États-Unis et au Canada seulement (pour commencer). Le déploiement sera progressif à partir de Février 2025.
 
 
-![image](/images/news/teams/teams_roadmap_470999_sms.png)
+![image](/images/blog/teams/teams_roadmap_470999_sms.png)
 
 ---
 

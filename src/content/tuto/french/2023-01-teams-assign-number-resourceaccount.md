@@ -3,7 +3,7 @@ title: "Assigner un numéro à un compte de ressource dans Teams"
 meta_title: ""
 description: ""
 date: 2023-01-04T09:30:00-05:00
-image: "/images/image-placeholder.png"
+image: "/images/tuto/image-placeholder.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
 tags: ["Microsoft", "Microsoft 365", "Teams", "Téléphonie", "Compte de ressource", "Numéro", "SDA", "Direct Routing", "Calling Plan", "Operator Connect", "PowerShell"]

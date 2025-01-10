@@ -3,7 +3,7 @@ title: "Créer une règle de Caller ID dans Teams"
 meta_title: ""
 description: ""
 date: 2023-01-04T10:00:00-05:00
-image: "/images/teams/thumbnails/teams_callerid.png"
+image: "/images/tuto/teams/thumbnails/teams_callerid.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
 tags: ["Microsoft", "Microsoft 365", "Teams", "Téléphonie", "Caller ID", "Direct Routing", "Calling Plan", "Operator Connect", "PowerShell"]
