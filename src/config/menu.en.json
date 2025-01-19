@@ -3,19 +3,7 @@
     { "name": "Home", "url": "/" },
     { "name": "About", "url": "/about" },
     { "name": "Blog", "url": "/blog" },
-    { "name": "Tuto", "url": "/tuto" },
-    { "name": "Contact", "url": "/contact" },
-    {
-      "name": "Pages",
-      "url": "",
-      "hasChildren": true,
-      "children": [
-        { "name": "Authors", "url": "/authors" },
-        { "name": "Categories", "url": "/categories" },
-        { "name": "Tags", "url": "/tags" },
-        { "name": "404 Page", "url": "/404" }
-      ]
-    }
+    { "name": "Contact", "url": "/contact" }
   ],
   "footer": [
     { "name": "Elements", "url": "/elements" },
