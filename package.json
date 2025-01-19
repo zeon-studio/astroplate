@@ -22,6 +22,7 @@
     "@astrojs/rss": "^4.0.7",
     "@astrojs/sitemap": "^3.1.6",
     "@astrojs/tailwind": "^5.1.0",
+    "@vercel/analytics": "^1.4.1",
     "astro": "^4.14.5",
     "astro-auto-import": "^0.4.2",
     "astro-font": "^0.1.81",

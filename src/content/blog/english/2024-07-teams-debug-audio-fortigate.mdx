@@ -1,0 +1,94 @@
+---
+title: "How I resolved dropped Teams calls"
+meta_title: ""
+description: ""
+date: 2024-07-22T10:00:00-05:00
+image: "/images/blog/teams/teams_debug_audio_fortigate_thumbnail.png"
+categories: ["Teams", "Fortigate"]
+author: "Maxime Hiez"
+tags: ["Microsoft", "Microsoft 365", "Telephony", "Firewall", "SIP Helper", "SIP ALG", "No audio", "Wireshark", "Logs", "Direct Routing"]
+draft: false
+---
+---
+
+##### Introduction
+A customer contacted me to tell me that he was having an issue with his Microsoft Teams telephony. Outgoing calls are being cut off even before the audio connection is established.
+
+---
+
+##### Investigation
+To analyze this, I asked him to take a log capture of a call taken on his Fortigate firewall and to send me the resulting Wireshark file.
+
+![image](/images/blog/teams/teams_debug_audio_fortigate_001.png)
+
+I quickly noticed that there was a problem in the *Contact* header of the *Invite* packet of this call ; the port offered to the ThinkTel SIP operator is 47439 instead of 5060. Obviously, this port is not supposed to be offered, so it is blocked by the firewall and the *ACK* (which is the final response to an *Invite*) is never returned after the *200 OK SDP*, which explains why the call is disconnected.
+
+![image](/images/blog/teams/teams_debug_audio_fortigate_002.png)
+
+While talking with him, he explains to me that he replaced his firewall with a new one from the same manufacturer, and that he imported the previous configuration into it. All the rules and configurations I had deployed were still here.
+
+![image](/images/blog/teams/teams_debug_audio_fortigate_003.png)
+
+---
+
+##### Resolution
+But obviously, the *SIP Helper* functionality remained active in the new configuration. On paper, it's supposed to help manage SIP traffic passing through the firewall, but in reality, it changes the port in our SIP header. The solution is therefore to disable it in CLI.
+
+<Notice type="warning">A reboot is required.</Notice>
+
+Retrieve the SIP Helper ID :
+```powershell
+config system session-helper
+show
+```
+
+Scroll down until you see an entry for SIP. In my case it was number 13, but it may be different depending on the model and firmware version. Delete the configuration :
+```powershell
+delete 13
+end
+```
+
+Disable SIP ALG as well :
+```powershell
+config system settings
+set default-voip-alg-mode kernel-helper-based
+end
+```
+
+Activate RTP bypass :
+```powershell
+configure voip profile
+edit default
+sip config
+set rtp disable
+end
+end
+```
+
+Restart the firewall to stop current sessions:
+```powershell
+execute reboot
+```
+
+---
+
+##### Results
+By disabling the *SIP Helper* functionality, the port proposed in the *Contact* header is now 5060 again and calls are working.
+
+In my telephony projects, I always disable the *SIP ALG*, *SIP helper*, *SSL inspection* and other functionalities. They have always caused issues with port rewriting, one-way audio, etc.
+
+Note that in this scenario, the trace should be taken at the firewall output, not at the SBC output. I wouldn't have been able to see this port error at the SBC output because the manipulation occurs once the packet has passed through the firewall.
+
+---
+
+##### Interesting links
+[Fortinet - How to disable SIP helper](https://community.fortinet.com/t5/FortiGate/Technical-Tip-Disabling-VoIP-Inspection/ta-p/194131)
+
+[Learn more about the SIP standard](https://www.ietf.org/rfc/rfc3261.txt)
+
+---
+
+
+Did you enjoy this post ? If you have any questions, comments or suggestions, please leave a comment in the section below or by sending me a message from the contact form.
+
+Don't forget to follow us and share this post.

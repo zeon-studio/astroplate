@@ -1,0 +1,94 @@
+---
+title: "Comment j'ai résolu des appels Teams qui coupent"
+meta_title: ""
+description: ""
+date: 2024-07-22T10:00:00-05:00
+image: "/images/blog/teams/teams_debug_audio_fortigate_thumbnail.png"
+categories: ["Teams", "Fortigate"]
+author: "Maxime Hiez"
+tags: ["Microsoft", "Microsoft 365", "Téléphonie", "Pare-feu", "SIP Helper", "SIP ALG", "Pas d'audio", "Wireshark", "Logs", "Direct Routing"]
+draft: false
+---
+---
+
+##### Introduction
+Un client m'a contacté pour me dire qu'il avait un problème avec sa téléphonie Microsoft Teams. Les appels sortants se font couper avec même que la connexion audio n’ait été établie.
+
+---
+
+##### Investigation
+Pour analyser ça, je lui ai demandé prendre une capture de logs d'un appel prise sur son pare-feu Fortigate et de m'envoyer le fichier Wireshark obtenu. 
+
+![image](/images/blog/teams/teams_debug_audio_fortigate_001.png)
+
+Je constate très rapidement qu'il y a un problème dans l'entête *Contact* du paquet *Invite* de cet appel ; le port proposé à l'opérateur SIP ThinkTel est le 47439 au lieu de 5060. Évidemment, ce port n'est pas supposé être proposé, il est donc bloqué par le pare-feu et le *ACK* (qui est la réponse finale à un *Invite*) n'est jamais retourné après le *200 OK SDP*, ce qui explique pourquoi l'appel est coupé.
+
+![image](/images/blog/teams/teams_debug_audio_fortigate_002.png)
+
+En discutant avec lui, il m'explique avoir remplacé son pare-feu par un nouveau du même manufacturier, et avoir importé la configuration précédente dedans. Toutes les règles et configurations que j'avais déployées à l'époque étaient bien en place.
+
+![image](/images/blog/teams/teams_debug_audio_fortigate_003.png)
+
+---
+
+##### Résolution
+Mais visiblement, la fonctionnalité *SIP Helper* est restée active dans la nouvelle configuration. Sur le papier, elle est supposée aider à gérer le trafic SIP traversant le pare-feu, mais dans la réalité, elle change le port dans notre entête SIP. La solution est donc de la désactiver en CLI.
+
+<Notice type="warning">Un redémarrage est requis.</Notice>
+
+Récupérez l'ID du SIP Helper :
+```powershell
+config system session-helper
+show
+```
+
+Faites défiler vers le bas jusqu'à ce que vous voyiez une entrée pour SIP. Dans mon cas, il s'agissait du numéro 13, mais il peut être différent selon le modèle et la version du firmware. Supprimez la configuration :
+```powershell
+delete 13
+end
+```
+
+Désactivez également SIP ALG :
+```powershell
+config system settings
+set default-voip-alg-mode kernel-helper-based
+end
+```
+
+Activez le RTP bypass :
+```powershell
+config voip profile
+edit default
+config sip
+set rtp disable
+end
+end
+```
+
+Redémarrez le pare-feu vous arrêter les sessions en cours :
+```powershell
+execute reboot
+```
+
+---
+
+##### Résulats
+En désactivant la fonctionnalité *SIP Helper*, le port proposé dans l'entête *Contact* est revenu à 5060 et les appels sont de nouveau fonctionnels.
+
+Dans mes projets de téléphonie, je fais toujours désactiver les fonctionnalités *SIP ALG*, *SIP helper*, *SSL inspection* et autres. Elles m'ont toujours posé des enjeux de réécriture de ports, one-way audio, ... .
+
+À noter que dans ce cas de figure, la trace doit être prise en sortie du pare-feu et pas en sortie du SBC. Je n'aurais pas pu voir cette erreur de port en sortie du SBC puisque la manipulation arrive une fois que le paquet a traversé le pare-feu.
+
+---
+
+##### Liens intéressants
+[Fortinet - Comment désactiver le SIP helper](https://community.fortinet.com/t5/FortiGate/Technical-Tip-Disabling-VoIP-Inspection/ta-p/194131)
+
+[En connaitre d'avantage sur le standard SIP](https://www.ietf.org/rfc/rfc3261.txt)
+
+---
+
+
+Avez-vous apprécié cet article ? Vous avez des questions, commentaires ou suggestions, n’hésitez pas à laisser un commentaire dans la section ci-dessous ou en m'envoyant un message depuis le formulaire de contact.
+
+N'oubliez pas de nous suivre et de partager cet article.

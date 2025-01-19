@@ -10,6 +10,7 @@ import { AstroFont } from "astro-font";
 import { ViewTransitions } from "astro:transitions";
 import SearchModal from "./helpers/SearchModal";
 import { getLangFromUrl } from "@/lib/utils/languageParser";
+import Analytics from '@vercel/analytics/astro'
 
 // font families
 const pf = theme.fonts.font_family.primary;
@@ -173,6 +174,7 @@ const language = lang || getLangFromUrl(Astro.url);
       }`}
     />
     <meta name="twitter:card" content="summary_large_image" />
+    <Analytics/>
   </head>
   <body>
     <TwSizeIndicator />

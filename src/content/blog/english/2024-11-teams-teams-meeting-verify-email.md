@@ -6,7 +6,7 @@ date: 2024-11-19T10:00:00-05:00
 image: "/images/blog/teams/teams_meeting_verify_email_thumbnail.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
-tags: ["Microsoft", "Microsoft 365", "Teams", "Teams Premium", "Security", "Meeting"]
+tags: ["Microsoft", "Microsoft 365", "Teams Premium", "Security", "Meeting"]
 draft: false
 ---
 ---

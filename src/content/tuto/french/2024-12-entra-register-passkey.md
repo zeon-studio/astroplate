@@ -6,7 +6,7 @@ date: 2024-12-16T10:30:00-05:00
 image: "/images/image-placeholder.png"
 categories: ["Entra"]
 author: "Maxime Hiez"
-tags: ["Microsoft", "Microsoft 365", "Entra", "Passkey", "Mot de passe", "Authenticator", "FIDO2", "MFA", "Sécurité"]
+tags: ["Microsoft", "Microsoft 365", "Passkey", "Mot de passe", "Authenticator", "FIDO2", "MFA", "Sécurité"]
 draft: false
 ---
 ---

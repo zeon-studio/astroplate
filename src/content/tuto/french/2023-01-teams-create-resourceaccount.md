@@ -6,7 +6,7 @@ date: 2023-01-04T09:00:00-05:00
 image: "/images/tuto/image-placeholder.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
-tags: ["Microsoft", "Microsoft 365", "Teams", "Téléphonie", "Compte de ressource", "Direct Routing", "Calling Plan", "Operator Connect", "PowerShell"]
+tags: ["Microsoft", "Microsoft 365", "Téléphonie", "Compte de ressource", "Direct Routing", "Calling Plan", "Operator Connect", "PowerShell"]
 draft: false
 ---
 ---
