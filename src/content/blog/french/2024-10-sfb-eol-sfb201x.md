@@ -1,19 +1,19 @@
 ---
-title: "Fin de support pour Skype for Business 2015/2019"
+title: "Fin du support pour Skype for Business Server 2015/2019"
 meta_title: ""
 description: ""
 date: 2024-10-14T10:00:00-05:00
 image: "/images/blog/sfb/sfb_eol_thumbnail.png"
 categories: ["Skype for Business"]
 author: "Maxime Hiez"
-tags: ["Microsoft", "Microsoft 365", "Skype for Business", "Fin de support"]
+tags: ["Microsoft", "Microsoft 365", "Fin de support"]
 draft: false
 ---
 ---
 
-Microsoft a annoncé la fin de support des versions 2015 et 2019 de Skype for Business pour Octobre 2025.
+Microsoft a annoncé la fin de support des versions 2015 et 2019 de Skype for Business Server pour Octobre 2025.
 
-Après le 14 octobre 2025, Microsoft ne fournira plus de support technique, de correctifs de sécurité ou de mises à jour pour Skype for Business 2015 et 2019. Les entreprises utilisant encore ces versions seront exposées à des risques de sécurité et à des problèmes de compatibilité. Il est donc crucial de planifier leur transition vers une autre solution avant cette date.
+Après le 14 octobre 2025, Microsoft ne fournira plus de support technique, de correctifs de sécurité ou de mises à jour pour Skype for Business Server 2015 et 2019. Les entreprises utilisant encore ces versions seront exposées à des risques de sécurité et à des problèmes de compatibilité. Il est donc crucial de planifier leur transition vers une autre solution avant cette date.
 
 Microsoft recommande fortement de migrer vers Microsoft Teams, qui offre une gamme de fonctionnalités avancées et une intégration étroite avec les autres services de Microsoft 365. Teams est conçu pour remplacer Skype for Business et offre des avantages tels que des capacités de collaboration améliorées, des fonctionnalités de réunion avancées et une sécurité renforcée.
 

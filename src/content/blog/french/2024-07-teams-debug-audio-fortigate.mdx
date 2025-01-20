@@ -34,7 +34,7 @@ En discutant avec lui, il m'explique avoir remplacé son pare-feu par un nouveau
 ##### Résolution
 Mais visiblement, la fonctionnalité *SIP Helper* est restée active dans la nouvelle configuration. Sur le papier, elle est supposée aider à gérer le trafic SIP traversant le pare-feu, mais dans la réalité, elle change le port dans notre entête SIP. La solution est donc de la désactiver en CLI.
 
-<Notice type="warning">Un redémarrage est requis.</Notice>
+<Notice type="warning">Un redémarrage est requis !</Notice>
 
 Récupérez l'ID du SIP Helper :
 ```powershell

@@ -31,7 +31,7 @@ Microsoft has announced the end of support for the latest version of Windows 10 
 ---
 
 ##### Conclusion
-The end of support for Windows 10 on Teams Rooms devices is an opportunity for organizations to modernize their infrastructure and take advantage of the benefits offered by Windows 11. By planning the migration now, businesses can ensure a smooth transition and continue to enjoy an optimal meeting experience.
+The end of support for Windows 10 on Teams Rooms devices is an opportunity for organizations to modernize their infrastructure and take advantage of the benefits offered by Windows 11. By planning the migration now, organizations can ensure a smooth transition and continue to enjoy an optimal meeting experience.
 
 ---
 
