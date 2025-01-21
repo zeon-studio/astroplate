@@ -1,0 +1,83 @@
+---
+title: "Import the DigiCert Root G2 certificate into a Ribbon SBC"
+meta_title: ""
+description: ""
+date: 2025-01-21T10:00:00-05:00
+image: "/images/blog/sbc/sbc_ribbon_import_cert_thumbnail.png"
+categories: ["Ribbon"]
+author: "Maxime Hiez"
+tags: ["SBC", "Certificate", "DigiCert Root G2", "Baltimore CyberTrust Root"]
+draft: false
+---
+---
+
+##### Introduction
+Since the arrival of Teams Direct Routing telephony, TLS certificates used by Microsoft servers are linked to the following root certification authority :
+- Common Certificate Authority Name: Baltimore CyberTrust Root
+- Thumbprint (SHA1): d4de20d05e66fc53fe1a50882c78db2852cae474
+
+This certificate expires on May 12, 2025 and it is important that its replacement (*DigiCert Global Root G2*) is installed on your SBC Audiocodes in parallel.
+- Common name of the certificate authority: DigiCert Global Root G2
+- Thumbprint (SHA1): df3c24f9bfd666761b268073fe06d1cc8d4f82a4
+
+![image](/images/blog/sbc/sbc_import_cert_000.png)
+
+---
+
+##### Prerequisites
+**<u>Administrator role</u>**
+- An administrator account to access the Ribbon SBC.
+
+**<u>Have the certificate</u>**
+- The DigiCert Root G2 certificate is downloadable via https://cacerts.digicert.com/DigiCertGlobalRootG2.crt.
+
+**<u>Others</u>**
+- Schedule the installation during off-hours
+
+---
+
+##### Step 1 : Log in to the SBC
+
+Connect to the SBC by opening your web browser to https://YOUR_IP_ADDRESS.
+
+![image](/images/blog/sbc/sbc_ribbon_import_cert_000.png)
+
+---
+
+##### Step 2: Import the certificate <br/><br/>
+<Notice type="info">The import does not require a restart but I recommend doing it during closed hours just in case !</Notice>
+
+Click on *Tasks*, then *SBC Easy Setup* and *Certificates*.
+
+![image](/images/blog/sbc/sbc_ribbon_import_cert_001.png)
+
+Click *Import Trusted CA Certificate* and browse Windows File Explorer.
+
+![image](/images/blog/sbc/sbc_ribbon_import_cert_002.png)
+
+Once the certificate is selected, click *OK*.
+
+![image](/images/blog/sbc/sbc_ribbon_import_cert_003.png)
+
+The certificate will be imported. Validate that the serial number is *<u>033AF1E6A711A9A0BB2864B11D09FAE5</u>*.
+
+![image](/images/blog/sbc/sbc_ribbon_import_cert_004.png)
+
+---
+
+##### Conclusion
+You now know how to import a certificate into a Ribbon SBC. Note that the process would be the same with any other intermediate certificate.
+
+---
+
+##### Sources
+[Ribbon - Import a certificate](https://publicdoc.rbbn.com/display/UXDOC81/Importing+SBC+Edge+Supplementary+Certificates)
+
+[DigiCert - Download the certificat](https://cacerts.digicert.com/DigiCertGlobalRootG2.crt)
+
+---
+
+
+Did you enjoy this post ? If you have any questions, comments or suggestions, please leave a comment in the section below or by sending me a message from the contact form.
+
+Don't forget to follow us and share this post.
