@@ -6,7 +6,7 @@ date: 2024-12-9T12:00:00-05:00
 image: "/images/blog/teams/teams_qerv5.0_thumbnail.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
-tags: ["Microsoft", "Microsoft 365", "CQD", "QER", "Power BI"]
+tags: ["CQD", "QER", "Power BI"]
 draft: false
 ---
 ---

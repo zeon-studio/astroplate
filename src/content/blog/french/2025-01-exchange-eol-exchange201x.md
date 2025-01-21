@@ -6,7 +6,7 @@ date: 2025-01-19T10:00:00-05:00
 image: "/images/blog/exchange/exchange_eol_thumbnail.png"
 categories: ["Exchange"]
 author: "Maxime Hiez"
-tags: ["Microsoft", "Microsoft 365", "Fin de support"]
+tags: ["Fin de support"]
 draft: false
 ---
 ---

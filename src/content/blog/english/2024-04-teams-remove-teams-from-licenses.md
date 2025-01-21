@@ -6,7 +6,7 @@ date: 2024-04-1T10:00:00-05:00
 image: "/images/blog/teams/teams_remove_teams_from_licenses_thumbnail.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
-tags: ["Microsoft", "Microsoft 365", "Licenses", "European Commission"]
+tags: ["Licenses", "European Commission"]
 draft: false
 ---
 ---

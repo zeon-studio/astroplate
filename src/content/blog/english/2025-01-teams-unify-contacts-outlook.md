@@ -6,7 +6,7 @@ date: 2025-01-13T10:00:00-05:00
 image: "/images/blog/teams/teams_unify_contacts_outlook_thumbnail.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
-tags: ["Microsoft", "Microsoft 365", "Outlook"]
+tags: ["Outlook", "Contacts"]
 draft: false
 ---
 ---

@@ -6,7 +6,7 @@ date: 2024-10-14T10:00:00-05:00
 image: "/images/blog/sfb/sfb_eol_thumbnail.png"
 categories: ["Skype for Business"]
 author: "Maxime Hiez"
-tags: ["Microsoft", "Microsoft 365", "Fin de support"]
+tags: ["Fin de support"]
 draft: false
 ---
 ---

@@ -6,7 +6,7 @@ date: 2024-12-6T10:00:00-05:00
 image: "/images/blog/teams/teams_roadmap_470999_sms_thumbnail.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
-tags: ["Microsoft", "Microsoft 365", "SMS", "Calling Plan"]
+tags: ["SMS", "Calling Plan"]
 draft: false
 ---
 ---

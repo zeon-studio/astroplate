@@ -6,7 +6,7 @@ date: 2024-11-12T10:00:00-05:00
 image: "/images/blog/teams/teams_update_prices_teams_phone_thumbnail.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
-tags: ["Microsoft", "Microsoft 365", "Licences", Téléphonie, "Calling Plan", Teams Phone Standard", "Pay-As-You-Go"]
+tags: ["Licences", Téléphonie, "Calling Plan", Teams Phone Standard", "Pay-As-You-Go"]
 draft: false
 ---
 ---

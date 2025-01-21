@@ -6,7 +6,7 @@ date: 2024-10-11T10:00:00-05:00
 image: "/images/blog/teams/teams_gartner_ucaas_2024_thumbnail.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
-tags: ["Microsoft", "Microsoft 365", "Magic Quadrant", "UCaaS"]
+tags: ["Magic Quadrant", "UCaaS"]
 draft: false
 ---
 ---

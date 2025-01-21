@@ -6,7 +6,7 @@ date: 2025-01-08T10:00:00-05:00
 image: "/images/blog/teams/teams_end_support_w10_mtr_thumbnail.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
-tags: ["Microsoft", "Microsoft 365", "Teams Rooms", "MTR", "MTRoW", "MTRoA", "Windows 10", "Windows 11", "End of support"]
+tags: ["Teams Rooms", "MTR", "MTRoW", "MTRoA", "Windows 10", "Windows 11", "End of support"]
 draft: false
 ---
 ---

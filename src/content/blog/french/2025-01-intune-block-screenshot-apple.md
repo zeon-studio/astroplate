@@ -6,13 +6,13 @@ date: 2025-01-20T10:00:00-05:00
 image: "/images/blog/intune/intune_block_screenshot_apple_thumbnail.png"
 categories: ["Intune"]
 author: "Maxime Hiez"
-tags: ["Microsoft", "Microsoft 365", "MAM", "Apple", "iOS", "iPadOS", "Capture d'écran"]
+tags: ["MAM", "Apple", "iOS", "iPadOS", "iPhone", "iPad", "Capture d'écran"]
 draft: false
 ---
 ---
 
 ##### Introduction
-Microsoft Intune a récemment (ENFIN !) introduit une nouvelle fonctionnalité qui permet de bloquer la capture d'écran dans les applications protégées par la gestion des applications mobiles (MAM) pour iOS et iPadOS. Cette mise à jour comble une lacune de sécurité importante pour les organisations utilisant MAM sans inscription de l'appareil, en garantissant que les utilisateurs ne peuvent pas capturer ou partager des informations sensibles à partir de comptes gérés.
+Microsoft Intune a récemment introduit (ENFIN !) une nouvelle fonctionnalité qui permet de bloquer la capture d'écran dans les applications protégées par la gestion des applications mobiles (MAM) pour iOS et iPadOS. Cette mise à jour comble une lacune de sécurité importante pour les organisations utilisant MAM sans inscription de l'appareil, en garantissant que les utilisateurs ne peuvent pas capturer ou partager des informations sensibles à partir de comptes gérés.
 
 ---
 
@@ -34,7 +34,7 @@ Microsoft Intune a récemment (ENFIN !) introduit une nouvelle fonctionnalité q
 ##### Conclusion
 Le blocage de la capture d'écran pour iOS et iPadOS avec Microsoft Intune est une avancée significative pour améliorer la sécurité des applications mobiles gérées. En mettant à jour les applications et en configurant les politiques de protection appropriées, les organisations peuvent assurer une protection robuste de leurs données sensibles.
 <br/><br/>
-Je vous ferai un tuto bientôt pour cette fonctionnalité avec les appareils Apple et Android.
+Je ferai un tuto bientôt pour cette fonctionnalité avec les appareils Apple et Android.
 
 ---
 

@@ -6,7 +6,7 @@ date: 2024-10-29T10:00:00-05:00
 image: "/images/blog/teams/teams_digital_signage_mtr_thumbnail.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
-tags: ["Microsoft", "Microsoft 365", "Digital signage", "Teams Rooms", "MTR", "MTRoW", "MTRoA", "Appspace", "XOGO"]
+tags: ["Digital signage", "Teams Rooms", "MTR", "MTRoW", "MTRoA", "Appspace", "XOGO"]
 draft: false
 ---
 ---
