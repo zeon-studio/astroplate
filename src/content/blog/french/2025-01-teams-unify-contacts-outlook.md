@@ -1,5 +1,5 @@
 ---
-title: "Nouveaux contacts unifiés dans Microsoft Teams et Outlook"
+title: "Nouveaux contacts unifiés dans Teams et Outlook"
 meta_title: ""
 description: ""
 date: 2025-01-13T10:00:00-05:00
