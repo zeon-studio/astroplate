@@ -1,5 +1,5 @@
 ---
-title: "Blocking screenshot for iOS and iPadOS with Intune"
+title: "Screenshot finally blocked for iOS and iPadOS with Intune"
 meta_title: ""
 description: ""
 date: 2025-01-20T10:00:00-05:00
