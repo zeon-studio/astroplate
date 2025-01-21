@@ -1,5 +1,5 @@
 ---
-title: "Mises à jour de tarifs pour les licences de téléphonie Teams"
+title: "Mise à jour de tarifs pour les licences de téléphonie Teams"
 meta_title: ""
 description: ""
 date: 2024-11-12T10:00:00-05:00

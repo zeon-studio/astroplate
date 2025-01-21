@@ -1,5 +1,5 @@
 ---
-title: "Pricing updates for Teams telephony licenses"
+title: "Pricing update for Teams telephony licenses"
 meta_title: ""
 description: ""
 date: 2024-11-12T10:00:00-05:00
