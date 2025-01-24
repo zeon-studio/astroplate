@@ -3,7 +3,7 @@ title: "Comment j'ai résolu des appels Teams qui coupent"
 meta_title: ""
 description: ""
 date: 2024-07-22T10:00:00-05:00
-image: "/images/blog/teams/teams_debug_audio_fortigate_thumbnail.png"
+image: "/images/blog/teams/tuto/teams_debug_audio_fortigate_thumbnail.png"
 categories: ["Teams", "Fortigate"]
 author: "Maxime Hiez"
 tags: ["Téléphonie", "Pare-feu", "SIP Helper", "SIP ALG", "Pas d'audio", "Wireshark", "Logs", "Direct Routing"]
@@ -19,15 +19,15 @@ Un client m'a contacté pour me dire qu'il avait un problème avec sa téléphon
 ##### Investigation
 Pour analyser ça, je lui ai demandé prendre une capture de logs d'un appel prise sur son pare-feu Fortigate et de m'envoyer le fichier Wireshark obtenu. 
 
-![image](/images/blog/teams/teams_debug_audio_fortigate_001.png)
+![image](/images/blog/teams/tuto/teams_debug_audio_fortigate_001.png)
 
 Je constate très rapidement qu'il y a un problème dans l'entête *Contact* du paquet *Invite* de cet appel ; le port proposé à l'opérateur SIP ThinkTel est le 47439 au lieu de 5060. Évidemment, ce port n'est pas supposé être proposé, il est donc bloqué par le pare-feu et le *ACK* (qui est la réponse finale à un *Invite*) n'est jamais retourné après le *200 OK SDP*, ce qui explique pourquoi l'appel est coupé.
 
-![image](/images/blog/teams/teams_debug_audio_fortigate_002.png)
+![image](/images/blog/teams/tuto/teams_debug_audio_fortigate_002.png)
 
 En discutant avec lui, il m'explique avoir remplacé son pare-feu par un nouveau du même manufacturier, et avoir importé la configuration précédente dedans. Toutes les règles et configurations que j'avais déployées à l'époque étaient bien en place.
 
-![image](/images/blog/teams/teams_debug_audio_fortigate_003.png)
+![image](/images/blog/teams/tuto/teams_debug_audio_fortigate_003.png)
 
 ---
 

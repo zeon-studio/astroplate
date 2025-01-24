@@ -41,11 +41,11 @@ Dans le menu de gauche, cliquez sur *<u>Protection</u>* puis sur *<u>Authenticat
 
 Cliquez sur *<u>Passkey (FIDO2)</u>* pour activer le service et les usagers concernés.
 
-![image](/images/entra/entra_passkey-001.png)
+![image](/images/blog/entra/tuto/entra_passkey_001.png)
 
 Cliquez sur *<u>Configure</u>* et activez toutes les options.
 
-![image](/images/entra/entra_passkey-002.png)
+![image](/images/blog/entra/tuto/entra_passkey_002.png)
 
 Vous pouvez aussi activer le service via le script Graph PowerShell suivant :
 ```powershell

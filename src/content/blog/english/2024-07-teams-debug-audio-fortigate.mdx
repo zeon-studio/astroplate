@@ -3,7 +3,7 @@ title: "How I resolved dropped Teams calls"
 meta_title: ""
 description: ""
 date: 2024-07-22T10:00:00-05:00
-image: "/images/blog/teams/teams_debug_audio_fortigate_thumbnail.png"
+image: "/images/blog/teams/tuto/teams_debug_audio_fortigate_thumbnail.png"
 categories: ["Teams", "Fortigate"]
 author: "Maxime Hiez"
 tags: ["Telephony", "Firewall", "SIP Helper", "SIP ALG", "No audio", "Wireshark", "Logs", "Direct Routing"]
@@ -19,15 +19,15 @@ A customer contacted me to tell me that he was having an issue with his Microsof
 ##### Investigation
 To analyze this, I asked him to take a log capture of a call taken on his Fortigate firewall and to send me the resulting Wireshark file.
 
-![image](/images/blog/teams/teams_debug_audio_fortigate_001.png)
+![image](/images/blog/teams/tuto/teams_debug_audio_fortigate_001.png)
 
 I quickly noticed that there was a problem in the *Contact* header of the *Invite* packet of this call ; the port offered to the ThinkTel SIP operator is 47439 instead of 5060. Obviously, this port is not supposed to be offered, so it is blocked by the firewall and the *ACK* (which is the final response to an *Invite*) is never returned after the *200 OK SDP*, which explains why the call is disconnected.
 
-![image](/images/blog/teams/teams_debug_audio_fortigate_002.png)
+![image](/images/blog/teams/tuto/teams_debug_audio_fortigate_002.png)
 
 While talking with him, he explains to me that he replaced his firewall with a new one from the same manufacturer, and that he imported the previous configuration into it. All the rules and configurations I had deployed were still here.
 
-![image](/images/blog/teams/teams_debug_audio_fortigate_003.png)
+![image](/images/blog/teams/tuto/teams_debug_audio_fortigate_003.png)
 
 ---
 

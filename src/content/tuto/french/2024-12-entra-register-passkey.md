@@ -39,19 +39,19 @@ Connectez vous à My Sign-Ins en ouvrant votre navigateur web sur https://mysign
 ##### Étape 2 : Inscrire une Passkey
 Cliquez sur *<u>Add sign-in method</u>* puis sur *<u>Passkey in Microsoft Authenticator</u>*.
 
-![image](/images/entra/entra_passkey-003.png)
+![image](/images/blog/entra/tuto/entra_passkey_003.png)
 
 Ouvrez l'application *<u>Authenticator</u>* sur le cellulaire et cliquez sur *<u>Créer une clé d'accès</u>*.
 
-![image](/images/entra/entra_passkey-004.png)
+![image](/images/blog/entra/tuto/entra_passkey_004.png)
 
 Suivez toutes les étapes présentées à l'écran.
 
-![image](/images/entra/entra_passkey-005.png)
+![image](/images/blog/entra/tuto/entra_passkey_005.png)
 
 Une fois les étapes complétées, la Passkey est créée.
 
-![image](/images/entra/entra_passkey-006.png)
+![image](/images/blog/entra/tuto/entra_passkey_006.png)
 
 ---
 
