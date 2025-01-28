@@ -6,7 +6,7 @@ date: 2023-01-04T09:00:00-05:00
 image: "/images/image-placeholder.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
-tags: ["Microsoft", "Microsoft 365", "Teams", "Telephony", "Resource Account", "Direct Routing", "Calling Plan", "Operator Connect", "PowerShell"]
+tags: ["Telephony", "Resource Account", "Direct Routing", "Calling Plan", "Operator Connect", "Auto attendant", "Call queue", "PowerShell"]
 draft: false
 ---
 ---

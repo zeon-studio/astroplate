@@ -36,7 +36,7 @@ Sign in to the Microsoft Teams Admin Center by opening your web browser to https
 ---
 
 ##### Step 2 : Enable the callback feature
-In the left menu, click *<u>Voice</u>* then *<u>Call queues</u>*, and edit the queue on which you want to add the callback functionality.
+In the left menu, click on *<u>Voice</u>* then *<u>Call queues</u>*, and edit the queue on which you want to add the callback functionality.
 
 ![image](/images/blog/teams/tuto/teams_callback_callqueue_001.png)
 
@@ -59,8 +59,8 @@ Note that the default music lasts 2 minutes, so even if I had configured 1 minut
 
 ---
 
-##### Step 4 : Define the audio message
-When one of the conditions is met, the message you defined will be played. It can be an audio file (mp3, wav or wma) or text-to-speech.
+##### Step 4 : Define the audio greeting
+When one of the conditions is met, the greeting you defined will be played. It can be an audio file (mp3, wav or wma) or text-to-speech.
 
 ![image](/images/blog/teams/tuto/teams_callback_callqueue_004.png)
 
@@ -83,7 +83,7 @@ It is possible to notify people by email when a reminder expires. Enter the name
 ##### Step 7 : Apply a voice policy
 Since the queue is placing an outgoing call, it is important not to forget to apply a voice policy on the resource account (like for a user).
 
-In the left menu, click *<u>Voice</u>* then *<u>Resource Accounts</u>*, and edit the resource account of the queue you just add reminder functionality. Add the voice policy that best suits your needs.
+In the left menu, click on *<u>Voice</u>* then *<u>Resource Accounts</u>*, and edit the resource account of the queue you just add reminder functionality. Add the voice policy that best suits your needs.
 
 ![image](/images/blog/teams/tuto/teams_callback_callqueue_007.png)
 
@@ -125,6 +125,6 @@ You now know how to enable callback on a Teams queue.
 ---
 
 
-Avez-vous apprécié cet article ? Vous avez des questions, commentaires ou suggestions, n’hésitez pas à laisser un commentaire dans la section ci-dessous ou en m'envoyant un message depuis le formulaire de contact.
+Did you enjoy this post ? If you have any questions, comments or suggestions, please leave a comment in the section below or by sending me a message from the contact form.
 
-N'oubliez pas de nous suivre et de partager cet article.
+Don't forget to follow us and share this post.

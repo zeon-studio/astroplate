@@ -1,5 +1,5 @@
 ---
-title: "Capture d'écran enfin bloquée pour iOS et iPadOS avec Intune"
+title: "Capture d'écran enfin bloquable sur iOS et iPadOS avec Intune"
 meta_title: ""
 description: ""
 date: 2025-01-20T10:00:00-05:00
