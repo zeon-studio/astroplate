@@ -31,17 +31,3 @@ Au fil du temps, je me suis spécialisé dans le domaine de la téléphonie Micr
 
 Sur mon blog, vous retrouverez des articles de déploiement, des conseils techniques et les nouveautés sur la plateforme Microsoft365.
 
-
-###### Mes certifications
-
-Microsoft SC-300 : Identity and Access Administrator Associate<br>
-Microsoft MD-102 : Endpoint Administrator Associate<br>
-Microsoft MS-721 : Collaboration Communications Systems Engineer Associate<br>
-Microsoft MS-720 : Teams Voice Engineer Expert<br>
-Audiocodes ACA : SBC in the Microsoft Teams Environment (Essentials & Configuration)<br>
-Microsoft MS-700 : Teams Administrator Associate<br>
-Microsoft MS-300 : Deploying Microsoft 365 Teamwork<br>
-Microsoft MS-101 : Mobility and Security<br>
-Microsoft MS-100 : Identity and Services<br>
-Microsoft 70-333 : Deploying Enterprise Voice with Skype for Business 2015<br>
-Microsoft 70-334 : Core Solutions of Microsoft Skype for Business 2015<br>

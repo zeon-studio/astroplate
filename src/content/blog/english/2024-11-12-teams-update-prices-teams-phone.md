@@ -34,13 +34,11 @@ Microsoft recently announced a price increase for several Teams telephony licens
 ---
 
 ##### Customer impact
-
 Starting April 1, 2025, organizations using these services will have to take into account this increase when planning their 2025 budgets. However, the benefits of new features and enhancements to Teams Phone justify this price increase. Customers can also choose monthly billing options for greater financial flexibility.
 
 ---
 
 ##### Conclusion
-
 The increase in Teams Phone license prices reflects Microsoft’s continued efforts to improve its services and deliver value to its customers. By investing in innovations and aligning its pricing with the market, Microsoft continues to provide a reliable, integrated telephony solution for organizations of all sizes.
 
 ---

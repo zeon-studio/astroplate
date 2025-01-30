@@ -2,7 +2,7 @@
 title: "The SMS messages will be native in Teams"
 meta_title: ""
 description: ""
-date: 2024-12-6T10:00:00-05:00
+date: 2024-12-06T10:00:00-05:00
 image: "/images/blog/teams/teams_roadmap_470999_sms_thumbnail.png"
 categories: ["Teams"]
 author: "Maxime Hiez"

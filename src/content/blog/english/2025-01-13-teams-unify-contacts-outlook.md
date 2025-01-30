@@ -26,7 +26,6 @@ Microsoft recently announced the general availability of the new unified contact
 ---
 
 ##### Benefits of unified contacts
-
 - Increased efficiency : Users no longer need to switch between Teams and Outlook to manage their contacts, reducing the time and effort required to keep contact lists up to date.
 - Improved user experience : Managing contacts in a unified space makes it easier to interact between the two platforms and improves productivity.
 - Reduced duplication : By eliminating unnecessary duplication, this merger simplifies contact management and ensures smoother interface usage.

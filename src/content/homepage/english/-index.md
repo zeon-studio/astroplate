@@ -1,7 +1,7 @@
 ---
 # Banner
 banner:
-  title: "The Ultimate Starter Template You Need To Start Your Astro Project"
+  title: "Maxime's blog"
   content: "Astroplate is a free starter template built with Astro and TailwindCSS, providing everything you need to jumpstart your Astro project and save valuable time."
   image: "/images/banner.png"
   button:
@@ -61,46 +61,53 @@ banner:
       description: "Core Solutions of Microsoft Skype for Business 2015"
 # Features
 features:
-  - title: "What's Included in Astroplate"
-    image: "/images/service-1.png"
-    content: "Astroplate is a comprehensive starter template that includes everything you need to get started with your Astro project. What's Included in Astroplate"
-    bulletpoints:
-      - "10+ Pre-build pages"
-      - "95+ Google Pagespeed Score"
-      - "Build with Astro and TailwindCSS for easy and customizable styling"
-      - "Fully responsive on all devices"
-      - "SEO-optimized for better search engine rankings"
-      - "**Open-source and free** for personal and commercial use"
-    button:
-      enable: false
-      label: "Get Started Now"
-      link: "#"
+#  - title: "Mes certifications"
+#    image: "/images/service-1.png"
+#    content: "Je passe beaucoup de temps à me maintenir à jour et apprendre de nouvelles choses pour être capable de fournir le meilleur accompagnement dans mes projets."
+#    bulletpoints:
+#      - "**Microsoft SC-300** : *Identity and Access Administrator Associate*"
+#      - "**Microsoft MD-102** : *Endpoint Administrator Associate*"
+#      - "**Microsoft MS-721** : *Collaboration Communications Systems Engineer Associate*"
+#      - "**Microsoft MS-720** : *Teams Voice Engineer Expert*"
+#      - "**Audiocodes ACA** : *SBC in the Microsoft Teams Environment (Essentials & Configuration)*"
+#      - "**Microsoft MS-700** : *Teams Administrator Associate*"
+#      - "**Microsoft MS-300** : *Deploying Microsoft 365 Teamwork*"
+#      - "**Microsoft MS-101** : *Mobility and Security*"
+#      - "**Microsoft MS-100** : *Identity and Services*"
+#      - "**Microsoft 70-333** : *Deploying Enterprise Voice with Skype for Business 2015*"
+#      - "**Microsoft 70-334** : *Core Solutions of Microsoft Skype for Business 2015*"
+#      - "**En préparation :**"
+#      - "Microsoft SC-400 : *Information Protection and Compliance Administrator Associate*"
+#    button:
+#      enable: false
+#      label: "Commencer maintenant"
+#      link: "#"
 
   - title: "My skills"
     image: "/images/service-2.png"
-    content: "Astro is an all-in-one web framework for building fast, content-focused websites. It offers a range of exciting features for developers and website creators. Some of the key features are:"
+    content: "I spend a lot of time keeping up to date and learning new things to be able to provide the best support in my projects."
     bulletpoints:
       - "Microsoft Teams telephony"
       - "Microsoft Teams visioconference rooms"
       - "SBCs (Audiocodes, Ribbon)"
       - "Multiple Microsoft 365 services (Entra, Intune, Exchange, ...)"
-      - "Simple landing zones in Microsoft Azure"
+      - "Microsoft Azure landing zones"
       - "..."
     button:
       enable: false
       label: "Get Started Now"
       link: "https://github.com/zeon-studio/astroplate"
 
-  - title: "The Top Reasons to Choose Astro for Your Next Project"
-    image: "/images/service-3.png"
-    content: "With Astro, you can build modern and content-focused websites without sacrificing performance or ease of use."
-    bulletpoints:
-      - "Instantly load static sites for better user experience and SEO."
-      - "Intuitive syntax and support for popular frameworks make learning and using Astro a breeze."
-      - "Use any front-end library or framework, or build custom components, for any project size."
-      - "Built on cutting-edge technology to keep your projects up-to-date with the latest web standards."
-    button:
-      enable: false
-      label: ""
-      link: ""
+#  - title: "The Top Reasons to Choose Astro for Your Next Project"
+#    image: "/images/service-3.png"
+#    content: "With Astro, you can build modern and content-focused websites without sacrificing performance or ease of use."
+#    bulletpoints:
+#      - "Instantly load static sites for better user experience and SEO."
+#      - "Intuitive syntax and support for popular frameworks make learning and using Astro a breeze."
+#      - "Use any front-end library or framework, or build custom components, for any project size."
+#      - "Built on cutting-edge technology to keep your projects up-to-date with the latest web standards."
+#    button:
+#      enable: false
+#      label: ""
+#      link: ""
 ---

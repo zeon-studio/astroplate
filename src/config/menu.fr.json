@@ -6,7 +6,6 @@
     { "name": "Contact", "url": "/contact" }
   ],
   "footer": [
-    { "name": "Éléments", "url": "/elements" },
     { "name": "Politique de confidentialité", "url": "/privacy-policy" }
   ]
 }

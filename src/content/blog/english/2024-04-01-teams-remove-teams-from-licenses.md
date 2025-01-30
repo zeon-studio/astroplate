@@ -2,7 +2,7 @@
 title: "Realigning global licensing for Microsoft 365"
 meta_title: ""
 description: ""
-date: 2024-04-1T10:00:00-05:00
+date: 2024-04-01T10:00:00-05:00
 image: "/images/blog/teams/teams_remove_teams_from_licenses_thumbnail.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
@@ -17,7 +17,6 @@ On August 31, 2023, Microsoft announced significant changes to its Microsoft 365
 ---
 
 ##### Background
-
 The European Commission launched a formal investigation into Microsoft's bundling practices, focusing on whether the inclusion of Microsoft Teams in its business suites hindered competition. Microsoft has a long history of integrating communication and collaboration tools into its business offerings, starting with Office Communicator in 2007 and evolving through Lync, Skype for Business, and now Microsoft Teams.
 
 In October 1, 2023, Microsoft unbundled Teams from Microsoft 365 and Office 365 Suites and created a new standalone Teams offering for Enterprise customers.

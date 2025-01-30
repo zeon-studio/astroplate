@@ -2,7 +2,7 @@
 title: "Réalignement global des licences Microsoft 365"
 meta_title: ""
 description: ""
-date: 2024-04-1T10:00:00-05:00
+date: 2024-04-01T10:00:00-05:00
 image: "/images/blog/teams/teams_remove_teams_from_licenses_thumbnail.png"
 categories: ["Teams"]
 author: "Maxime Hiez"

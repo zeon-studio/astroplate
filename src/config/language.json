@@ -3,12 +3,12 @@
     "languageName": "EN",
     "languageCode": "en",
     "contentDir": "english",
-    "weight": 1
+    "weight": 2
   },
   {
     "languageName": "FR",
     "languageCode": "fr",
     "contentDir": "french",
-    "weight": 2
+    "weight": 1
   }
 ]

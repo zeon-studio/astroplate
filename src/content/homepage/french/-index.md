@@ -8,8 +8,8 @@ banner:
     enable: false
     label: "Commencer gratuitement"
     link: "https://github.com/zeon-studio/astroplate"
-  cert_title: "Mes certifications"
   # Certifications
+  cert_title: "Mes certifications"
   certifications:
     - logo: "/images/certifications/microsoft-sc300.png"
       manufacturer: "Microsoft"
@@ -61,53 +61,53 @@ banner:
       description: "Core Solutions of Microsoft Skype for Business 2015"
 # Features
 features:
-  - title: "Mes certifications"
-    image: "/images/service-1.png"
-    content: "Je passe beaucoup de temps à me maintenir à jour et apprendre de nouvelles choses pour être capable de fournir le meilleur accompagnement dans mes projets."
-    bulletpoints:
-      - "**Microsoft SC-300** : *Identity and Access Administrator Associate*"
-      - "**Microsoft MD-102** : *Endpoint Administrator Associate*"
-      - "**Microsoft MS-721** : *Collaboration Communications Systems Engineer Associate*"
-      - "**Microsoft MS-720** : *Teams Voice Engineer Expert*"
-      - "**Audiocodes ACA** : *SBC in the Microsoft Teams Environment (Essentials & Configuration)*"
-      - "**Microsoft MS-700** : *Teams Administrator Associate*"
-      - "**Microsoft MS-300** : *Deploying Microsoft 365 Teamwork*"
-      - "**Microsoft MS-101** : *Mobility and Security*"
-      - "**Microsoft MS-100** : *Identity and Services*"
-      - "**Microsoft 70-333** : *Deploying Enterprise Voice with Skype for Business 2015*"
-      - "**Microsoft 70-334** : *Core Solutions of Microsoft Skype for Business 2015*"
-      - "**En préparation :**"
-      - "Microsoft SC-400 : *Information Protection and Compliance Administrator Associate*"
-    button:
-      enable: false
-      label: "Commencer maintenant"
-      link: "#"
+#  - title: "Mes certifications"
+#    image: "/images/service-1.png"
+#    content: "Je passe beaucoup de temps à me maintenir à jour et apprendre de nouvelles choses pour être capable de fournir le meilleur accompagnement dans mes projets."
+#    bulletpoints:
+#      - "**Microsoft SC-300** : *Identity and Access Administrator Associate*"
+#      - "**Microsoft MD-102** : *Endpoint Administrator Associate*"
+#      - "**Microsoft MS-721** : *Collaboration Communications Systems Engineer Associate*"
+#      - "**Microsoft MS-720** : *Teams Voice Engineer Expert*"
+#      - "**Audiocodes ACA** : *SBC in the Microsoft Teams Environment (Essentials & Configuration)*"
+#      - "**Microsoft MS-700** : *Teams Administrator Associate*"
+#      - "**Microsoft MS-300** : *Deploying Microsoft 365 Teamwork*"
+#      - "**Microsoft MS-101** : *Mobility and Security*"
+#      - "**Microsoft MS-100** : *Identity and Services*"
+#      - "**Microsoft 70-333** : *Deploying Enterprise Voice with Skype for Business 2015*"
+#      - "**Microsoft 70-334** : *Core Solutions of Microsoft Skype for Business 2015*"
+#      - "**En préparation :**"
+#      - "Microsoft SC-400 : *Information Protection and Compliance Administrator Associate*"
+#    button:
+#      enable: false
+#      label: "Commencer maintenant"
+#      link: "#"
 
   - title: "Mes compétences"
     image: "/images/service-2.png"
-    content: "Astro est un framework web tout-en-un pour construire des sites web rapides et centrés sur le contenu. Il offre une gamme de fonctionnalités excitantes pour les développeurs et les créateurs de sites web. Certaines des fonctionnalités clés sont :"
+    content: "Je passe beaucoup de temps à me maintenir à jour et apprendre de nouvelles choses pour être capable de fournir le meilleur accompagnement dans mes projets."
     bulletpoints:
       - "Téléphonie Microsoft Teams"
       - "Salles de visioconférence Microsoft Teams"
       - "SBCs (Audiocodes, Ribbon)"
       - "Plusieurs services Microsoft 365 (Entra, Intune, Exchange, ...)"
-      - "Landing zones simples dans Microsoft Azure"
+      - "Landing zones Microsoft Azure"
       - "..."
     button:
       enable: false
       label: "Commencer maintenant"
       link: "https://github.com/zeon-studio/astroplate"
 
-  - title: "Les principales raisons de choisir Astro pour votre prochain projet"
-    image: "/images/service-3.png"
-    content: "Avec Astro, vous pouvez construire des sites web modernes et centrés sur le contenu sans sacrifier la performance ou la facilité d'utilisation."
-    bulletpoints:
-      - "Charge instantanée des sites statiques pour une meilleure expérience utilisateur et SEO."
-      - "Syntaxe intuitive et support pour les frameworks populaires rendent l'apprentissage et l'utilisation d'Astro un jeu d'enfant."
-      - "Utilisez n'importe quelle bibliothèque ou framework front-end, ou construisez des composants personnalisés, pour tout type de projet."
-      - "Construit sur une technologie de pointe pour garder vos projets à jour avec les dernières normes web."
-    button:
-      enable: false
-      label: ""
-      link: ""
+#  - title: "Les principales raisons de choisir Astro pour votre prochain projet"
+#    image: "/images/service-3.png"
+#    content: "Avec Astro, vous pouvez construire des sites web modernes et centrés sur le contenu sans sacrifier la performance ou la facilité d'utilisation."
+#    bulletpoints:
+#      - "Charge instantanée des sites statiques pour une meilleure expérience utilisateur et SEO."
+#      - "Syntaxe intuitive et support pour les frameworks populaires rendent l'apprentissage et l'utilisation d'Astro un jeu d'enfant."
+#      - "Utilisez n'importe quelle bibliothèque ou framework front-end, ou construisez des composants personnalisés, pour tout type de projet."
+#      - "Construit sur une technologie de pointe pour garder vos projets à jour avec les dernières normes web."
+#    button:
+#      enable: false
+#      label: ""
+#      link: ""
 ---
