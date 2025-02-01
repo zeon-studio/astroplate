@@ -36,7 +36,7 @@ Connect-MicrosoftTeams
 ---
 
 ##### Étape 2 : Assigner un numéro au compte de ressource
-Dans le menu de gauche, cliquez sur *<u>Voice</u>* puis sur *<u>Resource accounts</u>*.
+Dans le menu de gauche, cliquez sur *<u>Voice</u>*, puis sur *<u>Resource accounts</u>*.
 
 Pour assigner un numéro de téléphone au compte de ressource, sélectionnez le et cliquez sur le bouton *<u>Assign/unassign</u>*.
 

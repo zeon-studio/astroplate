@@ -4,7 +4,7 @@ meta_title: ""
 description: ""
 date: 2024-12-17T10:00:00-05:00
 image: "/images/blog/entra/tuto/entra_connect_passkey_thumbnail.png"
-categories: ["Entra ID"]
+categories: ["Entra"]
 author: "Maxime Hiez"
 tags: ["Passkey", "Password", "Authenticator", "FIDO2", "MFA", "Security"]
 draft: false
@@ -35,7 +35,7 @@ Sign in to *My Sign-Ins* by opening your web browser to https://mysignins.micros
 ---
 
 ##### Step 2 : Register a Passkey
-Click *<u>Add sign-in method</u>* then *<u>Passkey in Microsoft Authenticator</u>*.
+Click on *<u>Add sign-in method</u>* then *<u>Passkey in Microsoft Authenticator</u>*.
 
 ![image](/images/blog/entra/tuto/entra_passkey_003.png)
 

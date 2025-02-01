@@ -3,10 +3,10 @@ title: "Digital signage with Teams Rooms"
 meta_title: ""
 description: ""
 date: 2024-10-29T10:00:00-05:00
-image: "/images/blog/teams/teams_digital_signage_mtr_thumbnail.png"
+image: "/images/blog/mtr/mtr_digital_signage_thumbnail.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
-tags: ["Digital signage", "Teams Rooms", "MTR", "MTRoW", "MTRoA", "Appspace", "XOGO"]
+tags: ["Teams Rooms Pro", "MTRoW", "MTRoA", "Digital signage", "Appspace", "XOGO"]
 draft: false
 ---
 ---
@@ -23,14 +23,14 @@ When your Teams Rooms are not being used for meetings or presentations, you can 
 - Guides and Tutorials : Provide practical guides and tutorials to help employees use available tools and resources.
 - Customization : Adapt the displayed content to the needs and preferences of your organization.
 
-![image](/images/blog/teams/teams_digital_signage_mtr_001.png)
+![image](/images/blog/mtr/mtr_digital_signage_001.png)
 
 ##### Configuration and management
-To configure digital signage in your Teams Rooms, follow these steps:
+To configure digital signage in your Teams Rooms, follow these steps :
 
-- Licenses : Assign a Teams Rooms Pro license to each room account that will use digital signage.
-- Enable digital signage : Activate this feature for your tenant and add content sources, including third-party integrations if necessary.
-- Assign sources and settings : Configure the rooms to display the desired content in signage mode.
+1. Licenses : Assign a Teams Rooms Pro license to each room account that will use digital signage.
+2. Enable digital signage : Activate this feature for your tenant and add content sources, including third-party integrations if necessary.
+3. Assign sources and settings : Configure the rooms to display the desired content in signage mode.
 
 ---
 
@@ -44,7 +44,7 @@ To configure digital signage in your Teams Rooms, follow these steps:
 ##### Partnerships
 Microsoft has partnered with Appspace and XOGO to develop native integrations that support the automatic registration of Teams Rooms into their content management platform, streamlining device integration and management. As part of the integration, Appspace and XOGO will receive the names of rooms registered in their platform so you can correctly identify your Teams Rooms in their management portal. Once your rooms are registered, you can update and manage the signage content of your rooms directly from their respective content management platform.
 
-![image](/images/blog/teams/teams_digital_signage_mtr_002.png)
+![image](/images/blog/mtr/mtr_digital_signage_002.png)
 
 ---
 

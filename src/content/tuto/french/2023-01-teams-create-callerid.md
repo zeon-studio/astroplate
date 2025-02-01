@@ -45,7 +45,7 @@ Connect-MicrosoftTeams
 ---
 
 ##### Étape 2 : Créer une règle de Caller ID
-Dans le menu de gauche, cliquez sur *<u>Voice</u>* puis sur *<u>Caller ID policies</u>*.
+Dans le menu de gauche, cliquez sur *<u>Voice</u>*, puis sur *<u>Caller ID policies</u>*.
 
 Pour créer une nouvelle règle, cliquez sur le bouton *<u>+ Add</u>*.
 

@@ -4,7 +4,7 @@ meta_title: ""
 description: ""
 date: 2024-12-17T10:00:00-05:00
 image: "/images/blog/entra/tuto/entra_connect_passkey_thumbnail.png"
-categories: ["Entra ID"]
+categories: ["Entra"]
 author: "Maxime Hiez"
 tags: ["Passkey", "Mot de passe", "Authenticator", "FIDO2", "MFA", "Sécurité"]
 draft: false
@@ -35,7 +35,7 @@ Connectez vous à *My Sign-Ins* en ouvrant votre navigateur web sur https://mysi
 ---
 
 ##### Étape 2 : Inscrire une Passkey
-Cliquez sur *<u>Add sign-in method</u>* puis sur *<u>Passkey in Microsoft Authenticator</u>*.
+Cliquez sur *<u>Add sign-in method</u>*, puis sur *<u>Passkey in Microsoft Authenticator</u>*.
 
 ![image](/images/blog/entra/tuto/entra_passkey_003.png)
 

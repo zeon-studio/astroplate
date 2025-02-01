@@ -34,7 +34,7 @@ Connectez vous au Microsoft Teams Admin Center en ouvrant votre navigateur web s
 ---
 
 ##### Étape 2 : Activer la fonctionnalité de rappel
-Dans le menu de gauche, cliquez sur *<u>Voice</u>* puis sur *<u>Call queues</u>*, et éditez la file d'attente sur laquelle vous voulez ajouter la fonctionnalité de rappel.
+Dans le menu de gauche, cliquez sur *<u>Voice</u>*, puis sur *<u>Call queues</u>*, et éditez la file d'attente sur laquelle vous voulez ajouter la fonctionnalité de rappel.
 
 ![image](/images/blog/teams/tuto/teams_callback_callqueue_001.png)
 
@@ -81,7 +81,7 @@ Il est possible de notifier des personnes par courriel lorsqu'un rappel arrive �
 ##### Étape 7 : Appliquer une voice policy
 Puisque la file d'attente fait un appel sortant, il est important de ne pas oublier d'appliquer une voice policy sur le compte de ressource (comme pour un utilisateur).
 
-Dans le menu de gauche, cliquez sur *<u>Voice</u>* puis sur *<u>Resource Accounts</u>*, et éditez le compte de ressource de la file d'attente sur laquelle vous venez d'ajouter la fonctionnalité de rappel. Ajoutez la voice policy qui convient le mieux à votre besoin.
+Dans le menu de gauche, cliquez sur *<u>Voice</u>*, puis sur *<u>Resource Accounts</u>*, et éditez le compte de ressource de la file d'attente sur laquelle vous venez d'ajouter la fonctionnalité de rappel. Ajoutez la voice policy qui convient le mieux à votre besoin.
 
 ![image](/images/blog/teams/tuto/teams_callback_callqueue_007.png)
 

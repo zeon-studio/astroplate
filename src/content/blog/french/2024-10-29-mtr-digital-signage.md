@@ -3,10 +3,10 @@ title: "Affichage dynamique avec les Teams Rooms"
 meta_title: ""
 description: ""
 date: 2024-10-29T10:00:00-05:00
-image: "/images/blog/teams/teams_digital_signage_mtr_thumbnail.png"
-categories: ["Teams"]
+image: "/images/blog/mtr/mtr_digital_signage_thumbnail.png"
+categories: ["MTR"]
 author: "Maxime Hiez"
-tags: ["Affichage dynamique", "Teams Rooms", "MTR", "MTRoW", "MTRoA", "Appspace", "XOGO"]
+tags: ["Teams Rooms Pro", "MTRoW", "MTRoA", "Affichage dynamique", "Appspace", "XOGO"]
 draft: false
 ---
 ---
@@ -23,16 +23,16 @@ Lorsque vos Teams Rooms ne sont pas utilisés pour des réunions ou des présent
 - Guides et tutoriels : Proposez des guides pratiques et des tutoriels pour aider les employés à utiliser les outils et les ressources disponibles.
 - Personnalisation : Adaptez le contenu affiché en fonction des besoins et des préférences de votre organisation.
 
-![image](/images/blog/teams/teams_digital_signage_mtr_001.png)
+![image](/images/blog/mtr/mtr_digital_signage_001.png)
 
 ---
 
 ##### Configuration et gestion
 Pour configurer l'affichage dynamique dans vos Teams Rooms, suivez ces étapes :
 
-- Licences : Assignez une licence <u>Teams Rooms Pro</u> à chaque compte de salle qui fera de l'affichage dynamique.
-- Activer l'affichage dynamique : Activez cette fonctionnalité pour votre tenant et ajoutez des sources de contenu, y compris des intégrations tierces si nécessaire.
-- Assigner des sources et des paramètres : Configurez les salles pour qu'elles affichent le contenu souhaité en mode affichage dynamique.
+1. Licences : Assignez une licence <u>Teams Rooms Pro</u> à chaque compte de salle qui fera de l'affichage dynamique.
+2. Activer l'affichage dynamique : Activez cette fonctionnalité pour votre tenant et ajoutez des sources de contenu, y compris des intégrations tierces si nécessaire.
+3. Assigner des sources et des paramètres : Configurez les salles pour qu'elles affichent le contenu souhaité en mode affichage dynamique.
 
 ---
 
@@ -46,7 +46,7 @@ Pour configurer l'affichage dynamique dans vos Teams Rooms, suivez ces étapes :
 ##### Partenariats
 Microsoft s'est associé avec Appspace et XOGO pour développer des intégrations natives qui prennent en charge l'enregistrement automatique des Teams Rooms dans leur plateforme de gestion de contenu, rationalisant ainsi l'intégration et la gestion des appareils. Dans le cadre de l'intégration, Appspace et XOGO recevront les noms des salles enregistrées dans leur plateforme afin que vous puissiez identifier correctement vos Teams Rooms dans leur portail de gestion. Une fois vos salles enregistrées, vous pouvez mettre à jour et gérer le contenu de signalisation de vos salles directement à partir de leur plateforme de gestion de contenu respectif.
 
-![image](/images/blog/teams/teams_digital_signage_mtr_002.png)
+![image](/images/blog/mtr/mtr_digital_signage_002.png)
 
 ---
 

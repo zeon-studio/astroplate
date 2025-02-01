@@ -45,7 +45,7 @@ Connect-MicrosoftTeams
 ---
 
 ##### Step 2 : Create a Caller ID policy
-In the left menu, click on *<u>Voice</u>* then on *<u>Caller ID policies</u>*.
+In the left menu, click on *<u>Voice</u>*, then on *<u>Caller ID policies</u>*.
 
 To create a new policy, click on the *<u>+ Add</u>* button.
 
