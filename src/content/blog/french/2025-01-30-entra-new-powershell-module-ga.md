@@ -6,7 +6,7 @@ date: 2025-01-30T10:00:00-05:00
 image: "/images/blog/entra/entra_new_powershell_module_ga_thumbnail.png"
 categories: ["Entra"]
 author: "Maxime Hiez"
-tags: ["AzureAD", "MSOnline", "Microsoft Graph", "PowerShell"]
+tags: ["AzureAD", "MSOnline", "Microsoft Graph", "Module", "PowerShell"]
 draft: false
 ---
 ---
