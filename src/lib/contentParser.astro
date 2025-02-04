@@ -109,9 +109,7 @@ export const getListPage = async <C extends CollectionKey>(
   lang: keyof ContentEntryMap | undefined
 ): Promise<CollectionEntry<C>[]> => {
   const { default_language } = config.settings;
-
   const selectedLanguageCode = lang || default_language;
-
   const language = languages.find(
     (l: any) => l.languageCode == selectedLanguageCode
   );
@@ -129,6 +127,16 @@ export const getListPage = async <C extends CollectionKey>(
     }
   )) as CollectionEntry<C>[];
 
-  return pages;
+  // Sort the pages array
+  return pages.sort((a, b) => {
+    // Put -index at the top
+    if (a.id.endsWith("-index")) return -1;
+    if (b.id.endsWith("-index")) return 1;
+
+    // For other posts, sort by their numeric part
+    const aNum = parseInt(a.id.match(/\d+/)?.[0] || "0");
+    const bNum = parseInt(b.id.match(/\d+/)?.[0] || "0");
+    return aNum - bNum;
+  });
 };
 ---
