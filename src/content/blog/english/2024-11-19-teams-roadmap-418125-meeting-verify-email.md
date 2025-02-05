@@ -3,10 +3,10 @@ title: "Email verification of external Teams participants"
 meta_title: ""
 description: ""
 date: 2024-11-19T10:00:00-05:00
-image: "/images/blog/teams/teams_meeting_verify_email_thumbnail.png"
+image: "/images/blog/teams/teams_roadmap_418125_meeting_verify_email_thumbnail.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
-tags: ["Teams Premium", "Security", "Meeting"]
+tags: ["Teams Premium", "Security", "Meeting", "Roadmap"]
 draft: false
 ---
 ---
@@ -27,16 +27,16 @@ When inviting external participants to join Teams meetings, it is common for the
 ---
 
 ##### How to enable this feature
-This feature is available to meeting organizers with a <u>Teams Premium</u> license. Administrators can manage this feature through a new meeting policy called "Anonymous users can join a meeting after verifying by email code". Meeting organizers will also have a new option labeled "Unverified participants can join the meeting," which will be enabled by default if the administrator has allowed unverified participants.
+This feature is available to meeting organizers with a <u>Teams Premium</u> license. Administrators can manage this feature through a new meeting policy called *Anonymous users can join a meeting after verifying by email code*. Meeting organizers will also have a new option labeled *Unverified participants can join the meeting* which will be enabled by default if the administrator has allowed unverified participants.
 
-![image](/images/blog/teams/teams_meeting_verify_email_001.png)
+![image](/images/blog/teams/teams_roadmap_418125_meeting_verify_email_001.png)
 
 ---
 
 ##### Participant experience
 When organizers choose to disallow unverified participants from joining meetings, participants will need to authenticate themselves upon attempting to join. If they have a Microsoft work, school, or personal account, they can use these credentials for authentication.
 
-![image](/images/blog/teams/teams_meeting_verify_email_002.png)
+![image](/images/blog/teams/teams_roadmap_418125_meeting_verify_email_002.png)
 
 ---
 

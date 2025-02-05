@@ -71,6 +71,6 @@ Go and update your PowerShell for Teams module to benefit from the latest update
 ---
 
 
-Avez-vous apprécié cet article ? Vous avez des questions, commentaires ou suggestions, n'hésitez pas à laisser un commentaire dans la section ci-dessous ou en m'envoyant un message depuis le formulaire de contact.
+Did you enjoy this post ? If you have any questions, comments or suggestions, please leave a comment in the section below or by sending me a message from the contact form.
 
-N'oubliez pas de nous suivre et de partager cet article.
+Don't forget to follow us and share this post.

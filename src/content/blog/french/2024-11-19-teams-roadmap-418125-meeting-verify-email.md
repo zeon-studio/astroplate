@@ -3,10 +3,10 @@ title: "Vérification par courriel des participants Teams externes"
 meta_title: ""
 description: ""
 date: 2024-11-19T10:00:00-05:00
-image: "/images/blog/teams/teams_meeting_verify_email_thumbnail.png"
+image: "/images/blog/teams/teams_roadmap_418125_meeting_verify_email_thumbnail.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
-tags: ["Teams Premium", "Sécurité", "Rencontre"]
+tags: ["Teams Premium", "Sécurité", "Rencontre", "Roadmap"]
 draft: false
 ---
 ---
@@ -27,16 +27,16 @@ Lors de l'invitation d'un participant externe à rejoindre des réunions Teams, 
 ---
 
 ##### Comment votre organisation peut-elle activer cette fonctionnalité ?
-Cette option est disponible pour les organisateurs de réunions disposant d'une licence <u>Teams Premium</u>. Les administrateurs peuvent gérer cette fonctionnalité via une nouvelle politique de réunion intitulée "Les utilisateurs anonymes peuvent rejoindre les réunions après vérification par code courriel". Les organisateurs de réunions auront également une nouvelle option de réunion intitulée "Les participants non vérifiés peuvent rejoindre la réunion", qui sera activée par défaut si l'administrateur a permis les participations non vérifiées.
+Cette option est disponible pour les organisateurs de réunions disposant d'une licence <u>Teams Premium</u>. Les administrateurs peuvent gérer cette fonctionnalité via une nouvelle politique de réunion intitulée *Les utilisateurs anonymes peuvent rejoindre les réunions après vérification par code courriel*. Les organisateurs de réunions auront également une nouvelle option de réunion intitulée *Les participants non vérifiés peuvent rejoindre la réunion*, qui sera activée par défaut si l'administrateur a permis les participations non vérifiées.
 
-![image](/images/blog/teams/teams_meeting_verify_email_001.png)
+![image](/images/blog/teams/teams_roadmap_418125_meeting_verify_email_001.png)
 
 ---
 
 ##### Expérience des participants
 Lorsque les organisateurs choisissent de ne pas autoriser les participants non vérifiés à rejoindre les réunions, les participants devront s'authentifier en tentant de rejoindre la réunion. S'ils possèdent un compte professionnel, scolaire ou personnel Microsoft, ils peuvent utiliser ces identifiants pour l'authentification.
 
-![image](/images/blog/teams/teams_meeting_verify_email_002.png)
+![image](/images/blog/teams/teams_roadmap_418125_meeting_verify_email_002.png)
 
 ---
 

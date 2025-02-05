@@ -1,5 +1,5 @@
 ---
-title: "Welcome to my blog"
+title: "Welcome to my blog !"
 meta_title: "About"
 description: "this is meta description"
 image: "/images/avatar.png"

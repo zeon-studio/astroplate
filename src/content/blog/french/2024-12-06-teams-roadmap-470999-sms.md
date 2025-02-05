@@ -6,7 +6,7 @@ date: 2024-12-06T10:00:00-05:00
 image: "/images/blog/teams/teams_roadmap_470999_sms_thumbnail.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
-tags: ["SMS", "Calling Plan"]
+tags: ["SMS", "Calling Plan", "Roadmap"]
 draft: false
 ---
 ---
@@ -18,7 +18,6 @@ Microsoft Teams continue d'évoluer pour offrir des solutions de communication e
 
 ##### Disponibilité
 Cette fonctionnalité sera disponible pour les utilisateurs ayant la fonctionnalité de téléphonie Teams Calling Plan aux États-Unis et au Canada seulement (pour commencer). Le déploiement sera progressif à partir de Février 2025.
-
 
 ![image](/images/blog/teams/teams_roadmap_470999_sms.png)
 
