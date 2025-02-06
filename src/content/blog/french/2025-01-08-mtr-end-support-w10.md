@@ -3,10 +3,10 @@ title: "Fin du support de Windows 10 pour les Teams Rooms"
 meta_title: ""
 description: ""
 date: 2025-01-08T10:00:00-05:00
-image: "/images/blog/teams/teams_end_support_w10_mtr_thumbnail.png"
-categories: ["Teams"]
+image: "/images/blog/mtr/mtr_end_support_w10_thumbnail.png"
+categories: ["MTR"]
 author: "Maxime Hiez"
-tags: ["Teams Rooms", "MTR", "MTRoW", "MTRoA", "Windows 10", "Windows 11", "Fin de support"]
+tags: ["Teams Rooms", "MTRoW", "Windows 10", "Windows 11", "Fin de support"]
 draft: false
 ---
 ---

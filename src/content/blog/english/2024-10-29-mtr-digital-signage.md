@@ -4,7 +4,7 @@ meta_title: ""
 description: ""
 date: 2024-10-29T10:00:00-05:00
 image: "/images/blog/mtr/mtr_digital_signage_thumbnail.png"
-categories: ["Teams"]
+categories: ["MTR"]
 author: "Maxime Hiez"
 tags: ["Teams Rooms Pro", "MTRoW", "MTRoA", "Digital signage", "Appspace", "XOGO"]
 draft: false
