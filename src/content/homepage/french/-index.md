@@ -2,7 +2,11 @@
 # Banner
 banner:
   title: "Le blog de Maxime"
-  content: "Astroplate est un modèle de démarrage gratuit construit avec Astro et TailwindCSS, fournissant tout ce dont vous avez besoin pour démarrer votre projet Astro et gagner un temps précieux."
+  content: "<br /><br />
+Je suis consultant en environnement de travail moderne à Montréal et j'accompagne les entreprises dans leur transformation numérique en utilisant les produits de la suite Microsoft 365 (Teams, Entra, Intune, ...) et Azure.
+Passionné par les nouvelles technologies et l'optimisation des environnements de travail, je m'efforce de créer des solutions innovantes et efficaces pour améliorer la productivité et la collaboration au sein des équipes.
+<br /><br />
+Sur ce blog, je partage des nouveautés, mais aussi mes connaissances et expériences pour tirer le meilleur parti des outils numériques. Que vous soyez un professionnel de l'informatique, un gestionnaire ou simplement curieux d'en savoir plus sur les environnements de travail modernes, vous trouverez ici des ressources utiles et des idées inspirantes pour vous aider à réussir dans votre transformation numérique.<br /><br />"
   image: "/images/banner.png"
   button:
     enable: false
@@ -11,6 +15,10 @@ banner:
   # Certifications
   cert_title: "Mes certifications"
   certifications:
+    - logo: "/images/certifications/microsoft-mtr-sales.png"
+      manufacturer: "Microsoft"
+      skill: " - Teams Rooms"
+      description: "Solution Sales Professional"
     - logo: "/images/certifications/microsoft-sc300.png"
       manufacturer: "Microsoft"
       skill: " - SC-300"
@@ -19,6 +27,10 @@ banner:
       manufacturer: "Microsoft"
       skill: " - MD-102"
       description: "Endpoint Administrator Associate"
+    - logo: "/images/certifications/microsoft-mtr-tech.png"
+      manufacturer: "Microsoft"
+      skill: " - Teams Rooms"
+      description: "Technical Solutions Professional"
     - logo: "/images/certifications/microsoft-ms721.png"
       manufacturer: "Microsoft"
       skill: " - MS-721"

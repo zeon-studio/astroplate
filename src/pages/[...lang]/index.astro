@@ -39,12 +39,12 @@ const call_to_action = await getSinglePage(
   <section class="section pt-14">
     <div class="container">
       <div class="row justify-center">
-        <div class="lg:col-7 md:col-9 mb-8 text-center">
+        <div class="lg:col-50 md:col-9 mb-8 text-center">
           <h1
             set:html={markdownify(banner.title)}
             class="mb-4 text-h3 lg:text-h1"
           />
-          <p set:html={markdownify(banner.content)} class="mb-8" />
+          <p set:html={markdownify(banner.content)} class="mb-8 text-lg" />
           {
             banner.button.enable && (
               <a

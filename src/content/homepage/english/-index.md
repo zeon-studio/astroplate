@@ -2,7 +2,11 @@
 # Banner
 banner:
   title: "Maxime's blog"
-  content: "Astroplate is a free starter template built with Astro and TailwindCSS, providing everything you need to jumpstart your Astro project and save valuable time."
+  content: "<br /><br />
+I am a modern workplace consultant in Montreal and I support companies in their digital transformation using products from the Microsoft 365 suite (Teams, Entra, Intune, etc.) and Azure.
+Passionate about new technologies and the optimization of work environments, I strive to create innovative and effective solutions to improve productivity and collaboration within teams.
+<br /><br />
+On this blog, I share new developments, but also my knowledge and experiences to make the most of digital tools. Whether you're an IT professional, manager, or simply curious to learn more about modern workplaces, here you'll find useful resources and inspiring ideas to help you succeed in your digital transformation.<br /><br />"
   image: "/images/banner.png"
   button:
     enable: false
@@ -11,6 +15,10 @@ banner:
   # Certifications
   cert_title: "My certifications"
   certifications:
+    - logo: "/images/certifications/microsoft-mtr-sales.png"
+      manufacturer: "Microsoft"
+      skill: " - Teams Rooms"
+      description: "Solution Sales Professional"
     - logo: "/images/certifications/microsoft-sc300.png"
       manufacturer: "Microsoft"
       skill: " - SC-300"
@@ -19,6 +27,10 @@ banner:
       manufacturer: "Microsoft"
       skill: " - MD-102"
       description: "Endpoint Administrator Associate"
+    - logo: "/images/certifications/microsoft-mtr-tech.png"
+      manufacturer: "Microsoft"
+      skill: " - Teams Rooms"
+      description: "Technical Solutions Professional"
     - logo: "/images/certifications/microsoft-ms721.png"
       manufacturer: "Microsoft"
       skill: " - MS-721"
