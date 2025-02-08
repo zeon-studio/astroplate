@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "Maxime's Blog",
-    "base_url": "https://astroplate.netlify.app",
+    "base_url": "https://maxime.hiez.ca",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
