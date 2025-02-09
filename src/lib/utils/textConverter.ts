@@ -3,7 +3,12 @@ import { marked } from "marked";
 
 // slugify
 export const slugify = (content: string) => {
-  return slug(content);
+//  return slug(content);
+  return content
+  .normalize("NFD")
+  .replace(/[\u0300-\u036f]/g, "")
+  .replace(/\s+/g, "-")
+  .replace(/-+/g, "-")
 };
 
 // markdownify
@@ -17,9 +22,9 @@ export const humanize = (content: string) => {
     .replace(/^[\s_]+|[\s_]+$/g, "")
     .replace(/[_\s]+/g, " ")
     .replace(/[-\s]+/g, " ")
-    .replace(/^[a-z]/, function (m) {
-      return m.toUpperCase();
-    });
+//    .replace(/^[a-z]/, function (m) {
+//      return m.toUpperCase();
+//    });
 };
 
 // titleify
