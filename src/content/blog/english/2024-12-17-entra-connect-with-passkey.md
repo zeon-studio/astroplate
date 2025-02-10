@@ -4,7 +4,7 @@ meta_title: ""
 description: ""
 date: 2024-12-17T10:00:00-05:00
 image: "/images/blog/entra/tuto/entra_connect_passkey_thumbnail.png"
-categories: ["Entra"]
+categories: ["Entra ID"]
 author: "Maxime Hiez"
 tags: ["Passkey", "Password", "Authenticator", "FIDO2", "MFA", "Security"]
 draft: false
@@ -54,7 +54,7 @@ Once the steps are completed, the Passkey is created.
 ---
 
 ##### Step 3 : Sign in with a Passkey
-Log in to your Microsoft 365 account by opening your web browser to https://www.office.com and enter your email address. Choose to connect with your iPhone/iPad or Android device.
+Sign in to your Microsoft 365 account by opening your web browser to https://www.office.com and enter your email address. Choose to connect with your iPhone/iPad or Android device.
 
 ![image](/images/blog/entra/tuto/entra_passkey_007.png)
 
@@ -68,7 +68,7 @@ Scan the QR code with your device's camera to validate the connection.
 ---
 
 ##### Conclusion
-You now know how to log in to your Microsoft 365 account with a Passkey replacing your password.
+You now know how to sign in to your Microsoft 365 account with a Passkey replacing your password.
 
 ---
 

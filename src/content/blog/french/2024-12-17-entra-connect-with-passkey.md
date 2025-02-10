@@ -4,7 +4,7 @@ meta_title: ""
 description: ""
 date: 2024-12-17T10:00:00-05:00
 image: "/images/blog/entra/tuto/entra_connect_passkey_thumbnail.png"
-categories: ["Entra"]
+categories: ["Entra ID"]
 author: "Maxime Hiez"
 tags: ["Passkey", "Mot de passe", "Authenticator", "FIDO2", "MFA", "Sécurité"]
 draft: false

@@ -26,7 +26,7 @@ The new *UserNameExtension* attribute is added to attendants ; this is a string 
 ---
 
 ##### Configuration in PowerShell
-You can configure the new *UserNameExtension* attribute via the following PowerShell commands:
+You can configure the new *UserNameExtension* attribute via the following PowerShell commands :
 ```powershell
 Connect-MicrosoftTeams
 
