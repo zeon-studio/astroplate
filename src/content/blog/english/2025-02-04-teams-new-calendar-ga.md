@@ -40,7 +40,7 @@ Microsoft recently announced the general availability of the new unified calenda
 
 ![image](/images/blog/teams/teams_new_calendar_ga_002.png)
 
-<u>Note:</u> You can rollback whenever you want. Simply turn off the switch in the new calendar and the classic version will open automatically.
+<u>Note :</u> You can rollback whenever you want. Simply turn off the switch in the new calendar and the classic version will open automatically.
 
 ---
 

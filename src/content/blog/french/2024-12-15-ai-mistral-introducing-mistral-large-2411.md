@@ -51,7 +51,7 @@ Avec le lancement de Mistral Large 24.11, les entreprises peuvent :
 ##### Conclusion
 Mistral Large 24.11 représente une avancée majeure dans le domaine de l'intelligence artificielle, offrant des capacités de raisonnement, de connaissances et de codage sans précédent. En adoptant ce modèle, les entreprises peuvent transformer leurs opérations et rester à la pointe de l'innovation technologique.
 
-À noter qu'il s'agit d'une solution française.
+<u>Note :</u> Il s'agit d'une solution française.
 
 ---
 

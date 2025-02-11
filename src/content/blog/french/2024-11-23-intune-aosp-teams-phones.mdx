@@ -1,0 +1,84 @@
+---
+title: "Migration des appareils Android Teams vers AOSP"
+meta_title: ""
+description: ""
+date: 2024-11-23T10:00:00-05:00
+image: "/images/blog/intune/intune_aosp_teams_phones_thumbnail.png"
+categories: ["Intune"]
+author: "Maxime Hiez"
+tags: ["Téléphones Teams", "Teams Rooms", "MTRoA", "Panneaux", "AOSP", "Android"]
+draft: false
+---
+---
+
+##### Introduction
+
+Microsoft a annoncé une migration importante pour les appareils Microsoft Teams basés sur Android, tels que les téléphones, les salles de conférence et les panneaux. Cette migration consiste à passer de la méthode de gestion *Device Administrator* à *AOSP* (*Android Open Source Project*). Voici pourquoi cette transition est essentielle, ce qu'elle apporte, les différences entre les deux méthodes et comment effectuer cette migration.
+
+---
+
+##### Description des deux méthodes
+- Device Administrator : La méthode Device Administrator est une ancienne approche de gestion des appareils Android. Elle permet aux administrateurs de contrôler certains aspects des appareils, comme l'installation d'applications, la configuration des paramètres de sécurité et la gestion des politiques de mot de passe. Cependant, cette méthode est de plus en plus limitée par les nouvelles versions d'Android, car Google abandonne le support au 31 Décembre 2024.
+- AOSP (Android Open Source Project) : La méthode AOSP est une approche plus moderne et flexible pour la gestion des appareils Android. Elle permet une gestion plus fine et plus sécurisée des appareils, sans dépendre des services Google Mobile. AOSP est particulièrement adapté aux appareils d'entreprise qui nécessitent des configurations spécifiques et une gestion centralisée.
+
+---
+
+##### Avantages de la migration vers AOSP
+- Amélioration de la fiabilité : AOSP offre une expérience plus stable et fiable pour les utilisateurs de Microsoft Teams, en particulier dans les environnements d'entreprise.
+- Déploiement simplifié : La migration vers AOSP simplifie le processus de déploiement pour les administrateurs, avec des outils plus robustes et une meilleure intégration avec Intune.
+- Innovations futures : AOSP servira de base pour de nouvelles fonctionnalités et des scénarios de gestion plus riches, permettant à Microsoft Teams de continuer à évoluer et à s'améliorer.
+- Sécurité renforcée : AOSP offre des options de sécurité plus avancées, garantissant que les appareils sont protégés contre les menaces potentielles.
+
+---
+
+##### Différences entre Device Administrator et AOSP
+- Support et compatibilité : Device Administrator est de moins en moins supporté par les nouvelles versions d'Android, tandis qu'AOSP est conçu pour être compatible avec les dernières technologies et mises à jour.
+- Fonctionnalités de gestion : AOSP offre des fonctionnalités de gestion plus avancées et plus flexibles par rapport à Device Administrator, permettant une meilleure personnalisation et contrôle des appareils.
+- Sécurité : AOSP propose des options de sécurité plus robustes, incluant des politiques de conformité et des configurations plus strictes.
+
+---
+
+##### Flux d'inscription
+- **Device Administrator**
+![image](/images/blog/intune/intune_aosp_teams_phones_001.png)
+
+<br/>
+
+- **AOSP**
+![image](/images/blog/intune/intune_aosp_teams_phones_002.png)
+
+<br/>
+<u>Note :</u> Le *Company Portal App* ne sera plus requis dans les appareils, et remplacé par *Microsoft Authenticator App*, qui est la même application que celle utilisée pour l'application Teams sur les cellulaires. Également, l'inscription dans Intune sera gérée par la nouvelle *AOSP App* et non plus par le *Company Portal App*. Même authentification, même application, mêmes flux d'inscription, mêmes URL. Aucun changement pour l'expérience utilisateur. Tout se passera en arrière pour les administrateurs.
+
+---
+
+##### Présentation complète
+<Youtube client:load id="3bFsvf_IUfw" title="AOSP for Microsoft Teams Devices - Teams Rooms Learning Hour October" />
+
+---
+
+##### Comment effectuer la migration ?
+1. Créer le(s) profil(s) d'inscription AOSP
+2. Configurer les politiques de conformité et de configuration
+3. Mettre à jour l'appareil avec le firmware compatible AOSP
+
+---
+
+##### Conclusion
+La migration des équipements Microsoft Teams basés sur Android de la méthode *Device Administrator* à *AOSP* est une étape cruciale pour améliorer la fiabilité, la sécurité et les capacités de gestion des appareils. En suivant les étapes décrites, les administrateurs peuvent assurer une transition en douceur et préparer leurs appareils pour les innovations futures.
+
+Je ferai un tuto bientôt pour cette migration.
+
+---
+
+##### Sources
+[Microsoft - Techcommunity](https://techcommunity.microsoft.com/blog/microsoftteamssupport/moving-teams-android-devices-to-aosp-device-management/4140893)
+
+[Microsoft Learn - Guide de migration AOSP](https://learn.microsoft.com/fr-ca/microsoftteams/rooms/android-migration-guide)
+
+---
+
+
+Avez-vous apprécié cet article ? Vous avez des questions, commentaires ou suggestions, n’hésitez pas à laisser un commentaire dans la section ci-dessous ou en m'envoyant un message depuis le formulaire de contact.
+
+N'oubliez pas de nous suivre et de partager cet article.
