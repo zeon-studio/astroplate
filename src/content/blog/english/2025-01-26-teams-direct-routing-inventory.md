@@ -1,10 +1,10 @@
 ---
-title: "Inventory of Direct Routing type numbers in Teams"
+title: "How to inventory Direct Routing numbers in Teams"
 meta_title: ""
 description: ""
 date: 2025-01-26T10:00:00-05:00
-image: "/images/blog/teams/teams_direct_routing_inventory_thumbnail.png"
-categories: ["Teams"]
+image: "/images/blog/teams/tuto/teams_direct_routing_inventory_thumbnail.png"
+categories: ["Teams", "Tutorial"]
 author: "Maxime Hiez"
 tags: ["Telephony", "Direct Routing", "Inventory", "PowerShell"]
 draft: false
@@ -54,7 +54,7 @@ The principle is the same for several phone numbers or a range of phone numbers.
 ##### Result
 The phone number is visible with other *Calling Plan* and *Operator Connect* type phone numbers.
 
-![image](/images/blog/teams/teams_direct_routing_inventory_001.png)
+![image](/images/blog/teams/tuto/teams_direct_routing_inventory_001.png)
 
 ---
 

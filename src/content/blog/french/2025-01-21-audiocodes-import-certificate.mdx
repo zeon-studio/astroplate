@@ -3,8 +3,8 @@ title: "Importer le certificat DigiCert Root G2 dans un SBC Audiocodes"
 meta_title: ""
 description: ""
 date: 2025-01-21T10:00:00-05:00
-image: "/images/blog/sbc/sbc_audiocodes_import_cert_thumbnail.png"
-categories: ["Audiocodes"]
+image: "/images/blog/sbc/tuto/sbc_audiocodes_import_cert_thumbnail.png"
+categories: ["Audiocodes", "Tutoriel"]
 author: "Maxime Hiez"
 tags: ["Téléphonie", "Direct Routing", "SBC", "Certificat", "DigiCert Root G2", "Baltimore CyberTrust Root"]
 draft: false
@@ -16,13 +16,13 @@ Depuis l'arrivée de la téléphonie Teams Direct Routing, les certificats TLS u
 - Nom commun de l'autorité de certification : Baltimore CyberTrust Root
 - Empreinte numérique (SHA1) : d4de20d05e66fc53fe1a50882c78db2852cae474
 
-![image](/images/blog/sbc/sbc_import_cert_000.png)
+![image](/images/blog/sbc/tuto/sbc_import_cert_000.png)
 
 Ce certificat arrive à expiration le 12 Mai 2025 et il est important que son remplaçant (*DigiCert Global Root G2*) soit installé sur votre SBC Audiocodes en parallèle.
 - Nom commun de l'autorité de certification : DigiCert Global Root G2
 - Empreinte numérique (SHA1) : df3c24f9bfd666761b268073fe06d1cc8d4f82a4
 
-![image](/images/blog/sbc/sbc_import_cert_001.png)
+![image](/images/blog/sbc/tuto/sbc_import_cert_001.png)
 
 ---
 
@@ -41,7 +41,7 @@ Ce certificat arrive à expiration le 12 Mai 2025 et il est important que son re
 ##### Étape 1 : Se connecter au SBC
 Connectez vous au SBC en ouvrant votre navigateur web sur https://VOTRE_ADRESSE_IP.
 
-![image](/images/blog/sbc/sbc_audiocodes_import_cert_000.png)
+![image](/images/blog/sbc/tuto/sbc_audiocodes_import_cert_000.png)
 
 ---
 
@@ -50,19 +50,19 @@ Connectez vous au SBC en ouvrant votre navigateur web sur https://VOTRE_ADRESSE_
 
 Cliquez sur *Setup*, *IP Network* puis *Security* et *TLS Contexts*. Sélectionnez le contener dans lequel importer le certificat et cliquez sur *Trusted Root Certificates*.
 
-![image](/images/blog/sbc/sbc_audiocodes_import_cert_001.png)
+![image](/images/blog/sbc/tuto/sbc_audiocodes_import_cert_001.png)
 
 Cliquez sur *Import* et parcourez l'explorateur de fichiers Windows.
 
-![image](/images/blog/sbc/sbc_audiocodes_import_cert_002.png)
+![image](/images/blog/sbc/tuto/sbc_audiocodes_import_cert_002.png)
 
 Une fois le certificat sélectionné, il sera importé. 
 
-![image](/images/blog/sbc/sbc_audiocodes_import_cert_003.png)
+![image](/images/blog/sbc/tuto/sbc_audiocodes_import_cert_003.png)
 
 Validez que le numéro de série est bien le *<u>033AF1E6A711A9A0BB2864B11D09FAE5</u>*.
 
-![image](/images/blog/sbc/sbc_audiocodes_import_cert_004.png)
+![image](/images/blog/sbc/tuto/sbc_audiocodes_import_cert_004.png)
 
 ---
 

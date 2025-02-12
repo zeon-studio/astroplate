@@ -4,7 +4,7 @@ meta_title: ""
 description: ""
 date: 2024-12-16T10:00:00-05:00
 image: "/images/blog/entra/tuto/entra_activate_passkey_thumbnail.png"
-categories: ["Entra ID"]
+categories: ["Entra ID", "Tutorial"]
 author: "Maxime Hiez"
 tags: ["Passkey", "Password", "Authenticator", "FIDO2", "MFA", "Security"]
 draft: false

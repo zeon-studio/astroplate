@@ -4,7 +4,7 @@ meta_title: ""
 description: ""
 date: 2025-01-24T10:00:00-05:00
 image: "/images/blog/azure/tuto/azure_add_tags_vm_thumbnail.png"
-categories: ["Azure"]
+categories: ["Azure", "Tutoriel"]
 author: "Maxime Hiez"
 tags: ["Tags", "Machine virtuelle"]
 draft: false

@@ -4,7 +4,7 @@ meta_title: ""
 description: ""
 date: 2024-11-22T10:00:00-05:00
 image: "/images/blog/copilot/tuto/copilot_disable_selfservice_thumbnail.png"
-categories: ["Copilot"]
+categories: ["Copilot", "Tutorial"]
 author: "Maxime Hiez"
 tags: ["Licenses", "AI", "Self-service", "PowerShell"]
 draft: false

@@ -4,7 +4,7 @@ meta_title: ""
 description: ""
 date: 2025-01-22T10:00:00-05:00
 image: "/images/blog/teams/tuto/teams_callback_callqueue_thumbnail.png"
-categories: ["Teams"]
+categories: ["Teams", "Tutorial"]
 author: "Maxime Hiez"
 tags: ["Telephony", "Direct Routing", "Calling Plan", "Operator Connect", "Call Queue", "Callback", "PowerShell"]
 draft: false

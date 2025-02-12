@@ -3,8 +3,8 @@ title: "Import the DigiCert Root G2 certificate into an Audiocodes SBC"
 meta_title: ""
 description: ""
 date: 2025-01-21T10:00:00-05:00
-image: "/images/blog/sbc/sbc_audiocodes_import_cert_thumbnail.png"
-categories: ["Audiocodes"]
+image: "/images/blog/sbc/tuto/sbc_audiocodes_import_cert_thumbnail.png"
+categories: ["Audiocodes", "Tutorial"]
 author: "Maxime Hiez"
 tags: ["Telephony", "Direct Routing", "SBC", "Certificate", "DigiCert Root G2", "Baltimore CyberTrust Root"]
 draft: false
@@ -16,13 +16,13 @@ Since the arrival of Teams Direct Routing telephony, TLS certificates used by Mi
 - Common Certificate Authority Name: Baltimore CyberTrust Root
 - Thumbprint (SHA1): d4de20d05e66fc53fe1a50882c78db2852cae474
 
-![image](/images/blog/sbc/sbc_import_cert_000.png)
+![image](/images/blog/sbc/tuto/sbc_import_cert_000.png)
 
 This certificate expires on May 12, 2025 and it is important that its replacement (*DigiCert Global Root G2*) is installed on your SBC Audiocodes in parallel.
 - Common name of the certificate authority: DigiCert Global Root G2
 - Thumbprint (SHA1): df3c24f9bfd666761b268073fe06d1cc8d4f82a4
 
-![image](/images/blog/sbc/sbc_import_cert_001.png)
+![image](/images/blog/sbc/tuto/sbc_import_cert_001.png)
 
 ---
 
@@ -41,7 +41,7 @@ This certificate expires on May 12, 2025 and it is important that its replacemen
 ##### Step 1 : Log in to the SBC
 Connect to the SBC by opening your web browser to https://YOUR_IP_ADDRESS.
 
-![image](/images/blog/sbc/sbc_audiocodes_import_cert_000.png)
+![image](/images/blog/sbc/tuto/sbc_audiocodes_import_cert_000.png)
 
 ---
 
@@ -50,19 +50,19 @@ Connect to the SBC by opening your web browser to https://YOUR_IP_ADDRESS.
 
 Click on *Setup*, *IP Network* then *Security* and *TLS Contexts*. Select the container into which to import the certificate and click on *Trusted Root Certificates*.
 
-![image](/images/blog/sbc/sbc_audiocodes_import_cert_001.png)
+![image](/images/blog/sbc/tuto/sbc_audiocodes_import_cert_001.png)
 
 Click on *Import* and browse Windows File Explorer.
 
-![image](/images/blog/sbc/sbc_audiocodes_import_cert_002.png)
+![image](/images/blog/sbc/tuto/sbc_audiocodes_import_cert_002.png)
 
 Once the certificate is selected, it will be imported. 
 
-![image](/images/blog/sbc/sbc_audiocodes_import_cert_003.png)
+![image](/images/blog/sbc/tuto/sbc_audiocodes_import_cert_003.png)
 
 Validate that the serial number is *<u>033AF1E6A711A9A0BB2864B11D09FAE5</u>*.
 
-![image](/images/blog/sbc/sbc_audiocodes_import_cert_004.png)
+![image](/images/blog/sbc/tuto/sbc_audiocodes_import_cert_004.png)
 
 ---
 

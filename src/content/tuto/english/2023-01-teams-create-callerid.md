@@ -71,7 +71,7 @@ Once your policy is created, all you have to do is assign it to the users who ne
 
 In the left menu, click on *<u>Users</u>* then the *<u>Manage users</u>* submenu. The list of all the users in your organization will be displayed. Select the one(s) you want to enable the policy for.
 
-Click the *<u>Policies</u>* tab and edit the *<u>Caller ID policy</u>* attribute to apply the policy of your choice.
+Click on the *<u>Policies</u>* tab and edit the *<u>Caller ID policy</u>* attribute to apply the policy of your choice.
 
 ![image](/images/teams/teams_callerid-002.png)
 

@@ -1,10 +1,10 @@
 ---
-title: "Block a specific external user in Teams"
+title: "How to block a specific external user in Teams"
 meta_title: ""
 description: ""
 date: 2025-02-07T10:00:00-05:00
-image: "/images/blog/teams/teams_roadmap_411138_block_user_thumbnail.png"
-categories: ["Teams"]
+image: "/images/blog/teams/tuto/teams_roadmap_411138_block_user_thumbnail.png"
+categories: ["Teams", "Tutorial"]
 author: "Maxime Hiez"
 tags: ["Blocking", "PowerShell", "Roadmap"]
 draft: false
@@ -19,18 +19,18 @@ Microsoft recently introduced a new feature for Teams administrators to block sp
 ##### User blocking feature
 Traditionally, administrators could use the remove API (*removeallaccessforuser API*) to prevent a malicious user from sending messages back to the same victim. However, this method was not always enough to completely block the user. Now, a new user blocking API allows administrators to block an external user more effectively, preventing any contact resuming.
 
-![image](/images/blog/teams/teams_roadmap_411138_block_user_001.png)
+![image](/images/blog/teams/tuto/teams_roadmap_411138_block_user_001.png)
 
 ---
 
 ##### Feature implementation
-To use this new capability, a Microsoft Teams administrator must sign in to the Microsoft Teams Admin Center by opening their web browser to https://admin.teams.microsoft.com, and in the left menu, click *<u>Users</u>*, then *<u>External access</u>*. By default, the *Block specific users from communicating with people in my organization* feature is disabled.
+To use this new capability, a Microsoft Teams administrator must sign in to the Microsoft Teams Admin Center by opening their web browser to https://admin.teams.microsoft.com, and in the left menu, click on *<u>Users</u>*, then *<u>External access</u>*. By default, the *Block specific users from communicating with people in my organization* feature is disabled.
 
-![image](/images/blog/teams/teams_roadmap_411138_block_user_002.png)
+![image](/images/blog/teams/tuto/teams_roadmap_411138_block_user_002.png)
 
 By activating the switch, the *Block a user* option appears, and it then becomes possible to manually add the Teams addresses to block.
 
-![image](/images/blog/teams/teams_roadmap_411138_block_user_003.png)
+![image](/images/blog/teams/tuto/teams_roadmap_411138_block_user_003.png)
 
 ---
 

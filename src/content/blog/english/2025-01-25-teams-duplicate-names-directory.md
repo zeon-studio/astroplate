@@ -4,7 +4,7 @@ meta_title: ""
 description: ""
 date: 2025-01-25T10:00:00-05:00
 image: "/images/blog/teams/tuto/teams_duplicate_name_directory_thumbnail.png"
-categories: ["Teams"]
+categories: ["Teams", "Tutorial"]
 author: "Maxime Hiez"
 tags: ["Telephony", "Direct Routing", "Calling Plan", "Operator Connect", "Directory", "Dial by name", "Dial by extension", "Auto attendant", "PowerShell"]
 draft: false
