@@ -6,7 +6,7 @@ date: 2025-01-31T10:00:00-05:00
 image: "/images/blog/teams/teams_update_module_powershell_6_8_0_thumbnail.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
-tags: ["MicrosoftTeams", "Module", "Mise à jour", "PowerShell"]
+tags: ["Module", "Mise à jour", "PowerShell"]
 draft: false
 ---
 ---

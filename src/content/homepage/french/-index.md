@@ -100,10 +100,10 @@ features:
     content: "Je passe beaucoup de temps à me maintenir à jour et apprendre de nouvelles choses pour être capable de fournir le meilleur accompagnement dans mes projets."
     bulletpoints:
       - "Téléphonie Microsoft Teams"
-      - "Salles de visioconférence Microsoft Teams"
-      - "SBCs (Audiocodes, Ribbon)"
+      - "Salles de conférence Microsoft Teams"
       - "Plusieurs services Microsoft 365 (Entra, Intune, Exchange, ...)"
       - "Landing zones Microsoft Azure"
+      - "SBCs (Audiocodes, Ribbon) & ATAs"
       - "..."
     button:
       enable: false
