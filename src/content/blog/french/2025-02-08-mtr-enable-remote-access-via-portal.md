@@ -28,8 +28,8 @@ La fonctionnalité d'accès distant au MTR permet aux administrateurs de :
 **<u>Licences nécessaires</u>**
 - *Teams Rooms Pro*.
 
-**<u>Des ressources Azure</u>**
-- Une machine virtuelle déployée.
+**<u>Une salle Teams</u>**
+- Un MTR Windows déployé.
 
 **<u>Rôle d’administrateur</u>**
 - Un compte avec le rôle *Administrateur Global* pour accéder au Microsoft Teams Rooms Pro Management.
@@ -56,7 +56,7 @@ Connectez vous au portail Microsoft Teams Rooms Pro Management en ouvrant votre 
 
 ---
 
-##### Étape 3 : Activer le service d'accès distant
+##### Étape 4 : Activer le service d'accès distant
 Dans le menu de gauche, cliquez sur *<u>Settings</u>*, puis sur *<u>General</u>*.
 
 Cochez la case *Allow Teams Rooms Pro Management Remote access* et entrez l'adresse de contact.
@@ -65,7 +65,7 @@ Cochez la case *Allow Teams Rooms Pro Management Remote access* et entrez l'adre
 
 ---
 
-##### Étape 4 : Créer le rôle
+##### Étape 5 : Créer le rôle
 Dans le menu de gauche, cliquez sur *<u>Settings</u>*, puis sur *<u>Roles</u>*.
 
 Cliquez sur *<u>Create role</u>* et donnez lui un nom et description.
@@ -86,7 +86,7 @@ Assignez la ou les salles à la règle.
 
 ---
 
-##### Étape 5 : Accéder à la salle
+##### Étape 6 : Accéder à la salle
 Dans le menu de gauche, cliquez sur *<u>Rooms</u>*, puis sur la salle sur laquelle vous souhaitez prendre l'accès.
 
 Cliquez sur *<u>Start session</u>*.

@@ -33,7 +33,7 @@ Sign in to the Microsoft Teams Admin Center by opening your web browser to https
 ---
 
 ##### Step 2 : Create an AOSP enrollment profile
-In the left menu, click on *<u>Devices</u>*, then *<u>Enrollment</u>* and *<u>Corporate-owned, user-associated devices</u>*.
+In the left menu, click on *<u>Devices</u>*, then on *<u>Enrollment</u>* and on *<u>Corporate-owned, user-associated devices</u>*.
 
 Create a profile by only activating the *For Microsoft Teams devices (preview)* option and keeping the default token.
 
@@ -42,7 +42,7 @@ Create a profile by only activating the *For Microsoft Teams devices (preview)* 
 ---
 
 ##### Step 3 : Create a restriction policy
-In the left menu, click *<u>Devices</u>*, then *<u>Configuration</u>*.
+In the left menu, click on *<u>Devices</u>*, then on *<u>Configuration</u>*.
 
 Create a device restriction policy by only enabling the *Block screen capture* option.
 
@@ -53,7 +53,7 @@ Create a device restriction policy by only enabling the *Block screen capture* o
 ---
 
 ##### Step 4 : Create a Compliance Policy
-In the left menu, click *<u>Devices</u>*, then *<u>Compliance</u>*.
+In the left menu, click on *<u>Devices</u>*, then on *<u>Compliance</u>*.
 
 Create a compliance policy by only enabling the *Rooted devices* and *Require encryption of data storage on device* options. Optionally, you could set *Minimum OS version*.
 

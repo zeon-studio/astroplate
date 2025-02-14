@@ -35,7 +35,7 @@ Sign in to *My Sign-Ins* by opening your web browser to https://mysignins.micros
 ---
 
 ##### Step 2 : Register a Passkey
-Click on *<u>Add sign-in method</u>* then *<u>Passkey in Microsoft Authenticator</u>*.
+Click on *<u>Add sign-in method</u>* then on *<u>Passkey in Microsoft Authenticator</u>*.
 
 ![image](/images/blog/entra/tuto/entra_passkey_003.png)
 

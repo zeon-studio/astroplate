@@ -45,7 +45,7 @@ Get-MSCommerceProductPolicies -PolicyId AllowSelfServicePurchase | Where { $_.Po
 ---
 
 ##### Result
-The result is visible by going to the left menu of the Microsoft 365 Admin Center and clicking on *<u>Settings</u>*, then on *<u>Org settings</u>* and *<u>Self-service trials and purchases</u>*.
+The result is visible by going to the left menu of the Microsoft 365 Admin Center and clicking on *<u>Settings</u>*, then on *<u>Org settings</u>* and on *<u>Self-service trials and purchases</u>*.
 
 ![image](/images/blog/copilot/tuto/copilot_disable_selfservice_002.png)
 
