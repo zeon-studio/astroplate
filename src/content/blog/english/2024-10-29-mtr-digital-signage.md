@@ -28,7 +28,7 @@ When your Teams Rooms are not being used for meetings or presentations, you can 
 ##### Configuration and management
 To configure digital signage in your Teams Rooms, follow these steps :
 
-1. Licenses : Assign a Teams Rooms Pro license to each room account that will use digital signage.
+1. Licenses : Assign a <u>Teams Rooms Pro</u> license to each room account that will use digital signage.
 2. Enable digital signage : Activate this feature for your tenant and add content sources, including third-party integrations if necessary.
 3. Assign sources and settings : Configure the rooms to display the desired content in signage mode.
 

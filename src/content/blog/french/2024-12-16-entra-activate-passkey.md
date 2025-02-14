@@ -21,7 +21,7 @@ Microsoft 365 Passkey est une méthode d'authentification qui remplace les mots 
 - *Microsoft 365* (toutes les éditions supportant l'authentification moderne).
 
 **<u>Rôle d’administrateur</u>**
-- Un compte avec le rôle *Administrateur Global* ou *Administrateur Sécurité* pour accéder au Microsoft Entra Admin Center.
+- Un compte avec le rôle *Administrateur Global* ou *Administrateur de sécurité* pour accéder au Microsoft Entra Admin Center.
 
 **<u>Autres</u>**
 - Les utilisateurs doivent avoir activé la méthode Microsoft Authenticator (MFA).
