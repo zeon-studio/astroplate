@@ -1,14 +1,15 @@
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import AutoImport from "astro-auto-import";
 import { defineConfig } from "astro/config";
 import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
+import sharp from "sharp";
 import config from "./src/config/config.json";
 import languagesJSON from "./src/config/language.json";
-import sharp from "sharp";
+
 const { default_language } = config.settings;
 
 const supportedLang = [...languagesJSON.map((lang) => lang.languageCode)];
@@ -24,19 +25,12 @@ export default defineConfig({
   site: config.site.base_url ? config.site.base_url : "http://examplesite.com",
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "ignore",
-  i18n: {
-    locales: filteredSupportedLang,
-    defaultLocale: default_language,
-  },
-  image: {
-    service: sharp(),
-  },
+  vite: { plugins: [tailwindcss()] },
+  i18n: { locales: filteredSupportedLang, defaultLocale: default_language },
+  image: { service: sharp() },
   integrations: [
     react(),
     sitemap(),
-    tailwind({
-      applyBaseStyles: false,
-    }),
     AutoImport({
       imports: [
         "@/shortcodes/Button",
@@ -51,19 +45,8 @@ export default defineConfig({
     mdx(),
   ],
   markdown: {
-    remarkPlugins: [
-      remarkToc,
-      [
-        remarkCollapse,
-        {
-          test: "Table of contents",
-        },
-      ],
-    ],
-    shikiConfig: {
-      theme: "one-dark-pro",
-      wrap: true,
-    },
+    remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
+    shikiConfig: { theme: "one-dark-pro", wrap: true },
     extendDefaultPlugins: true,
   },
 });
