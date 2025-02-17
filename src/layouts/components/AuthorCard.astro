@@ -9,9 +9,7 @@ const { title, image, social } = data.data;
 const lang = getLangFromUrl(Astro.url);
 ---
 
-<div
-  class="rounded bg-theme-light p-8 text-center dark:bg-darkmode-theme-light"
->
+<div class="rounded bg-light p-8 text-center dark:bg-darkmode-light">
   {
     image && (
       <ImageMod

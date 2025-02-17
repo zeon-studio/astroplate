@@ -4,8 +4,8 @@ import Base from "@/layouts/Base.astro";
 import {
   getLangFromUrl,
   getTranslations,
-  supportedLang,
   slugSelector,
+  supportedLang,
 } from "@/lib/utils/languageParser";
 import type { ContentEntryMap } from "astro:content";
 
@@ -33,7 +33,7 @@ const { page_not_found_content, page_not_found, back_to_home } =
       <div class="row justify-center">
         <div class="sm:col-10 md:col-8 lg:col-6">
           <span
-            class="text-[8rem] block font-bold text-dark dark:text-darkmode-dark"
+            class="text-[8rem] block font-bold text-text-dark dark:text-darkmode-text-dark"
           >
             404
           </span>

@@ -22,13 +22,16 @@ const LanguageSwitcher = ({
   // Sort languages by weight and filter out disabled languages
   const sortedLanguages = languages
     // @ts-ignore
-    .filter(language => !config.settings.disable_languages.includes(language.languageCode))
+    .filter(
+      (language) =>
+        !config.settings.disable_languages.includes(language.languageCode),
+    )
     .sort((a, b) => a.weight - b.weight);
 
   return (
     <div className={`mr-5 ${sortedLanguages.length > 1 ? "block" : "hidden"}`}>
       <select
-        className="border border-dark text-dark bg-transparent dark:border-darkmode-primary dark:text-white py-1 rounded-sm cursor-pointer focus:ring-0 focus:border-dark dark:focus:border-darkmode-primary"
+        className="border border-dark text-text-dark bg-transparent dark:border-darkmode-primary dark:text-white py-1 rounded-sm cursor-pointer focus:ring-0 focus:border-dark dark:focus:border-darkmode-primary"
         onChange={(e) => {
           const selectedLang = e.target.value;
           let newPath;
@@ -50,7 +53,7 @@ const LanguageSwitcher = ({
       >
         {sortedLanguages.map((language) => (
           <option
-            className="dark:text-dark"
+            className="dark:text-text-dark"
             key={language.languageCode}
             value={language.languageCode}
           >
