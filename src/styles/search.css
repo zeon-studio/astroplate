@@ -14,16 +14,16 @@
   @apply p-4 relative;
 }
 .search-wrapper-header-input {
-  @apply border border-solid w-full focus:ring-0 focus:border-dark border-border rounded-[4px] h-12 pr-4 pl-10 transition duration-200 outline-none dark:bg-darkmode-theme-light dark:text-darkmode-text dark:border-darkmode-border dark:focus:border-darkmode-primary;
+  @apply border border-solid w-full focus:ring-0 focus:border-dark border-border rounded-[4px] h-12 pr-4 pl-10 transition duration-200 outline-none dark:bg-darkmode-light dark:text-darkmode-text dark:border-darkmode-border dark:focus:border-darkmode-primary;
 }
 .search-wrapper-body {
-  @apply dark:bg-darkmode-theme-light dark:shadow-none max-h-[calc(100vh-350px)] overflow-y-auto bg-theme-light shadow-[inset_0_2px_18px_#ddd] p-4 rounded;
+  @apply dark:bg-darkmode-light dark:shadow-none max-h-[calc(100vh-350px)] overflow-y-auto bg-light shadow-[inset_0_2px_18px_#ddd] p-4 rounded;
 }
 .search-wrapper-footer {
   @apply text-xs select-none leading-none md:flex items-center px-3.5 py-2 hidden;
 }
 .search-wrapper-footer kbd {
-  @apply bg-theme-light dark:bg-darkmode-theme-light text-xs leading-none text-center mr-[3px] px-1 py-0.5 rounded-[3px];
+  @apply bg-light dark:bg-darkmode-light text-xs leading-none text-center mr-[3px] px-1 py-0.5 rounded-[3px];
 }
 .search-wrapper-footer span:not(:last-child) {
   @apply mr-4;
@@ -38,7 +38,7 @@
   @apply mb-4;
 }
 .search-result-group-title {
-  @apply text-lg text-dark dark:text-darkmode-dark mb-[5px] px-3;
+  @apply text-lg text-text-dark dark:text-darkmode-text-dark mb-[5px] px-3;
 }
 .search-result-item {
   @apply rounded border bg-white dark:bg-darkmode-body dark:border-darkmode-border flex items-start mb-1 p-4 scroll-my-[30px] border-solid border-border relative;
@@ -47,7 +47,7 @@
   @apply bg-yellow-200 rounded-[2px];
 }
 .search-result-item-title {
-  @apply text-lg font-bold text-dark dark:text-darkmode-dark leading-none;
+  @apply text-lg font-bold text-text-dark dark:text-darkmode-text-dark leading-none;
 }
 .search-result-item-link::after {
   @apply absolute top-0 right-0 bottom-0 left-0 z-10 content-[""];
@@ -65,7 +65,7 @@
   @apply mx-0 my-1.5 empty:hidden line-clamp-1;
 }
 .search-result-item-taxonomies {
-  @apply text-sm flex flex-wrap items-center text-light dark:text-darkmode-light;
+  @apply text-sm flex flex-wrap items-center text-text-light dark:text-darkmode-text-light;
 }
 .search-result-item-taxonomies svg {
   @apply inline-block mr-1;

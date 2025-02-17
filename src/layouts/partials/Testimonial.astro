@@ -24,8 +24,8 @@ const { testimonial } = Astro.props;
                     designation: string;
                   }) => (
                     <div class="swiper-slide">
-                      <div class="rounded-lg bg-theme-light px-7 py-10 dark:bg-darkmode-theme-light">
-                        <div class="text-dark dark:text-white">
+                      <div class="rounded-lg bg-light px-7 py-10 dark:bg-darkmode-light">
+                        <div class="text-text-dark dark:text-white">
                           <svg
                             width="33"
                             height="20"
@@ -44,7 +44,7 @@ const { testimonial } = Astro.props;
                           set:html={markdownify(item.content)}
                         />
                         <div class="mt-11 flex items-center">
-                          <div class="text-dark dark:text-white">
+                          <div class="text-text-dark dark:text-white">
                             <ImageMod
                               height={50}
                               width={50}
@@ -61,13 +61,13 @@ const { testimonial } = Astro.props;
                             />
                             <p
                               set:text={item.designation}
-                              class="text-dark dark:text-white"
+                              class="text-text-dark dark:text-white"
                             />
                           </div>
                         </div>
                       </div>
                     </div>
-                  ),
+                  )
                 )}
               </div>
               <div class="testimonial-slider-pagination mt-9 flex items-center justify-center text-center" />

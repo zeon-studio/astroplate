@@ -9,7 +9,7 @@ import { markdownify } from "@/lib/utils/textConverter";
 const { footer }: { footer: { name: string; url: string }[] } = menu;
 ---
 
-<footer class="bg-theme-light dark:bg-darkmode-theme-light">
+<footer class="bg-light dark:bg-darkmode-light">
   <div class="container">
     <div class="row items-center py-10">
       <div class="mb-8 text-center lg:col-3 lg:mb-0 lg:text-left">
@@ -32,7 +32,9 @@ const { footer }: { footer: { name: string; url: string }[] } = menu;
     </div>
   </div>
   <div class="border-t border-border py-7 dark:border-darkmode-border">
-    <div class="container text-center text-light dark:text-darkmode-light">
+    <div
+      class="container text-center text-text-light dark:text-darkmode-text-light"
+    >
       <p set:html={markdownify(config.params.copyright)} />
     </div>
   </div>
