@@ -28,7 +28,7 @@ Voir l'article de Novembre 2024 [ICI](https://maxime.hiez.ca/blog/2024-11-23-int
 ---
 
 ##### Étape 1 : Se connecter au Microsoft Intune Admin Center
-Connectez vous au Microsoft Teams Admin Center en ouvrant votre navigateur web sur https://intune.microsoft.com.
+Connectez vous au Microsoft Intune Admin Center en ouvrant votre navigateur web sur https://intune.microsoft.com.
 
 ---
 

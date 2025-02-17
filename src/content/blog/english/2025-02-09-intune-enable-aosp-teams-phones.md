@@ -28,7 +28,7 @@ Check the November 2024 article [HERE](https://maxime.hiez.ca/en/blog/2024-11-23
 ---
 
 ##### Step 1 : Sign in to the Microsoft Intune Admin Center
-Sign in to the Microsoft Teams Admin Center by opening your web browser to https://intune.microsoft.com.
+Sign in to the Microsoft Intune Admin Center by opening your web browser to https://intune.microsoft.com.
 
 ---
 

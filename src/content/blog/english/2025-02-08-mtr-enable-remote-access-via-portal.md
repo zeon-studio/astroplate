@@ -33,7 +33,21 @@ The MTR remote access feature allows administrators to :
 
 **<u>Administrator role</u>**
 - An account with the *Global Administrator* role to access Microsoft Teams Rooms Pro Management.
-- An account with the *User Administrator* role to access the Microsoft Entra Admin Center.
+- An account with the *Global Administrator* or *User Administrator* role to access the Microsoft Entra Admin Center.
+
+**<u>Allow traffic</u>**
+- agent.rooms.microsoft.com
+- mmrstgnoamiot.azure-devices.net
+- mmrstgnoamstor.blob.core.windows.net
+- mmrprodapaciot.azure-devices.net
+- mmrprodapacstor.blob.core.windows.net
+- mmrprodemeaiot.azure-devices.net
+- mmrprodemeastor.blob.core.windows.net
+- mmrprodnoamiot.azure-devices.net
+- mmrprodnoamstor.blob.core.windows.net
+- mmrprodnoampubsub.webpubsub.azure.com
+- mmrprodemeapubsub.webpubsub.azure.com
+- mmrprodapacpubsub.webpubsub.azure.com
 
 ---
 

@@ -25,7 +25,7 @@ A resource account in Microsoft Teams is used for specific functionalities like 
 
 ---
 
-##### Step 1: Sign in to the Microsoft Teams admin center
+##### Step 1 : Sign in to the Microsoft Teams admin center
 Sign in to the Microsoft Teams Admin Center by opening your web browser to https://admin.teams.microsoft.com.
 
 You can also connect to it via the following PowerShell command :
