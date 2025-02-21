@@ -1,5 +1,5 @@
 ---
-title: "Maximiser l'utilisation de la galerie de prompts Copilot"
+title: "Maximisez l'utilisation de la galerie de prompts Copilot"
 meta_title: ""
 description: ""
 date: 2025-02-19T10:00:00-05:00
