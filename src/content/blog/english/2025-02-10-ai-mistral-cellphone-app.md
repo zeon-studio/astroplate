@@ -12,7 +12,7 @@ draft: false
 ---
 
 ##### Introduction
-I told you last December about the French AI, Mistral AI, the most popular model in Europe in which Microsoft invested 15 million euros in the startup. The mobile app has just been released for Apple and Android devices.
+I told you last December about the French AI, *Mistral AI*, the most popular model in Europe in which Microsoft invested 15 million euros in the startup. The mobile app has just been released for Apple and Android devices.
 
 Check the December 2024 post [HERE](https://maxime.hiez.ca/en/blog/2024-12-15-ai-mistral-introducing-mistral-large-2411).
 

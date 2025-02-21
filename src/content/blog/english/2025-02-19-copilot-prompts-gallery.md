@@ -12,7 +12,7 @@ draft: false
 ---
 
 ##### Introduction
-Microsoft 365 Copilot continues to revolutionize the way businesses work by integrating advanced artificial intelligence capabilities into everyday tools. One of the key features to get the most out of Copilot is the Copilot prompt gallery. This gallery provides a centralized space to discover, save, and share prompts available in Microsoft 365 Copilot apps and agents. Here's how to maximize its use.
+*Microsoft 365 Copilot* continues to revolutionize the way businesses work by integrating advanced artificial intelligence capabilities into everyday tools. One of the key features to get the most out of Copilot is the Copilot prompt gallery. This gallery provides a centralized space to discover, save, and share prompts available in Microsoft 365 Copilot apps and agents. Here's how to maximize its use.
 
 ---
 
@@ -55,9 +55,9 @@ The Copilot prompt gallery is an application that allows users to find, save and
 ---
 
 ##### Examples of useful prompts
-- Time management : *Copilot, creates a summary of priority tasks for today.*
-- Data analysis : *Copilot, generates a sales report for the last quarter with graphs.*
-- Collaboration : *Copilot, summarizes the key points from the last team meeting.*
+- Time management : *"Copilot, creates a summary of priority tasks for today."*
+- Data analysis : *"Copilot, generates a sales report for the last quarter with graphs."*
+- Collaboration : *"Copilot, summarizes the key points from the last team meeting."*
 
 ---
 

@@ -12,7 +12,7 @@ draft: false
 ---
 
 ##### Introduction
-The Gartner Magic Quadrant for Unified Communications as a Service (UCaaS) is an essential tool for organizations looking to evaluate cloud communications service providers. This report highlights market leaders, challengers, visionaries and niche players, providing an overview of different vendors' capabilities and strategies.
+The *Gartner Magic Quadrant* for Unified Communications as a Service (UCaaS) is an essential tool for organizations looking to evaluate cloud communications service providers. This report highlights market leaders, challengers, visionaries and niche players, providing an overview of different vendors' capabilities and strategies.
 
 ---
 
