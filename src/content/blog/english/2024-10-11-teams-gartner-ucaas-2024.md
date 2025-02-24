@@ -6,7 +6,7 @@ date: 2024-10-11T10:00:00-05:00
 image: "/images/blog/teams/teams_gartner_ucaas_2024_thumbnail.png"
 categories: ["Teams"]
 author: "Maxime Hiez"
-tags: ["Magic Quadrant", "UCaaS"]
+tags: ["Gartner", "Magic Quadrant", "UCaaS"]
 draft: false
 ---
 ---
@@ -34,7 +34,7 @@ The niche player quadrant includes companies like GoTo, Vonage, Dialpad, Sangoma
 ##### Trends and innovations
 The report also highlights the growing importance of artificial intelligence in UCaaS solutions. Providers are increasingly integrating AI capabilities to improve call quality, automate tasks and offer advanced analytics. Microsoft, for example, has been praised for developing Copilot AI, which improves the user experience in Microsoft Teams.
 
-![image](/images/blog/teams/teams_gartner_ucaas_2024.png)
+![image](/images/blog/teams/teams_gartner_ucaas_2024_001.png)
 
 ---
 
