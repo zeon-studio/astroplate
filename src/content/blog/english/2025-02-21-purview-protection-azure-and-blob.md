@@ -52,13 +52,13 @@ The availability of Microsoft Purview protection policies for Azure Data Lake an
 ##### Sources
 [Microsoft - Techcommunity](https://techcommunity.microsoft.com/blog/azurestorageblog/microsoft-purview-protection-policies-for-azure-data-lake--blob-storage-availabl/4382887)
 
-[Microsoft Learn - Information Protection](https://learn.microsoft.com/fr-ca/purview/information-protection)
+[Microsoft Learn - Information Protection](https://learn.microsoft.com/en-us/purview/information-protection)
 
-[Microsoft Learn - Protection Policy](https://learn.microsoft.com/fr-ca/purview/how-to-create-protection-policy)
+[Microsoft Learn - Protection Policy](https://learn.microsoft.com/en-us/purview/how-to-create-protection-policy)
 
 ---
 
 
-Avez-vous apprécié cet article ? Vous avez des questions, commentaires ou suggestions, n’hésitez pas à laisser un commentaire dans la section ci-dessous ou en m'envoyant un message depuis le formulaire de contact.
+Did you enjoy this post ? If you have any questions, comments or suggestions, please leave a comment in the section below or by sending me a message from the contact form.
 
-N'oubliez pas de nous suivre et de partager cet article.
+Don't forget to follow us and share this post.

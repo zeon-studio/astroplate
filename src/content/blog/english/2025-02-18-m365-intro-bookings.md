@@ -72,7 +72,7 @@ Microsoft Bookings is a powerful tool to simplify appointment management and imp
 ##### Sources
 [Microsoft - Techcommunity](https://techcommunity.microsoft.com/blog/nonprofittechies/simplify-your-scheduling-with-microsoft-bookings/4369100)
 
-[Microsoft - Bookings](https://www.microsoft.com/fr-ca/microsoft-365/business/scheduling-and-booking-app?ef_id=_k_EAIaIQobChMIkdX7rNathAMVIXNHAR3UjwsDEAAYASAAEgKz2vD_BwE_k_&OCID=AIDcmmepmcp11k_SEM__k_EAIaIQobChMIkdX7rNathAMVIXNHAR3UjwsDEAAYASAAEgKz2vD_BwE_k_&gad_source=1&gclid=EAIaIQobChMIkdX7rNathAMVIXNHAR3UjwsDEAAYASAAEgKz2vD_BwE)
+[Microsoft - Bookings](https://www.microsoft.com/en-us/microsoft-365/business/scheduling-and-booking-app?ef_id=_k_EAIaIQobChMIkdX7rNathAMVIXNHAR3UjwsDEAAYASAAEgKz2vD_BwE_k_&OCID=AIDcmmepmcp11k_SEM__k_EAIaIQobChMIkdX7rNathAMVIXNHAR3UjwsDEAAYASAAEgKz2vD_BwE_k_&gad_source=1&gclid=EAIaIQobChMIkdX7rNathAMVIXNHAR3UjwsDEAAYASAAEgKz2vD_BwE)
 
 ---
 
