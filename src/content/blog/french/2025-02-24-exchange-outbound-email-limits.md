@@ -81,6 +81,8 @@ L'introduction des limites TERRL par Microsoft est une étape importante pour ga
 ##### Sources
 [Microsoft - Techcommunity](https://techcommunity.microsoft.com/blog/exchange/introducing-exchange-online-tenant-outbound-email-limits/4372797)
 
+[Microsoft Learn - Volume élevé de courriels](https://learn.microsoft.com/fr-ca/office365/servicedescriptions/exchange-online-service-description/exchange-online-limits)
+
 [Microsoft Learn - Limites d’Exchange Online](https://learn.microsoft.com/fr-ca/office365/servicedescriptions/exchange-online-service-description/exchange-online-limits)
 
 [Microsoft Learn - Azure Communication Services](https://learn.microsoft.com/fr-ca/azure/communication-services/concepts/email/email-overview)
