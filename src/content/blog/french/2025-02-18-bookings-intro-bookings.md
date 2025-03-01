@@ -3,7 +3,7 @@ title: "Simplifiez votre planification avec Microsoft Bookings"
 meta_title: ""
 description: ""
 date: 2025-02-18T10:00:00-05:00
-image: "/images/blog/m365/m365_intro_bookings_thumbnail.png"
+image: "/images/blog/m365/bookings_intro_bookings_thumbnail.png"
 categories: ["Bookings"]
 author: "Maxime Hiez"
 tags: ["Réservation", "Calendrier", "Outlook"]
@@ -19,7 +19,7 @@ La gestion des rendez-vous et des réservations peut être un défi pour de nomb
 ##### Qu'est-ce que Microsoft Bookings ?
 Microsoft Bookings est une application de gestion des rendez-vous qui fait partie de la suite Microsoft 365. Elle permet aux organisations de créer des pages de réservation personnalisées où les clients peuvent facilement prendre des rendez-vous en ligne. Bookings s'intègre parfaitement avec les calendriers Outlook, ce qui facilite la gestion des horaires et des disponibilités.
 
-![image](/images/blog/m365/m365_intro_bookings_001.png)
+![image](/images/blog/m365/bookings_intro_bookings_001.png)
 
 ---
 
@@ -60,7 +60,7 @@ Microsoft Bookings est une application de gestion des rendez-vous qui fait parti
 ##### Vue sur la page de réservation
 Les personnes qui auront accès à votre page Bookings auront la possibilité de choisir avec quelle personne de votre équipe ils désirent parler, et il leur sera proposé les créneaux disponibles pour la journée voulue.
 
-![image](/images/blog/m365/m365_intro_bookings_002.png)
+![image](/images/blog/m365/bookings_intro_bookings_002.png)
 
 ---
 
