@@ -34,7 +34,7 @@ Sign in to the Microsoft Azure portal by opening your web browser to https://por
 ---
 
 ##### Step 2 : Create an automation account
-In the search bar at the top of the screen, type *<u>Automation account</u>* and click on the proposed menu.
+In the search bar at the top of the screen, type *<u>Automation account</u>* and click the proposed menu.
 
 ![image](/images/blog/azure/tuto/azure_stop_vm_with_alert_001.png)
 
@@ -61,10 +61,10 @@ Your account is now created.
 ---
 
 ##### Step 3 : Create an alert to detect inactive VMs
-In the search bar at the top of the screen, type *<u>Virtual machines</u>* and click on the proposed menu.<br/>
+In the search bar at the top of the screen, type *<u>Virtual machines</u>* and click the proposed menu.<br/>
 All your virtual machines will be displayed; in my case there is only one (a Windows 10 PC).
 
-In the left menu, click on *<u>Monitoring</u>*, then on *<u>Alerts</u>* and on *<u>Create custom alert rule</u>*.
+In the left menu, click *<u>Monitoring</u>*, then *<u>Alerts</u>* and *<u>Create custom alert rule</u>*.
 
 ![image](/images/blog/azure/tuto/azure_stop_vm_with_alert_007.png)
 
@@ -75,7 +75,7 @@ Choose *CPU Percentage* as signal, set the threshold (I put 2% for the example) 
 ---
 
 ##### Step 4 : Create an action to turn the VMs off
-Click on the *<u>Actions</u>* tab, then on *<u>Create action group</u>*.<br/>
+Click the *<u>Actions</u>* tab, then *<u>Create action group</u>*.<br/>
 Fill out the basic information (subscription, resource group, region, and action name) for your action.
 
 ![image](/images/blog/azure/tuto/azure_stop_vm_with_alert_009.png)
@@ -114,7 +114,7 @@ And I can see that my VM is now turned off (*deallocated*).
 
 ![image](/images/blog/azure/tuto/azure_stop_vm_with_alert_016.png)
 
-Click on *<u>Alerts</u>* to validate that the programmed action is indeed the cause of the VM shutdown.
+Click *<u>Alerts</u>* to validate that the programmed action is indeed the cause of the VM shutdown.
 
 ![image](/images/blog/azure/tuto/azure_stop_vm_with_alert_017.png)
 

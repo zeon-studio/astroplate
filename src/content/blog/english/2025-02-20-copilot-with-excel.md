@@ -36,7 +36,7 @@ Copilot in Excel is an AI assistant that helps you work more efficiently with yo
 
 **<u>Explore Copilot suggestions</u>**
 - Copilot can also offer you suggestions based on the context of your spreadsheet. For example, if you are working on a financial data table, Copilot can suggest relevant analyzes or useful visualizations.
-- Click on the suggestions to apply them directly to your spreadsheet.
+- Click the suggestions to apply them directly to your spreadsheet.
 
 ![image](/images/blog/copilot/copilot_excel_002.png)
 

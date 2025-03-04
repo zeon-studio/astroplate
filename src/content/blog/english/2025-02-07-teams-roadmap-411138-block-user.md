@@ -24,7 +24,7 @@ Traditionally, administrators could use the remove API (*removeallaccessforuser 
 ---
 
 ##### Feature implementation
-To use this new capability, a Microsoft Teams administrator must sign in to the Microsoft Teams Admin Center by opening their web browser to https://admin.teams.microsoft.com, and in the left menu, click on *<u>Users</u>*, then on *<u>External access</u>*. By default, the *Block specific users from communicating with people in my organization* feature is disabled.
+To use this new capability, a Microsoft Teams administrator must sign in to the Microsoft Teams Admin Center by opening their web browser to https://admin.teams.microsoft.com, and in the left menu, click *<u>Users</u>*, then *<u>External access</u>*. By default, the *Block specific users from communicating with people in my organization* feature is disabled.
 
 ![image](/images/blog/teams/tuto/teams_roadmap_411138_block_user_002.png)
 

@@ -39,7 +39,7 @@ The Copilot prompt gallery is an application that allows users to find, save and
 <br/><br/>
 
 **<u>Save prompts</u>**
-- When you find a useful prompt, click on the save option to add it to your personal collection.
+- When you find a useful prompt, click the save option to add it to your personal collection.
 - You can organize your saved prompts into folders for easier access.
 <br/><br/>
 

@@ -22,7 +22,7 @@ Sign in to the Microsoft 365 Admin Center by opening your web browser to https:/
 ---
 
 ##### Step 2 : Disable self-service
-In the left menu, click on *<u>Copilot</u>*, then on *<u>Settings</u>*, and deactivate the *self-service purshases* of the Copilot license.
+In the left menu, click *<u>Copilot</u>*, then *<u>Settings</u>*, and deactivate the *self-service purshases* of the Copilot license.
 
 ![image](/images/blog/copilot/tuto/copilot_disable_selfservice_001.png)
 
@@ -45,7 +45,7 @@ Get-MSCommerceProductPolicies -PolicyId AllowSelfServicePurchase | Where { $_.Po
 ---
 
 ##### Result
-The result is visible by going to the left menu of the Microsoft 365 Admin Center and clicking on *<u>Settings</u>*, then on *<u>Org settings</u>* and on *<u>Self-service trials and purchases</u>*.
+The result is visible by going to the left menu of the Microsoft 365 Admin Center and clicking *<u>Settings</u>*, then *<u>Org settings</u>* and *<u>Self-service trials and purchases</u>*.
 
 ![image](/images/blog/copilot/tuto/copilot_disable_selfservice_002.png)
 

@@ -37,8 +37,8 @@ Microsoft Graph has all the capabilities that have been available in Azure AD Gr
 Microsoft Entra sign-in logs can be used to identify connections from MSOnline and AzureAD PowerShell. They provide information about the client and user of the PowerShell session.
 
 1. Sign in to the Microsoft Entra Admin Center by opening your web browser to https://entra.microsoft.com.
-2. In the left menu, click on *<u>Identity</u>*, then on *<u>Monitoring & health</u>* and on *<u>Sign-in logs</u>*.
-3. Select the *<u>User sign-ins (Interactive)</u>* tab, then click on *<u>Add filters</u>* and choose the *Application* attribute.
+2. In the left menu, click *<u>Identity</u>*, then *<u>Monitoring & health</u>* and *<u>Sign-in logs</u>*.
+3. Select the *<u>User sign-ins (Interactive)</u>* tab, then click *<u>Add filters</u>* and choose the *Application* attribute.
 4. Enter *Azure Active Directory PowerShell* to apply the filter.
 
 ![image](/images/blog/entra/entra_new_powershell_module_ga_001.png)

@@ -45,9 +45,9 @@ Connect-MicrosoftTeams
 ---
 
 ##### Step 2 : Create a Caller ID policy
-In the left menu, click on *<u>Voice</u>*, then on *<u>Caller ID policies</u>*.
+In the left menu, click *<u>Voice</u>*, then *<u>Caller ID policies</u>*.
 
-To create a new policy, click on the *<u>+ Add</u>* button.
+To create a new policy, click the *<u>+ Add</u>* button.
 
 Enter the name and description (optional) of the policy.
 
@@ -59,7 +59,7 @@ Choose to change the display number to that of the resource account.
 
 You can also create the policy via the following PowerShell commands :
 ```powershell
-$RA_AA = (Get-CsOnlineApplicationInstance -Identity "AA_DEMO@domain.com").ObjectId
+$RA_AA = (Get-CsOnlineApplicationInstance -Identity "AA_DEMO@hiez.ca").ObjectId
 
 New-CsCallingLineIdentity -Identity "DEMO - 514 456-7890" -CallingIDSubstitute Resource -EnableUserOverride $false -ResourceAccount $RA_AA -CompanyName "Contoso"
 ```
@@ -69,15 +69,15 @@ New-CsCallingLineIdentity -Identity "DEMO - 514 456-7890" -CallingIDSubstitute R
 ##### Step 3 : Assign a Caller ID policy to users
 Once your policy is created, all you have to do is assign it to the users who need to display this number during their calls.
 
-In the left menu, click on *<u>Users</u>* then the *<u>Manage users</u>* submenu. The list of all the users in your organization will be displayed. Select the one(s) you want to enable the policy for.
+In the left menu, click *<u>Users</u>* then the *<u>Manage users</u>* submenu. The list of all the users in your organization will be displayed. Select the one(s) you want to enable the policy for.
 
-Click on the *<u>Policies</u>* tab and edit the *<u>Caller ID policy</u>* attribute to apply the policy of your choice.
+Click the *<u>Policies</u>* tab and edit the *<u>Caller ID policy</u>* attribute to apply the policy of your choice.
 
 ![image](/images/teams/teams_callerid-002.png)
 
 You can also assign the policy via the following PowerShell command :
 ```powershell
-Grant-CsCallingLineIdentity -Identity "Maxime@domain.com" -PolicyName "DEMO - 514 456-7890"
+Grant-CsCallingLineIdentity -Identity "Maxime@hiez.ca" -PolicyName "DEMO - 514 456-7890"
 ```
 
 ---

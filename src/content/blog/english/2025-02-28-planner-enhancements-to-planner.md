@@ -52,7 +52,7 @@ To get started using Planner in Teams channels, follow these steps :
 1. Select a standard channel in Teams.
 2. Click the *<u>Open apps</u>* icon at the top right of the channel and search for Planner.
 3. Select *<u>Pin a tab to Planner</u>*.
-4. Click on *<u>Save</u>*.
+4. Click *<u>Save</u>*.
 
 You can now add an existing plan to the channel or create a new plan.
 

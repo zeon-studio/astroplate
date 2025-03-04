@@ -36,9 +36,9 @@ Connect-MicrosoftTeams
 ---
 
 ##### Step 2 : Create a resource account
-In the left menu, click on *<u>Voice</u>*, then on *<u>Resource accounts</u>*.
+In the left menu, click *<u>Voice</u>*, then *<u>Resource accounts</u>*.
 
-To create a new account, click on the *<u>+ Add</u>* button.
+To create a new account, click the *<u>+ Add</u>* button.
 
 Enter the display name, username, and domain to use.
 

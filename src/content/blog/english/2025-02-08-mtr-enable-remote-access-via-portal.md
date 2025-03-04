@@ -57,9 +57,9 @@ Sign in to the Microsoft Entra Admin Center by opening your web browser to https
 ---
 
 ##### Step 2 : Create a security group
-In the left menu, click on *<u>Identity</u>*, then on *<u>Groups</u>* and on *<u>All groups</u>*.
+In the left menu, click *<u>Identity</u>*, then *<u>Groups</u>* and *<u>All groups</u>*.
 
-Click on *<u>New group</u>* to create a new security group which will contain the administrators who will have access to the MTR.
+Click *<u>New group</u>* to create a new security group which will contain the administrators who will have access to the MTR.
 
 ![image](/images/blog/mtr/tuto/mtr_enable_remote_access_via_portal_001.png)
 
@@ -71,7 +71,7 @@ Sign in to the Microsoft Teams Rooms Pro Management portal by opening your web b
 ---
 
 ##### Step 4 : Enable the remote access service
-In the left menu, click on *<u>Settings</u>*, then on *<u>General</u>*.
+In the left menu, click *<u>Settings</u>*, then *<u>General</u>*.
 
 Check the *Allow Teams Rooms Pro Management Remote access* box and enter the contact address.
 
@@ -80,9 +80,9 @@ Check the *Allow Teams Rooms Pro Management Remote access* box and enter the con
 ---
 
 ##### Step 5 : Create the role
-In the left menu, click on *<u>Settings</u>*, then on *<u>Roles</u>*.
+In the left menu, click *<u>Settings</u>*, then *<u>Roles</u>*.
 
-Click on *<u>Create role</u>* and give it a name and description.
+Click *<u>Create role</u>* and give it a name and description.
 
 ![image](/images/blog/mtr/tuto/mtr_enable_remote_access_via_portal_003.png)
 
@@ -101,9 +101,9 @@ Assign the room(s) to the rule.
 ---
 
 ##### Step 6 : Access the room
-In the left menu, click on *<u>Rooms</u>*, then on the room to which you wish to gain access.
+In the left menu, click *<u>Rooms</u>*, then on the room to which you wish to gain access.
 
-Click on *<u>Start session</u>*.
+Click *<u>Start session</u>*.
 
 ![image](/images/blog/mtr/tuto/mtr_enable_remote_access_via_portal_007.png)
 

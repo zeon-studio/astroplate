@@ -51,22 +51,22 @@ Sign in to the Microsoft Entra Admin Center by opening your web browser to https
 ---
 
 ##### Step 2 : Enable LAPS
-In the left menu, click on *<u>Identity</u>*, then on *<u>Devices</u>* and on *<u>All devices</u>*.
+In the left menu, click *<u>Identity</u>*, then *<u>Devices</u>* and *<u>All devices</u>*.
 
-Click on *<u>Device settings</u>*, then click on the *Enable Entra Local Administrator Password Solution (LAPS)* switch to enable the service.
+Click *<u>Device settings</u>*, then click the *Enable Entra Local Administrator Password Solution (LAPS)* switch to enable the service.
 
 ![image](/images/blog/intune/tuto/intune_enable_laps_001.png)
 
 ---
 
 ##### Step 3 : Create a security group
-In the left menu, click on *<u>Identity</u>*, then *<u>Groups</u>* and *<u>All groups</u>*.
+In the left menu, click *<u>Identity</u>*, then *<u>Groups</u>* and *<u>All groups</u>*.
 
-Click on *<u>New group</u>* to create a new security group of type *Dynamic device*.
+Click *<u>New group</u>* to create a new security group of type *Dynamic device*.
 
 ![image](/images/blog/intune/tuto/intune_enable_laps_002.png)
 
-Click on *<u>Add dynamic query</u>*, then add *(device.displayName -startsWith "MTR-")* to the rule. This will make it possible to bring together all the MTRs in the same group.
+Click *<u>Add dynamic query</u>*, then add *(device.displayName -startsWith "MTR-")* to the rule. This will make it possible to bring together all the MTRs in the same group.
 
 ![image](/images/blog/intune/tuto/intune_enable_laps_003.png)
 
@@ -78,7 +78,7 @@ Sign in to the Microsoft Intune Admin Center by opening your web browser to http
 ---
 
 ##### Step 5 : Create a LAPS rule
-In the left menu, click on *<u>Endpoint security</u>*, then on *<u>Account protection</u>*.
+In the left menu, click *<u>Endpoint security</u>*, then *<u>Account protection</u>*.
 
 Create a rule for the *Windows 10 and later* platform with the *Local admin password solution (Windows LAPS)* profile.
 
@@ -96,11 +96,11 @@ Assign the security group created in step 3.
 ---
 
 ##### Step 6 : Access the password
-In the left menu, click on *<u>Devices</u>*, then find the MTR you want to check.
+In the left menu, click *<u>Devices</u>*, then find the MTR you want to check.
 
 ![image](/images/blog/intune/tuto/intune_enable_laps_007.png)
 
-Click on *<u>Show local administrator password</u>* to reveal its temporary password.
+Click *<u>Show local administrator password</u>* to reveal its temporary password.
 
 ![image](/images/blog/intune/tuto/intune_enable_laps_008.png)
 

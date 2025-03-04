@@ -35,11 +35,11 @@ Sign in to *My Sign-Ins* by opening your web browser to https://mysignins.micros
 ---
 
 ##### Step 2 : Register a Passkey
-Click on *<u>Add sign-in method</u>* then on *<u>Passkey in Microsoft Authenticator</u>*.
+Click *<u>Add sign-in method</u>* then *<u>Passkey in Microsoft Authenticator</u>*.
 
 ![image](/images/blog/entra/tuto/entra_passkey_003.png)
 
-Open the *<u>Authenticator</u>* application on your cell phone and click on *<u>Create Access Key</u>*.
+Open the *<u>Authenticator</u>* application on your cell phone and click *<u>Create Access Key</u>*.
 
 ![image](/images/blog/entra/tuto/entra_passkey_004.png)
 

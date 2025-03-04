@@ -36,7 +36,7 @@ Microsoft recently announced the general availability of the new unified calenda
 
 ##### How to enable it ?
 1. In the Teams client, go to the *Calendar* app.
-2. Click on the *New Calendar* button in the upper right corner of the calendar surface, and the new calendar should load in a few seconds.
+2. Click the *New Calendar* button in the upper right corner of the calendar surface, and the new calendar should load in a few seconds.
 
 ![image](/images/blog/teams/teams_new_calendar_ga_002.png)
 
