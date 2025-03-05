@@ -6,7 +6,7 @@ date: 2025-03-05T10:00:00-05:00
 image: "/images/blog/teams/tuto/teams_aosp_firmware_available_thumbnail.png"
 categories: ["Teams", "Tutorial"]
 author: "Maxime Hiez"
-tags: ["Téléphones Teams", "Teams Rooms", "MTRoA", "Panneaux Teams", "AOSP", "Android"]
+tags: ["Teams Phones", "Teams Rooms", "MTRoA", "Teams Panels", "AOSP", "Android"]
 draft: false
 ---
 ---
