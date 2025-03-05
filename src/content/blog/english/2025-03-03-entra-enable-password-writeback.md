@@ -1,10 +1,10 @@
 ---
-title: "Activer le password writeback dans Entra ID"
+title: "Enable password writeback in Entra ID"
 meta_title: ""
 description: ""
 date: 2025-03-03T10:00:00-05:00
 image: "/images/blog/entra/tuto/entra_enable_password_writeback_thumbnail.png"
-categories: ["Entra ID"]
+categories: ["Entra ID", "Tutorial"]
 author: "Maxime Hiez"
 tags: ["Password", "Writeback", "Entra Connect", "GPO"]
 draft: false

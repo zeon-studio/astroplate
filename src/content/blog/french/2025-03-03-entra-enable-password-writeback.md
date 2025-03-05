@@ -4,7 +4,7 @@ meta_title: ""
 description: ""
 date: 2025-03-03T10:00:00-05:00
 image: "/images/blog/entra/tuto/entra_enable_password_writeback_thumbnail.png"
-categories: ["Entra ID"]
+categories: ["Entra ID", "Tutoriel"]
 author: "Maxime Hiez"
 tags: ["Mot de passe", "Writeback", "Entra Connect", "GPO"]
 draft: false
