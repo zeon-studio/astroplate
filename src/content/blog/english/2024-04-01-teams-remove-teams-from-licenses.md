@@ -37,7 +37,7 @@ Existing customers who already subscribe to Microsoft 365 or Office 365 suites w
 
 ##### New pricing
 
-<br>
+<br/>
 
 ###### Changes to Enterprise Suites
 |    Existing suites with Teams    |    New Suites without Teams (after Apr. 1)    |    Pricing    |

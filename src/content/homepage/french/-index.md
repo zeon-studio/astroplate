@@ -2,7 +2,7 @@
 # Banner
 banner:
   title: "Le blog de Maxime"
-  content: "<br /><br />Sur ce blog, je partage des nouveautés, mais aussi mes connaissances et expériences pour tirer le meilleur parti des outils numériques. Que vous soyez un professionnel de l'informatique, un gestionnaire ou simplement curieux d'en savoir plus sur les environnements de travail modernes, vous trouverez ici des ressources utiles et des idées inspirantes pour vous aider à réussir dans votre transformation numérique.<br /><br />"
+  content: "<br/><br/>Sur ce blog, je partage des nouveautés, mais aussi mes connaissances et expériences pour tirer le meilleur parti des outils numériques. Que vous soyez un professionnel de l'informatique, un gestionnaire ou simplement curieux d'en savoir plus sur les environnements de travail modernes, vous trouverez ici des ressources utiles et des idées inspirantes pour vous aider à réussir dans votre transformation numérique.<br/><br/>"
   image: "/images/banner.png"
   button:
     enable: false

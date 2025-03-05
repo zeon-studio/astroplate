@@ -35,7 +35,7 @@ Les clients existants déjà abonnés à des licences Microsoft 365 ou Office 36
 
 ##### Nouveaux tarifs
 
-<br>
+<br/>
 
 ###### Modifications apportées aux licences Enterprise
 |    Licences existantes avec Teams    |    Nouvelles licences sans Teams (après le 1er Avril)    |     Prix      |

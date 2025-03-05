@@ -62,7 +62,7 @@ Connectez vous au Microsoft Entra Admin Center en ouvrant votre navigateur web s
 ---
 
 ##### Étape 3 : Activer Password Writeback dans Microsoft Entra ID
-Dans le menu de gauche, cliquez sur *<u>Identity</u>*, puis sur *<u>Protection</u>*, et sur *<u>Password reset</u>*.
+Dans le menu de gauche, cliquez sur *<u>Identity</u>*, puis sur *<u>Protection</u>* et sur *<u>Password reset</u>*.
 
 Cliquez sur *<u>On-premises integration</u>* et et activez toutes les options.
 
@@ -75,7 +75,7 @@ La fonctionnalité est maintenant activée sur Entra ID.
 ##### Étape 4 : Définir une politique d'âge minimum du mot de passe
 Démarrez la console de gestion des GPO (gpmc.msc) depuis le serveur Active Directory local.
 
-Cliquez sur *<u>Computer Configuration</u>*, puis sur *<u>Policies</u>*, sur *<u>Windows Settings</u>*, sur *<u>Security Settings</u>*, sur *<u>Account Policy</u>*, et sur *<u>Password Policy</u>*.
+Cliquez sur *<u>Computer Configuration</u>*, puis sur *<u>Policies</u>*, sur *<u>Windows Settings</u>*, sur *<u>Security Settings</u>*, sur *<u>Account Policy</u>* et sur *<u>Password Policy</u>*.
 
 Éditez la stratégie *Minimum password age* et définissez-la sur *0 jour*.
 

@@ -22,7 +22,7 @@ Jusqu'à présent, Exchange Online utilisait principalement une limite quotidien
 ---
 
 ##### Détails des nouvelles limites
-Les nouvelles limites TERRL sont calculées en fonction du nombre de licences courriel disponibles par tenant (fenêtre glissante de 24 heures).<br />
+Les nouvelles limites TERRL sont calculées en fonction du nombre de licences courriel disponibles par tenant (fenêtre glissante de 24 heures).<br/>
 Voici un aperçu des nouvelles limites :
 - Tenants en période d'essai : Limite de 5000 destinataires externes par jour, quel que soit le nombre de licences.
 - Tenants en production : La limite quotidienne est basée sur le nombre de licences courriel disponibles. Plus un tenant possède de licences, plus le nombre de destinataires externes qu'il peut envoyer par jour est élevé, mais à un taux décroissant par licence.
@@ -32,7 +32,7 @@ Voici un aperçu des nouvelles limites :
 ---
 
 ##### Informations supplémentaires
-Les destinataires externes sont ceux dont les domaines d'adresse courriels ne sont pas des domaines acceptés dans le tenant. Les limites TERRL établissent des limites de base pour tous les tenant, mais des restrictions supplémentaires peuvent également survenir en raison de comportements d'envoi suspects, d'envoi de spam, de paiements frauduleux ou excessivement tardifs, etc <br /><br />
+Les destinataires externes sont ceux dont les domaines d'adresse courriels ne sont pas des domaines acceptés dans le tenant. Les limites TERRL établissent des limites de base pour tous les tenant, mais des restrictions supplémentaires peuvent également survenir en raison de comportements d'envoi suspects, d'envoi de spam, de paiements frauduleux ou excessivement tardifs, etc <br/><br/>
 
 | Nombre de licences | Limite d'envoi |
 | :----------------: | -------------: |

@@ -84,7 +84,7 @@ Create a rule for the *Windows 10 and later* platform with the *Local admin pass
 
 ![image](/images/blog/intune/tuto/intune_enable_laps_004.png)
 
-Enable the options with the values ​​of your choice.<br />
+Enable the options with the values ​​of your choice.<br/>
 We want to target the *Admin* account (whose default password is *sfb*) of the MTR.
 
 ![image](/images/blog/intune/tuto/intune_enable_laps_005.png)

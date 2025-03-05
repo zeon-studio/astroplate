@@ -84,7 +84,7 @@ Créez une règle pour la plateforme *Windows 10 and later* avec le profil *Loca
 
 ![image](/images/blog/intune/tuto/intune_enable_laps_004.png)
 
-Activez les options avec les valeurs de votre choix.<br />
+Activez les options avec les valeurs de votre choix.<br/>
 On va vouloir cibler le compte *Admin* (dont le mot de passe par défaut est *sfb*) du MTR.
 
 ![image](/images/blog/intune/tuto/intune_enable_laps_005.png)

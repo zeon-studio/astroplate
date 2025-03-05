@@ -22,7 +22,7 @@ Until now, Exchange Online primarily used a daily limit per mailbox (*Recipient 
 ---
 
 ##### Details of the new limits
-The new TERRL limits are calculated based on the number of email licenses available per tenant (24-hour rolling window).<br />
+The new TERRL limits are calculated based on the number of email licenses available per tenant (24-hour rolling window).<br/>
 Here is an overview of the new limits :
 - Tenants in trial period : Limit of 5000 external recipients per day, regardless of the number of licenses.
 - Production tenants : The daily limit is based on the number of email licenses available. The more licenses a tenant has, the more external recipients it can send per day, but at a decreasing rate per license.
@@ -32,7 +32,7 @@ Here is an overview of the new limits :
 ---
 
 ##### Additional information
-External recipients are those whose email address domains are not accepted domains in the tenant. TERRL limits establish base limits for all tenants, but additional restrictions may also arise due to suspicious sending behavior, spamming, fraudulent or excessively late payments, etc. <br /><br />
+External recipients are those whose email address domains are not accepted domains in the tenant. TERRL limits establish base limits for all tenants, but additional restrictions may also arise due to suspicious sending behavior, spamming, fraudulent or excessively late payments, etc. <br/><br/>
 
 | Number of licenses | Sending limit  |
 | :----------------: | -------------: |

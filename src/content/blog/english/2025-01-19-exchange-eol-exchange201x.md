@@ -28,7 +28,7 @@ After October 14, 2025, Exchange Server 2016 and 2019 installations will continu
 ---
 
 ##### 2 migration options
-1. Migrate to Exchange Online or Microsoft 365 : Microsoft strongly recommends migrating to Exchange Online or Microsoft 365 to take advantage of the latest features and technologies, including advanced generative artificial intelligence (AI) technologies available in the cloud. Migrating to the cloud is considered the best option to retire on-premises Exchange Server deployments.<br><br>
+1. Migrate to Exchange Online or Microsoft 365 : Microsoft strongly recommends migrating to Exchange Online or Microsoft 365 to take advantage of the latest features and technologies, including advanced generative artificial intelligence (AI) technologies available in the cloud. Migrating to the cloud is considered the best option to retire on-premises Exchange Server deployments.<br/><br/>
 2. Prepare to upgrade to Exchange Server Subscription Edition (SE) : For organizations that want to continue using Exchange Server on-premises, Microsoft is offering to prepare to upgrade to Exchange Server SE, which will be available in the early second half of 2025. Exchange 2019 users can perform an in-place upgrade to Exchange Server SE when it becomes available. Exchange 2016 users will need to first upgrade to Exchange 2019 before moving to Exchange Server SE.
 
 ---

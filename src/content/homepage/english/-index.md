@@ -2,7 +2,7 @@
 # Banner
 banner:
   title: "Maxime's blog"
-  content: "<br /><br />On this blog, I share new developments, but also my knowledge and experiences to make the most of digital tools. Whether you're an IT professional, manager, or simply curious to learn more about modern workplaces, here you'll find useful resources and inspiring ideas to help you succeed in your digital transformation.<br /><br />"
+  content: "<br/><br/>On this blog, I share new developments, but also my knowledge and experiences to make the most of digital tools. Whether you're an IT professional, manager, or simply curious to learn more about modern workplaces, here you'll find useful resources and inspiring ideas to help you succeed in your digital transformation.<br/><br/>"
   image: "/images/banner.png"
   button:
     enable: false
