@@ -1,5 +1,5 @@
 ---
-title: "Comment activer Microsoft 365 Passkey dans Entra"
+title: "Comment activer Microsoft 365 Passkey dans Entra ID"
 meta_title: ""
 description: ""
 date: 2024-12-16T10:00:00-05:00
