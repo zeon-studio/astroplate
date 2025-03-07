@@ -27,7 +27,7 @@ Check the February 2025 article [HERE](https://maxime.hiez.ca/blog/2025-02-09-in
 - An account with the *Global Administrator* or *Teams Administrator* role to access the Microsoft Teams Admin Center.
 
 **<u>AOSP enabled</u>**
-- Have done your AOSP configurations in Intune
+- Have done your AOSP configurations in Intune.
 
 ---
 

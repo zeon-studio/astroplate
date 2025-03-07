@@ -27,7 +27,7 @@ Voir l'article de Février 2025 [ICI](https://maxime.hiez.ca/blog/2025-02-09-int
 - Un compte avec le rôle *Administrateur Global* ou *Administrateur Intune* pour accéder au Microsoft Intune Admin Center.
 
 **<u>AOSP activé</u>**
-- Avoir fait vos configurations AOSP dans Intune
+- Avoir fait vos configurations AOSP dans Intune.
 
 ---
 
