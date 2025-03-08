@@ -12,7 +12,7 @@ draft: false
 ---
 
 ##### Introduction
-Microsoft a annoncé la fin du support pour la dernière version de Windows 10 (22H2 - version 10.0.19045) sur les Teams Rooms, effective à partir du 14 octobre 2025. Cette décision marque une étape importante pour les organisations utilisant des Teams Rooms, car elles devront migrer vers Windows 11 pour continuer à bénéficier des dernières fonctionnalités de productivité, de sécurité et de gestion. Les Teams Rooms fonctionnant sous Windows 10 ne recevront plus de mises à jour de sécurité ni de nouvelles fonctionnalités. Cela signifie que les équipements resteront vulnérables aux nouvelles menaces de sécurité et ne pourront pas profiter des améliorations continues apportées par Microsoft.
+Microsoft a annoncé la fin du support pour la dernière version de Windows 10 (22H2 - version 10.0.19045) sur les Teams Rooms, effective à partir du 14 Octobre 2025. Cette décision marque une étape importante pour les organisations utilisant des Teams Rooms, car elles devront migrer vers Windows 11 pour continuer à bénéficier des dernières fonctionnalités de productivité, de sécurité et de gestion. Les Teams Rooms fonctionnant sous Windows 10 ne recevront plus de mises à jour de sécurité ni de nouvelles fonctionnalités. Cela signifie que les équipements resteront vulnérables aux nouvelles menaces de sécurité et ne pourront pas profiter des améliorations continues apportées par Microsoft.
 
 ---
 
