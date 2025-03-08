@@ -1,5 +1,5 @@
 ---
-title: "Realigning global licensing for Microsoft 365"
+title: "Global realignment of Microsoft 365 licenses"
 meta_title: ""
 description: ""
 date: 2024-04-01T10:00:00-05:00

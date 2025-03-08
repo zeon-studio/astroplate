@@ -17,7 +17,7 @@ Microsoft Teams continue d'évoluer pour offrir des solutions de communication e
 ---
 
 ##### Inventaire des numéros de téléphone
-La fonctionnalité n'est, <u>pour le moment</u> disponible qu'en version prépublique en PowerShell.
+La fonctionnalité n'est, <u>pour le moment</u> disponible qu'en version pré-publique en PowerShell.
 
 Vous pouvez importer un numéro unique via la commande PowerShell suivante :
 ```powershell

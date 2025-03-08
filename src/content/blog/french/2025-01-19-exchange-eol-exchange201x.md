@@ -12,12 +12,12 @@ draft: false
 ---
 
 ##### Introduction
-Microsoft a annoncé que le support pour *Exchange Server 2016* et *Exchange Server 2019* prendra fin le 14 octobre 2025 (en même temps que Skype for *Business Server 2015/2019* et *Windows 10*). À partir de cette date, Microsoft ne fournira plus de support technique, de correctifs de sécurité ou de mises à jour pour ces versions.
+Microsoft a annoncé que le support pour *Exchange Server 2016* et *Exchange Server 2019* prendra fin le 14 Octobre 2025 (en même temps que Skype for *Business Server 2015/2019* et *Windows 10*). À partir de cette date, Microsoft ne fournira plus de support technique, de correctifs de sécurité ou de mises à jour pour ces versions.
 
 ---
 
 ##### Qu'est-ce que la fin du support ?
-Après le 14 octobre 2025, les installations d'Exchange Server 2016 et 2019 continueront de fonctionner, mais seront exposées à des risques de sécurité et à des problèmes de compatibilité. Les entreprises utilisant encore ces versions devront faire face à l'absence de correctifs pour les vulnérabilités découvertes, ce qui pourrait rendre leurs serveurs vulnérables aux attaques.
+Après le 14 Octobre 2025, les installations d'Exchange Server 2016 et 2019 continueront de fonctionner, mais seront exposées à des risques de sécurité et à des problèmes de compatibilité. Les entreprises utilisant encore ces versions devront faire face à l'absence de correctifs pour les vulnérabilités découvertes, ce qui pourrait rendre leurs serveurs vulnérables aux attaques.
 
 - Support technique pour les problèmes qui peuvent survenir.
 - Corrections de bugs pour les problèmes découverts et qui peuvent avoir un impact sur la stabilité et la convivialité du serveur.

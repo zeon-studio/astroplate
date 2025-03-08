@@ -14,15 +14,17 @@ draft: false
 ##### Introduction
 Le 31 août 2023, Microsoft a annoncé d'importants changements dans ses licenses Microsoft 365 et Office 365 en réponse aux préoccupations soulevées par la Commission européenne concernant la concurrence dans l'Espace Économique Européen (EEE) et en Suisse. Ces changements visent à résoudre les problèmes liés au regroupement de Microsoft Teams avec Microsoft 365 et Office 365, afin de garantir un environnement concurrentiel plus équitable.
 
+---
+
 ##### Contexte
 La Commission européenne a lancé une enquête formelle sur les pratiques de regroupement de Microsoft, en se concentrant sur la question de savoir si l'inclusion de Microsoft Teams dans ses licenses entravait la concurrence. Microsoft intègre depuis longtemps des outils de communication et de collaboration dans ses offres commerciales, depuis Office Communicator en 2007 jusqu'à Lync, Skype for Business et maintenant Microsoft Teams.
 
-Le 1er octobre 2023, Microsoft a dissocié Teams des licences Microsoft 365 et Office 365 et a créé une nouvelle offre Teams autonome pour les entreprises.
+Le 1er Octobre 2023, Microsoft a dissocié Teams des licences Microsoft 365 et Office 365 et a créé une nouvelle offre Teams autonome pour les entreprises.
 
 ---
 
 ##### Changements clés annoncés
-- À partir du 1er avril 2024, Microsoft offrira à ses clients la possibilité d'acheter Microsoft 365 et Office 365 sans Teams à un prix réduit. Cette mesure permet aux clients de choisir des licences sans Teams, répondant ainsi à l'une des principales préoccupations de la Commission européenne.
+- À partir du 1er Avril 2024, Microsoft offrira à ses clients la possibilité d'acheter Microsoft 365 et Office 365 sans Teams à un prix réduit. Cette mesure permet aux clients de choisir des licences sans Teams, répondant ainsi à l'une des principales préoccupations de la Commission européenne.
 - Microsoft Teams sera toujours disponible en tant que produit autonome pour les nouveaux clients, ce qui leur garantit de pouvoir toujours y accéder indépendamment des licences d'entreprise choisies.
 - Microsoft s'engage à améliorer l'interopérabilité entre ses produits et les solutions de communication et de collaboration concurrentes. Il s'agit notamment de faciliter l'intégration des applications tierces avec Microsoft 365 et Office 365, afin de favoriser un écosystème plus compétitif et plus ouvert.
 
