@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Disallow: /api/*
+Sitemap: https://maxime.hiez.ca/sitemap-index.xml
