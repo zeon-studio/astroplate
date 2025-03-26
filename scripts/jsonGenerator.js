@@ -1,7 +1,9 @@
-const fs = require("fs");
-const path = require("path");
-const matter = require("gray-matter");
-const languages = require("../src/config/language.json");
+import matter from "gray-matter";
+import fs from "node:fs";
+import path from "node:path";
+
+const languagesPath = new URL("../src/config/language.json", import.meta.url);
+const languages = JSON.parse(fs.readFileSync(languagesPath, "utf8"));
 
 const JSON_FOLDER = "./.json";
 const CONTENT_ROOT = "src/content";
@@ -60,8 +62,7 @@ const getData = (folder, groupDepth, langIndex = 0) => {
     })
     .flat();
 
-  const publishedPages = getPaths.filter((page) => !page.frontmatter?.draft);
-  return publishedPages;
+  return getPaths.filter((page) => !page.frontmatter?.draft && page);
 };
 
 try {
@@ -77,7 +78,8 @@ try {
   );
 
   // merge json files for search
-  const posts = require(`../${JSON_FOLDER}/posts.json`);
+  const postsPath = new URL(`../${JSON_FOLDER}/posts.json`, import.meta.url);
+  const posts = JSON.parse(fs.readFileSync(postsPath, "utf8"));
   const search = [...posts];
   fs.writeFileSync(`${JSON_FOLDER}/search.json`, JSON.stringify(search));
 } catch (err) {

@@ -10,8 +10,8 @@
 </h2>
 
 <p align=center>
-  <a href="https://github.com/withastro/astro/releases/tag/astro%404.3.2" alt="Contributors">
-    <img src="https://img.shields.io/static/v1?label=ASTRO&message=4.3&color=000&logo=astro" />
+  <a href="https://github.com/withastro/astro/releases/tag/astro%405.5.4">
+    <img src="https://img.shields.io/static/v1?label=ASTRO&message=5.5&color=000&logo=astro"  alt="Astro Version 5.5"/>
   </a>
 
   <a href="https://github.com/zeon-studio/astroplate/blob/main/LICENSE">
@@ -66,27 +66,27 @@
 
 ### 📦 Dependencies
 
-- astro v5.1+
+- astro v5.5+
 - node v20.10+
-- npm v10.2+
-- tailwind v3.4+
+- yarn v1.22+
+- tailwind v4+
 
 ### 👉 Install Dependencies
 
 ```bash
-npm install
+yarn install
 ```
 
 ### 👉 Development Command
 
 ```bash
-npm run dev
+yarn run dev
 ```
 
 ### 👉 Build Command
 
 ```bash
-npm run build
+yarn run build
 ```
 
 ### 👉 Build and Run With Docker
@@ -94,7 +94,7 @@ npm run build
 ```bash
 docker build -t astroplate .
 # or
-# docker --build-arg INSTALLER=npm build -t astroplate .
+# docker --build-arg INSTALLER=yarn build -t astroplate .
 # or
 # docker --build-arg INSTALLER=pnpm build -t astroplate .
 
