@@ -1,6 +1,6 @@
 {
   "name": "astroplate-multilingual",
-  "version": "5.4.0",
+  "version": "5.4.1",
   "description": "Astro and Tailwindcss boilerplate",
   "author": "zeon.studio",
   "license": "MIT",
@@ -37,7 +37,8 @@
     "react-lite-youtube-embed": "^2.4.0",
     "remark-collapse": "^0.1.2",
     "remark-toc": "^9.0.0",
-    "swiper": "^11.2.6"
+    "swiper": "^11.2.6",
+    "vite": "^6.2.5"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.10",
