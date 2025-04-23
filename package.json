@@ -1,6 +1,6 @@
 {
   "name": "astroplate-multilingual",
-  "version": "5.4.2",
+  "version": "5.4.3",
   "description": "Astro and Tailwindcss boilerplate",
   "author": "zeon.studio",
   "license": "MIT",
@@ -22,6 +22,7 @@
     "@astrojs/react": "4.2.3",
     "@astrojs/rss": "4.0.11",
     "@astrojs/sitemap": "3.3.0",
+    "@justinribeiro/lite-youtube": "^1.7.1",
     "astro": "5.6.1",
     "astro-auto-import": "^0.4.4",
     "astro-font": "^1.0.0",
@@ -34,7 +35,6 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
-    "react-lite-youtube-embed": "^2.4.0",
     "remark-collapse": "^0.1.2",
     "remark-toc": "^9.0.0",
     "swiper": "^11.2.6",
