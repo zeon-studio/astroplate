@@ -36,6 +36,11 @@
     "link": "https://github.com/zeon-studio/astroplate"
   },
 
+  "google_tag_manager": {
+    "enable": false,
+    "gtm_id": "GTM-XXXXXX"
+  },
+
   "disqus": {
     "enable": true,
     "shortname": "themefisher-template",
