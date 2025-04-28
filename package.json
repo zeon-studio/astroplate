@@ -1,6 +1,6 @@
 {
   "name": "astroplate",
-  "version": "5.4.3",
+  "version": "5.5.0",
   "description": "Astro and Tailwindcss boilerplate",
   "author": "zeon.studio",
   "license": "MIT",
@@ -21,6 +21,7 @@
     "@astrojs/react": "4.2.4",
     "@astrojs/rss": "4.0.11",
     "@astrojs/sitemap": "3.3.0",
+    "@digi4care/astro-google-tagmanager": "^1.4.0",
     "@justinribeiro/lite-youtube": "^1.7.1",
     "astro": "5.7.4",
     "astro-auto-import": "^0.4.4",
