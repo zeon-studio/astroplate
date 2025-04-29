@@ -10,8 +10,8 @@
 </h2>
 
 <p align=center>
-  <a href="https://github.com/withastro/astro/releases/tag/astro%405.5.4">
-    <img src="https://img.shields.io/static/v1?label=ASTRO&message=5.5&color=000&logo=astro"  alt="Astro Version 5.5"/>
+  <a href="https://github.com/withastro/astro/releases/tag/astro%405.7.8">
+    <img src="https://img.shields.io/static/v1?label=ASTRO&message=5.7&color=000&logo=astro"  alt="Astro Version 5.7"/>
   </a>
 
   <a href="https://github.com/zeon-studio/astroplate/blob/main/LICENSE">
@@ -35,6 +35,7 @@
 - 📞 Support contact form
 - 📱 Fully responsive
 - 📝 Write and update content in Markdown / MDX
+- 📎 Google Tag Manager
 - 💬 Disqus Comment
 - 🔳 Syntax Highlighting
 
@@ -66,7 +67,7 @@
 
 ### 📦 Dependencies
 
-- astro v5.5+
+- astro v5.7+
 - node v20.10+
 - yarn v1.22+
 - tailwind v4+
