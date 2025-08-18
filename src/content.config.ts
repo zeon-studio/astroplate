@@ -82,8 +82,9 @@ const homepageCollection = defineCollection({
   loader: glob({ pattern: "**/-*.{md,mdx}", base: "src/content/homepage" }),
   schema: z.object({
     banner: z.object({
+      name: z.string(),
       title: z.string(),
-      content: z.string(),
+      tagline: z.string(),
       image: z.string(),
       button: z.object({
         enable: z.boolean(),
@@ -91,19 +92,50 @@ const homepageCollection = defineCollection({
         link: z.string(),
       }),
     }),
-    features: z.array(
-      z.object({
-        title: z.string(),
-        image: z.string(),
-        content: z.string(),
-        bulletpoints: z.array(z.string()),
-        button: z.object({
-          enable: z.boolean(),
+    projects: z.object({
+      title: z.string(),
+      items: z.array(
+        z.object({
+          title: z.string(),
+          description: z.string(),
+          icon: z.string(),
+          links: z.array(
+            z.object({
+              label: z.string(),
+              url: z.string(),
+            })
+          ),
+        })
+      ),
+    }),
+    publications: z.object({
+      title: z.string(),
+      items: z.array(
+        z.object({
+          title: z.string(),
+          description: z.string(),
+          journal: z.string(),
+          year: z.string(),
+          icon: z.string(),
+          links: z.array(
+            z.object({
+              label: z.string(),
+              url: z.string(),
+            })
+          ),
+        })
+      ),
+    }),
+    cta: z.object({
+      title: z.string(),
+      description: z.string(),
+      links: z.array(
+        z.object({
           label: z.string(),
-          link: z.string(),
-        }),
-      }),
-    ),
+          url: z.string(),
+        })
+      ),
+    }),
   }),
 });
 
