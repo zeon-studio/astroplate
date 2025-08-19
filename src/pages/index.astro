@@ -2,11 +2,9 @@
 import ImageMod from "@/components/ImageMod.astro";
 import Base from "@/layouts/Base.astro";
 import { markdownify } from "@/lib/utils/textConverter";
-import CallToAction from "@/partials/CallToAction.astro";
-import Testimonial from "@/partials/Testimonial.astro";
-import type { Button } from "@/types";
 import type { CollectionEntry } from "astro:content";
 import { getEntry } from "astro:content";
+import { FiDatabase, FiGlobe, FiZap, FiBookOpen } from "react-icons/fi";
 
 
 interface Homepage {
@@ -15,7 +13,11 @@ interface Homepage {
     title: string;
     tagline: string;
     image: string;
-    button: Button;
+    button: {
+      enable: boolean;
+      label: string;
+      link: string;
+    };
   };
   projects: {
     title: string;
@@ -60,16 +62,6 @@ const homepage = (await getEntry(
   "-index"
 )) as CollectionEntry<"homepage">;
 
-const testimonial = (await getEntry(
-  "testimonialSection",
-  "testimonial"
-)) as CollectionEntry<"testimonialSection">;
-
-const call_to_action = (await getEntry(
-  "ctaSection",
-  "call-to-action"
-)) as CollectionEntry<"ctaSection">;
-
 const { banner, projects, publications, cta } = homepage.data as Homepage;
 ---
 
@@ -81,7 +73,7 @@ const { banner, projects, publications, cta } = homepage.data as Homepage;
         <div class="md:col-4">
           {
             banner.image && (
-              <div class="flex justify-center">
+              <div class="flex justify-center mb-12">
                 <ImageMod
                   src={banner.image}
                   height={280}
@@ -101,9 +93,14 @@ const { banner, projects, publications, cta } = homepage.data as Homepage;
             />
             <h2
               set:html={markdownify(banner.title)}
-              class="mb-4 text-h4 lg:text-h3 text-primary"
+              class="mb-4 text-h4 lg:text-h3"
             />
             <p set:html={markdownify(banner.tagline)} class="mb-8 text-lg" />
+            {banner.button.enable && (
+              <a href={banner.button.link} class="btn btn-outline-primary">
+                {banner.button.label}
+              </a>
+            )}
           
           </div>
         </div>
@@ -126,16 +123,16 @@ const { banner, projects, publications, cta } = homepage.data as Homepage;
             <div class="text-start group">
               <!-- Icon -->
               <div class="mb-6">
-                <div class="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <div class="flex h-16 w-16 items-center justify-center rounded-full bg-light text-text">
                   <span class="text-2xl">
-                    {project.icon === "database" && "🗄️"}
-                    {project.icon === "chart" && "📊"}
-                    {project.icon === "brain" && "🧠"}
+                    {project.icon === "database" && <FiDatabase className="h-7 w-7" />}
+                    {project.icon === "chart" && <FiGlobe className="h-7 w-7" />}
+                    {project.icon === "brain" && <FiZap className="h-7 w-7" />}
                   </span>
                 </div>
               </div>
               <!-- Title -->
-              <h3 class="mb-4 text-xl font-bold">{project.title}</h3>
+              <a href={project.links[0].url}><h3 class="mb-4 text-xl font-bold">{project.title}</h3></a>
               <!-- Description -->
               <p class="mb-6 text-muted">{project.description}</p>
               <!-- Links -->
@@ -143,7 +140,7 @@ const { banner, projects, publications, cta } = homepage.data as Homepage;
                 {project.links.map((link) => (
                   <a
                     href={link.url}
-                    class="text-sm text-primary hover:underline transition-colors"
+                    class="text-sm hover:underline transition-colors"
                   >
                     {link.label} →
                   </a>
@@ -171,16 +168,16 @@ const { banner, projects, publications, cta } = homepage.data as Homepage;
             <div class="text-start group">
               <!-- Icon -->
               <div class="mb-6">
-                <div class="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <div class="flex h-16 w-16 items-center justify-center rounded-full bg-light text-text">
                   <span class="text-2xl">
-                    {publication.icon === "dna" && "🧬"}
-                    {publication.icon === "microscope" && "🔬"}
-                    {publication.icon === "cloud" && "☁️"}
+                    {publication.icon === "dna" && <FiBookOpen className="h-7 w-7" />}
+                    {publication.icon === "microscope" && <FiBookOpen className="h-7 w-7" />}
+                    {publication.icon === "cloud" && <FiBookOpen className="h-7 w-7" />}
                   </span>
                 </div>
               </div>
               <!-- Title -->
-              <h3 class="mb-3 text-xl font-bold">{publication.title}</h3>
+              <a href={publication.links[0].url}><h3 class="mb-3 text-xl font-bold">{publication.title}</h3></a>
               <!-- Journal & Year -->
               <p class="mb-4 text-sm text-muted">
                 {publication.journal}, {publication.year}
@@ -192,7 +189,7 @@ const { banner, projects, publications, cta } = homepage.data as Homepage;
                 {publication.links.map((link) => (
                   <a
                     href={link.url}
-                    class="text-sm text-primary hover:underline transition-colors"
+                    class="text-sm hover:underline transition-colors"
                   >
                     {link.label} →
                   </a>

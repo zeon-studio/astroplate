@@ -9,49 +9,53 @@
       "url": "/about"
     },
     {
-      "name": "Elements",
-      "url": "/elements"
+      "name": "CV",
+      "url": "/cv"
     },
     {
-      "name": "Pages",
-      "url": "",
+      "name": "Publications",
+      "url": "/publications"
+    },
+    {
+      "name": "Projects",
+      "url": "/projects",
       "hasChildren": true,
       "children": [
         {
-          "name": "Contact",
-          "url": "/contact"
+          "name": "Arkadia - IoT Home Environment Monitoring System",
+          "url": "/projects/arkadia"
         },
         {
-          "name": "Blog",
-          "url": "/blog"
+          "name": "Using BigQuery to analyze genetic variants at scale",
+          "url": "/projects/bq-variants"
         },
         {
-          "name": "Authors",
-          "url": "/authors"
-        },
-        {
-          "name": "Categories",
-          "url": "/categories"
-        },
-        {
-          "name": "Tags",
-          "url": "/tags"
-        },
-        {
-          "name": "404 Page",
-          "url": "/404"
+          "name": "Batch-Based Contig Alignment: Speeding Up Comparative Genomics",
+          "url": "/projects/batch-alignment"
         }
       ]
     }
   ],
   "footer": [
     {
-      "name": "Elements",
-      "url": "/elements"
+      "name": "Home",
+      "url": "/"
     },
     {
-      "name": "Privacy Policy",
-      "url": "/privacy-policy"
+      "name": "About",
+      "url": "/about"
+    },
+    {
+      "name": "CV",
+      "url": "/cv"
+    },
+    {
+      "name": "Publications",
+      "url": "/publications"
+    },
+    {
+      "name": "Projects",
+      "url": "/projects"
     }
   ]
 }
