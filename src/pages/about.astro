@@ -1,13 +1,17 @@
 ---
 import ImageMod from "@/components/ImageMod.astro";
 import Base from "@/layouts/Base.astro";
+import { getListPage } from "@/lib/contentParser.astro";
 import { markdownify } from "@/lib/utils/textConverter";
-import type { CollectionEntry } from "astro:content";
-import { getEntry, render } from "astro:content";
+import { render } from "astro:content";
 
-const about = (await getEntry("about", "-index")) as CollectionEntry<"about">;
-const { Content } = await render(about);
-const { title, description, meta_title, image } = about.data;
+const aboutIndex = await getListPage("about", "-index");
+const { Content } = await render(aboutIndex);
+const { title, description, meta_title, image } = aboutIndex.data;
+
+if (aboutIndex.data.draft) {
+  return Astro.redirect("/404");
+}
 ---
 
 <Base

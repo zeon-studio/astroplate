@@ -1,17 +1,16 @@
 ---
 import AuthorCard from "@/components/AuthorCard.astro";
 import Base from "@/layouts/Base.astro";
-import { getSinglePage } from "@/lib/contentParser.astro";
+import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
 import PageHeader from "@/partials/PageHeader.astro";
-import { getEntry, type CollectionEntry } from "astro:content";
 
-const COLLECTION_FOLDER = "authors";
+const authorIndex = await getListPage("authors", "-index");
 
-const authorIndex = (await getEntry(
-  COLLECTION_FOLDER,
-  "-index"
-)) as CollectionEntry<"authors">;
-const authors = await getSinglePage(COLLECTION_FOLDER);
+if (authorIndex.data.draft) {
+  return Astro.redirect("/404");
+}
+
+const authors = await getSinglePage("authors");
 ---
 
 <Base title={authorIndex.data.title}>

@@ -1,6 +1,15 @@
 import { glob } from "astro/loaders";
 import { defineCollection, z } from "astro:content";
 
+const commonFields = {
+  title: z.string(),
+  description: z.string(),
+  meta_title: z.string().optional(),
+  date: z.date().optional(),
+  image: z.string().optional(),
+  draft: z.boolean(),
+};
+
 // Post collection schema
 const blogCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/blog" }),
@@ -21,11 +30,7 @@ const blogCollection = defineCollection({
 const authorsCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/authors" }),
   schema: z.object({
-    title: z.string(),
-    meta_title: z.string().optional(),
-    email: z.string().optional(),
-    image: z.string().optional(),
-    description: z.string().optional(),
+    ...commonFields,
     social: z
       .array(
         z
@@ -45,11 +50,7 @@ const authorsCollection = defineCollection({
 const pagesCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/pages" }),
   schema: z.object({
-    title: z.string(),
-    meta_title: z.string().optional(),
-    description: z.string().optional(),
-    image: z.string().optional(),
-    draft: z.boolean().optional(),
+    ...commonFields,
   }),
 });
 
@@ -57,11 +58,7 @@ const pagesCollection = defineCollection({
 const aboutCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/about" }),
   schema: z.object({
-    title: z.string(),
-    meta_title: z.string().optional(),
-    description: z.string().optional(),
-    image: z.string().optional(),
-    draft: z.boolean().optional(),
+    ...commonFields,
   }),
 });
 
@@ -69,11 +66,7 @@ const aboutCollection = defineCollection({
 const contactCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/contact" }),
   schema: z.object({
-    title: z.string(),
-    meta_title: z.string().optional(),
-    description: z.string().optional(),
-    image: z.string().optional(),
-    draft: z.boolean().optional(),
+    ...commonFields,
   }),
 });
 

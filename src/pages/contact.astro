@@ -1,16 +1,16 @@
 ---
 import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
+import { getListPage } from "@/lib/contentParser.astro";
 import PageHeader from "@/partials/PageHeader.astro";
-import { getEntry } from "astro:content";
-import type { CollectionEntry } from "astro:content";
 
-const contact = (await getEntry(
-  "contact",
-  "-index"
-)) as CollectionEntry<"contact">;
+const contactIndex = await getListPage("contact", "-index");
 const { contact_form_action }: { contact_form_action: string } = config.params;
-const { title, description, meta_title, image } = contact.data;
+const { title, description, meta_title, image } = contactIndex.data;
+
+if (contactIndex.data.draft) {
+  return Astro.redirect("/404");
+}
 ---
 
 <Base
@@ -35,6 +35,7 @@ const { title, description, meta_title, image } = contact.data;
                 class="form-input"
                 placeholder="John Doe"
                 type="text"
+                required
               />
             </div>
             <div class="mb-6">
@@ -47,6 +48,7 @@ const { title, description, meta_title, image } = contact.data;
                 class="form-input"
                 placeholder="john.doe@email.com"
                 type="email"
+                required
               />
             </div>
             <div class="mb-6">
@@ -58,6 +60,7 @@ const { title, description, meta_title, image } = contact.data;
                 name="message"
                 class="form-input"
                 placeholder="Message goes here..."
+                required
                 rows="8"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
