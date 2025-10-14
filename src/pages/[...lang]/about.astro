@@ -15,6 +15,9 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params;
 const about = await getListPage("about", lang as keyof ContentEntryMap);
+if (about[0].data.draft) {
+  return Astro.redirect("/404");
+}
 
 const { Content } = await render(about[0]);
 const { title, description, meta_title, image } = about[0].data;

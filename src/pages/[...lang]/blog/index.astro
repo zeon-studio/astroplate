@@ -20,6 +20,9 @@ export function getStaticPaths() {
 const { lang } = Astro.params;
 const BLOG_FOLDER = "blog";
 const postIndex = await getListPage(BLOG_FOLDER, lang as keyof ContentEntryMap);
+if (postIndex[0].data.draft) {
+  return Astro.redirect("/404");
+}
 const langCollection: keyof ContentEntryMap = lang as keyof ContentEntryMap;
 const posts = await getSinglePage(BLOG_FOLDER, lang as keyof ContentEntryMap);
 

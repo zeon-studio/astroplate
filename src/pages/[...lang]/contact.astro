@@ -14,10 +14,16 @@ export function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
-const contact = await getListPage("contact", lang as keyof ContentEntryMap);
+const contactIndex = await getListPage(
+  "contact",
+  lang as keyof ContentEntryMap
+);
+if (contactIndex[0].data.draft) {
+  return Astro.redirect("/404");
+}
 
 const { contact_form_action }: { contact_form_action: string } = config.params;
-const { title, description, meta_title, image } = contact[0].data;
+const { title, description, meta_title, image } = contactIndex[0].data;
 
 const {
   working_mail,

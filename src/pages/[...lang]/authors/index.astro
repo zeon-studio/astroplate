@@ -20,6 +20,9 @@ const authorIndex = await getListPage(
   COLLECTION_FOLDER,
   lang as keyof ContentEntryMap
 );
+if (authorIndex[0].data.draft) {
+  return Astro.redirect("/404");
+}
 const authors = await getSinglePage(
   COLLECTION_FOLDER,
   lang as keyof ContentEntryMap
