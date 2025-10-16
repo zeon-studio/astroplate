@@ -3,4 +3,4 @@ publish = "dist"
 command = "yarn build"
 
 [build.environment]
-NODE_VERSION = "20"
+NODE_VERSION = "22.20.0"
