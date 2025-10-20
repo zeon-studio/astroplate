@@ -148,6 +148,7 @@
 
 /* content style */
 .content {
+  @apply [&>*:first-child]:mt-0 [&>*:first-child]:pt-0;
   @apply prose max-w-none;
   @apply prose-headings:mb-[.3em] prose-headings:mt-[.6em] prose-headings:text-text-dark dark:prose-headings:text-darkmode-text-dark;
   @apply prose-h1:text-h1-sm md:prose-h1:text-h1;

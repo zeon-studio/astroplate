@@ -14,7 +14,7 @@ const Button = ({
   return (
     <a
       href={link}
-      target="_blank"
+      target={link.startsWith("http") ? "_blank" : "_self"}
       rel={`noopener noreferrer ${rel ? (rel === "follow" ? "" : rel) : "nofollow"
         }`}
       className={`btn mb-4 me-4 hover:text-white dark:hover:text-black no-underline ${style === "outline" ? "btn-outline-primary" : "btn-primary"

@@ -1,7 +1,7 @@
 {
   "name": "astroplate-multilingual",
-  "version": "5.6.0",
-  "description": "Astro and Tailwindcss boilerplate",
+  "version": "5.6.1",
+  "description": "Astro and Tailwindcss Multilingual boilerplate",
   "author": "zeon.studio",
   "license": "MIT",
   "type": "module",

@@ -1,6 +1,6 @@
 ARG INSTALLER=yarn
 
-FROM node:20-alpine AS base
+FROM node:22.20.0-alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
