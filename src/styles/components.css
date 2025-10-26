@@ -81,7 +81,7 @@
 }
 
 .tab-nav-item {
-  @apply cursor-pointer border-b-[3px] border-border py-2 text-lg text-text-dark opacity-80 dark:border-light !my-0 !px-8;
+  @apply cursor-pointer border-b-[3px] border-border py-2 text-lg text-text-dark opacity-80 dark:border-darkmode-border !my-0 !px-8;
 }
 
 .tab-nav-item.active {
