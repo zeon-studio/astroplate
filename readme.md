@@ -10,8 +10,8 @@
 </h2>
 
 <p align=center>
-  <a href="https://github.com/withastro/astro/releases/tag/astro%405.14.6">
-    <img src="https://img.shields.io/static/v1?label=ASTRO&message=5.14.6&color=000&logo=astro"  alt="Astro Version 5.14.6"/>
+  <a href="https://github.com/withastro/astro/releases/tag/astro%405.15.3">
+    <img src="https://img.shields.io/static/v1?label=ASTRO&message=5.15.3&color=000&logo=astro"  alt="Astro Version 5.15.3"/>
   </a>
 
   <a href="https://github.com/zeon-studio/astroplate/blob/main/LICENSE">
@@ -66,7 +66,7 @@
 
 ### 📦 Dependencies
 
-- astro v5.14+
+- astro v5.15+
 - node v22.20+
 - yarn v1.22+
 - tailwind v4+

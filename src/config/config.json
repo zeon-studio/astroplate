@@ -25,6 +25,11 @@
     "default_language_in_subdir": false
   },
 
+  "announcement": {
+    "enable": true,
+    "expire_days": 7
+  },
+
   "params": {
     "contact_form_action": "#",
     "copyright": "Designed And Developed by [Zeon Studio](https://zeon.studio)"
