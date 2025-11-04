@@ -12,6 +12,7 @@ import {
 } from "@digi4care/astro-google-tagmanager";
 import { AstroFont } from "astro-font";
 import { ClientRouter } from "astro:transitions";
+import Announcement from "./helpers/Announcement";
 import SearchModal from "./helpers/SearchModal";
 
 // font families
@@ -189,6 +190,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     }
 
     <TwSizeIndicator />
+    <Announcement client:load />
     <Header />
     <SearchModal client:load />
     <main id="main-content">
