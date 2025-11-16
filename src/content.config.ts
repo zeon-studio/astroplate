@@ -70,6 +70,16 @@ const contactCollection = defineCollection({
   }),
 });
 
+// showcase collection schema
+const showcaseCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/showcase" }),
+  schema: z.object({
+    ...commonFields,
+    categories: z.array(z.string()).default(["Showcase"]),
+    tags: z.array(z.string()).default(["featured"]),
+  }),
+});
+
 // Homepage collection schema
 const homepageCollection = defineCollection({
   loader: glob({ pattern: "**/-*.{md,mdx}", base: "src/content/homepage" }),
@@ -84,6 +94,37 @@ const homepageCollection = defineCollection({
         link: z.string(),
       }),
     }),
+    showcases: z
+      .object({
+        enable: z.boolean(),
+        title: z.string(),
+        description: z.string(),
+        button: z
+          .object({
+            enable: z.boolean(),
+            label: z.string(),
+            link: z.string(),
+          })
+          .optional(),
+        items: z.array(
+          z.object({
+            title: z.string(),
+            description: z.string(),
+            image: z.string(),
+            link: z.string(),
+            tags: z.array(z.string()).default([]),
+          }),
+        ),
+      })
+      .optional(),
+    latest_posts: z
+      .object({
+        enable: z.boolean(),
+        title: z.string(),
+        description: z.string(),
+        limit: z.number().default(3),
+      })
+      .optional(),
     features: z.array(
       z.object({
         title: z.string(),
@@ -149,6 +190,7 @@ export const collections = {
   pages: pagesCollection,
   about: aboutCollection,
   contact: contactCollection,
+  showcase: showcaseCollection,
 
   // sections
   ctaSection: ctaSectionCollection,

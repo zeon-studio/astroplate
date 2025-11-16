@@ -2,7 +2,7 @@
 import Base from "@/layouts/Base.astro";
 import { getListPage } from "@/lib/contentParser.astro";
 
-const showcaseIndex = await getListPage("showcase", "_index.md");
+const showcaseIndex = await getListPage("showcase", "-index");
 const { title, description, meta_title, image } = showcaseIndex.data;
 ---
 

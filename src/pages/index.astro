@@ -1,17 +1,25 @@
 ---
+import BlogCard from "@/components/BlogCard.astro";
 import ImageMod from "@/components/ImageMod.astro";
 import Base from "@/layouts/Base.astro";
-import { getListPage } from "@/lib/contentParser.astro";
+import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
+import { sortByDate } from "@/lib/utils/sortFunctions";
 import { markdownify } from "@/lib/utils/textConverter";
 import CallToAction from "@/partials/CallToAction.astro";
 import Testimonial from "@/partials/Testimonial.astro";
 import { FaCheck } from "react-icons/fa";
 
+const BLOG_FOLDER = "blog";
 const homepage = await getListPage("homepage", "-index");
 const call_to_action = await getListPage("ctaSection", "call-to-action");
 const testimonial = await getListPage("testimonialSection", "testimonial");
 
-const { banner, features } = homepage.data;
+const { banner, features, showcases, latest_posts } = homepage.data;
+const posts = latest_posts?.enable ? await getSinglePage(BLOG_FOLDER) : [];
+const latestPosts =
+  latest_posts?.enable && posts.length > 0
+    ? sortByDate([...posts]).slice(0, latest_posts.limit ?? 3)
+    : [];
 ---
 
 <Base>
@@ -88,6 +96,96 @@ const { banner, features } = homepage.data;
     ))
   }
   <!-- /Features -->
+
+  <!-- Showcase -->
+  {
+    showcases?.enable && (
+      <section class="section bg-gradient">
+        <div class="container">
+          <div class="row items-end justify-between gap-y-6">
+            <div class="md:col-8">
+              <h2 class="mb-4" set:html={markdownify(showcases.title)} />
+              <p class="text-lg" set:html={markdownify(showcases.description)} />
+            </div>
+            {
+              showcases.button?.enable && (
+                <div class="md:col-auto text-left md:text-right">
+                  <a class="btn btn-outline-primary" href={showcases.button.link}>
+                    {showcases.button.label}
+                  </a>
+                </div>
+              )
+            }
+          </div>
+          <div class="row mt-10">
+            {
+              showcases.items.map((item) => (
+                <div class="mb-10 md:col-6 lg:col-4">
+                  <div class="h-full rounded-2xl border border-border bg-body p-6 shadow-sm dark:border-darkmode-border dark:bg-darkmode-body">
+                    <ImageMod
+                      alt={item.title}                       class="mb-6 w-full rounded-lg bg-light dark:bg-darkmode-light"                       format="webp"                       height={320}                       src={item.image}                       width={520}
+                    />
+                    <h3 class="mb-3">
+                      <a href={item.link}>{item.title}</a>
+                    </h3>
+                    <p class="mb-5 text-base text-text dark:text-darkmode-text">
+                      {item.description}
+                    </p>
+                    {
+                      item.tags.length > 0 && (
+                        <ul class="mb-6 flex flex-wrap gap-2">
+                          {item.tags.map((tag) => (
+                            <li class="rounded-full border border-border px-3 py-1 text-xs font-semibold uppercase tracking-wide dark:border-darkmode-border">
+                              {tag}
+                            </li>
+                          ))}
+                        </ul>
+                      )
+                    }
+                    <a class="btn btn-sm btn-outline-primary" href={item.link}>
+                      View project
+                    </a>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+    )
+  }
+  <!-- /Showcase -->
+
+  <!-- Latest Posts -->
+  {
+    latest_posts?.enable && latestPosts.length > 0 && (
+      <section class="section">
+        <div class="container">
+          <div class="row items-end justify-between gap-y-6">
+            <div class="md:col-8">
+              <h2 class="mb-4" set:html={markdownify(latest_posts.title)} />
+              <p class="text-lg" set:html={markdownify(latest_posts.description)} />
+            </div>
+            <div class="md:col-auto text-left md:text-right">
+              <a class="btn btn-outline-primary" href="/blog">
+                View all posts
+              </a>
+            </div>
+          </div>
+          <div class="row mt-10">
+            {
+              latestPosts.map((post) => (
+                <div class="mb-14 md:col-6 lg:col-4">
+                  <BlogCard data={post} />
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+    )
+  }
+  <!-- /Latest Posts -->
 
   <Testimonial testimonial={testimonial} />
   <CallToAction call_to_action={call_to_action} />
