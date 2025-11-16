@@ -19,31 +19,24 @@ for (let i = 1; i <= totalPages; i++) {
 {
   totalPages > 1 && (
     <nav
-      class="flex items-center justify-center space-x-3"
-      aria-label="Pagination"
+      aria-label="Pagination"       class="flex items-center justify-center space-x-3"
     >
       {/* previous */}
       {hasPrevPage ? (
         <a
-          href={
+          class="rounded px-2 py-1.5 text-text-dark hover:bg-light dark:text-darkmode-text-dark dark:hover:bg-darkmode-light"           href={
             indexPageLink
               ? `${section ? "/" + section : "/"}`
               : `${section ? "/" + section : ""}/page/${currentPage - 1}`
           }
-          class="rounded px-2 py-1.5 text-text-dark hover:bg-light dark:text-darkmode-text-dark dark:hover:bg-darkmode-light"
         >
           <span class="sr-only">Previous</span>
           <svg
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
-            height="30"
+            aria-hidden="true"             fill="currentColor"             height="30"             viewBox="0 0 20 20"
             width="30"
           >
             <path
-              fill-rule="evenodd"
-              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-              clip-rule="evenodd"
+              clip-rule="evenodd"               d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"               fill-rule="evenodd"
             />
           </svg>
         </a>
@@ -51,16 +44,11 @@ for (let i = 1; i <= totalPages; i++) {
         <span class="rounded px-2 py-1.5 text-text-light">
           <span class="sr-only">Previous</span>
           <svg
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
-            height="30"
+            aria-hidden="true"             fill="currentColor"             height="30"             viewBox="0 0 20 20"
             width="30"
           >
             <path
-              fill-rule="evenodd"
-              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-              clip-rule="evenodd"
+              clip-rule="evenodd"               d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"               fill-rule="evenodd"
             />
           </svg>
         </span>
@@ -77,13 +65,11 @@ for (let i = 1; i <= totalPages; i++) {
           </span>
         ) : (
           <a
-            href={
+            aria-current="page"             class="rounded px-4 py-2 text-text-dark hover:bg-light dark:text-darkmode-text-dark dark:hover:bg-darkmode-light"             href={
               i === 0
                 ? `${section ? "/" + section : "/"}`
                 : `${section ? "/" + section : ""}/page/${pagination}`
             }
-            aria-current="page"
-            class="rounded px-4 py-2 text-text-dark hover:bg-light dark:text-darkmode-text-dark dark:hover:bg-darkmode-light"
           >
             {pagination}
           </a>
@@ -93,21 +79,15 @@ for (let i = 1; i <= totalPages; i++) {
       {/* next page */}
       {hasNextPage ? (
         <a
-          href={`${section ? "/" + section : ""}/page/${currentPage + 1}`}
-          class="rounded px-2 py-1.5 text-text-dark hover:bg-light dark:text-darkmode-text-dark dark:hover:bg-darkmode-light"
+          class="rounded px-2 py-1.5 text-text-dark hover:bg-light dark:text-darkmode-text-dark dark:hover:bg-darkmode-light"           href={`${section ? "/" + section : ""}/page/${currentPage + 1}`}
         >
           <span class="sr-only">Next</span>
           <svg
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
-            height="30"
+            aria-hidden="true"             fill="currentColor"             height="30"             viewBox="0 0 20 20"
             width="30"
           >
             <path
-              fill-rule="evenodd"
-              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-              clip-rule="evenodd"
+              clip-rule="evenodd"               d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"               fill-rule="evenodd"
             />
           </svg>
         </a>
@@ -115,16 +95,11 @@ for (let i = 1; i <= totalPages; i++) {
         <span class="rounded px-2 py-1.5 text-text-light">
           <span class="sr-only">Next</span>
           <svg
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
-            height="30"
+            aria-hidden="true"             fill="currentColor"             height="30"             viewBox="0 0 20 20"
             width="30"
           >
             <path
-              fill-rule="evenodd"
-              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-              clip-rule="evenodd"
+              clip-rule="evenodd"               d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"               fill-rule="evenodd"
             />
           </svg>
         </span>

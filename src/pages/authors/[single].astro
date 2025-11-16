@@ -34,10 +34,7 @@ const postFilterByAuthor = posts.filter(
 ---
 
 <Base
-  title={title}
-  meta_title={meta_title}
-  description={description}
-  image={image}
+  description={description}   image={image}   meta_title={meta_title}   title={title}
 >
   <section class="section-sm pb-0">
     <div class="container">
@@ -48,12 +45,7 @@ const postFilterByAuthor = posts.filter(
           {
             image && (
               <ImageMod
-                src={image}
-                class="mx-auto mb-10 rounded"
-                height={200}
-                width={200}
-                alt={title}
-                format="webp"
+                alt={title}                 class="mx-auto mb-10 rounded"                 format="webp"                 height={200}                 src={image}                 width={200}
               />
             )
           }
@@ -61,7 +53,7 @@ const postFilterByAuthor = posts.filter(
           <div class="content">
             <Content />
           </div>
-          <Social source={social} className="social-icons" />
+          <Social className="social-icons" source={social} />
         </div>
       </div>
 

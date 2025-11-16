@@ -10,7 +10,7 @@ const { testimonial } = Astro.props;
       <div class="container">
         <div class="row">
           <div class="mx-auto mb-12 text-center md:col-10 lg:col-8 xl:col-6">
-            <h2 set:html={markdownify(testimonial.data.title)} class="mb-4" />
+            <h2 class="mb-4" set:html={markdownify(testimonial.data.title)} />
             <p set:html={markdownify(testimonial.data.description)} />
           </div>
           <div class="col-12">
@@ -27,10 +27,7 @@ const { testimonial } = Astro.props;
                       <div class="rounded-lg bg-light px-7 py-10 dark:bg-darkmode-light">
                         <div class="text-text-dark dark:text-white">
                           <svg
-                            width="33"
-                            height="20"
-                            viewBox="0 0 33 20"
-                            fill="none"
+                            fill="none"                             height="20"                             viewBox="0 0 33 20"                             width="33"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
@@ -46,23 +43,16 @@ const { testimonial } = Astro.props;
                         <div class="mt-11 flex items-center">
                           <div class="text-text-dark dark:text-white">
                             <ImageMod
-                              height={50}
-                              width={50}
-                              class="rounded-full"
-                              src={item.avatar}
-                              alt={item.name}
-                              format="webp"
+                              alt={item.name}                               class="rounded-full"                               format="webp"                               height={50}                               src={item.avatar}                               width={50}
                             />
                           </div>
                           <div class="ml-4">
                             <h3
-                              set:text={item.name}
-                              class="h5 font-primary font-semibold"
-                            />
+                              class="h5 font-primary font-semibold"                               
+                            >{item.name}</h3>
                             <p
-                              set:text={item.designation}
-                              class="text-text-dark dark:text-white"
-                            />
+                              class="text-text-dark dark:text-white"                               
+                            >{item.designation}</p>
                           </div>
                         </div>
                       </div>

@@ -11,12 +11,7 @@ const { title, image, social } = data.data;
   {
     image && (
       <ImageMod
-        class="mx-auto mb-6 rounded"
-        src={image}
-        alt={title}
-        width={120}
-        height={120}
-        format="webp"
+        alt={title}         class="mx-auto mb-6 rounded"         format="webp"         height={120}         src={image}         width={120}
       />
     )
   }
@@ -26,5 +21,5 @@ const { title, image, social } = data.data;
   <p class="mb-4">
     {plainify(data.body?.slice(0, 100))}
   </p>
-  <Social source={social} className="social-icons" />
+  <Social className="social-icons" source={social} />
 </div>

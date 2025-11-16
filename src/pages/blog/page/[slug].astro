@@ -47,10 +47,7 @@ export async function getStaticPaths() {
 ---
 
 <Base
-  title={postIndex.data.title}
-  meta_title={postIndex.data.meta_title}
-  image={postIndex.data.image}
-  description={postIndex.data.description}
+  description={postIndex.data.description}   image={postIndex.data.image}   meta_title={postIndex.data.meta_title}   title={postIndex.data.title}
 >
   <PageHeader title={postIndex.data.title} />
   <section class="section">
@@ -68,17 +65,14 @@ export async function getStaticPaths() {
             }
           </div>
           <Pagination
-            section={BLOG_FOLDER}
-            currentPage={currentPage}
+            currentPage={currentPage}             section={BLOG_FOLDER}
             totalPages={totalPages}
           />
         </div>
 
         <!-- sidebar -->
         <PostSidebar
-          categories={categories}
-          tags={tags}
-          allCategories={allCategories}
+          allCategories={allCategories}           categories={categories}           tags={tags}
         />
       </div>
     </div>

@@ -21,19 +21,17 @@ const { banner, features } = homepage.data;
       <div class="row justify-center">
         <div class="lg:col-7 md:col-9 mb-8 text-center">
           <h1
-            set:html={markdownify(banner.title)}
-            class="mb-4 text-h3 lg:text-h1"
+            class="mb-4 text-h3 lg:text-h1"             set:html={markdownify(banner.title)}
           />
-          <p set:html={markdownify(banner.content)} class="mb-8" />
+          <p class="mb-8" set:html={markdownify(banner.content)} />
           {
             banner.button.enable && (
               <a
                 class="btn btn-primary"
                 href={banner.button.link}
-                target={
+                rel="noopener"                 target={
                   banner.button.link.startsWith("http") ? "_blank" : "_self"
                 }
-                rel="noopener"
               >
                 {banner.button.label}
               </a>
@@ -44,11 +42,7 @@ const { banner, features } = homepage.data;
           banner.image && (
             <div class="col-12">
               <ImageMod
-                src={banner.image}
-                height={380}
-                width={1200}
-                alt="banner"
-                format="webp"
+                alt="banner"                 format="webp"                 height={380}                 src={banner.image}                 width={1200}
               />
             </div>
           )
@@ -68,16 +62,12 @@ const { banner, features } = homepage.data;
               class={`mb:md-0 mb-6 md:col-5 ${index % 2 !== 0 && "md:order-2"}`}
             >
               <ImageMod
-                src={feature.image}
-                height={480}
-                width={520}
-                alt={feature.title}
-                format="webp"
+                alt={feature.title}                 format="webp"                 height={480}                 src={feature.image}                 width={520}
               />
             </div>
             <div class={`md:col-7 lg:col-6 ${index % 2 !== 0 && "md:order-1"}`}>
-              <h2 set:html={markdownify(feature.title)} class="mb-4" />
-              <p set:html={markdownify(feature.content)} class="mb-8 text-lg" />
+              <h2 class="mb-4" set:html={markdownify(feature.title)} />
+              <p class="mb-8 text-lg" set:html={markdownify(feature.content)} />
               <ul>
                 {feature.bulletpoints.map((bullet: string) => (
                   <li class="relative mb-4 pl-6">

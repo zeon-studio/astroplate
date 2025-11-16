@@ -14,10 +14,7 @@ if (contactIndex.data.draft) {
 ---
 
 <Base
-  title={title}
-  meta_title={meta_title}
-  description={description}
-  image={image}
+  description={description}   image={image}   meta_title={meta_title}   title={title}
 >
   <PageHeader title={title} />
   <section class="section-sm">
@@ -26,44 +23,36 @@ if (contactIndex.data.draft) {
         <div class="mx-auto md:col-10 lg:col-6">
           <form action={contact_form_action} method="POST">
             <div class="mb-6">
-              <label for="name" class="form-label">
+              <label class="form-label" for="name">
                 Full Name <span class="text-red-500">*</span>
               </label>
               <input
-                id="name"
-                name="name"
-                class="form-input"
+                class="form-input"                 id="name"                 name="name"
                 placeholder="John Doe"
-                type="text"
-                required
+                required                 type="text"
               />
             </div>
             <div class="mb-6">
-              <label for="email" class="form-label">
+              <label class="form-label" for="email">
                 Working Mail <span class="text-red-500">*</span>
               </label>
               <input
-                id="email"
-                name="email"
-                class="form-input"
+                class="form-input"                 id="email"                 name="email"
                 placeholder="john.doe@email.com"
-                type="email"
-                required
+                required                 type="email"
               />
             </div>
             <div class="mb-6">
-              <label for="message" class="form-label">
+              <label class="form-label" for="message">
                 Anything else? <span class="text-red-500">*</span>
               </label>
               <textarea
-                id="message"
-                name="message"
-                class="form-input"
+                class="form-input"                 id="message"                 name="message"
                 placeholder="Message goes here..."
                 required
                 rows="8"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button class="btn btn-primary" type="submit">Submit</button>
           </form>
         </div>
       </div>

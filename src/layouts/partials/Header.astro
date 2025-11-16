@@ -29,16 +29,15 @@ const { pathname } = Astro.url;
       <Logo />
     </div>
     <!-- navbar toggler -->
-    <input id="nav-toggle" type="checkbox" class="hidden" />
+    <input class="hidden" id="nav-toggle" type="checkbox" />
     <label
-      for="nav-toggle"
-      class="order-3 cursor-pointer flex items-center lg:hidden text-text-dark dark:text-white lg:order-1"
+      class="order-3 cursor-pointer flex items-center lg:hidden text-text-dark dark:text-white lg:order-1"       for="nav-toggle"
     >
-      <svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20">
+      <svg class="h-6 fill-current block" id="show-button" viewBox="0 0 20 20">
         <title>Menu Open</title>
         <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
       </svg>
-      <svg id="hide-button" class="h-6 fill-current hidden" viewBox="0 0 20 20">
+      <svg class="h-6 fill-current hidden" id="hide-button" viewBox="0 0 20 20">
         <title>Menu Close</title>
         <polygon
           points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
@@ -47,8 +46,7 @@ const { pathname } = Astro.url;
     </label>
     <!-- /navbar toggler -->
     <ul
-      id="nav-menu"
-      class="navbar-nav order-3 hidden w-full pb-6 lg:order-1 lg:flex lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8"
+      class="navbar-nav order-3 hidden w-full pb-6 lg:order-1 lg:flex lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8"       id="nav-menu"
     >
       {
         main.map((menu) => (
@@ -56,12 +54,9 @@ const { pathname } = Astro.url;
             {menu.hasChildren ? (
               <li class="nav-item nav-dropdown group relative">
                 <input
-                  type="checkbox"
-                  id={`submenu-${menu.name}`}
-                  class="peer hidden lg:hidden"
+                  class="peer hidden lg:hidden"                   id={`submenu-${menu.name}`}                   type="checkbox"
                 />
                 <label
-                  for={`submenu-${menu.name}`}
                   class={`nav-link inline-flex items-center ${
                     menu.children?.map(({ url }) => url).includes(pathname) ||
                     menu.children
@@ -69,7 +64,7 @@ const { pathname } = Astro.url;
                       .includes(pathname)
                       ? "active"
                       : ""
-                  }`}
+                  }`}                   for={`submenu-${menu.name}`}
                 >
                   {menu.name}
                   <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
@@ -80,13 +75,11 @@ const { pathname } = Astro.url;
                   {menu.children?.map((child) => (
                     <li class="nav-dropdown-item">
                       <a
-                        href={child.url}
-                        aria-label={child.name}
-                        class={`nav-dropdown-link block ${
+                        aria-label={child.name}                         class={`nav-dropdown-link block ${
                           (pathname === `${child.url}/` ||
                             pathname === child.url) &&
                           "active"
-                        }`}
+                        }`}                         href={child.url}
                       >
                         {child.name}
                       </a>
@@ -97,11 +90,10 @@ const { pathname } = Astro.url;
             ) : (
               <li class="nav-item">
                 <a
-                  href={menu.url}
                   class={`nav-link block ${
                     (pathname === `${menu.url}/` || pathname === menu.url) &&
                     "active"
-                  }`}
+                  }`}                   href={menu.url}
                 >
                   {menu.name}
                 </a>
@@ -127,8 +119,7 @@ const { pathname } = Astro.url;
       {
         settings.search && (
           <button
-            class="border-border text-text-dark hover:text-primary dark:border-darkmode-border mr-5 inline-block border-r pr-5 text-xl dark:text-white dark:hover:text-darkmode-primary"
-            aria-label="search"
+            aria-label="search"             class="border-border text-text-dark hover:text-primary dark:border-darkmode-border mr-5 inline-block border-r pr-5 text-xl dark:text-white dark:hover:text-darkmode-primary"
             data-search-trigger
           >
             <IoSearch />

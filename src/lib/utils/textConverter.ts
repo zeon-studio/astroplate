@@ -42,7 +42,7 @@ export const plainify = (content: string) => {
 
 // strip entities for plainify
 const htmlEntityDecoder = (htmlWithEntities: string) => {
-  let entityList: { [key: string]: string } = {
+  const entityList: { [key: string]: string } = {
     "&nbsp;": " ",
     "&lt;": "<",
     "&gt;": ">",
@@ -50,7 +50,7 @@ const htmlEntityDecoder = (htmlWithEntities: string) => {
     "&quot;": '"',
     "&#39;": "'",
   };
-  let htmlWithoutEntities: string = htmlWithEntities.replace(
+  const htmlWithoutEntities: string = htmlWithEntities.replace(
     /(&amp;|&lt;|&gt;|&quot;|&#39;)/g,
     (entity: string): string => {
       return entityList[entity];

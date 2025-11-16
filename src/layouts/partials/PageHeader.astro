@@ -10,7 +10,7 @@ const { title = "" }: { title?: string } = Astro.props;
     <div
       class="rounded-2xl bg-gradient-to-b from-body to-light px-8 py-14 dark:from-darkmode-body dark:to-darkmode-light"
     >
-      <h1 set:text={humanize(title)} />
+      <h1  >{humanize(title)}</h1>
       <Breadcrumbs className="mt-6" />
     </div>
   </div>

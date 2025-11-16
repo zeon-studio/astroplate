@@ -56,22 +56,18 @@ const { title, meta_title, description, image, noindex, canonical } =
       )
     }
     <!-- favicon -->
-    <link rel="shortcut icon" href={config.site.favicon} />
+    <link href={config.site.favicon} rel="shortcut icon" />
     <!-- theme meta -->
-    <meta name="theme-name" content="astroplate" />
-    <meta name="msapplication-TileColor" content="#000000" />
+    <meta content="astroplate" name="theme-name" />
+    <meta content="#000000" name="msapplication-TileColor" />
     <meta
-      name="theme-color"
-      media="(prefers-color-scheme: light)"
-      content="#fff"
+      content="#fff"       media="(prefers-color-scheme: light)"       name="theme-color"
     />
     <meta
-      name="theme-color"
-      media="(prefers-color-scheme: dark)"
-      content="#000"
+      content="#000"       media="(prefers-color-scheme: dark)"       name="theme-color"
     />
-    <meta name="generator" content={Astro.generator} />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content={Astro.generator} name="generator" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 
     <!-- google font css -->
     <AstroFont
@@ -99,8 +95,7 @@ const { title, meta_title, description, image, noindex, canonical } =
 
     <!-- responsive meta -->
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=5"
+      content="width=device-width, initial-scale=1, maximum-scale=5"       name="viewport"
     />
 
     <!-- title -->
@@ -109,77 +104,69 @@ const { title, meta_title, description, image, noindex, canonical } =
     </title>
 
     <!-- canonical url -->
-    {canonical && <link rel="canonical" href={canonical} item-prop="url" />}
+    {canonical && <link href={canonical} item-prop="url" rel="canonical" />}
 
     <!-- noindex robots -->
-    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    {noindex && <meta content="noindex,nofollow" name="robots" />}
 
     <!-- meta-description -->
     <meta
-      name="description"
       content={plainify(
         description ? description : config.metadata.meta_description
-      )}
+      )}       name="description"
     />
 
     <ClientRouter />
 
     <!-- author from config.json -->
-    <meta name="author" content={config.metadata.meta_author} />
+    <meta content={config.metadata.meta_author} name="author" />
 
     <!-- og-title -->
     <meta
-      property="og:title"
       content={plainify(
         meta_title ? meta_title : title ? title : config.site.title
-      )}
+      )}       property="og:title"
     />
 
     <!-- og-description -->
     <meta
-      property="og:description"
       content={plainify(
         description ? description : config.metadata.meta_description
-      )}
+      )}       property="og:description"
     />
-    <meta property="og:type" content="website" />
+    <meta content="website" property="og:type" />
     <meta
-      property="og:url"
-      content={`${config.site.base_url}/${Astro.url.pathname.replace("/", "")}`}
+      content={`${config.site.base_url}/${Astro.url.pathname.replace("/", "")}`}       property="og:url"
     />
 
     <!-- twitter-title -->
     <meta
-      name="twitter:title"
       content={plainify(
         meta_title ? meta_title : title ? title : config.site.title
-      )}
+      )}       name="twitter:title"
     />
 
     <!-- twitter-description -->
     <meta
-      name="twitter:description"
       content={plainify(
         description ? description : config.metadata.meta_description
-      )}
+      )}       name="twitter:description"
     />
 
     <!-- og-image -->
     <meta
-      property="og:image"
       content={`${config.site.base_url}${
         image ? image : config.metadata.meta_image
-      }`}
+      }`}       property="og:image"
     />
 
     <!-- twitter-image -->
     <meta
-      name="twitter:image"
       content={`${config.site.base_url}${
         image ? image : config.metadata.meta_image
-      }`}
+      }`}       name="twitter:image"
     />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta content="summary_large_image" name="twitter:card" />
   </head>
   <body>
     {/* google tag manager noscript */}
