@@ -96,7 +96,7 @@ const homepageCollection = defineCollection({
           link: z.string(),
         }),
       }),
-    ),
+    ).optional(),
   }),
 });
 
