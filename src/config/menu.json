@@ -5,49 +5,22 @@
       "url": "/"
     },
     {
+      "name": "Blog",
+      "url": "/blog"
+    },
+    {
+      "name": "Showcase",
+      "url": "/showcase"
+    },
+    {
       "name": "About",
       "url": "/about"
-    },
-    {
-      "name": "Elements",
-      "url": "/elements"
-    },
-    {
-      "name": "Pages",
-      "url": "",
-      "hasChildren": true,
-      "children": [
-        {
-          "name": "Contact",
-          "url": "/contact"
-        },
-        {
-          "name": "Blog",
-          "url": "/blog"
-        },
-        {
-          "name": "Authors",
-          "url": "/authors"
-        },
-        {
-          "name": "Categories",
-          "url": "/categories"
-        },
-        {
-          "name": "Tags",
-          "url": "/tags"
-        },
-        {
-          "name": "404 Page",
-          "url": "/404"
-        }
-      ]
     }
   ],
   "footer": [
     {
-      "name": "Elements",
-      "url": "/elements"
+      "name": "About",
+      "url": "/about"
     },
     {
       "name": "Privacy Policy",

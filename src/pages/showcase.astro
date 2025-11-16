@@ -1,0 +1,26 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getListPage } from "@/lib/contentParser.astro";
+
+const showcaseIndex = await getListPage("showcase", "_index.md");
+const { title, description, meta_title, image } = showcaseIndex.data;
+---
+
+<Base
+  title={title}
+  meta_title={meta_title}
+  description={description}
+  image={image}
+>
+  <section class="section-sm">
+    <div class="container">
+      <div class="row">
+        <div class="mx-auto md:col-10 lg:col-8">
+          <div class="content">
+            <p>This is the showcase page.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
