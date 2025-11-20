@@ -10,8 +10,8 @@
 </h2>
 
 <p align=center>
-  <a href="https://github.com/withastro/astro/releases/tag/astro%405.15.3">
-    <img src="https://img.shields.io/static/v1?label=ASTRO&message=5.15.3&color=000&logo=astro"  alt="Astro Version 5.15.3"/>
+  <a href="https://github.com/withastro/astro/releases/tag/astro%405.15.9">
+    <img src="https://img.shields.io/static/v1?label=ASTRO&message=5.15.9&color=000&logo=astro"  alt="Astro Version 5.15.9"/>
   </a>
 
   <a href="https://github.com/zeon-studio/astroplate/blob/main/LICENSE">

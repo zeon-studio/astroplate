@@ -1,6 +1,6 @@
-const fs = require("fs");
-const path = require("path");
-const languages = require("../src/config/language.json");
+import fs from "node:fs";
+import path from "node:path";
+import languages from "../src/config/language.json" with { type: "json" };
 
 // Filter out the English language
 const englishLang = languages.filter((item) => item.languageCode === "en");
