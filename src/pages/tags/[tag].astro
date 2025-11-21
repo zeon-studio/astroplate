@@ -12,7 +12,7 @@ export async function getStaticPaths() {
   const BLOG_FOLDER = "blog";
   const tags = await getTaxonomy(BLOG_FOLDER, "tags");
 
-  return tags.map((tag: string) => {
+  return tags.map((tag) => {
     return {
       params: { tag },
     };
@@ -21,7 +21,6 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 
-// get posts by tag
 const BLOG_FOLDER = "blog";
 const posts = await getSinglePage(BLOG_FOLDER);
 const filterByTags = taxonomyFilter(posts, "tags", tag!);
