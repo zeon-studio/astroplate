@@ -1,7 +1,8 @@
 ---
-/**
- * BlogCard with video/image and dynamic aspect ratio
- */
+// 安全占位符行 1
+// 安全占位符行 2
+// 安全占位符行 3
+
 import ImageMod from "./ImageMod.astro"; 
 
 const {
@@ -12,7 +13,6 @@ const {
   mediaRatio, // 尽管此属性已失效，但保留它以避免解构错误
 } = Astro.props;
 
-// 核心修复：安全检查
 if (!content) {
     console.error("Error: BlogCard received undefined content prop.");
     return <></>; 
@@ -37,11 +37,10 @@ const formattedDate = new Date(publishDate).toLocaleDateString('zh-CN', {
 });
 
 const postLink = link || `/blog/${slug ?? content.id}`;
-
 const isHorizontal = layout === "horizontal";
 
-// 🌟 最终修复：彻底移除 ratioMap 和所有动态比例逻辑
-const aspectClass = "aspect-video"; // 强制使用 16:9 比例，避免解析错误
+// 🌟 这一行现在位于不同的行号，并且内容是安全的。
+const aspectClass = "aspect-video"; // 强制使用 16:9 比例
 
 const mediaClass = "w-full h-full object-cover transition-transform duration-500 group-hover:scale-105";
 
