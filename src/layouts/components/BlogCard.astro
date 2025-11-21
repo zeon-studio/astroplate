@@ -1,168 +1,83 @@
 ---
-import ImageMod from "./ImageMod.astro"; 
+import config from "@/config/config.json";
+import dateFormat from "@/lib/utils/dateFormat";
+import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
+import { FaRegFolder, FaRegUserCircle } from "react-icons/fa";
+import ImageMod from "./ImageMod.astro";
 
+// 从配置文件获取设置
 const {
-  content,
-  layout = "vertical",
-  "data-aos": dataAos,
-  "data-aos-delay": dataAosDelay,
-  mediaRatio,
-} = Astro.props;
+  summary_length,
+  blog_folder,
+}: { summary_length: number; blog_folder: string } = config.settings;
 
-if (!content) {
-    return <></>; 
-}
+const { data } = Astro.props;
+const { title, image, date, author, categories } = data.data;
 
-const {
-  title,
-  description,
-  publishDate,
-  tags = [],
-  img,
-  img_alt,
-  slug,
-  link,
-  video
-} = content;
+// 定义卡片的宽高比 (例如，16:9)
+// 我们可以使用 Tailwind CSS 的类名，但为了精确控制，这里保留 style 属性。
+const aspectRatio = '16 / 9'; 
 
-const formattedDate = new Date(publishDate).toLocaleDateString('zh-CN', {
-  year: 'numeric',
-  month: 'short',
-  day: 'numeric'
-});
+// --- 【图片路径修正移除】 ---
+// Astro 资源和 ImageMod 组件通常可以处理内容中的相对路径。
+// 移除不必要的路径修正逻辑，以避免冲突。我们直接使用 image 变量。
+// --- 【结束修正】 ---
 
-const postLink = link || `/blog/${slug ?? content.id}`;
-const isHorizontal = layout === "horizontal";
-
-// 🌟 第 46 行现在是以下代码或附近的变量
-const aspectClass = "aspect-video"; // 强制 16:9
-
-const mediaClass = "w-full h-full object-cover transition-transform duration-500 group-hover:scale-105";
-
-const videoId = video ? `blogcard-video-${(slug ?? content.id).replace(/[^a-z0-9]+/gi,'-').toLowerCase()}` : null;
-
-// 核心安全修正：计算所有 class 字符串
-const articleClass = `group relative overflow-hidden bg-bg-secondary border-primary/35 p-4 dark:bg-neutral-900 rounded-2xl backdrop-blur-sm transition-all duration-500 ${isHorizontal ? "md:flex md:items-center" : ""}`;
-
-const mediaContainerClass = `relative overflow-hidden rounded-2xl dark:border-neutral-800/60 border-4 border-white bg-gray-100 dark:bg-gray-800 flex items-center justify-center ${isHorizontal ? "md:w-1/2" : ""} ${aspectClass}`;
-
-const contentContainerClass = `p-6 px-2 md:p-6 flex flex-col ${isHorizontal ? "md:w-1/2" : ""}`;
-
-const titleClass = `font-brand text-neutral-900 dark:text-white mb-3 leading-tight transition-colors duration-300 group-hover:text-primary dark:group-hover:text-primary-light line-clamp-2 ${isHorizontal ? "text-3xl" : "text-2xl"}`;
+// --- 【中文化】 ---
+const readMoreText = "阅读更多";
+const defaultAuthorText = "作者"; // 假设作者是 author 字段，这里是默认显示文本
+// --- 【结束中文化】 ---
 ---
 
-<article
-  class={articleClass}
-  data-aos={dataAos}
-  data-aos-delay={dataAosDelay}
->
-  <div class={mediaContainerClass}>
-    {video ? (
-      <video
-        id={videoId}
-        src={video}
-        poster={img}
-        autoplay
-        loop
-        muted
-        playsinline
-        webkit-playsinline
-        preload="auto"
-        controls={false}
-        disablepictureinpicture
-        controlslist="nodownload noplaybackrate nofullscreen noremote playback"
-        class={mediaClass}
+<div class="bg-body dark:bg-darkmode-body">
+  {/* 新增的图片容器，控制图片的宽高比例 */}
+  {
+    image && (
+      <div 
+        class="relative mb-6 w-full overflow-hidden rounded"
+        style={`aspect-ratio: ${aspectRatio};`} 
       >
-        <source src={video} type="video/mp4" />
-      </video>
-    ) : img ? (
-      <ImageMod
-        src={img}
-        alt={img_alt || `关于 ${title} 的图片`}
-        loading="lazy"
-        class={mediaClass}
-      />
-    ) : (
-      <div class="w-full h-full flex items-center justify-center bg-neutral-200 dark:bg-neutral-700">
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="text-neutral-400">
-          <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
-          <circle cx="9" cy="9" r="2"></circle>
-          <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
-        </svg>
+        {/* 关键：图片绝对定位，w-full h-full object-cover 实现多比例自适应裁剪 */}
+        {/* 注意：如果 ImageMod 不支持自动宽高，则可能需要在其中禁用 height/width 属性 */}
+        <ImageMod
+          class="absolute inset-0 h-full w-full object-cover" 
+          src={image} // 直接使用 image 变量
+          alt={title}
+          format="webp"
+        />
       </div>
-    )}
-
-    <a class="absolute inset-0 z-10" href={postLink}>
-      <span class="sr-only">阅读更多关于 {title}</span>
+    )
+  }
+  <h4 class="mb-3">
+    <a href={`/${blog_folder}/${data.id}`}>
+      {title}
     </a>
-  </div>
-
-  <div class={contentContainerClass}>
-    <div class="flex items-center text-sm mb-4 gap-2">
-      <time class="inline-flex items-center text-neutral-500 dark:text-neutral-400 text-xs">
-        {formattedDate}
-      </time>
-
-      {tags.length > 0 && (
-        <>
-          <span class="text-neutral-400 dark:text-neutral-500">·</span>
-          <div class="flex flex-wrap gap-1">
-            {tags.map((tag) => (
-              <a
-                href={`/tags/${tag}/`}
-                class="inline-flex items-center rounded-full bg-bg-secondary/8 dark:bg-bg-secondary/15 px-2 py-1 text-[10px] font-light text-primary/75 dark:text-primary-light/85 border border-primary/25 dark:border-primary/25 hover:bg-primary/20 dark:hover:bg-primary/30 hover:border-primary/40 dark:hover:border-primary/40 transition-all duration-300 cursor-pointer"
-                onclick="event.stopPropagation();"
-              >
-                {tag}
-              </a>
-            ))}
-          </div>
-        </>
-      )}
-    </div>
-
-    <a href={postLink}>
-      <h2 class={titleClass}>
-        {title}
-      </h2>
-    </a>
-
-    {description && (
-      <p class="text-neutral-600 dark:text-neutral-400 line-clamp-3 mb-5 text-sm leading-relaxed">
-        {description}
-      </p>
-    )}
-  </div>
-</article>
-
-{video && (
-  <script define:vars={{ videoId }} is:inline>
-    (function() {
-      const video = document.getElementById(videoId);
-      if (!video || !(video instanceof HTMLVideoElement)) return;
-      let isPlaying = false, observer = null, playAttempts = 0;
-      const MAX_PLAY_ATTEMPTS = 3;
-
-      function tryPlay() {
-        if (isPlaying || playAttempts >= MAX_PLAY_ATTEMPTS) return;
-        playAttempts++;
-        const playPromise = video.play();
-        if (playPromise !== undefined) {
-          playPromise.then(()=>{isPlaying=true; playAttempts=0;})
-            .catch(()=>{isPlaying=false;});
-        }
+  </h4>
+  <ul class="mb-4">
+    <li class="mr-4 inline-block">
+      <a href={`/authors/${slugify(author)}`}>
+        <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
+        {humanize(author) || defaultAuthorText}
+      </a>
+    </li>
+    <li class="mr-4 inline-block">
+      <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
+      {
+        categories.map((category: string, index: number) => (
+          <a href={`/categories/${slugify(category)}`}>
+            {humanize(category)}
+            {/* 列表分隔符 */}
+            {index !== categories.length - 1 && "，"} 
+          </a>
+        ))
       }
-
-      function setupObserver() {
-        observer = new IntersectionObserver(entries=>{
-          entries.forEach(entry=>{
-            if(entry.isIntersecting && video.paused){playAttempts=0; tryPlay();}
-            else if(!entry.isIntersecting && !video.paused){video.pause(); isPlaying=false;}
-          });
-        }, {root:null, rootMargin:'50px', threshold:0.1});
-        observer.observe(video);
-      }
-      setupObserver();
-    })();
-  </script>
-)}
+    </li>
+    {date && <li class="inline-block">{dateFormat(date)}</li>}
+  </ul>
+  <p class="mb-6">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
+  
+  {/* 中文化：将 "read more" 替换为中文变量 */}
+  <a class="btn btn-outline-primary btn-sm" href={`/${blog_folder}/${data.id}`}>
+    {readMoreText}
+  </a>
+</div>
