@@ -2,7 +2,8 @@
 import { Image } from "astro:assets";
 
 interface Props {
-  src: string | ImageMetadata; // 接受字符串路径或导入的 ImageMetadata
+  // 关键：src 必须接受 string (用于 public 或 remote) 或 ImageMetadata (用于导入的 assets)
+  src: string | ImageMetadata; 
   alt?: string;
   width?: number; 
   height?: number; 
@@ -27,16 +28,11 @@ let {
   ...rest
 } = Astro.props;
 
-// 检查 src 是否已经是导入的 ImageMetadata 对象
-const isImageModule = typeof src !== 'string';
-const isRemoteImage = typeof src === 'string' && (src.startsWith("http://") || src.startsWith("https://") || src.startsWith("//"));
-
-// 🌟 关键：如果 src 是路径字符串，我们假设它是 public/ 路径或远程路径。
-// 如果它是 ImageMetadata，则使用 <Image /> 优化。
-const finalSrc = isImageModule ? src : src.toString(); 
+const isStringSrc = typeof src === 'string';
+const isRemoteImage = isStringSrc && (src.startsWith("http://") || src.startsWith("https://") || src.startsWith("//"));
 
 // 检查是否为自适应图片，以决定是否传递 width/height
-const isContained = className && (className.includes('object-cover') || className.includes('w-full') || className.includes('h-full'));
+const isContained = className && (className.includes('object-cover') || className.includes('w-full') || className.includes('h-full') || className.includes('h-auto'));
 
 // 只有在图片不是自适应容器的一部分时，才传递尺寸
 const passWidth = isContained ? undefined : width;
@@ -47,22 +43,10 @@ const finalPassHeight = (typeof passHeight === 'number' && passHeight > 0) ? pas
 ---
 
 {
-  !isImageModule && isRemoteImage ? (
-    <img
-      src={finalSrc as string}
-      alt={alt || ""}
-      width={finalPassWidth}
-      height={finalPassHeight}
-      loading={loading}
-      decoding={decoding}
-      class={className}
-      style={style}
-      {...rest}
-    />
-  ) : isImageModule ? (
+  !isStringSrc ? (
     <Image
-      src={finalSrc as ImageMetadata}
-      alt={alt || ""}
+      src={src as ImageMetadata}
+      alt={alt || "Image"}
       width={finalPassWidth}
       height={finalPassHeight}
       loading={loading}
@@ -72,10 +56,10 @@ const finalPassHeight = (typeof passHeight === 'number' && passHeight > 0) ? pas
       style={style}
       {...rest}
     />
-  ) : (
+  ) : isRemoteImage || src.startsWith('/') ? (
     <img
-      src={finalSrc as string}
-      alt={alt || ""}
+      src={src as string}
+      alt={alt || "Image"}
       width={finalPassWidth}
       height={finalPassHeight}
       loading={loading}
@@ -84,5 +68,9 @@ const finalPassHeight = (typeof passHeight === 'number' && passHeight > 0) ? pas
       style={style}
       {...rest}
     />
+  ) : (
+    <div class={`bg-gray-200 dark:bg-gray-700 flex items-center justify-center ${className}`} style={style}>
+      <span class="text-gray-500 text-sm">图片错误或找不到</span>
+    </div>
   )
 }
