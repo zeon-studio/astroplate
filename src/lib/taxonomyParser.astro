@@ -5,14 +5,27 @@ import { slugify } from "@/lib/utils/textConverter";
 // get taxonomy from frontmatter
 export const getTaxonomy = async (collection: any, name: string) => {
   const singlePages = await getSinglePage(collection);
+  
+  // 添加空值检查
+  if (!singlePages || !Array.isArray(singlePages)) {
+    return [];
+  }
+  
   const taxonomyPages = singlePages.map((page: any) => page.data[name]);
+  
+  // 过滤掉空值和非数组值
+  const filteredTaxonomies = taxonomyPages.filter(
+    (taxonomy) => taxonomy && Array.isArray(taxonomy)
+  );
+  
   let taxonomies: string[] = [];
-  for (let i = 0; i < taxonomyPages.length; i++) {
-    const categoryArray = taxonomyPages[i];
+  for (let i = 0; i < filteredTaxonomies.length; i++) {
+    const categoryArray = filteredTaxonomies[i];
     for (let j = 0; j < categoryArray.length; j++) {
       taxonomies.push(slugify(categoryArray[j]));
     }
   }
+  
   const taxonomy = [...new Set(taxonomies)];
   return taxonomy;
 };
@@ -20,14 +33,27 @@ export const getTaxonomy = async (collection: any, name: string) => {
 // get all taxonomies from frontmatter
 export const getAllTaxonomy = async (collection: any, name: string) => {
   const singlePages = await getSinglePage(collection);
+  
+  // 添加空值检查
+  if (!singlePages || !Array.isArray(singlePages)) {
+    return [];
+  }
+  
   const taxonomyPages = singlePages.map((page: any) => page.data[name]);
+  
+  // 过滤掉空值和非数组值
+  const filteredTaxonomies = taxonomyPages.filter(
+    (taxonomy) => taxonomy && Array.isArray(taxonomy)
+  );
+  
   let taxonomies: string[] = [];
-  for (let i = 0; i < taxonomyPages.length; i++) {
-    const categoryArray = taxonomyPages[i];
+  for (let i = 0; i < filteredTaxonomies.length; i++) {
+    const categoryArray = filteredTaxonomies[i];
     for (let j = 0; j < categoryArray.length; j++) {
       taxonomies.push(slugify(categoryArray[j]));
     }
   }
+  
   return taxonomies;
 };
 ---
