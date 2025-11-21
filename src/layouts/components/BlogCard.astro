@@ -2,8 +2,9 @@
 /**
  * BlogCard with video/image and dynamic aspect ratio
  */
-// 🌟 核心修复 1：修正 ImageMod 的导入路径 (假设它们在同一目录)
+// 核心修复：修正 ImageMod 的导入路径 (假设它们在同一目录)
 import ImageMod from "./ImageMod.astro"; 
+// 确保导入路径正确，如果不在同一目录，需要使用正确的相对路径或 alias
 
 const {
   content,
@@ -12,6 +13,13 @@ const {
   "data-aos-delay": dataAosDelay,
   mediaRatio,
 } = Astro.props;
+
+// 🌟 核心修复：检查 content 是否存在 🌟
+if (!content) {
+    // 如果 content 不存在，安全地返回空内容，防止解构错误
+    console.error("Error: BlogCard received undefined content prop.");
+    return <></>; 
+}
 
 const {
   title,
@@ -24,6 +32,8 @@ const {
   link,
   video
 } = content;
+// ... (组件的其余部分保持不变)
+
 
 const formattedDate = new Date(publishDate).toLocaleDateString('zh-CN', {
   year: 'numeric',
