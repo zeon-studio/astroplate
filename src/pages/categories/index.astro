@@ -1,7 +1,8 @@
 ---
 import Base from "@/layouts/Base.astro";
 import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
-import { humanize } from "@/lib/utils/textConverter";
+// 🌟 关键修正：导入 slugifyTitle 以确保链接的兼容性
+import { humanize, slugifyTitle } from "@/lib/utils/textConverter"; 
 import PageHeader from "@/partials/PageHeader.astro";
 
 const BLOG_FOLDER = "blog";
@@ -21,7 +22,8 @@ const allCategories = await getAllTaxonomy(BLOG_FOLDER, "categories");
             return (
               <li class="m-3 inline-block">
                 <a
-                  href={`/categories/${category}`}
+                  // 🌟 关键修正：使用 slugifyTitle 生成兼容中文的 URL
+                  href={`/categories/${slugifyTitle(category)}`}
                   class="block rounded bg-light px-4 py-2 text-xl text-text-dark dark:bg-darkmode-light dark:text-darkmode-text-dark"
                 >
                   {humanize(category)}{" "}
