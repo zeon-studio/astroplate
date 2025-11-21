@@ -3,6 +3,7 @@ import config from "@/config/config.json";
 import dateFormat from "@/lib/utils/dateFormat";
 import { humanize, plainify } from "@/lib/utils/textConverter";
 import { FaRegFolder, FaRegUserCircle } from "react-icons/fa";
+import OptimizedImage from "./OptimizedImage.astro";
 
 const {
   summary_length,
@@ -10,31 +11,27 @@ const {
 }: { summary_length: number; blog_folder: string } = config.settings;
 const { data } = Astro.props;
 const { title, image, date, author, categories } = data.data;
-
-// 直接使用图片路径
-const imageSrc = image;
 ---
 
-<article class="group relative overflow-hidden bg-body dark:bg-darkmode-body rounded-lg transition-all duration-500 hover:shadow-lg">
+<div class="bg-body dark:bg-darkmode-body rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg">
   {
-    imageSrc && (
-      <div class="relative overflow-hidden rounded-t-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center min-h-[200px]">
-        <img
-          src={imageSrc}
+    image && (
+      <div class="w-full overflow-hidden bg-gray-100 dark:bg-gray-800 min-h-[200px] flex items-center justify-center">
+        <OptimizedImage
+          src={image}
           alt={title}
+          width={400}
+          height={300}
+          format="webp"
+          class="w-full h-auto max-h-64 object-scale-down"
           loading="lazy"
-          class="w-full h-auto max-h-64 object-contain transition-transform duration-500 group-hover:scale-105"
-          style="display: block; margin: 0 auto;"
         />
-        <a class="absolute inset-0 z-10" href={`/${blog_folder}/${data.id}`}>
-          <span class="sr-only">阅读更多关于 {title}</span>
-        </a>
       </div>
     )
   }
   
   <div class="p-6">
-    <h4 class="mb-3 text-lg font-semibold group-hover:text-primary transition-colors">
+    <h4 class="mb-3 text-lg font-semibold hover:text-primary transition-colors">
       <a href={`/${blog_folder}/${data.id}`}>
         {title}
       </a>
@@ -71,8 +68,8 @@ const imageSrc = image;
       {plainify(data.body?.slice(0, Number(summary_length)))}
     </p>
     
-    <a class="btn btn-outline-primary btn-sm group-hover:bg-primary group-hover:text-white transition-all" href={`/${blog_folder}/${data.id}`}>
+    <a class="btn btn-outline-primary btn-sm hover:bg-primary hover:text-white transition-all" href={`/${blog_folder}/${data.id}`}>
       浏览更多
     </a>
   </div>
-</article>
+</div>
