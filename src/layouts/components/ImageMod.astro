@@ -43,6 +43,7 @@ if (!isRemoteImage) {
   if (!searchPath.startsWith('/')) {
     searchPath = `/${searchPath}`;
   }
+  // 仅在路径不是 /public/ 开头时添加 /public
   if (!searchPath.startsWith('/public/')) {
     searchPath = `/public${searchPath}`;
   }
@@ -56,17 +57,26 @@ if (!isRemoteImage) {
 }
 
 const isValidPath = isRemoteImage ? true : imageModule !== null;
+
+// 🌟 修复图片尺寸逻辑 🌟
+// 只有在明确传入 width/height 时，才传递给 Image 或 img 标签，
+// 否则，让 className (如 w-full h-full object-cover) 控制尺寸。
+// 为了在 Astro <Image> 中实现自适应，我们需要将 width/height 设置为 undefined
+const finalWidth = width ? width : undefined;
+const finalHeight = height ? height : undefined;
+
+// 检查是否在自适应容器内 (即 BlogCard 传入了 object-cover)
+const isContained = className && (className.includes('object-cover') || className.includes('object-fill'));
 ---
 
 {
   isValidPath ? (
     isRemoteImage ? (
-      <!-- 远程图片直接使用 img 标签 -->
       <img
         src={src}
         alt={alt || ""}
-        width={width}
-        height={height}
+        width={isContained ? undefined : finalWidth}
+        height={isContained ? undefined : finalHeight}
         loading={loading}
         decoding={decoding}
         class={className}
@@ -74,12 +84,13 @@ const isValidPath = isRemoteImage ? true : imageModule !== null;
         {...rest}
       />
     ) : (
-      <!-- 本地图片使用 Astro Image 组件优化 -->
       <Image
         src={imageModule}
         alt={alt || ""}
-        width={width}
-        height={height}
+        // 关键：只有在未设置 width/height 或在自适应容器内时，才设置为 undefined
+        // 这允许外部 CSS (w-full h-full) 控制图片尺寸
+        width={isContained ? undefined : finalWidth}
+        height={isContained ? undefined : finalHeight}
         loading={loading}
         decoding={decoding}
         format={format}
@@ -89,7 +100,6 @@ const isValidPath = isRemoteImage ? true : imageModule !== null;
       />
     )
   ) : (
-    <!-- 图片加载失败时显示占位符 -->
     <div class={`bg-gray-200 dark:bg-gray-700 flex items-center justify-center ${className}`} style={style}>
       <span class="text-gray-500 text-sm">图片加载失败</span>
     </div>
