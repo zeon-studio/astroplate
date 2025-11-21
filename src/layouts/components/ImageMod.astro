@@ -1,46 +1,97 @@
 ---
 import { Image } from "astro:assets";
 
-const {
+interface Props {
+  src: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+  loading?: "eager" | "lazy" | null | undefined;
+  decoding?: "async" | "auto" | "sync" | null | undefined;
+  format?: "auto" | "avif" | "jpeg" | "png" | "svg" | "webp";
+  class?: string;
+  style?: any;
+  [key: string]: any;
+}
+
+let {
   src,
   alt,
   width,
   height,
+  loading,
+  decoding,
   format,
-  class: className,
   style,
+  class: className,
+  ...rest
 } = Astro.props;
 
-// 检查 src 是否是有效路径（非空，非 undefined，非 null）
-const isValidSrc = src && String(src).trim() !== '';
+const isRemoteImage = src.startsWith("http://") || src.startsWith("https://") || src.startsWith("//");
 
-// 如果路径无效或路径指向 SVG（SVG 不需要 Image 组件处理），则使用 img 标签
-const useImageTag = !isValidSrc || String(src).endsWith(".svg"); 
+let imageModule = null;
+
+if (!isRemoteImage) {
+  // 支持多种图片路径
+  const images = import.meta.glob([
+    "/public/images/**/*.{jpeg,jpg,png,avif,tiff,gif,webp,svg}",
+    "/public/**/*.{jpeg,jpg,png,avif,tiff,gif,webp,svg}",
+  ]);
+
+  // 构建正确的查找路径
+  let searchPath = src;
+  if (!searchPath.startsWith('/')) {
+    searchPath = `/${searchPath}`;
+  }
+  if (!searchPath.startsWith('/public/')) {
+    searchPath = `/public${searchPath}`;
+  }
+
+  const key = Object.keys(images).find((k) => k.includes(searchPath));
+  
+  if (key) {
+    imageModule = await images[key]();
+    imageModule = imageModule.default;
+  }
+}
+
+const isValidPath = isRemoteImage ? true : imageModule !== null;
 ---
 
 {
-  // 如果路径无效或图片是 SVG，则使用标准的 <img> 标签
-  useImageTag ? (
-    <img
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      class={className}
-      style={style}
-      decoding="async"
-      loading="lazy"
-    />
+  isValidPath ? (
+    isRemoteImage ? (
+      <!-- 远程图片直接使用 img 标签 -->
+      <img
+        src={src}
+        alt={alt || ""}
+        width={width}
+        height={height}
+        loading={loading}
+        decoding={decoding}
+        class={className}
+        style={style}
+        {...rest}
+      />
+    ) : (
+      <!-- 本地图片使用 Astro Image 组件优化 -->
+      <Image
+        src={imageModule}
+        alt={alt || ""}
+        width={width}
+        height={height}
+        loading={loading}
+        decoding={decoding}
+        format={format}
+        class={className}
+        style={style}
+        {...rest}
+      />
+    )
   ) : (
-    // 否则，使用 Astro 的 <Image> 组件进行优化
-    <Image
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      format={format}
-      class={className}
-      style={style}
-    />
+    <!-- 图片加载失败时显示占位符 -->
+    <div class={`bg-gray-200 dark:bg-gray-700 flex items-center justify-center ${className}`} style={style}>
+      <span class="text-gray-500 text-sm">图片加载失败</span>
+    </div>
   )
 }
