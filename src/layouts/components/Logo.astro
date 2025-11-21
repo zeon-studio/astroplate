@@ -1,6 +1,5 @@
 ---
 import config from "@/config/config.json";
-// 确保 ImageMod 组件存在且能被正确导入
 import ImageMod from "./ImageMod.astro"; 
 
 const { src, srcDarkmode }: { src?: string; srcDarkmode?: string } =
@@ -39,8 +38,7 @@ let darkmodeLogoSrc = darkmodeLogoPath && String(darkmodeLogoPath).trim() !== ''
                          : darkmodeLogoPath)
                       : null; // 路径无效时强制设置为 null
 
-// 3. 安全解析 logo 尺寸
-// 注意：config.json 中 width/height 是字符串 "150" / "30"，这里必须解析
+// 3. 安全解析 logo 尺寸，即使 config 中没有 'px'
 const logoW = parseInt(String(logo_width).replace("px", "")) || 100;
 const logoH = parseInt(String(logo_height).replace("px", "")) || 30;
 ---
