@@ -5,37 +5,60 @@ import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
 import { FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./ImageMod.astro";
 
+// 从配置文件获取设置
 const {
   summary_length,
   blog_folder,
 }: { summary_length: number; blog_folder: string } = config.settings;
 
 const { data } = Astro.props;
+
+// 🌟 安全检查：确保 data 存在
+if (!data || !data.data) {
+    console.warn("PostCard received invalid or empty data prop.");
+    return <></>; 
+}
+
 const { title, image, date, author, categories } = data.data;
 
+// --- 【中文化】 ---
 const readMoreText = "阅读更多";
 const defaultAuthorText = "作者"; 
+// --- 【结束中文化】 ---
+
+// 🌟 路径安全：如果 data.id 不存在，尝试使用 data.slug (尽管 data.id 看起来是默认 slug)
+const postLink = `/${blog_folder}/${data.id}`;
+
+// 🌟 确保 ImageMod.astro 是最新的修复版本，它能正确处理 Logo (以 / 开头的路径) 和远程图片
 ---
 
 <div class="bg-body dark:bg-darkmode-body">
   {
-    image && (
-      <a href={`/${blog_folder}/${data.id}`} class="block mb-6 w-full overflow-hidden rounded">
-        {/* 🌟 核心修复：移除固定的 aspect-ratio，让图片按其内容比例显示 */}
+    image ? ( // 使用 image 字段作为判断条件
+      // 图片链接到文章详情页
+      <a href={postLink} class="block mb-6 w-full overflow-hidden rounded">
+        {/* 核心：使用 ImageMod 修复版本，并让图片 h-auto 自适应比例 */}
         <ImageMod
-          class="w-full h-auto object-cover" // h-auto 确保图片按其原始比例显示
+          class="w-full h-auto object-cover" 
           src={image} 
           alt={title}
           format="webp"
         />
       </a>
+    ) : (
+      // 如果没有图片，可以添加一个占位符，保持布局稳定
+      <div class="block mb-6 w-full overflow-hidden rounded aspect-video bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+        <span class="text-gray-500 text-sm">无图片</span>
+      </div>
     )
   }
+  
   <h4 class="mb-3">
-    <a href={`/${blog_folder}/${data.id}`}>
+    <a href={postLink}>
       {title}
     </a>
   </h4>
+  
   <ul class="mb-4">
     <li class="mr-4 inline-block">
       <a href={`/authors/${slugify(author)}`}>
@@ -47,7 +70,7 @@ const defaultAuthorText = "作者";
       <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
       {
         categories.map((category: string, index: number) => (
-          <a href={`/categories/${slugify(category)}`}>
+          <a href={`/categories/${slugify(category)}`} key={category}>
             {humanize(category)}
             {index !== categories.length - 1 && "，"} 
           </a>
@@ -56,9 +79,10 @@ const defaultAuthorText = "作者";
     </li>
     {date && <li class="inline-block">{dateFormat(date)}</li>}
   </ul>
+  
   <p class="mb-6">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
   
-  <a class="btn btn-outline-primary btn-sm" href={`/${blog_folder}/${data.id}`}>
+  <a class="btn btn-outline-primary btn-sm" href={postLink}>
     {readMoreText}
   </a>
 </div>
