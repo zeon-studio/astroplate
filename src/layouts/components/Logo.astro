@@ -38,25 +38,29 @@ if (darkmodeLogoSrc && !darkmodeLogoSrc.startsWith('http') && !darkmodeLogoSrc.s
 
 <a href="/" class="navbar-brand inline-block">
   {
-    primaryLogoSrc || darkmodeLogoSrc || logo_text ? ( // 检查修正后的 src 变量
+    // --- 关键修正 3: 仅在 primaryLogoSrc 或 darkmodeLogoSrc 有效时才渲染图片 ---
+    (primaryLogoSrc || darkmodeLogoSrc) ? (
       <>
-        {/* 常规模式 Logo */}
-        <ImageMod
-          src={primaryLogoSrc} // 使用修正后的变量
-          class={`inline-block ${theme_switcher && "dark:hidden"}`}
-          width={logo_width.replace("px", "") * 2}
-          height={logo_height.replace("px", "") * 2}
-          alt={title}
-          style={{
-            height: logo_height.replace("px", "") + "px",
-            width: logo_width.replace("px", "") + "px",
-          }}
-          format="webp"
-        />
-        {/* 深色模式 Logo */}
-        {theme_switcher && (
+        {/* 常规模式 Logo (仅在 primaryLogoSrc 有效时渲染) */}
+        {primaryLogoSrc && (
           <ImageMod
-            src={darkmodeLogoSrc} // 使用修正后的变量
+            src={primaryLogoSrc} 
+            class={`inline-block ${theme_switcher && "dark:hidden"}`}
+            width={logo_width.replace("px", "") * 2}
+            height={logo_height.replace("px", "") * 2}
+            alt={title}
+            style={{
+              height: logo_height.replace("px", "") + "px",
+              width: logo_width.replace("px", "") + "px",
+            }}
+            format="webp"
+          />
+        )}
+        
+        {/* 深色模式 Logo (仅在 theme_switcher 开启且 darkmodeLogoSrc 有效时渲染) */}
+        {theme_switcher && darkmodeLogoSrc && (
+          <ImageMod
+            src={darkmodeLogoSrc} 
             class={"hidden dark:inline-block"}
             width={logo_width.replace("px", "") * 2}
             height={logo_height.replace("px", "") * 2}
