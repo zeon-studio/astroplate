@@ -1,18 +1,23 @@
-import { glob } from "astro/loaders";
+// src/content/config.ts
+
+import { glob } from "@astrojs/content"; // <-- 关键修正：从 @astrojs/content 导入 glob
 import { defineCollection, z } from "astro:content";
 
+// 统一的通用字段定义，确保类型正确
 const commonFields = {
   title: z.string(),
-  description: z.string(),
+  description: z.string().optional(), // description 设为 optional 更安全
   meta_title: z.string().optional(),
   date: z.date().optional(),
-  image: z.string().optional(),
-  draft: z.boolean(),
+  // 关键：image 设为 optional，并保持 string 类型
+  image: z.string().optional(), 
+  draft: z.boolean().default(true).optional(), // draft 设为 optional 且默认 true 更安全
 };
 
-// Post collection schema
+// --- Post collection schema (博客文章) ---
 const blogCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/blog" }),
+  // loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/blog" }), // Astro v3.x/v4.x+ 不需要手动指定 loader
+  type: 'content',
   schema: z.object({
     title: z.string(),
     meta_title: z.string().optional(),
@@ -26,53 +31,56 @@ const blogCollection = defineCollection({
   }),
 });
 
-// Author collection schema
+// --- Author collection schema (作者) ---
 const authorsCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/authors" }),
+  // loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/authors" }),
+  type: 'content',
   schema: z.object({
     ...commonFields,
     social: z
       .array(
-        z
-          .object({
+        z.object({
             name: z.string().optional(),
             icon: z.string().optional(),
             link: z.string().optional(),
-          })
-          .optional(),
+        }).optional(),
       )
       .optional(),
     draft: z.boolean().optional(),
   }),
 });
 
-// Pages collection schema
+// --- Pages collection schema (普通页面) ---
 const pagesCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/pages" }),
+  // loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/pages" }),
+  type: 'content',
   schema: z.object({
     ...commonFields,
   }),
 });
 
-// about collection schema
+// --- About collection schema ---
 const aboutCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/about" }),
+  // loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/about" }),
+  type: 'content',
   schema: z.object({
     ...commonFields,
   }),
 });
 
-// contact collection schema
+// --- Contact collection schema ---
 const contactCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/contact" }),
+  // loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/contact" }),
+  type: 'content',
   schema: z.object({
     ...commonFields,
   }),
 });
 
-// Homepage collection schema
+// --- Homepage collection schema (主页内容) ---
 const homepageCollection = defineCollection({
-  loader: glob({ pattern: "**/-*.{md,mdx}", base: "src/content/homepage" }),
+  // loader: glob({ pattern: "**/-*.{md,mdx}", base: "src/content/homepage" }),
+  type: 'content',
   schema: z.object({
     banner: z.object({
       title: z.string(),
@@ -100,12 +108,10 @@ const homepageCollection = defineCollection({
   }),
 });
 
-// Call to Action collection schema
+// --- Call to Action collection schema ---
 const ctaSectionCollection = defineCollection({
-  loader: glob({
-    pattern: "call-to-action.{md,mdx}",
-    base: "src/content/sections",
-  }),
+  // loader: glob({ pattern: "call-to-action.{md,mdx}", base: "src/content/sections" }),
+  type: 'content',
   schema: z.object({
     enable: z.boolean(),
     title: z.string(),
@@ -119,12 +125,10 @@ const ctaSectionCollection = defineCollection({
   }),
 });
 
-// Testimonials Section collection schema
+// --- Testimonials Section collection schema ---
 const testimonialSectionCollection = defineCollection({
-  loader: glob({
-    pattern: "testimonial.{md,mdx}",
-    base: "src/content/sections",
-  }),
+  // loader: glob({ pattern: "testimonial.{md,mdx}", base: "src/content/sections" }),
+  type: 'content',
   schema: z.object({
     enable: z.boolean(),
     title: z.string(),
