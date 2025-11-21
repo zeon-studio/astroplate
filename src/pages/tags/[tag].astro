@@ -2,24 +2,23 @@
 import BlogCard from "@/components/BlogCard.astro";
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
-import { getTaxonomy } from "@/lib/taxonomyParser.js";
+// 🌟 关键：确保导入的文件扩展名与实际文件匹配 (假设是 .js)
+import { getTaxonomy } from "@/lib/taxonomyParser.js"; 
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import taxonomyFilter from "@/lib/utils/taxonomyFilter";
 import { humanize, slugifyTitle } from "@/lib/utils/textConverter"; 
 import PageHeader from "@/partials/PageHeader.astro";
 
-// 这是一个用于强制触发提交的注释，以解决空标签构建失败问题。
 export async function getStaticPaths() {
   const BLOG_FOLDER = "blog";
   const tags = await getTaxonomy(BLOG_FOLDER, "tags");
 
   return tags
-    // 关键修复：过滤掉空字符串或仅包含空格的标签名称
-    .filter((tag: string) => tag && tag.trim() !== "")
-    .map((tag: string) => {
+    // 🌟 最终修复：过滤掉空字符串或仅包含空格的标签名称
+    .filter((tag) => tag && typeof tag === 'string' && tag.trim() !== "")
+    .map((tag) => {
       return {
         params: { 
-          // 对标签进行 slugify 处理
           tag: slugifyTitle(tag), 
         },
       };
@@ -33,7 +32,7 @@ const BLOG_FOLDER = "blog";
 const posts = await getSinglePage(BLOG_FOLDER);
 
 // 使用 humanize(tag!) 恢复原始中文名进行内容过滤
-const originalTag = humanize(tag!);
+const originalTag = humanize(tag);
 const filterByTags = taxonomyFilter(posts, "tags", originalTag); 
 const sortedPosts = sortByDate(filterByTags);
 
