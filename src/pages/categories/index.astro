@@ -1,6 +1,6 @@
 ---
 import Base from "@/layouts/Base.astro";
-import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
+import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.js";
 // 🌟 关键修正：导入 slugifyTitle 以确保链接的兼容性
 import { humanize, slugifyTitle } from "@/lib/utils/textConverter"; 
 import PageHeader from "@/partials/PageHeader.astro";
