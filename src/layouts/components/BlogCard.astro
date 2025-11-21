@@ -1,7 +1,7 @@
 ---
 import config from "@/config/config.json";
 import dateFormat from "@/lib/utils/dateFormat";
-import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
+import { humanize, plainify } from "@/lib/utils/textConverter";
 import { FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 
 const {
@@ -11,65 +11,44 @@ const {
 const { data } = Astro.props;
 const { title, image, date, author, categories } = data.data;
 
-// 处理图片路径 - 确保本地图片路径正确
-const getImageSrc = () => {
-  if (!image) return null;
-  
-  // 远程图片直接使用
-  if (image.startsWith('http') || image.startsWith('//')) return image;
-  
-  // 本地图片：确保路径格式正确
-  let localPath = image;
-  if (!localPath.startsWith('/')) {
-    localPath = `/${localPath}`;
-  }
-  
-  return localPath;
-};
-
-const imageSrc = getImageSrc();
+// 直接使用图片路径，不进行任何处理
+const imageSrc = image;
 ---
 
 <div class="bg-body dark:bg-darkmode-body">
   {
     imageSrc && (
-      <div class="mb-6 overflow-hidden rounded-lg bg-transparent">
-        <!-- 添加调试信息 -->
-        <div style="display: none;">
-          图片调试: {image} -> {imageSrc}
-        </div>
+      <div class="mb-6 overflow-hidden rounded-lg aspect-[4/3] bg-gray-100 dark:bg-gray-800">
         <img
           src={imageSrc}
           alt={title}
-          class="w-full h-48 object-cover transition-transform duration-500 hover:scale-105"
+          class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
           loading="lazy"
-          decoding="async"
-          style="display: block;"
-          onerror="console.error('图片加载失败:', this.src)"
+          onerror="this.style.display='none'"
         />
       </div>
     )
   }
-  <h4 class="mb-3">
-    <a href={`/${blog_folder}/${data.id}`} class="hover:text-primary transition-colors text-lg font-semibold">
+  <h4 class="mb-3 text-lg font-semibold">
+    <a href={`/${blog_folder}/${data.id}`} class="hover:text-primary transition-colors">
       {title}
     </a>
   </h4>
-  <ul class="mb-4">
+  <ul class="mb-4 text-sm">
     <li class="mr-4 inline-block">
-      <a href={`/authors/${slugify(author)}`} class="flex items-center text-text hover:text-primary text-base">
-        <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
+      <a href={`/authors/${author}`} class="flex items-center text-text hover:text-primary">
+        <FaRegUserCircle className={"mr-1 inline-block"} />
         {humanize(author)}
       </a>
     </li>
     {
       categories && categories.length > 0 && (
         <li class="mr-4 inline-block">
-          <div class="flex items-center text-text text-base">
-            <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
+          <div class="flex items-center text-text">
+            <FaRegFolder className={"mr-1 inline-block"} />
             {
               categories.map((category: string, index: number) => (
-                <a href={`/categories/${slugify(category)}`} class="hover:text-primary">
+                <a href={`/categories/${category}`} class="hover:text-primary">
                   {humanize(category)}
                   {index !== categories.length - 1 && ","}
                 </a>
@@ -79,10 +58,16 @@ const imageSrc = getImageSrc();
         </li>
       )
     }
-    {date && <li class="inline-block text-text text-base">{dateFormat(date)}</li>}
+    {date && <li class="inline-block text-text">{dateFormat(date)}</li>}
   </ul>
-  <p class="mb-6 text-text text-base leading-relaxed">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
+  <p class="mb-6 text-text text-sm">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
   <a class="btn btn-outline-primary btn-sm" href={`/${blog_folder}/${data.id}`}>
     浏览更多
   </a>
 </div>
+
+<style>
+  .aspect-\[4\/3\] {
+    aspect-ratio: 4 / 3;
+  }
+</style>
