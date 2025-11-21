@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 
 interface Props {
-  // 关键：src 必须接受 string (用于 public 或 remote) 或 ImageMetadata (用于导入的 assets)
   src: string | ImageMetadata; 
   alt?: string;
   width?: number; 
@@ -31,10 +30,8 @@ let {
 const isStringSrc = typeof src === 'string';
 const isRemoteImage = isStringSrc && (src.startsWith("http://") || src.startsWith("https://") || src.startsWith("//"));
 
-// 检查是否为自适应图片，以决定是否传递 width/height
 const isContained = className && (className.includes('object-cover') || className.includes('w-full') || className.includes('h-full') || className.includes('h-auto'));
 
-// 只有在图片不是自适应容器的一部分时，才传递尺寸
 const passWidth = isContained ? undefined : width;
 const passHeight = isContained ? undefined : height;
 
