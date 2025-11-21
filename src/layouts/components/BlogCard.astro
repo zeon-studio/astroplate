@@ -17,8 +17,8 @@ const getImagePath = () => {
   if (!image) return null;
   // 如果是远程图片，直接使用
   if (image.startsWith('http') || image.startsWith('//')) return image;
-  // 本地图片：直接使用原路径（假设已经在 public 目录下）
-  return image;
+  // 本地图片：确保以 / 开头
+  return image.startsWith('/') ? image : `/${image}`;
 };
 const imagePath = getImagePath();
 ---
@@ -26,13 +26,13 @@ const imagePath = getImagePath();
 <div class="bg-body dark:bg-darkmode-body">
   {
     imagePath && (
-      <div class="mb-6 overflow-hidden rounded">
+      <div class="mb-6 overflow-hidden rounded aspect-video">  {/* 16:9 比例容器 */}
         <ImageMod
-          class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+          class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
           src={imagePath}
           alt={title}
           width={445}
-          height={230}
+          height={250}  {/* 调整为 16:9 比例 */}
           format="webp"
         />
       </div>
@@ -74,3 +74,24 @@ const imagePath = getImagePath();
     浏览更多
   </a>
 </div>
+
+<style>
+  /* 确保图片容器自适应不同比例 */
+  .aspect-video {
+    aspect-ratio: 16 / 9;
+  }
+  
+  /* 备用方案，如果浏览器不支持 aspect-ratio */
+  @supports not (aspect-ratio: 16 / 9) {
+    .aspect-video::before {
+      float: left;
+      padding-top: 56.25%; /* 16:9 比例 */
+    }
+    
+    .aspect-video::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+  }
+</style>
