@@ -1,5 +1,7 @@
 import { getSinglePage } from "@/lib/contentParser.astro";
-import { slugify } from "@/lib/utils/textConverter"; // 确保这里的路径正确
+// 确保这个导入名称与您的 textConverter.js 中的导出一致
+// 假设您的 textConverter.js 导出的是 slugifyTitle, 并将其赋值给 slugify
+import { slugify } from "@/lib/utils/textConverter";
 
 // get taxonomy from frontmatter
 export const getTaxonomy = async (collection, name) => {
@@ -15,7 +17,7 @@ export const getTaxonomy = async (collection, name) => {
         for (let j = 0; j < categoryArray.length; j++) {
             const rawValue = categoryArray[j];
             
-            // 🌟 关键：在 slugify 之前，先过滤掉空值和非字符串值
+            // 🌟 关键：在 slugify 之前，过滤掉空值和非字符串值
             if (typeof rawValue === 'string' && rawValue.trim() !== "") {
                 const slugifiedValue = slugify(rawValue);
                 
@@ -28,7 +30,8 @@ export const getTaxonomy = async (collection, name) => {
     }
   }
   
-  const taxonomy = [...new Set(taxonomies)];
+  // 再次确保去重之后是干净的
+  const taxonomy = [...new Set(taxonomies)].filter(item => item && item.trim() !== "");
   return taxonomy;
 };
 
@@ -56,5 +59,5 @@ export const getAllTaxonomy = async (collection, name) => {
         }
     }
   }
-  return taxonomies;
+  return taxonomies.filter(item => item && item.trim() !== "");
 };
