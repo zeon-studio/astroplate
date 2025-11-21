@@ -3,7 +3,6 @@ import config from "@/config/config.json";
 import dateFormat from "@/lib/utils/dateFormat";
 import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
 import { FaRegFolder, FaRegUserCircle } from "react-icons/fa";
-import ImageMod from "./ImageMod.astro";
 
 const {
   summary_length,
@@ -12,29 +11,35 @@ const {
 const { data } = Astro.props;
 const { title, image, date, author, categories } = data.data;
 
-// 简化图片路径处理
-const getImagePath = () => {
-  if (!image) return null;
-  // 如果是远程图片，直接使用
-  if (image.startsWith('http') || image.startsWith('//')) return image;
-  // 本地图片：确保以 / 开头
-  return image.startsWith('/') ? image : `/${image}`;
-};
-const imagePath = getImagePath();
+// 判断是否为远程图片
+const isRemoteImage = image && (image.startsWith('http') || image.startsWith('//'));
+// 本地图片路径
+const localImagePath = image && !isRemoteImage ? image : null;
 ---
 
 <div class="bg-body dark:bg-darkmode-body">
   {
-    imagePath && (
-      <div class="mb-6 overflow-hidden rounded aspect-video">  {/* 16:9 比例容器 */}
-        <ImageMod
-          class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-          src={imagePath}
-          alt={title}
-          width={445}
-          height={250}  {/* 调整为 16:9 比例 */}
-          format="webp"
-        />
+    image && (
+      <div class="mb-6 overflow-hidden rounded aspect-video">
+        {isRemoteImage ? (
+          <!-- 远程图片使用普通 img 标签 -->
+          <img
+            src={image}
+            alt={title}
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+            loading="lazy"
+          />
+        ) : (
+          <!-- 本地图片使用 ImageMod 组件 -->
+          <ImageMod
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+            src={localImagePath}
+            alt={title}
+            width={445}
+            height={250}
+            format="webp"
+          />
+        )}
       </div>
     )
   }
@@ -76,22 +81,7 @@ const imagePath = getImagePath();
 </div>
 
 <style>
-  /* 确保图片容器自适应不同比例 */
   .aspect-video {
     aspect-ratio: 16 / 9;
-  }
-  
-  /* 备用方案，如果浏览器不支持 aspect-ratio */
-  @supports not (aspect-ratio: 16 / 9) {
-    .aspect-video::before {
-      float: left;
-      padding-top: 56.25%; /* 16:9 比例 */
-    }
-    
-    .aspect-video::after {
-      content: "";
-      display: block;
-      clear: both;
-    }
   }
 </style>
