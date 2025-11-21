@@ -3,43 +3,45 @@ import { humanize } from "@/lib/utils/textConverter";
 
 const { className }: { className?: string } = Astro.props;
 
+// 1. 获取并过滤掉空字符串
 const paths = Astro.url.pathname.split("/").filter((x) => x);
 let parts = [
   {
-    label: "首页",
+    label: "首页", // 始终显示中文
     href: "/",
     "aria-label": Astro.url.pathname === "/" ? "页" : undefined,
   },
 ];
 
-paths.forEach((label: string, i: number) => {
+paths.forEach((segment: string, i: number) => {
+  // 跳过 "page" 路径，因为它只是分页标识，我们在后序路径中处理
+  if (segment === "page") return;
+  
   const href = `/${paths.slice(0, i + 1).join("/")}`;
   
-  // 跳过 "page" 路径，因为它只是分页标识
-  if (label === "page") return;
+  // 🌟 核心修复 1：在处理之前，对 URL 编码的段进行解码
+  const decodedSegment = decodeURIComponent(segment);
+
+  let displayLabel = decodedSegment.replace(".html", "").replace(/[-_]/g, " ");
   
-  let displayLabel = humanize(label.replace(".html", "").replace(/[-_]/g, " ")) || "";
-  
-  // 特殊处理博客相关路径
-  if (label === "blog") {
-    displayLabel = "博客";
-  } else if (paths[i - 1] === "blog" && paths[i] === "page" && paths[i + 1]) {
-    // 如果是博客分页，格式化为 "第 X 页"
-    const pageNum = paths[i + 1];
-    displayLabel = `第 ${pageNum} 页`;
-    // 跳过下一个元素（页码），因为已经在这一步处理了
-    return;
-  } else if (!isNaN(Number(label)) && paths[i - 1] === "page") {
-    // 如果是页码且前面是 "page"，跳过这个元素（因为在上一步已经处理了）
-    return;
+  // 🌟 核心修复 2：处理特定的英文路径，进行中文化
+  if (displayLabel.toLowerCase() === "tags") {
+    displayLabel = "标签";
+  } else if (displayLabel.toLowerCase() === "categories") {
+    displayLabel = "分类";
+  } else {
+    // 对解码后的段运行 humanize 进行美化 (如 'ren-xiang' -> 'Ren Xiang')
+    displayLabel = humanize(displayLabel);
   }
   
-  label !== "页" &&
+  // 避免添加空标签或重复标签
+  if (displayLabel) {
     parts.push({
       label: displayLabel,
       href,
       "aria-label": Astro.url.pathname === href ? "页" : undefined,
     });
+  }
 });
 ---
 
