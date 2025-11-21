@@ -5,7 +5,6 @@ import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
 import { FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./ImageMod.astro";
 
-// 从配置文件获取设置
 const {
   summary_length,
   blog_folder,
@@ -14,29 +13,22 @@ const {
 const { data } = Astro.props;
 const { title, image, date, author, categories } = data.data;
 
-// --- 【中文化】 ---
 const readMoreText = "阅读更多";
 const defaultAuthorText = "作者"; 
-// --- 【结束中文化】 ---
 ---
 
 <div class="bg-body dark:bg-darkmode-body">
-  {/* 🌟 核心修复：移除固定的 aspect-ratio 容器，让图片根据其自身或外部布局尺寸显示 */}
   {
     image && (
-      <div 
-        class="relative mb-6 w-full overflow-hidden rounded"
-        // ❌ 移除 style={`aspect-ratio: 16 / 9;`}
-      >
-        {/* 关键：图片仍使用 w-full h-full object-cover，但由于外部容器不再有固定比例，
-           图片将根据其原始尺寸或父元素限制来自适应。 */}
+      <a href={`/${blog_folder}/${data.id}`} class="block mb-6 w-full overflow-hidden rounded">
+        {/* 🌟 核心修复：移除固定的 aspect-ratio，让图片按其内容比例显示 */}
         <ImageMod
-          class="w-full object-cover" 
+          class="w-full h-auto object-cover" // h-auto 确保图片按其原始比例显示
           src={image} 
           alt={title}
           format="webp"
         />
-      </div>
+      </a>
     )
   }
   <h4 class="mb-3">
@@ -66,7 +58,6 @@ const defaultAuthorText = "作者";
   </ul>
   <p class="mb-6">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
   
-  {/* 中文化：将 "read more" 替换为中文变量 */}
   <a class="btn btn-outline-primary btn-sm" href={`/${blog_folder}/${data.id}`}>
     {readMoreText}
   </a>
