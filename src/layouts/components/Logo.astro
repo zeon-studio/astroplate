@@ -21,14 +21,28 @@ const {
 } = config.site;
 
 const { theme_switcher }: { theme_switcher: boolean } = config.settings;
+
+// --- 关键修正 1: 确保 logo 路径包含 /public 前缀 ---
+let primaryLogoSrc = src ? src : logo;
+if (primaryLogoSrc && !primaryLogoSrc.startsWith('http') && !primaryLogoSrc.startsWith('/public')) {
+  primaryLogoSrc = `/public${primaryLogoSrc}`;
+}
+
+// --- 关键修正 2: 确保深色模式 logo 路径包含 /public 前缀 ---
+let darkmodeLogoSrc = srcDarkmode ? srcDarkmode : logo_darkmode;
+if (darkmodeLogoSrc && !darkmodeLogoSrc.startsWith('http') && !darkmodeLogoSrc.startsWith('/public')) {
+  darkmodeLogoSrc = `/public${darkmodeLogoSrc}`;
+}
+// ----------------------------------------------------
 ---
 
 <a href="/" class="navbar-brand inline-block">
   {
-    src || srcDarkmode || logo || logo_darkmode ? (
+    primaryLogoSrc || darkmodeLogoSrc || logo_text ? ( // 检查修正后的 src 变量
       <>
+        {/* 常规模式 Logo */}
         <ImageMod
-          src={src ? src : logo}
+          src={primaryLogoSrc} // 使用修正后的变量
           class={`inline-block ${theme_switcher && "dark:hidden"}`}
           width={logo_width.replace("px", "") * 2}
           height={logo_height.replace("px", "") * 2}
@@ -39,9 +53,10 @@ const { theme_switcher }: { theme_switcher: boolean } = config.settings;
           }}
           format="webp"
         />
+        {/* 深色模式 Logo */}
         {theme_switcher && (
           <ImageMod
-            src={srcDarkmode ? srcDarkmode : logo_darkmode}
+            src={darkmodeLogoSrc} // 使用修正后的变量
             class={"hidden dark:inline-block"}
             width={logo_width.replace("px", "") * 2}
             height={logo_height.replace("px", "") * 2}
