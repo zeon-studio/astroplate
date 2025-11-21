@@ -2,7 +2,7 @@
 /**
  * BlogCard with video/image and dynamic aspect ratio
  */
-// 🌟 核心修复 1：修正 ImageMod 的导入路径 (假设 BlogCard 和 ImageMod 在同一目录)
+// 核心修复 1：修正 ImageMod 的导入路径 (假设 BlogCard 和 ImageMod 在同一目录)
 import ImageMod from "./ImageMod.astro"; 
 
 const {
@@ -118,17 +118,18 @@ const videoId = video ? `blogcard-video-${(slug ?? content.id).replace(/[^a-z0-9
     </a>
   </div>
 
-  <div class:list={[
-    "p-6 px-2 md:p-6 flex flex-col",
-    isHorizontal ? "md:w-1/2" : ""
-  ]}>
+  <div
+    class:list={[
+      "p-6 px-2 md:p-6 flex flex-col",
+      isHorizontal ? "md:w-1/2" : ""
+    ]}
+  >
     <div class="flex items-center text-sm mb-4 gap-2">
       <time class="inline-flex items-center text-neutral-500 dark:text-neutral-400 text-xs">
         {formattedDate}
       </time>
 
       {tags.length > 0 && (
-        // 🌟 核心修复 4：确保 JSX 片段的闭合是正确的 <>...</>
         <>
           <span class="text-neutral-400 dark:text-neutral-500">·</span>
           <div class="flex flex-wrap gap-1">
@@ -147,10 +148,12 @@ const videoId = video ? `blogcard-video-${(slug ?? content.id).replace(/[^a-z0-9
     </div>
 
     <a href={postLink}>
-      <h2 class:list={[
-        "font-brand text-neutral-900 dark:text-white mb-3 leading-tight transition-colors duration-300 group-hover:text-primary dark:group-hover:text-primary-light line-clamp-2",
-        isHorizontal ? "text-3xl" : "text-2xl"
-      ]}>
+      <h2
+        class:list={[
+          "font-brand text-neutral-900 dark:text-white mb-3 leading-tight transition-colors duration-300 group-hover:text-primary dark:group-hover:text-primary-light line-clamp-2",
+          isHorizontal ? "text-3xl" : "text-2xl"
+        ]}
+      >
         {title}
       </h2>
     </a>
