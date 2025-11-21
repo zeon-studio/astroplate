@@ -8,24 +8,21 @@ const BLOG_FOLDER = "blog";
 
 const tags = await getTaxonomy(BLOG_FOLDER, "tags");
 const allTags = await getAllTaxonomy(BLOG_FOLDER, "tags");
-
-// 去重并排序
-const uniqueTags = [...new Set(tags)].sort();
 ---
 
-<Base title={"标签"}>
-  <PageHeader title={"标签"} />
+<Base title="标签">
+  <PageHeader title="标签" />
   <section class="section">
     <div class="container text-center">
       <ul>
         {
-          uniqueTags.map((tag: string) => {
-            const count = allTags.filter((c: string) => c === tag).length;
+          tags.map((tag: any) => {
+            const count = allTags.filter((c) => c === tag).length;
             return (
               <li class="m-3 inline-block">
                 <a
                   href={`/tags/${tag}`}
-                  class="block rounded bg-light px-4 py-2 text-xl text-text-dark dark:bg-darkmode-light dark:text-darkmode-text-dark hover:bg-primary hover:text-white transition-colors"
+                  class="block rounded bg-light px-4 py-2 text-xl text-text-dark dark:bg-darkmode-light dark:text-darkmode-text-dark"
                 >
                   {humanize(tag)}{" "}
                   <span class="ml-2 rounded bg-body px-2 dark:bg-darkmode-body">
