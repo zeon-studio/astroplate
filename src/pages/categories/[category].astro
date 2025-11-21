@@ -5,7 +5,6 @@ import { getSinglePage } from "@/lib/contentParser.astro";
 import { getTaxonomy } from "@/lib/taxonomyParser.astro";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import taxonomyFilter from "@/lib/utils/taxonomyFilter";
-// 🌟 关键修正 1：导入 slugifyTitle 以便在 getStaticPaths 中使用
 import { humanize, slugifyTitle } from "@/lib/utils/textConverter";
 import PageHeader from "@/partials/PageHeader.astro";
 
@@ -14,14 +13,17 @@ export async function getStaticPaths() {
   const BLOG_FOLDER = "blog";
   const categories = await getTaxonomy(BLOG_FOLDER, "categories");
 
-  return categories.map((category: string) => {
-    return {
-      params: { 
-        // 🌟 关键修正 2：对分类进行 slugify 处理，确保 URL 是兼容的
-        category: slugifyTitle(category), 
-      },
-    };
-  });
+  return categories
+    // 🌟 关键修复：过滤掉空字符串或无效的分类名称
+    .filter((category: string) => category && category.trim() !== "")
+    .map((category: string) => {
+      return {
+        params: { 
+          // 对分类进行 slugify 处理
+          category: slugifyTitle(category), 
+        },
+      };
+    });
 }
 
 const { category } = Astro.params;
@@ -29,7 +31,8 @@ const { category } = Astro.params;
 // 按分类获取文章
 const BLOG_FOLDER = "blog";
 const posts = await getSinglePage(BLOG_FOLDER);
-// 🌟 关键修正 3：使用 humanize(category!) 恢复原始中文名进行内容过滤
+
+// 使用 humanize(category!) 恢复原始中文名进行内容过滤
 const originalCategory = humanize(category!); 
 const filterByCategories = taxonomyFilter(posts, "categories", originalCategory);
 const sortedPosts = sortByDate(filterByCategories);
