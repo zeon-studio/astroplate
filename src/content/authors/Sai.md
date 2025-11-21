@@ -1,6 +1,6 @@
 ---
-title: John Doe
-email: johndoe@email.com
+title: Sai
+email: x@sai.st
 image: "/images/avatar.png"
 description: this is meta description
 social:
