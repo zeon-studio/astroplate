@@ -1,11 +1,11 @@
 {
   "main": [
     {
-      "name": "Home",
+      "name": "首页",
       "url": "/"
     },
     {
-      "name": "About",
+      "name": "关于",
       "url": "/about"
     },
     {
@@ -18,11 +18,11 @@
       "hasChildren": true,
       "children": [
         {
-          "name": "Contact",
+          "name": "联系",
           "url": "/contact"
         },
         {
-          "name": "Blog",
+          "name": "博客",
           "url": "/blog"
         },
         {
@@ -30,11 +30,11 @@
           "url": "/authors"
         },
         {
-          "name": "Categories",
+          "name": "分类",
           "url": "/categories"
         },
         {
-          "name": "Tags",
+          "name": "标签",
           "url": "/tags"
         },
         {
