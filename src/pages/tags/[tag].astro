@@ -5,13 +5,14 @@ import { getSinglePage } from "@/lib/contentParser.astro";
 import { getTaxonomy } from "@/lib/taxonomyParser.astro";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import taxonomyFilter from "@/lib/utils/taxonomyFilter";
+import { humanize } from "@/lib/utils/textConverter";
 import PageHeader from "@/partials/PageHeader.astro";
 
 export async function getStaticPaths() {
   const BLOG_FOLDER = "blog";
   const tags = await getTaxonomy(BLOG_FOLDER, "tags");
 
-  return tags.map((tag) => {
+  return tags.map((tag: string) => {
     return {
       params: { tag },
     };
@@ -27,8 +28,8 @@ const filterByTags = taxonomyFilter(posts, "tags", tag!);
 const sortedPosts = sortByDate(filterByTags);
 ---
 
-<Base title={tag}>
-  <PageHeader title={tag} />
+<Base title={humanize(tag!)}>
+  <PageHeader title={humanize(tag!)} />
   <div class="section-sm pb-0">
     <div class="container">
       <div class="row">
