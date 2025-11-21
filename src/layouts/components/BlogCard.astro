@@ -1,4 +1,5 @@
 ---
+// 确保这个文件完全替换 /src/layouts/components/BlogCard.astro
 import config from "@/config/config.json";
 import dateFormat from "@/lib/utils/dateFormat";
 import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
@@ -11,33 +12,33 @@ const {
   blog_folder,
 }: { summary_length: number; blog_folder: string } = config.settings;
 
-const { data } = Astro.props;
+// 🌟 注意：BlogCard 使用的是 content 属性
+const { content } = Astro.props; 
 
-// 🌟 安全检查：确保 data 存在
-if (!data || !data.data) {
-    console.warn("PostCard received invalid or empty data prop.");
+// 🌟 安全检查：确保 content 存在
+if (!content || !content.title) {
     return <></>; 
 }
 
-const { title, image, date, author, categories } = data.data;
+// 🌟 注意：这里是 BlogCard 的数据结构
+const { title, img, publishDate, tags = [], video } = content;
+const image = img; // 将 img 映射为 image 以保持模板一致性
+const date = publishDate; // 将 publishDate 映射为 date
+const categories = tags; // 将 tags 映射为 categories 
+const author = content.author || "佚名"; // 确保 author 字段存在
 
-// --- 【中文化】 ---
 const readMoreText = "阅读更多";
 const defaultAuthorText = "作者"; 
-// --- 【结束中文化】 ---
+const postLink = `/blog/${content.slug ?? content.id}`;
 
-// 🌟 路径安全：如果 data.id 不存在，尝试使用 data.slug (尽管 data.id 看起来是默认 slug)
-const postLink = `/${blog_folder}/${data.id}`;
-
-// 🌟 确保 ImageMod.astro 是最新的修复版本，它能正确处理 Logo (以 / 开头的路径) 和远程图片
+const postBody = content.description || ""; // 使用 description 作为摘要来源
 ---
 
 <div class="bg-body dark:bg-darkmode-body">
   {
-    image ? ( // 使用 image 字段作为判断条件
-      // 图片链接到文章详情页
+    image && (
+      // 使用您成功的版本结构：链接包裹图片，图片使用 h-auto
       <a href={postLink} class="block mb-6 w-full overflow-hidden rounded">
-        {/* 核心：使用 ImageMod 修复版本，并让图片 h-auto 自适应比例 */}
         <ImageMod
           class="w-full h-auto object-cover" 
           src={image} 
@@ -45,20 +46,13 @@ const postLink = `/${blog_folder}/${data.id}`;
           format="webp"
         />
       </a>
-    ) : (
-      // 如果没有图片，可以添加一个占位符，保持布局稳定
-      <div class="block mb-6 w-full overflow-hidden rounded aspect-video bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-        <span class="text-gray-500 text-sm">无图片</span>
-      </div>
     )
   }
-  
   <h4 class="mb-3">
     <a href={postLink}>
       {title}
     </a>
   </h4>
-  
   <ul class="mb-4">
     <li class="mr-4 inline-block">
       <a href={`/authors/${slugify(author)}`}>
@@ -66,21 +60,25 @@ const postLink = `/${blog_folder}/${data.id}`;
         {humanize(author) || defaultAuthorText}
       </a>
     </li>
-    <li class="mr-4 inline-block">
-      <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
-      {
-        categories.map((category: string, index: number) => (
-          <a href={`/categories/${slugify(category)}`} key={category}>
-            {humanize(category)}
-            {index !== categories.length - 1 && "，"} 
-          </a>
-        ))
-      }
-    </li>
+    {/* 适配 categories/tags 的显示逻辑 */}
+    {categories && categories.length > 0 && (
+      <li class="mr-4 inline-block">
+        <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
+        {
+          categories.map((category: string, index: number) => (
+            <a href={`/categories/${slugify(category)}`} key={category}>
+              {humanize(category)}
+              {index !== categories.length - 1 && "，"} 
+            </a>
+          ))
+        }
+      </li>
+    )}
     {date && <li class="inline-block">{dateFormat(date)}</li>}
   </ul>
   
-  <p class="mb-6">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
+  {/* 使用 description/body 作为摘要 */}
+  <p class="mb-6">{plainify(postBody.slice(0, Number(summary_length)))}</p>
   
   <a class="btn btn-outline-primary btn-sm" href={postLink}>
     {readMoreText}
