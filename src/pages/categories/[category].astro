@@ -5,9 +5,10 @@ import { getSinglePage } from "@/lib/contentParser.astro";
 import { getTaxonomy } from "@/lib/taxonomyParser.astro";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import taxonomyFilter from "@/lib/utils/taxonomyFilter";
+import { humanize } from "@/lib/utils/textConverter";
 import PageHeader from "@/partials/PageHeader.astro";
 
-// get static paths for all categories
+// 获取所有分类的静态路径
 export async function getStaticPaths() {
   const BLOG_FOLDER = "blog";
   const categories = await getTaxonomy(BLOG_FOLDER, "categories");
@@ -21,15 +22,15 @@ export async function getStaticPaths() {
 
 const { category } = Astro.params;
 
-// get posts by category
+// 按分类获取文章
 const BLOG_FOLDER = "blog";
 const posts = await getSinglePage(BLOG_FOLDER);
 const filterByCategories = taxonomyFilter(posts, "categories", category!);
 const sortedPosts = sortByDate(filterByCategories);
 ---
 
-<Base title={category}>
-  <PageHeader title={category} />
+<Base title={humanize(category!)}>
+  <PageHeader title={humanize(category!)} />
   <div class="section-sm pb-0">
     <div class="container">
       <div class="row">
