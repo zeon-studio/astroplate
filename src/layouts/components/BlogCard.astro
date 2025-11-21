@@ -1,64 +1,189 @@
 ---
-import config from "@/config/config.json";
-import dateFormat from "@/lib/utils/dateFormat";
-import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
-import { FaRegFolder, FaRegUserCircle } from "react-icons/fa";
-import ImageMod from "./ImageMod.astro";
+/**
+ * BlogCard with video/image and dynamic aspect ratio
+ */
+// 🌟 核心修复 1：修正 ImageMod 的导入路径 (假设它们在同一目录)
+import ImageMod from "./ImageMod.astro"; 
 
 const {
-  summary_length,
-  blog_folder,
-}: { summary_length: number; blog_folder: string } = config.settings;
+  content,
+  layout = "vertical",
+  "data-aos": dataAos,
+  "data-aos-delay": dataAosDelay,
+  mediaRatio,
+} = Astro.props;
 
-const { data } = Astro.props;
-const { title, image, date, author, categories } = data.data;
+const {
+  title,
+  description,
+  publishDate,
+  tags = [],
+  img,
+  img_alt,
+  slug,
+  link,
+  video
+} = content;
 
-const readMoreText = "阅读更多";
-const defaultAuthorText = "作者"; 
+const formattedDate = new Date(publishDate).toLocaleDateString('zh-CN', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric'
+});
+
+const postLink = link || `/blog/${slug ?? content.id}`;
+
+const isHorizontal = layout === "horizontal";
+
+// 保持图片原始比例 (auto)
+const ratioMap = {
+  "4:3": "aspect-[4/3]",
+  "3:4": "aspect-[3/4]",
+  "16:9": "aspect-[16/9]",
+  "9:16": "aspect-[9/16]",
+  "1:1": "aspect-square",
+};
+
+let computedRatio = "auto";
+if (mediaRatio) computedRatio = mediaRatio;
+
+const useAspect = computedRatio !== "auto";
+const aspectClass = useAspect ? (ratioMap[computedRatio] ?? ratioMap["4:3"]) : "";
+
+// 🌟 修复 2：使用 object-cover 实现横竖自适应填充，而非 object-contain
+const mediaClass = "w-full h-full object-cover transition-transform duration-500 group-hover:scale-105";
+
+const videoId = video ? `blogcard-video-${(slug ?? content.id).replace(/[^a-z0-9]+/gi,'-').toLowerCase()}` : null;
 ---
 
-<div class="bg-body dark:bg-darkmode-body">
-  {
-    image && (
-      <a href={`/${blog_folder}/${data.id}`} class="block mb-6 w-full overflow-hidden rounded">
-        {/* 🌟 核心修复：移除固定的 aspect-ratio，让图片按其内容比例显示 */}
-        <ImageMod
-          class="w-full h-auto object-cover" // h-auto 确保图片按其原始比例显示
-          src={image} 
-          alt={title}
-          format="webp"
-        />
-      </a>
-    )
-  }
-  <h4 class="mb-3">
-    <a href={`/${blog_folder}/${data.id}`}>
-      {title}
+<article
+  class:list={[
+    "group relative overflow-hidden bg-bg-secondary border-primary/35 p-4 dark:bg-neutral-900 rounded-2xl backdrop-blur-sm transition-all duration-500",
+    { "md:flex md:items-center": isHorizontal }
+  ]}
+  data-aos={dataAos}
+  data-aos-delay={dataAosDelay}
+>
+  <div
+    class:list={[
+      "relative overflow-hidden rounded-2xl dark:border-neutral-800/60 border-4 border-white bg-gray-100 dark:bg-gray-800 flex items-center justify-center",
+      isHorizontal ? "md:w-1/2" : "",
+      aspectClass 
+    ]}
+  >
+    {video ? (
+      <video
+        id={videoId}
+        src={video}
+        poster={img}
+        autoplay
+        loop
+        muted
+        playsinline
+        webkit-playsinline
+        preload="auto"
+        controls={false}
+        disablepictureinpicture
+        controlslist="nodownload noplaybackrate nofullscreen noremoteplayback"
+        class={mediaClass}
+      >
+        <source src={video} type="video/mp4" />
+        您的浏览器不支持视频标签。
+      </video>
+    ) : img ? (
+      <ImageMod
+        src={img}
+        alt={img_alt || `关于 ${title} 的图片`}
+        loading="lazy"
+        class={mediaClass}
+      />
+    ) : (
+      <div class="w-full h-full flex items-center justify-center bg-neutral-200 dark:bg-neutral-700">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="text-neutral-400">
+          <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+          <circle cx="9" cy="9" r="2"></circle>
+          <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+        </svg>
+      </div>
+    )}
+
+    <a class="absolute inset-0 z-10" href={postLink}>
+      <span class="sr-only">阅读更多关于 {title}</span>
     </a>
-  </h4>
-  <ul class="mb-4">
-    <li class="mr-4 inline-block">
-      <a href={`/authors/${slugify(author)}`}>
-        <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
-        {humanize(author) || defaultAuthorText}
-      </a>
-    </li>
-    <li class="mr-4 inline-block">
-      <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
-      {
-        categories.map((category: string, index: number) => (
-          <a href={`/categories/${slugify(category)}`}>
-            {humanize(category)}
-            {index !== categories.length - 1 && "，"} 
-          </a>
-        ))
+  </div>
+
+  <div class:list={[
+    "p-6 px-2 md:p-6 flex flex-col",
+    isHorizontal ? "md:w-1/2" : ""
+  ]}>
+    <div class="flex items-center text-sm mb-4 gap-2">
+      <time class="inline-flex items-center text-neutral-500 dark:text-neutral-400 text-xs">
+        {formattedDate}
+      </time>
+
+      {tags.length > 0 && (
+        <>
+          <span class="text-neutral-400 dark:text-neutral-500">·</span>
+          <div class="flex flex-wrap gap-1">
+            {tags.map((tag) => (
+              <a
+                href={`/tags/${tag}/`}
+                class="inline-flex items-center rounded-full bg-bg-secondary/8 dark:bg-bg-secondary/15 px-2 py-1 text-[10px] font-light text-primary/75 dark:text-primary-light/85 border border-primary/25 dark:border-primary/25 hover:bg-primary/20 dark:hover:bg-primary/30 hover:border-primary/40 dark:hover:border-primary/40 transition-all duration-300 cursor-pointer"
+                onclick="event.stopPropagation();"
+              >
+                {tag}
+              </a>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+
+    <a href={postLink}>
+      <h2 class:list={[
+        "font-brand text-neutral-900 dark:text-white mb-3 leading-tight transition-colors duration-300 group-hover:text-primary dark:group-hover:text-primary-light line-clamp-2",
+        isHorizontal ? "text-3xl" : "text-2xl"
+      ]}>
+        {title}
+      </h2>
+    </a>
+
+    {description && (
+      <p class="text-neutral-600 dark:text-neutral-400 line-clamp-3 mb-5 text-sm leading-relaxed">
+        {description}
+      </p>
+    )}
+  </div>
+</article>
+
+{video && (
+  <script define:vars={{ videoId }} is:inline>
+    (function() {
+      const video = document.getElementById(videoId);
+      if (!video || !(video instanceof HTMLVideoElement)) return;
+      let isPlaying = false, observer = null, playAttempts = 0;
+      const MAX_PLAY_ATTEMPTS = 3;
+
+      function tryPlay() {
+        if (isPlaying || playAttempts >= MAX_PLAY_ATTEMPTS) return;
+        playAttempts++;
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.then(()=>{isPlaying=true; playAttempts=0;})
+            .catch(()=>{isPlaying=false;});
+        }
       }
-    </li>
-    {date && <li class="inline-block">{dateFormat(date)}</li>}
-  </ul>
-  <p class="mb-6">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
-  
-  <a class="btn btn-outline-primary btn-sm" href={`/${blog_folder}/${data.id}`}>
-    {readMoreText}
-  </a>
-</div>
+
+      function setupObserver() {
+        observer = new IntersectionObserver(entries=>{
+          entries.forEach(entry=>{
+            if(entry.isIntersecting && video.paused){playAttempts=0; tryPlay();}
+            else if(!entry.isIntersecting && !video.paused){video.pause(); isPlaying=false;}
+          });
+        }, {root:null, rootMargin:'50px', threshold:0.1});
+        observer.observe(video);
+      }
+      setupObserver();
+    })();
+  </script>
+)}
