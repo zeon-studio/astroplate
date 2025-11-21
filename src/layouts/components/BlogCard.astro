@@ -5,30 +5,28 @@ import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
 import { FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./ImageMod.astro";
 
+// 从配置文件获取设置
 const {
   summary_length,
   blog_folder,
 }: { summary_length: number; blog_folder: string } = config.settings;
+
 const { data } = Astro.props;
 const { title, image, date, author, categories } = data.data;
 
-// --- 【关键修正：图片路径】 ---
-let imageSrc = image;
+// 定义卡片的宽高比 (例如，16:9)
+// 我们可以使用 Tailwind CSS 的类名，但为了精确控制，这里保留 style 属性。
+const aspectRatio = '16 / 9'; 
 
-// 假设内容文件中的图片路径如 /images/post.jpg，我们需要将其转换为 /public/images/post.jpg
-if (image && !image.startsWith('http')) {
-    // 确保只有在不是远程图片的情况下，才尝试修正本地路径
-    if (image.startsWith('/images/')) {
-      imageSrc = `/public${image}`;
-    } else if (image.startsWith('images/')) {
-      // 兼容没有 / 开头的相对路径
-      imageSrc = `/public/${image}`;
-    }
-}
+// --- 【图片路径修正移除】 ---
+// Astro 资源和 ImageMod 组件通常可以处理内容中的相对路径。
+// 移除不必要的路径修正逻辑，以避免冲突。我们直接使用 image 变量。
 // --- 【结束修正】 ---
 
-// 定义卡片的宽高比（例如，16:9）
-const aspectRatio = '16 / 9'; 
+// --- 【中文化】 ---
+const readMoreText = "阅读更多";
+const defaultAuthorText = "作者"; // 假设作者是 author 字段，这里是默认显示文本
+// --- 【结束中文化】 ---
 ---
 
 <div class="bg-body dark:bg-darkmode-body">
@@ -39,9 +37,11 @@ const aspectRatio = '16 / 9';
         class="relative mb-6 w-full overflow-hidden rounded"
         style={`aspect-ratio: ${aspectRatio};`} 
       >
+        {/* 关键：图片绝对定位，w-full h-full object-cover 实现多比例自适应裁剪 */}
+        {/* 注意：如果 ImageMod 不支持自动宽高，则可能需要在其中禁用 height/width 属性 */}
         <ImageMod
-          class="absolute inset-0 h-full w-full object-cover" // 关键：图片绝对定位，object-cover 实现多比例自适应裁剪
-          src={imageSrc} // 使用修正后的 imageSrc 变量
+          class="absolute inset-0 h-full w-full object-cover" 
+          src={image} // 直接使用 image 变量
           alt={title}
           format="webp"
         />
@@ -57,7 +57,7 @@ const aspectRatio = '16 / 9';
     <li class="mr-4 inline-block">
       <a href={`/authors/${slugify(author)}`}>
         <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
-        {humanize(author)}
+        {humanize(author) || defaultAuthorText}
       </a>
     </li>
     <li class="mr-4 inline-block">
@@ -66,7 +66,8 @@ const aspectRatio = '16 / 9';
         categories.map((category: string, index: number) => (
           <a href={`/categories/${slugify(category)}`}>
             {humanize(category)}
-            {index !== categories.length - 1 && ","}
+            {/* 列表分隔符 */}
+            {index !== categories.length - 1 && "，"} 
           </a>
         ))
       }
@@ -74,7 +75,9 @@ const aspectRatio = '16 / 9';
     {date && <li class="inline-block">{dateFormat(date)}</li>}
   </ul>
   <p class="mb-6">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
+  
+  {/* 中文化：将 "read more" 替换为中文变量 */}
   <a class="btn btn-outline-primary btn-sm" href={`/${blog_folder}/${data.id}`}>
-    read more
+    {readMoreText}
   </a>
 </div>
