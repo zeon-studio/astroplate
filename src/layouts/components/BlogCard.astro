@@ -9,7 +9,7 @@ const {
   layout = "vertical",
   "data-aos": dataAos,
   "data-aos-delay": dataAosDelay,
-  mediaRatio,
+  mediaRatio, // 尽管此属性已失效，但保留它以避免解构错误
 } = Astro.props;
 
 // 核心修复：安全检查
@@ -40,24 +40,8 @@ const postLink = link || `/blog/${slug ?? content.id}`;
 
 const isHorizontal = layout === "horizontal";
 
-// 🌟 最终修复：使用标准 Tailwind 类名或占位符，避免 [x/y] 语法
-const ratioMap = {
-  // 4:3 和 3:4 没有标准类，暂时使用 16:9 (aspect-video) 占位
-  "4:3": "aspect-video", 
-  "3:4": "aspect-video", 
-  "16:9": "aspect-video",
-  "9:16": "aspect-[9/16]", // 9:16 是唯一的标准 Tailwind 动态类，但我们先保持
-  "1:1": "aspect-square",
-};
-
-
-let computedRatio = "auto";
-if (mediaRatio) computedRatio = mediaRatio;
-
-const useAspect = computedRatio !== "auto";
-// 🌟 如果你的构建仍然失败，请将 ratioMap["4:3"] 替换为 "aspect-video"
-// 确保 aspectClass 不包含任何 [x/y] 语法
-const aspectClass = useAspect ? (ratioMap[computedRatio] ?? ratioMap["16:9"]) : "";
+// 🌟 最终修复：彻底移除 ratioMap 和所有动态比例逻辑
+const aspectClass = "aspect-video"; // 强制使用 16:9 比例，避免解析错误
 
 const mediaClass = "w-full h-full object-cover transition-transform duration-500 group-hover:scale-105";
 
