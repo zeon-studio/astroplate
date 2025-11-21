@@ -1,6 +1,7 @@
 ---
 import config from "@/config/config.json";
-import ImageMod from "./ImageMod.astro";
+// 确保 ImageMod 组件存在且能被正确导入
+import ImageMod from "./ImageMod.astro"; 
 
 const { src, srcDarkmode }: { src?: string; srcDarkmode?: string } =
   Astro.props;
@@ -22,26 +23,31 @@ const {
 
 const { theme_switcher }: { theme_switcher: boolean } = config.settings;
 
-// --- 关键修正 1: 确保 logo 路径有效且包含 /public 前缀 ---
+// 1. 获取主 logo 路径，并确保路径有效且有 /public 前缀
 let primaryLogoPath = src || logo;
-let primaryLogoSrc = primaryLogoPath && !primaryLogoPath.startsWith('http') && !primaryLogoPath.startsWith('/public') 
-                     ? `/public${primaryLogoPath}` 
-                     : primaryLogoPath;
+let primaryLogoSrc = primaryLogoPath && String(primaryLogoPath).trim() !== ''
+                     ? (!primaryLogoPath.startsWith('http') && !primaryLogoPath.startsWith('/public') 
+                        ? `/public${primaryLogoPath}` 
+                        : primaryLogoPath)
+                     : null; // 路径无效时强制设置为 null
 
-// --- 关键修正 2: 确保深色模式 logo 路径有效且包含 /public 前缀 ---
+// 2. 获取深色模式 logo 路径，并确保路径有效且有 /public 前缀
 let darkmodeLogoPath = srcDarkmode || logo_darkmode;
-let darkmodeLogoSrc = darkmodeLogoPath && !darkmodeLogoPath.startsWith('http') && !darkmodeLogoPath.startsWith('/public')
-                      ? `/public${darkmodeLogoPath}`
-                      : darkmodeLogoPath;
+let darkmodeLogoSrc = darkmodeLogoPath && String(darkmodeLogoPath).trim() !== ''
+                      ? (!darkmodeLogoPath.startsWith('http') && !darkmodeLogoPath.startsWith('/public')
+                         ? `/public${darkmodeLogoPath}`
+                         : darkmodeLogoPath)
+                      : null; // 路径无效时强制设置为 null
 
-// --- 关键修正 3: 确保 width 和 height 是数字或有效的 CSS 值 ---
-const logoW = parseInt(logo_width.replace("px", "")) || 100;
-const logoH = parseInt(logo_height.replace("px", "")) || 30;
+// 3. 安全解析 logo 尺寸
+// 注意：config.json 中 width/height 是字符串 "150" / "30"，这里必须解析
+const logoW = parseInt(String(logo_width).replace("px", "")) || 100;
+const logoH = parseInt(String(logo_height).replace("px", "")) || 30;
 ---
 
 <a href="/" class="navbar-brand inline-block">
   {
-    // 检查是否有任何图片源 (primaryLogoSrc 或 darkmodeLogoSrc)
+    // 只有 primaryLogoSrc 或 darkmodeLogoSrc 存在且非空时，才渲染图片元素
     (primaryLogoSrc || darkmodeLogoSrc) ? (
       <>
         {/* 常规模式 Logo (仅在 primaryLogoSrc 有效时渲染) */}
