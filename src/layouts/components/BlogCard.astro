@@ -3,6 +3,7 @@ import config from "@/config/config.json";
 import dateFormat from "@/lib/utils/dateFormat";
 import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
 import { FaRegFolder, FaRegUserCircle } from "react-icons/fa";
+import ImageMod from "./ImageMod.astro";  // 确保这行存在且路径正确
 
 const {
   summary_length,
@@ -20,23 +21,23 @@ const localImagePath = image && !isRemoteImage ? image : null;
 <div class="bg-body dark:bg-darkmode-body">
   {
     image && (
-      <div class="mb-6 overflow-hidden rounded aspect-video">
+      <div class="mb-6 overflow-hidden rounded">
         {isRemoteImage ? (
           <!-- 远程图片使用普通 img 标签 -->
           <img
             src={image}
             alt={title}
-            class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+            class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
             loading="lazy"
           />
         ) : (
           <!-- 本地图片使用 ImageMod 组件 -->
           <ImageMod
-            class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+            class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
             src={localImagePath}
             alt={title}
             width={445}
-            height={250}
+            height={230}
             format="webp"
           />
         )}
@@ -79,9 +80,3 @@ const localImagePath = image && !isRemoteImage ? image : null;
     浏览更多
   </a>
 </div>
-
-<style>
-  .aspect-video {
-    aspect-ratio: 16 / 9;
-  }
-</style>
