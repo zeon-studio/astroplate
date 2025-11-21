@@ -3,10 +3,10 @@ import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 
 interface Props {
-  src: string; // 可以是本地路径 (/public/images/...) 或远程 URL (http://...)
+  src: string; 
   alt: string;
-  width?: number; // 设为可选，因为远程图片和自适应模式下可能不需要硬编码
-  height?: number; // 设为可选
+  width?: number; 
+  height?: number; 
   loading?: "eager" | "lazy" | null | undefined;
   decoding?: "async" | "auto" | "sync" | null | undefined;
   format?: "auto" | "avif" | "jpeg" | "png" | "svg" | "webp";
@@ -16,27 +16,34 @@ interface Props {
 
 let { src, alt, width, height, loading, decoding, class: className, format, style } = Astro.props;
 
-// 1. 检查是否为远程图片
 const isRemote = src.startsWith('http://') || src.startsWith('https://');
 
 let isValidPath = false;
 let imageMetadata: ImageMetadata | undefined;
 
-// 2. 如果是本地图片，使用 glob 导入 metadata
+// --- 【本地图片修复区域】 ---
 if (!isRemote) {
-  // 注意：glob 路径需要匹配 public/images 文件夹
-  const images = import.meta.glob("/public/images/**/*.{jpeg,jpg,png,gif,svg}", { eager: true });
+  // 关键 1: 使用 eager: true 立即加载元数据
+  const images = import.meta.glob<ImageMetadata>("/public/images/**/*.{jpeg,jpg,png,gif,svg,webp}", { 
+    eager: true 
+  });
   
-  // 检查传入的 src (例如：/public/images/post-1.jpg) 是否存在于 glob 结果中
-  if (images[src] && images[src].default) {
+  // 关键 2: 确保路径检查正确，且导入的对象是 ImageMetadata
+  if (images[src]) {
+    // 导入的对象是 { default: ImageMetadata }
+    imageMetadata = images[src] as ImageMetadata;
     isValidPath = true;
-    imageMetadata = images[src].default as ImageMetadata;
+
+    // 自动获取图片的实际宽高（如果卡片组件没有传入）
+    width = width || imageMetadata.width;
+    height = height || imageMetadata.height;
   }
 
   if (!isValidPath) {
-    console.error(`\x1b[31mImage not found - ${src}.\x1b[0m Make sure the image is in the /public/images folder.`);
+    console.warn(`\x1b[33mWarning: Local image not found - ${src}.\x1b[0m Please verify the path and file type.`);
   }
 }
+// --- 【结束本地图片修复区域】 ---
 ---
 
 {
@@ -44,11 +51,10 @@ if (!isRemote) {
     <img
       src={src}
       alt={alt}
-      width={width}
-      height={height}
+      // 保持 width/height 为 undefined 或 auto，以支持自适应，除非明确传入
       loading={loading}
       decoding={decoding}
-      class={className}
+      class={className} 
       style={style}
     />
   )
@@ -59,6 +65,7 @@ if (!isRemote) {
     <Image
       src={imageMetadata}
       alt={alt}
+      // 确保 width 和 height 存在，否则 Astro 可能会报错
       width={width}
       height={height}
       loading={loading}
