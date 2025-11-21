@@ -24,13 +24,13 @@
 
   "announcement": {
     "enable": true,
-    "content": "<span class='text-center block'>♥️ Loving Astroplate? <a class='underline' href='https://github.com/zeon-studio/astroplate' target='_blank' rel='noopener'>Please ⭐️ on Github</a></span>",
+    "content": "<span class='text-center block'>♥️ 关注 <a class='underline' href='https://sai.st' target='_blank' rel='noopener'> ⭐️ 点击</a></span>",
     "expire_days": 7
   },
 
   "params": {
     "contact_form_action": "#",
-    "copyright": "Designed And Developed by [Zeon Studio](https://zeon.studio)"
+    "copyright": "by [Ouro.ch](https://ouro.ch)"
   },
 
   "navigation_button": {
