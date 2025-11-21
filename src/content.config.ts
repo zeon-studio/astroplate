@@ -1,6 +1,3 @@
-// src/content/config.ts
-
-
 import { defineCollection, z } from "astro:content";
 
 // 统一的通用字段定义，确保类型正确
