@@ -4,7 +4,11 @@ const bgImageMod = async (
   src: string,
   format?: "auto" | "avif" | "jpeg" | "png" | "svg" | "webp",
 ) => {
-  src = `/public${src}`;
+  // 修复路径处理
+  if (!src.startsWith('/public')) {
+    src = src.startsWith('/') ? `/public${src}` : `/public/${src}`;
+  }
+
   const images = import.meta.glob("/public/images/**/*.{jpeg,jpg,png,gif}");
 
   // Check if the source path is valid
