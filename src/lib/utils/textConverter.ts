@@ -1,20 +1,20 @@
 import { marked } from "marked";
-import slugify from "slugify"; // <-- 导入外部库
+import realSlugify from "slugify"; // <-- 关键修正：将导入的库重命名为 realSlugify
 
 // slugifyTitle - 使用外部库来处理中文
-export const slugifyTitle = (title) => {
+export const slugifyTitle = (title: string) => {
   if (!title) return "";
   
-  return slugify(title, {
+  return realSlugify(title, { // <-- 使用重命名后的 realSlugify
     lower: true,
     strict: true,
-    locale: 'zh', // 确保启用中文拼音转换支持
-    remove: /[*+~.()'"!:@]/g // 可选：移除更多不常用的特殊字符
+    locale: 'zh',
+    remove: /[*+~.()'"!:@]/g
   });
 };
 
-// slugify - 保持原名，但调用 slugifyTitle (为了兼容性)
-export const slugify = slugifyTitle;
+// slugify - 保持原名，但调用 slugifyTitle (为了兼容性)，解决重复声明错误
+export const slugify = slugifyTitle; 
 
 
 // markdownify
