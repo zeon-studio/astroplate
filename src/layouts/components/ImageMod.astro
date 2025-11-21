@@ -18,52 +18,32 @@ interface Props {
 // Destructuring Astro.props to get the component's props
 let { src, alt, width, height, loading, decoding, class: className, format, style } = Astro.props;
 
-// 判断是否为远程图片
-const isRemoteImage = src.startsWith('http') || src.startsWith('//');
+// 恢复原始逻辑 - 只处理本地图片
+src = `/public${src}`;
 
-// 对于本地图片，需要从 public 目录加载
-let imageModule = null;
-if (!isRemoteImage) {
-  try {
-    // 移除开头的 / 并构建正确的导入路径
-    const imagePath = src.startsWith('/') ? src.slice(1) : src;
-    // 动态导入图片
-    imageModule = await import(`/public/${imagePath}`);
-  } catch (error) {
-    console.error(`\x1b[31mImage not found - ${src}.\x1b[0m Make sure the image is in the /public folder.`);
-  }
-}
+// Glob pattern to load images from the /public/images folder
+const images = import.meta.glob("/public/images/**/*.{jpeg,jpg,png,gif,svg}");
 
-const isValidPath = isRemoteImage ? true : imageModule !== null;
+// Check if the source path is valid
+const isValidPath = images[src] ? true : false;
+
+// Log a warning message in red if the image is not found
+!isValidPath &&
+  console.error(`\x1b[31mImage not found - ${src}.\x1b[0m Make sure the image is in the /public/images folder.`);
 ---
 
 {
-  isValidPath ? (
-    isRemoteImage ? (
-      <!-- 远程图片直接使用 img 标签 -->
-      <img
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-        loading={loading}
-        decoding={decoding}
-        class={className}
-        style={style}
-      />
-    ) : (
-      <!-- 本地图片使用 Astro Image 组件 -->
-      <Image
-        src={imageModule.default}
-        alt={alt}
-        width={width}
-        height={height}
-        loading={loading}
-        decoding={decoding}
-        class={className}
-        format={format}
-        style={style}
-      />
-    )
-  ) : null
+  isValidPath && (
+    <Image
+      src={images[src]() as Promise<{ default: ImageMetadata }>}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      decoding={decoding}
+      class={className}
+      format={format}
+      style={style}
+    />
+  )
 }
