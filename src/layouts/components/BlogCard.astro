@@ -11,68 +11,68 @@ const {
 const { data } = Astro.props;
 const { title, image, date, author, categories } = data.data;
 
-// 修复图片路径处理
-const getImageSrc = () => {
-  if (!image) return null;
-  
-  // 远程图片直接使用
-  if (image.startsWith('http') || image.startsWith('//')) return image;
-  
-  // 本地图片：直接使用原路径（Astro会自动处理public目录）
-  return image;
-};
-
-const imageSrc = getImageSrc();
+// 直接使用图片路径
+const imageSrc = image;
 ---
 
-<div class="bg-body dark:bg-darkmode-body">
+<article class="group relative overflow-hidden bg-body dark:bg-darkmode-body rounded-lg transition-all duration-500 hover:shadow-lg">
   {
     imageSrc && (
-      <!-- 完全自适应容器，不固定比例 -->
-      <div class="mb-6 overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800 min-h-[200px]">
+      <div class="relative overflow-hidden rounded-t-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center min-h-[200px]">
         <img
           src={imageSrc}
           alt={title}
-          class="w-full h-auto max-h-64 object-contain transition-transform duration-300 hover:scale-105"
           loading="lazy"
+          class="w-full h-auto max-h-64 object-contain transition-transform duration-500 group-hover:scale-105"
           style="display: block; margin: 0 auto;"
         />
+        <a class="absolute inset-0 z-10" href={`/${blog_folder}/${data.id}`}>
+          <span class="sr-only">阅读更多关于 {title}</span>
+        </a>
       </div>
     )
   }
-  <h4 class="mb-3 text-lg font-semibold">
-    <a href={`/${blog_folder}/${data.id}`} class="hover:text-primary transition-colors">
-      {title}
-    </a>
-  </h4>
-  <ul class="mb-4 text-sm">
-    <li class="mr-4 inline-block">
-      <a href={`/authors/${author}`} class="flex items-center text-text hover:text-primary">
-        <FaRegUserCircle className={"mr-1 inline-block"} />
-        {humanize(author)}
+  
+  <div class="p-6">
+    <h4 class="mb-3 text-lg font-semibold group-hover:text-primary transition-colors">
+      <a href={`/${blog_folder}/${data.id}`}>
+        {title}
       </a>
-    </li>
-    {
-      categories && categories.length > 0 && (
-        <li class="mr-4 inline-block">
-          <div class="flex items-center text-text">
-            <FaRegFolder className={"mr-1 inline-block"} />
-            {
-              categories.map((category: string, index: number) => (
-                <a href={`/categories/${category}`} class="hover:text-primary">
-                  {humanize(category)}
-                  {index !== categories.length - 1 && ","}
-                </a>
-              ))
-            }
-          </div>
-        </li>
-      )
-    }
-    {date && <li class="inline-block text-text">{dateFormat(date)}</li>}
-  </ul>
-  <p class="mb-6 text-text text-sm">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
-  <a class="btn btn-outline-primary btn-sm" href={`/${blog_folder}/${data.id}`}>
-    浏览更多
-  </a>
-</div>
+    </h4>
+    
+    <ul class="mb-4 text-sm">
+      <li class="mr-4 inline-block">
+        <a href={`/authors/${author}`} class="flex items-center text-text hover:text-primary">
+          <FaRegUserCircle className={"mr-1 inline-block"} />
+          {humanize(author)}
+        </a>
+      </li>
+      {
+        categories && categories.length > 0 && (
+          <li class="mr-4 inline-block">
+            <div class="flex items-center text-text">
+              <FaRegFolder className={"mr-1 inline-block"} />
+              {
+                categories.map((category: string, index: number) => (
+                  <a href={`/categories/${category}`} class="hover:text-primary">
+                    {humanize(category)}
+                    {index !== categories.length - 1 && ","}
+                  </a>
+                ))
+              }
+            </div>
+          </li>
+        )
+      }
+      {date && <li class="inline-block text-text">{dateFormat(date)}</li>}
+    </ul>
+    
+    <p class="mb-6 text-text text-sm leading-relaxed">
+      {plainify(data.body?.slice(0, Number(summary_length)))}
+    </p>
+    
+    <a class="btn btn-outline-primary btn-sm group-hover:bg-primary group-hover:text-white transition-all" href={`/${blog_folder}/${data.id}`}>
+      浏览更多
+    </a>
+  </div>
+</article>
