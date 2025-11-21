@@ -35,8 +35,8 @@
 
   "navigation_button": {
     "enable": true,
-    "label": "Get Started",
-    "link": "https://github.com/zeon-studio/astroplate"
+    "label": "联系",
+    "link": "https://sai.st"
   },
 
   "google_tag_manager": {
@@ -51,8 +51,8 @@
   },
 
   "metadata": {
-    "meta_author": "zeon.studio",
+    "meta_author": "sai.st",
     "meta_image": "/images/og-image.png",
-    "meta_description": "astro and tailwind boilerplate"
+    "meta_description": "sai.st"
   }
 }
