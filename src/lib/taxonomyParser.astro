@@ -1,28 +1,17 @@
 ---
 import { getSinglePage } from "@/lib/contentParser.astro";
-import { slugify } from "@/lib/utils/textConverter";
 
-// get taxonomy from frontmatter
+// get taxonomy from frontmatter - 直接返回原始标签
 export const getTaxonomy = async (collection: any, name: string) => {
   const singlePages = await getSinglePage(collection);
-  
-  // 添加空值检查
-  if (!singlePages || !Array.isArray(singlePages)) {
-    return [];
-  }
-  
   const taxonomyPages = singlePages.map((page: any) => page.data[name]);
   
-  // 过滤掉空值和非数组值
-  const filteredTaxonomies = taxonomyPages.filter(
-    (taxonomy) => taxonomy && Array.isArray(taxonomy)
-  );
-  
+  // 直接返回原始标签，不进行 slugify
   let taxonomies: string[] = [];
-  for (let i = 0; i < filteredTaxonomies.length; i++) {
-    const categoryArray = filteredTaxonomies[i];
-    for (let j = 0; j < categoryArray.length; j++) {
-      taxonomies.push(slugify(categoryArray[j]));
+  for (let i = 0; i < taxonomyPages.length; i++) {
+    const categoryArray = taxonomyPages[i];
+    if (categoryArray && Array.isArray(categoryArray)) {
+      taxonomies = taxonomies.concat(categoryArray);
     }
   }
   
@@ -30,27 +19,16 @@ export const getTaxonomy = async (collection: any, name: string) => {
   return taxonomy;
 };
 
-// get all taxonomies from frontmatter
+// get all taxonomies from frontmatter - 直接返回原始标签
 export const getAllTaxonomy = async (collection: any, name: string) => {
   const singlePages = await getSinglePage(collection);
-  
-  // 添加空值检查
-  if (!singlePages || !Array.isArray(singlePages)) {
-    return [];
-  }
-  
   const taxonomyPages = singlePages.map((page: any) => page.data[name]);
   
-  // 过滤掉空值和非数组值
-  const filteredTaxonomies = taxonomyPages.filter(
-    (taxonomy) => taxonomy && Array.isArray(taxonomy)
-  );
-  
   let taxonomies: string[] = [];
-  for (let i = 0; i < filteredTaxonomies.length; i++) {
-    const categoryArray = filteredTaxonomies[i];
-    for (let j = 0; j < categoryArray.length; j++) {
-      taxonomies.push(slugify(categoryArray[j]));
+  for (let i = 0; i < taxonomyPages.length; i++) {
+    const categoryArray = taxonomyPages[i];
+    if (categoryArray && Array.isArray(categoryArray)) {
+      taxonomies = taxonomies.concat(categoryArray);
     }
   }
   
