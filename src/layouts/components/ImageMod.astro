@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 
 interface Props {
-  src: string;
+  src: string | ImageMetadata; // 接受字符串路径或导入的 ImageMetadata
   alt?: string;
   width?: number; 
   height?: number; 
@@ -27,78 +27,62 @@ let {
   ...rest
 } = Astro.props;
 
-const isRemoteImage = src.startsWith("http://") || src.startsWith("https://") || src.startsWith("//");
+// 检查 src 是否已经是导入的 ImageMetadata 对象
+const isImageModule = typeof src !== 'string';
+const isRemoteImage = typeof src === 'string' && (src.startsWith("http://") || src.startsWith("https://") || src.startsWith("//"));
 
-let imageModule = null;
+// 🌟 关键：如果 src 是路径字符串，我们假设它是 public/ 路径或远程路径。
+// 如果它是 ImageMetadata，则使用 <Image /> 优化。
+const finalSrc = isImageModule ? src : src.toString(); 
 
-if (!isRemoteImage) {
-  const images = import.meta.glob([
-    "/public/images/**/*.{jpeg,jpg,png,avif,tiff,gif,webp,svg}",
-    "/public/**/*.{jpeg,jpg,png,avif,tiff,gif,webp,svg}",
-  ]);
-
-  let searchPath = src;
-  if (!searchPath.startsWith('/')) {
-    searchPath = `/${searchPath}`;
-  }
-  if (!searchPath.startsWith('/public/')) {
-    searchPath = `/public${searchPath}`;
-  }
-
-  const key = Object.keys(images).find((k) => k.includes(searchPath));
-  
-  if (key) {
-    imageModule = await images[key]();
-    imageModule = imageModule.default;
-  }
-}
-
-const isValidPath = isRemoteImage ? true : imageModule !== null;
-
-// 🌟 核心检查：如果 className 包含任何控制宽高的 CSS，我们认为它是自适应图片
+// 检查是否为自适应图片，以决定是否传递 width/height
 const isContained = className && (className.includes('object-cover') || className.includes('w-full') || className.includes('h-full'));
 
-// 🌟 核心修复：只有当图片不是自适应容器的一部分时，才传递尺寸
-// 对于 Astro Image (<Image>), 如果我们不想让它固定尺寸，width/height 必须是 undefined
+// 只有在图片不是自适应容器的一部分时，才传递尺寸
 const passWidth = isContained ? undefined : width;
 const passHeight = isContained ? undefined : height;
 
-// 最终保险：如果传入的 width/height 是 0 或 null，也设为 undefined
 const finalPassWidth = (typeof passWidth === 'number' && passWidth > 0) ? passWidth : undefined;
 const finalPassHeight = (typeof passHeight === 'number' && passHeight > 0) ? passHeight : undefined;
 ---
 
 {
-  isValidPath ? (
-    isRemoteImage ? (
-      <img
-        src={src}
-        alt={alt || ""}
-        width={finalPassWidth}
-        height={finalPassHeight}
-        loading={loading}
-        decoding={decoding}
-        class={className}
-        style={style}
-        {...rest}
-      />
-    ) : (
-      <Image
-        src={imageModule}
-        alt={alt || ""}
-        width={finalPassWidth}
-        height={finalPassHeight}
-        loading={loading}
-        decoding={decoding}
-        format={format}
-        class={className}
-        style={style}
-        {...rest}
-      />
-    )
+  !isImageModule && isRemoteImage ? (
+    <img
+      src={finalSrc as string}
+      alt={alt || ""}
+      width={finalPassWidth}
+      height={finalPassHeight}
+      loading={loading}
+      decoding={decoding}
+      class={className}
+      style={style}
+      {...rest}
+    />
+  ) : isImageModule ? (
+    <Image
+      src={finalSrc as ImageMetadata}
+      alt={alt || ""}
+      width={finalPassWidth}
+      height={finalPassHeight}
+      loading={loading}
+      decoding={decoding}
+      format={format}
+      class={className}
+      style={style}
+      {...rest}
+    />
   ) : (
-    <div class={`bg-gray-200 dark:bg-gray-700 flex items-center justify-center ${className}`} style={style}>
-      <span class="text-gray-500 text-sm">图片加载失败</span>
-    </div>
+    <img
+      src={finalSrc as string}
+      alt={alt || ""}
+      width={finalPassWidth}
+      height={finalPassHeight}
+      loading={loading}
+      decoding={decoding}
+      class={className}
+      style={style}
+      {...rest}
+    />
   )
 }
