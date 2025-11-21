@@ -3,10 +3,10 @@ import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 
 interface Props {
-  src: string;
+  src: string; // 可以是本地路径 (/public/images/...) 或远程 URL (http://...)
   alt: string;
-  width: number;
-  height: number;
+  width?: number; // 设为可选，因为远程图片和自适应模式下可能不需要硬编码
+  height?: number; // 设为可选
   loading?: "eager" | "lazy" | null | undefined;
   decoding?: "async" | "auto" | "sync" | null | undefined;
   format?: "auto" | "avif" | "jpeg" | "png" | "svg" | "webp";
@@ -16,20 +16,48 @@ interface Props {
 
 let { src, alt, width, height, loading, decoding, class: className, format, style } = Astro.props;
 
-// 问题可能在这里！
-src = `/public${src}`;  // 这行代码可能有问题
+// 1. 检查是否为远程图片
+const isRemote = src.startsWith('http://') || src.startsWith('https://');
 
-const images = import.meta.glob("/public/images/**/*.{jpeg,jpg,png,gif,svg}");
-const isValidPath = images[src] ? true : false;
+let isValidPath = false;
+let imageMetadata: ImageMetadata | undefined;
 
-!isValidPath &&
-  console.error(`\x1b[31mImage not found - ${src}.\x1b[0m Make sure the image is in the /public/images folder.`);
+// 2. 如果是本地图片，使用 glob 导入 metadata
+if (!isRemote) {
+  // 注意：glob 路径需要匹配 public/images 文件夹
+  const images = import.meta.glob("/public/images/**/*.{jpeg,jpg,png,gif,svg}", { eager: true });
+  
+  // 检查传入的 src (例如：/public/images/post-1.jpg) 是否存在于 glob 结果中
+  if (images[src] && images[src].default) {
+    isValidPath = true;
+    imageMetadata = images[src].default as ImageMetadata;
+  }
+
+  if (!isValidPath) {
+    console.error(`\x1b[31mImage not found - ${src}.\x1b[0m Make sure the image is in the /public/images folder.`);
+  }
+}
 ---
 
 {
-  isValidPath && (
+  isRemote && (
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      decoding={decoding}
+      class={className}
+      style={style}
+    />
+  )
+}
+
+{
+  !isRemote && isValidPath && imageMetadata && (
     <Image
-      src={images[src]() as Promise<{ default: ImageMetadata }>}
+      src={imageMetadata}
       alt={alt}
       width={width}
       height={height}
