@@ -13,7 +13,6 @@ const commonFields = {
 
 // --- Post collection schema (博客文章) ---
 const blogCollection = defineCollection({
-  // loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/blog" }), // Astro v3.x/v4.x+ 不需要手动指定 loader
   type: 'content',
   schema: z.object({
     title: z.string(),
@@ -30,7 +29,6 @@ const blogCollection = defineCollection({
 
 // --- Author collection schema (作者) ---
 const authorsCollection = defineCollection({
-  // loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/authors" }),
   type: 'content',
   schema: z.object({
     ...commonFields,
@@ -49,7 +47,6 @@ const authorsCollection = defineCollection({
 
 // --- Pages collection schema (普通页面) ---
 const pagesCollection = defineCollection({
-  // loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/pages" }),
   type: 'content',
   schema: z.object({
     ...commonFields,
@@ -58,7 +55,6 @@ const pagesCollection = defineCollection({
 
 // --- About collection schema ---
 const aboutCollection = defineCollection({
-  // loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/about" }),
   type: 'content',
   schema: z.object({
     ...commonFields,
@@ -67,7 +63,6 @@ const aboutCollection = defineCollection({
 
 // --- Contact collection schema ---
 const contactCollection = defineCollection({
-  // loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/contact" }),
   type: 'content',
   schema: z.object({
     ...commonFields,
@@ -76,7 +71,6 @@ const contactCollection = defineCollection({
 
 // --- Homepage collection schema (主页内容) ---
 const homepageCollection = defineCollection({
-  // loader: glob({ pattern: "**/-*.{md,mdx}", base: "src/content/homepage" }),
   type: 'content',
   schema: z.object({
     banner: z.object({
@@ -105,41 +99,43 @@ const homepageCollection = defineCollection({
   }),
 });
 
-// --- Call to Action collection schema ---
-const ctaSectionCollection = defineCollection({
-  // loader: glob({ pattern: "call-to-action.{md,mdx}", base: "src/content/sections" }),
-  type: 'content',
-  schema: z.object({
+// --- 🌟 关键修正：定义 'sections' 集合的子 schema ---
+
+// CTA 集合的 Schema
+const ctaSchema = z.object({
+  enable: z.boolean(),
+  title: z.string(),
+  description: z.string(),
+  image: z.string(),
+  button: z.object({
     enable: z.boolean(),
-    title: z.string(),
-    description: z.string(),
-    image: z.string(),
-    button: z.object({
-      enable: z.boolean(),
-      label: z.string(),
-      link: z.string(),
-    }),
+    label: z.string(),
+    link: z.string(),
   }),
 });
 
-// --- Testimonials Section collection schema ---
-const testimonialSectionCollection = defineCollection({
-  // loader: glob({ pattern: "testimonial.{md,mdx}", base: "src/content/sections" }),
-  type: 'content',
-  schema: z.object({
-    enable: z.boolean(),
-    title: z.string(),
-    description: z.string(),
-    testimonials: z.array(
-      z.object({
-        name: z.string(),
-        avatar: z.string(),
-        designation: z.string(),
-        content: z.string(),
-      }),
-    ),
-  }),
+// Testimonial 集合的 Schema
+const testimonialSchema = z.object({
+  enable: z.boolean(),
+  title: z.string(),
+  description: z.string(),
+  testimonials: z.array(
+    z.object({
+      name: z.string(),
+      avatar: z.string(),
+      designation: z.string(),
+      content: z.string(),
+    }),
+  ),
 });
+
+// 🌟 关键修正：Sections 集合定义。它必须匹配实际的文件夹名 'sections'
+const sectionsCollection = defineCollection({
+  type: 'content',
+  // 使用 z.union 将 CTA 和 Testimonial 的结构合并为一个 Schema
+  schema: z.union([ctaSchema, testimonialSchema]),
+});
+
 
 // Export collections
 export const collections = {
@@ -151,7 +147,6 @@ export const collections = {
   about: aboutCollection,
   contact: contactCollection,
 
-  // sections
-  ctaSection: ctaSectionCollection,
-  testimonialSection: testimonialSectionCollection,
+  // 🌟 最终修正: 导出名为 'sections' 的集合
+  sections: sectionsCollection,
 };
