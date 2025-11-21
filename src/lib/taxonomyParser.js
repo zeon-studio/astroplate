@@ -9,14 +9,16 @@ export const getTaxonomy = async (collection, name) => {
   let taxonomies = [];
   for (let i = 0; i < taxonomyPages.length; i++) {
     const categoryArray = taxonomyPages[i];
+    // 确保它是数组且非空
     if (categoryArray && Array.isArray(categoryArray)) {
-      // 关键修复 1：在合并之前过滤掉所有空字符串和非字符串值
-      const validCategories = categoryArray.filter((item) => typeof item === 'string' && item.trim() !== "");
+      // 🌟 关键修复 1：严格过滤，只保留非空的字符串
+      const validCategories = categoryArray.filter(item => typeof item === 'string' && item.trim() !== "");
       taxonomies = taxonomies.concat(validCategories);
     }
   }
   
-  const taxonomy = [...new Set(taxonomies)];
+  // 🌟 关键修复 2：在去重之后，再次确保没有产生意外的空值
+  const taxonomy = [...new Set(taxonomies)].filter(item => item.trim() !== "");
   return taxonomy;
 };
 
@@ -29,11 +31,12 @@ export const getAllTaxonomy = async (collection, name) => {
   for (let i = 0; i < taxonomyPages.length; i++) {
     const categoryArray = taxonomyPages[i];
     if (categoryArray && Array.isArray(categoryArray)) {
-      // 关键修复 2：在合并之前过滤掉所有空字符串和非字符串值
-      const validCategories = categoryArray.filter((item) => typeof item === 'string' && item.trim() !== "");
+      // 关键修复：严格过滤，只保留非空的字符串
+      const validCategories = categoryArray.filter(item => typeof item === 'string' && item.trim() !== "");
       taxonomies = taxonomies.concat(validCategories);
     }
   }
   
-  return taxonomies;
+  // 确保最终结果是干净的
+  return taxonomies.filter(item => item.trim() !== "");
 };
