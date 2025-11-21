@@ -13,28 +13,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # --- 关键修正 1: 切换到 Yarn/npm 以匹配 package.json ---
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          # 匹配 Netlify 配置中的 NODE_VERSION
           node-version: 22.20.0 
-          # 您的项目使用 yarn，所以缓存使用 npm 或 yarn
           cache: yarn 
 
-      # --- 关键修正 2: 使用 Yarn 安装依赖 ---
       - name: Install dependencies
-        # 使用 yarn install
         run: yarn install
 
-      # --- 关键修正 3: 使用完整的 build 命令 ---
       - name: Build project
-        # 匹配 package.json 中的 "build" 脚本
         run: yarn build 
         
-      # -------------------------
-      # 使用 SSH Key 部署到 VPS
-      # -------------------------
       - name: Deploy dist to VPS
         uses: easingthemes/ssh-deploy@main
         with:
