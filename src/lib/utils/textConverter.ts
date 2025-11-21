@@ -1,27 +1,29 @@
 import { marked } from "marked";
+import slugify from "slugify"; // <-- 导入外部库
 
-// slugify - 完全自定义，不依赖外部库
-export const slugify = (content: string) => {
-  if (!content) return "";
+// slugifyTitle - 使用外部库来处理中文
+export const slugifyTitle = (title) => {
+  if (!title) return "";
   
-  return content
-    .toString()
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, "-")
-    .replace(/[^\w\u4e00-\u9fa5\-]+/g, "")
-    .replace(/\-\-+/g, "-")
-    .replace(/^-+/, "")
-    .replace(/-+$/, "");
+  return slugify(title, {
+    lower: true,
+    strict: true,
+    locale: 'zh', // 确保启用中文拼音转换支持
+    remove: /[*+~.()'"!:@]/g // 可选：移除更多不常用的特殊字符
+  });
 };
 
+// slugify - 保持原名，但调用 slugifyTitle (为了兼容性)
+export const slugify = slugifyTitle;
+
+
 // markdownify
-export const markdownify = (content: string, div?: boolean) => {
+export const markdownify = (content, div) => {
   return div ? marked.parse(content) : marked.parseInline(content);
 };
 
 // humanize
-export const humanize = (content: string) => {
+export const humanize = (content) => {
   return content
     .replace(/^[\s_]+|[\s_]+$/g, "")
     .replace(/[_\s]+/g, " ")
@@ -32,7 +34,7 @@ export const humanize = (content: string) => {
 };
 
 // titleify
-export const titleify = (content: string) => {
+export const titleify = (content) => {
   const humanized = humanize(content);
   return humanized
     .split(" ")
@@ -41,8 +43,8 @@ export const titleify = (content: string) => {
 };
 
 // plainify
-export const plainify = (content: string) => {
-  const parseMarkdown: any = marked.parse(content);
+export const plainify = (content) => {
+  const parseMarkdown = marked.parse(content);
   const filterBrackets = parseMarkdown.replace(/<\/?[^>]+(>|$)/gm, "");
   const filterSpaces = filterBrackets.replace(/[\r\n]\s*[\r\n]/gm, "");
   const stripHTML = htmlEntityDecoder(filterSpaces);
@@ -50,8 +52,8 @@ export const plainify = (content: string) => {
 };
 
 // strip entities for plainify
-const htmlEntityDecoder = (htmlWithEntities: string) => {
-  let entityList: { [key: string]: string } = {
+const htmlEntityDecoder = (htmlWithEntities) => {
+  let entityList = {
     "&nbsp;": " ",
     "&lt;": "<",
     "&gt;": ">",
@@ -59,9 +61,9 @@ const htmlEntityDecoder = (htmlWithEntities: string) => {
     "&quot;": '"',
     "&#39;": "'",
   };
-  let htmlWithoutEntities: string = htmlWithEntities.replace(
+  let htmlWithoutEntities = htmlWithEntities.replace(
     /(&amp;|&lt;|&gt;|&quot;|&#39;)/g,
-    (entity: string): string => {
+    (entity) => {
       return entityList[entity];
     },
   );
