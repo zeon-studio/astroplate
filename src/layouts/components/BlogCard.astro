@@ -1,9 +1,9 @@
 ---
 import config from "@/config/config.json";
 import dateFormat from "@/lib/utils/dateFormat";
-import { humanize, plainify } from "@/lib/utils/textConverter";
+import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
 import { FaRegFolder, FaRegUserCircle } from "react-icons/fa";
-import OptimizedImage from "./OptimizedImage.astro";
+import ImageMod from "./ImageMod.astro";
 
 const {
   summary_length,
@@ -11,65 +11,58 @@ const {
 }: { summary_length: number; blog_folder: string } = config.settings;
 const { data } = Astro.props;
 const { title, image, date, author, categories } = data.data;
+
+// 定义一个默认的宽高比（例如，16:9）
+const aspectRatio = '16 / 9'; 
 ---
 
-<div class="bg-body dark:bg-darkmode-body rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg">
+<div class="bg-body dark:bg-darkmode-body">
+  {/* 新增的图片容器，控制图片的宽高比例 */}
   {
     image && (
-      <div class="w-full overflow-hidden bg-gray-100 dark:bg-gray-800 min-h-[200px] flex items-center justify-center">
-        <OptimizedImage
+      <div 
+        class="relative mb-6 w-full overflow-hidden rounded"
+        style={`aspect-ratio: ${aspectRatio};`} 
+        // Tailwind CSS: aspect-video (16/9), aspect-square (1/1), etc. 
+        // 如果您使用 Tailwind CSS v3.2+，可以直接使用类名如 'aspect-video'
+      >
+        <ImageMod
+          class="absolute inset-0 h-full w-full object-cover" // 关键：图片绝对定位，覆盖整个容器
           src={image}
           alt={title}
-          width={400}
-          height={300}
+          // 移除硬编码的 width 和 height，让 CSS 接管
           format="webp"
-          class="w-full h-auto max-h-64 object-scale-down"
-          loading="lazy"
         />
       </div>
     )
   }
-  
-  <div class="p-6">
-    <h4 class="mb-3 text-lg font-semibold hover:text-primary transition-colors">
-      <a href={`/${blog_folder}/${data.id}`}>
-        {title}
-      </a>
-    </h4>
-    
-    <ul class="mb-4 text-sm">
-      <li class="mr-4 inline-block">
-        <a href={`/authors/${author}`} class="flex items-center text-text hover:text-primary">
-          <FaRegUserCircle className={"mr-1 inline-block"} />
-          {humanize(author)}
-        </a>
-      </li>
-      {
-        categories && categories.length > 0 && (
-          <li class="mr-4 inline-block">
-            <div class="flex items-center text-text">
-              <FaRegFolder className={"mr-1 inline-block"} />
-              {
-                categories.map((category: string, index: number) => (
-                  <a href={`/categories/${category}`} class="hover:text-primary">
-                    {humanize(category)}
-                    {index !== categories.length - 1 && ","}
-                  </a>
-                ))
-              }
-            </div>
-          </li>
-        )
-      }
-      {date && <li class="inline-block text-text">{dateFormat(date)}</li>}
-    </ul>
-    
-    <p class="mb-6 text-text text-sm leading-relaxed">
-      {plainify(data.body?.slice(0, Number(summary_length)))}
-    </p>
-    
-    <a class="btn btn-outline-primary btn-sm hover:bg-primary hover:text-white transition-all" href={`/${blog_folder}/${data.id}`}>
-      浏览更多
+  <h4 class="mb-3">
+    <a href={`/${blog_folder}/${data.id}`}>
+      {title}
     </a>
-  </div>
+  </h4>
+  <ul class="mb-4">
+    <li class="mr-4 inline-block">
+      <a href={`/authors/${slugify(author)}`}>
+        <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
+        {humanize(author)}
+      </a>
+    </li>
+    <li class="mr-4 inline-block">
+      <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
+      {
+        categories.map((category: string, index: number) => (
+          <a href={`/categories/${slugify(category)}`}>
+            {humanize(category)}
+            {index !== categories.length - 1 && ","}
+          </a>
+        ))
+      }
+    </li>
+    {date && <li class="inline-block">{dateFormat(date)}</li>}
+  </ul>
+  <p class="mb-6">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
+  <a class="btn btn-outline-primary btn-sm" href={`/${blog_folder}/${data.id}`}>
+    read more
+  </a>
 </div>
