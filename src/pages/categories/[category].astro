@@ -5,7 +5,8 @@ import { getSinglePage } from "@/lib/contentParser.astro";
 import { getTaxonomy } from "@/lib/taxonomyParser.astro";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import taxonomyFilter from "@/lib/utils/taxonomyFilter";
-import { humanize } from "@/lib/utils/textConverter";
+// 🌟 关键修正 1：导入 slugifyTitle 以便在 getStaticPaths 中使用
+import { humanize, slugifyTitle } from "@/lib/utils/textConverter";
 import PageHeader from "@/partials/PageHeader.astro";
 
 // 获取所有分类的静态路径
@@ -15,7 +16,10 @@ export async function getStaticPaths() {
 
   return categories.map((category: string) => {
     return {
-      params: { category },  // 直接使用原始分类，不进行slugify
+      params: { 
+        // 🌟 关键修正 2：对分类进行 slugify 处理，确保 URL 是兼容的
+        category: slugifyTitle(category), 
+      },
     };
   });
 }
@@ -25,12 +29,17 @@ const { category } = Astro.params;
 // 按分类获取文章
 const BLOG_FOLDER = "blog";
 const posts = await getSinglePage(BLOG_FOLDER);
-const filterByCategories = taxonomyFilter(posts, "categories", category!);
+// 🌟 关键修正 3：使用 humanize(category!) 恢复原始中文名进行内容过滤
+const originalCategory = humanize(category!); 
+const filterByCategories = taxonomyFilter(posts, "categories", originalCategory);
 const sortedPosts = sortByDate(filterByCategories);
+
+// 确保页面标题显示原始分类名，而不是拼音
+const pageTitle = originalCategory;
 ---
 
-<Base title={humanize(category!)}>
-  <PageHeader title={humanize(category!)} />
+<Base title={pageTitle}>
+  <PageHeader title={pageTitle} />
   <div class="section-sm pb-0">
     <div class="container">
       <div class="row">
