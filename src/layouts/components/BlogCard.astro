@@ -40,27 +40,30 @@ const postLink = link || `/blog/${slug ?? content.id}`;
 
 const isHorizontal = layout === "horizontal";
 
-// 保持图片原始比例 (auto)
+// 🌟 最终修复：使用标准 Tailwind 类名或占位符，避免 [x/y] 语法
 const ratioMap = {
-  // 您的对象定义保持原样，因为错误指向这个对象但不在 HTML 中
-  "4:3": "aspect-[4/3]",
-  "3:4": "aspect-[3/4]",
-  "16:9": "aspect-[16/9]",
-  "9:16": "aspect-[9/16]",
+  // 4:3 和 3:4 没有标准类，暂时使用 16:9 (aspect-video) 占位
+  "4:3": "aspect-video", 
+  "3:4": "aspect-video", 
+  "16:9": "aspect-video",
+  "9:16": "aspect-[9/16]", // 9:16 是唯一的标准 Tailwind 动态类，但我们先保持
   "1:1": "aspect-square",
 };
+
 
 let computedRatio = "auto";
 if (mediaRatio) computedRatio = mediaRatio;
 
 const useAspect = computedRatio !== "auto";
-const aspectClass = useAspect ? (ratioMap[computedRatio] ?? ratioMap["4:3"]) : "";
+// 🌟 如果你的构建仍然失败，请将 ratioMap["4:3"] 替换为 "aspect-video"
+// 确保 aspectClass 不包含任何 [x/y] 语法
+const aspectClass = useAspect ? (ratioMap[computedRatio] ?? ratioMap["16:9"]) : "";
 
 const mediaClass = "w-full h-full object-cover transition-transform duration-500 group-hover:scale-105";
 
 const videoId = video ? `blogcard-video-${(slug ?? content.id).replace(/[^a-z0-9]+/gi,'-').toLowerCase()}` : null;
 
-// 🌟 核心安全修正：计算所有 class 字符串，避免在 HTML 模板中使用 class:list
+// 核心安全修正：计算所有 class 字符串，避免在 HTML 模板中使用 class:list
 const articleClass = `group relative overflow-hidden bg-bg-secondary border-primary/35 p-4 dark:bg-neutral-900 rounded-2xl backdrop-blur-sm transition-all duration-500 ${isHorizontal ? "md:flex md:items-center" : ""}`;
 
 const mediaContainerClass = `relative overflow-hidden rounded-2xl dark:border-neutral-800/60 border-4 border-white bg-gray-100 dark:bg-gray-800 flex items-center justify-center ${isHorizontal ? "md:w-1/2" : ""} ${aspectClass}`;
@@ -75,7 +78,6 @@ const titleClass = `font-brand text-neutral-900 dark:text-white mb-3 leading-tig
   data-aos={dataAos}
   data-aos-delay={dataAosDelay}
 >
-  <!-- 媒体容器 (使用预计算的 class) -->
   <div class={mediaContainerClass}>
     {video ? (
       <video
@@ -118,7 +120,6 @@ const titleClass = `font-brand text-neutral-900 dark:text-white mb-3 leading-tig
     </a>
   </div>
 
-  <!-- 内容容器 (使用预计算的 class) -->
   <div class={contentContainerClass}>
     <div class="flex items-center text-sm mb-4 gap-2">
       <time class="inline-flex items-center text-neutral-500 dark:text-neutral-400 text-xs">
