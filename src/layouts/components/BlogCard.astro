@@ -15,12 +15,12 @@ const { title, image, date, author, categories } = data.data;
 <div class="bg-body dark:bg-darkmode-body">
   {
     image && (
-      <!-- 完全自适应容器 -->
-      <div class="mb-6 overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800 transition-all duration-300 hover:shadow-md">
+      <!-- 使用 object-cover 填充容器，移除白边 -->
+      <div class="mb-6 overflow-hidden rounded-lg bg-transparent">  <!-- 移除背景色 -->
         <img
           src={image}
           alt={title}
-          class="w-full h-auto max-h-64 object-contain transition-transform duration-500 hover:scale-105"
+          class="w-full h-48 object-cover transition-transform duration-500 hover:scale-105"
           loading="lazy"
           decoding="async"
           style="display: block;"
@@ -35,7 +35,7 @@ const { title, image, date, author, categories } = data.data;
   </h4>
   <ul class="mb-4">
     <li class="mr-4 inline-block">
-      <a href={`/authors/${slugify(author)}`} class="flex items-center text-text hover:text-primary text-sm">
+      <a href={`/authors/${slugify(author)}`} class="flex items-center text-text hover:text-primary text-base">  <!-- 恢复字号 -->
         <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
         {humanize(author)}
       </a>
@@ -43,7 +43,7 @@ const { title, image, date, author, categories } = data.data;
     {
       categories && categories.length > 0 && (
         <li class="mr-4 inline-block">
-          <div class="flex items-center text-text text-sm">
+          <div class="flex items-center text-text text-base">  <!-- 恢复字号 -->
             <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
             {
               categories.map((category: string, index: number) => (
@@ -57,9 +57,9 @@ const { title, image, date, author, categories } = data.data;
         </li>
       )
     }
-    {date && <li class="inline-block text-text text-sm">{dateFormat(date)}</li>}
+    {date && <li class="inline-block text-text text-base">{dateFormat(date)}</li>}  <!-- 恢复字号 -->
   </ul>
-  <p class="mb-6 text-text text-sm leading-relaxed">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
+  <p class="mb-6 text-text text-base leading-relaxed">{plainify(data.body?.slice(0, Number(summary_length)))}</p>  <!-- 恢复字号 -->
   <a class="btn btn-outline-primary btn-sm" href={`/${blog_folder}/${data.id}`}>
     浏览更多
   </a>
@@ -70,15 +70,6 @@ const { title, image, date, author, categories } = data.data;
   .bg-body img {
     max-width: 100%;
     height: auto;
-  }
-  
-  /* 为图片容器添加渐变背景，避免纯色背景下的突兀感 */
-  .bg-gray-100 {
-    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
-  }
-  
-  .dark .bg-gray-800 {
-    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
   }
   
   /* 平滑的悬停效果 */
