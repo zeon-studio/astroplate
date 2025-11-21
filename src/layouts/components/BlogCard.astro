@@ -2,7 +2,6 @@
 /**
  * BlogCard with video/image and dynamic aspect ratio
  */
-// 核心修复 1：修正 ImageMod 的导入路径 (假设 BlogCard 和 ImageMod 在同一目录)
 import ImageMod from "./ImageMod.astro"; 
 
 const {
@@ -13,7 +12,7 @@ const {
   mediaRatio,
 } = Astro.props;
 
-// 🌟 核心修复 2：添加安全检查，防止 content 为 undefined 导致构建失败
+// 核心修复：安全检查
 if (!content) {
     console.error("Error: BlogCard received undefined content prop.");
     return <></>; 
@@ -43,6 +42,7 @@ const isHorizontal = layout === "horizontal";
 
 // 保持图片原始比例 (auto)
 const ratioMap = {
+  // 您的对象定义保持原样，因为错误指向这个对象但不在 HTML 中
   "4:3": "aspect-[4/3]",
   "3:4": "aspect-[3/4]",
   "16:9": "aspect-[16/9]",
@@ -50,34 +50,33 @@ const ratioMap = {
   "1:1": "aspect-square",
 };
 
-
 let computedRatio = "auto";
 if (mediaRatio) computedRatio = mediaRatio;
 
 const useAspect = computedRatio !== "auto";
 const aspectClass = useAspect ? (ratioMap[computedRatio] ?? ratioMap["4:3"]) : "";
 
-// 🌟 修复 3：使用 object-cover 实现横竖自适应填充
 const mediaClass = "w-full h-full object-cover transition-transform duration-500 group-hover:scale-105";
 
 const videoId = video ? `blogcard-video-${(slug ?? content.id).replace(/[^a-z0-9]+/gi,'-').toLowerCase()}` : null;
+
+// 🌟 核心安全修正：计算所有 class 字符串，避免在 HTML 模板中使用 class:list
+const articleClass = `group relative overflow-hidden bg-bg-secondary border-primary/35 p-4 dark:bg-neutral-900 rounded-2xl backdrop-blur-sm transition-all duration-500 ${isHorizontal ? "md:flex md:items-center" : ""}`;
+
+const mediaContainerClass = `relative overflow-hidden rounded-2xl dark:border-neutral-800/60 border-4 border-white bg-gray-100 dark:bg-gray-800 flex items-center justify-center ${isHorizontal ? "md:w-1/2" : ""} ${aspectClass}`;
+
+const contentContainerClass = `p-6 px-2 md:p-6 flex flex-col ${isHorizontal ? "md:w-1/2" : ""}`;
+
+const titleClass = `font-brand text-neutral-900 dark:text-white mb-3 leading-tight transition-colors duration-300 group-hover:text-primary dark:group-hover:text-primary-light line-clamp-2 ${isHorizontal ? "text-3xl" : "text-2xl"}`;
 ---
 
 <article
-  class:list={[
-    "group relative overflow-hidden bg-bg-secondary border-primary/35 p-4 dark:bg-neutral-900 rounded-2xl backdrop-blur-sm transition-all duration-500",
-    { "md:flex md:items-center": isHorizontal }
-  ]}
+  class={articleClass}
   data-aos={dataAos}
   data-aos-delay={dataAosDelay}
 >
-  <div
-    class:list={[
-      "relative overflow-hidden rounded-2xl dark:border-neutral-800/60 border-4 border-white bg-gray-100 dark:bg-gray-800 flex items-center justify-center",
-      isHorizontal ? "md:w-1/2" : "",
-      aspectClass 
-    ]}
-  >
+  <!-- 媒体容器 (使用预计算的 class) -->
+  <div class={mediaContainerClass}>
     {video ? (
       <video
         id={videoId}
@@ -119,12 +118,8 @@ const videoId = video ? `blogcard-video-${(slug ?? content.id).replace(/[^a-z0-9
     </a>
   </div>
 
-  <div
-    class:list={[
-      "p-6 px-2 md:p-6 flex flex-col",
-      isHorizontal ? "md:w-1/2" : ""
-    ]}
-  >
+  <!-- 内容容器 (使用预计算的 class) -->
+  <div class={contentContainerClass}>
     <div class="flex items-center text-sm mb-4 gap-2">
       <time class="inline-flex items-center text-neutral-500 dark:text-neutral-400 text-xs">
         {formattedDate}
@@ -149,12 +144,7 @@ const videoId = video ? `blogcard-video-${(slug ?? content.id).replace(/[^a-z0-9
     </div>
 
     <a href={postLink}>
-      <h2
-        class:list={[
-          "font-brand text-neutral-900 dark:text-white mb-3 leading-tight transition-colors duration-300 group-hover:text-primary dark:group-hover:text-primary-light line-clamp-2",
-          isHorizontal ? "text-3xl" : "text-2xl"
-        ]}
-      >
+      <h2 class={titleClass}>
         {title}
       </h2>
     </a>
