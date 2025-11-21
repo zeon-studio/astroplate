@@ -11,14 +11,22 @@ const {
 const { data } = Astro.props;
 const { title, image, date, author, categories } = data.data;
 
-// 处理图片路径
+// 处理图片路径 - 确保本地图片路径正确
 const getImageSrc = () => {
   if (!image) return null;
+  
   // 远程图片直接使用
   if (image.startsWith('http') || image.startsWith('//')) return image;
-  // 本地图片：确保路径正确
-  return image.startsWith('/') ? image : `/${image}`;
+  
+  // 本地图片：确保路径格式正确
+  let localPath = image;
+  if (!localPath.startsWith('/')) {
+    localPath = `/${localPath}`;
+  }
+  
+  return localPath;
 };
+
 const imageSrc = getImageSrc();
 ---
 
@@ -26,6 +34,10 @@ const imageSrc = getImageSrc();
   {
     imageSrc && (
       <div class="mb-6 overflow-hidden rounded-lg bg-transparent">
+        <!-- 添加调试信息 -->
+        <div style="display: none;">
+          图片调试: {image} -> {imageSrc}
+        </div>
         <img
           src={imageSrc}
           alt={title}
@@ -33,6 +45,7 @@ const imageSrc = getImageSrc();
           loading="lazy"
           decoding="async"
           style="display: block;"
+          onerror="console.error('图片加载失败:', this.src)"
         />
       </div>
     )
