@@ -12,7 +12,22 @@ const {
 const { data } = Astro.props;
 const { title, image, date, author, categories } = data.data;
 
-// 定义一个默认的宽高比（例如，16:9）
+// --- 【关键修正：图片路径】 ---
+let imageSrc = image;
+
+// 假设内容文件中的图片路径如 /images/post.jpg，我们需要将其转换为 /public/images/post.jpg
+if (image && !image.startsWith('http')) {
+    // 确保只有在不是远程图片的情况下，才尝试修正本地路径
+    if (image.startsWith('/images/')) {
+      imageSrc = `/public${image}`;
+    } else if (image.startsWith('images/')) {
+      // 兼容没有 / 开头的相对路径
+      imageSrc = `/public/${image}`;
+    }
+}
+// --- 【结束修正】 ---
+
+// 定义卡片的宽高比（例如，16:9）
 const aspectRatio = '16 / 9'; 
 ---
 
@@ -23,14 +38,11 @@ const aspectRatio = '16 / 9';
       <div 
         class="relative mb-6 w-full overflow-hidden rounded"
         style={`aspect-ratio: ${aspectRatio};`} 
-        // Tailwind CSS: aspect-video (16/9), aspect-square (1/1), etc. 
-        // 如果您使用 Tailwind CSS v3.2+，可以直接使用类名如 'aspect-video'
       >
         <ImageMod
-          class="absolute inset-0 h-full w-full object-cover" // 关键：图片绝对定位，覆盖整个容器
-          src={image}
+          class="absolute inset-0 h-full w-full object-cover" // 关键：图片绝对定位，object-cover 实现多比例自适应裁剪
+          src={imageSrc} // 使用修正后的 imageSrc 变量
           alt={title}
-          // 移除硬编码的 width 和 height，让 CSS 接管
           format="webp"
         />
       </div>
