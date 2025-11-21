@@ -9,11 +9,11 @@
       "url": "/about"
     },
     {
-      "name": "Elements",
+      "name": "样式元素",
       "url": "/elements"
     },
     {
-      "name": "Pages",
+      "name": "页面",
       "url": "",
       "hasChildren": true,
       "children": [
@@ -26,7 +26,7 @@
           "url": "/blog"
         },
         {
-          "name": "Authors",
+          "name": "作者",
           "url": "/authors"
         },
         {
@@ -46,12 +46,12 @@
   ],
   "footer": [
     {
-      "name": "Elements",
-      "url": "/elements"
+      "name": "标签",
+      "url": "/tags"
     },
     {
-      "name": "Privacy Policy",
-      "url": "/privacy-policy"
+      "name": "分类",
+      "url": "/categories"
     }
   ]
 }
