@@ -4,8 +4,8 @@ import { Image } from "astro:assets";
 interface Props {
   src: string;
   alt?: string;
-  width?: number;
-  height?: number;
+  width?: number; // 保持可选
+  height?: number; // 保持可选
   loading?: "eager" | "lazy" | null | undefined;
   decoding?: "async" | "auto" | "sync" | null | undefined;
   format?: "auto" | "avif" | "jpeg" | "png" | "svg" | "webp";
@@ -38,12 +38,10 @@ if (!isRemoteImage) {
     "/public/**/*.{jpeg,jpg,png,avif,tiff,gif,webp,svg}",
   ]);
 
-  // 构建正确的查找路径
   let searchPath = src;
   if (!searchPath.startsWith('/')) {
     searchPath = `/${searchPath}`;
   }
-  // 仅在路径不是 /public/ 开头时添加 /public
   if (!searchPath.startsWith('/public/')) {
     searchPath = `/public${searchPath}`;
   }
@@ -58,15 +56,17 @@ if (!isRemoteImage) {
 
 const isValidPath = isRemoteImage ? true : imageModule !== null;
 
-// 🌟 修复图片尺寸逻辑 🌟
-// 只有在明确传入 width/height 时，才传递给 Image 或 img 标签，
-// 否则，让 className (如 w-full h-full object-cover) 控制尺寸。
-// 为了在 Astro <Image> 中实现自适应，我们需要将 width/height 设置为 undefined
-const finalWidth = width ? width : undefined;
-const finalHeight = height ? height : undefined;
+// 🌟 核心修复：确保只有当 width/height 明确传入时，才保持其值。
+// 否则，设置为 undefined，这样 Astro/HTML就不会渲染 width/height 属性。
+const finalWidth = (typeof width === 'number' && width > 0) ? width : undefined;
+const finalHeight = (typeof height === 'number' && height > 0) ? height : undefined;
 
-// 检查是否在自适应容器内 (即 BlogCard 传入了 object-cover)
-const isContained = className && (className.includes('object-cover') || className.includes('object-fill'));
+// 对于自适应图片，我们只传递 CSS (className)，不传递尺寸。
+const isContained = className && (className.includes('object-cover') || className.includes('object-fill') || className.includes('w-full') || className.includes('h-full'));
+
+// 只有在图片不是自适应容器的一部分时，才传递尺寸
+const passWidth = isContained ? undefined : finalWidth;
+const passHeight = isContained ? undefined : finalHeight;
 ---
 
 {
@@ -75,8 +75,8 @@ const isContained = className && (className.includes('object-cover') || classNam
       <img
         src={src}
         alt={alt || ""}
-        width={isContained ? undefined : finalWidth}
-        height={isContained ? undefined : finalHeight}
+        width={passWidth}
+        height={passHeight}
         loading={loading}
         decoding={decoding}
         class={className}
@@ -87,10 +87,8 @@ const isContained = className && (className.includes('object-cover') || classNam
       <Image
         src={imageModule}
         alt={alt || ""}
-        // 关键：只有在未设置 width/height 或在自适应容器内时，才设置为 undefined
-        // 这允许外部 CSS (w-full h-full) 控制图片尺寸
-        width={isContained ? undefined : finalWidth}
-        height={isContained ? undefined : finalHeight}
+        width={passWidth}
+        height={passHeight}
         loading={loading}
         decoding={decoding}
         format={format}
