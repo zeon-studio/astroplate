@@ -13,9 +13,9 @@ export async function getStaticPaths() {
   const BLOG_FOLDER = "blog";
   const categories = await getTaxonomy(BLOG_FOLDER, "categories");
 
-  return categories.map((category) => {
+  return categories.map((category: string) => {
     return {
-      params: { category },
+      params: { category },  // 直接使用原始分类，不进行slugify
     };
   });
 }
