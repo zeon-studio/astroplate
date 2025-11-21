@@ -14,34 +14,25 @@ const {
 const { data } = Astro.props;
 const { title, image, date, author, categories } = data.data;
 
-// 定义卡片的宽高比 (例如，16:9)
-// 我们可以使用 Tailwind CSS 的类名，但为了精确控制，这里保留 style 属性。
-const aspectRatio = '16 / 9'; 
-
-// --- 【图片路径修正移除】 ---
-// Astro 资源和 ImageMod 组件通常可以处理内容中的相对路径。
-// 移除不必要的路径修正逻辑，以避免冲突。我们直接使用 image 变量。
-// --- 【结束修正】 ---
-
 // --- 【中文化】 ---
 const readMoreText = "阅读更多";
-const defaultAuthorText = "作者"; // 假设作者是 author 字段，这里是默认显示文本
+const defaultAuthorText = "作者"; 
 // --- 【结束中文化】 ---
 ---
 
 <div class="bg-body dark:bg-darkmode-body">
-  {/* 新增的图片容器，控制图片的宽高比例 */}
+  {/* 🌟 核心修复：移除固定的 aspect-ratio 容器，让图片根据其自身或外部布局尺寸显示 */}
   {
     image && (
       <div 
         class="relative mb-6 w-full overflow-hidden rounded"
-        style={`aspect-ratio: ${aspectRatio};`} 
+        // ❌ 移除 style={`aspect-ratio: 16 / 9;`}
       >
-        {/* 关键：图片绝对定位，w-full h-full object-cover 实现多比例自适应裁剪 */}
-        {/* 注意：如果 ImageMod 不支持自动宽高，则可能需要在其中禁用 height/width 属性 */}
+        {/* 关键：图片仍使用 w-full h-full object-cover，但由于外部容器不再有固定比例，
+           图片将根据其原始尺寸或父元素限制来自适应。 */}
         <ImageMod
-          class="absolute inset-0 h-full w-full object-cover" 
-          src={image} // 直接使用 image 变量
+          class="w-full object-cover" 
+          src={image} 
           alt={title}
           format="webp"
         />
@@ -66,7 +57,6 @@ const defaultAuthorText = "作者"; // 假设作者是 author 字段，这里是
         categories.map((category: string, index: number) => (
           <a href={`/categories/${slugify(category)}`}>
             {humanize(category)}
-            {/* 列表分隔符 */}
             {index !== categories.length - 1 && "，"} 
           </a>
         ))
