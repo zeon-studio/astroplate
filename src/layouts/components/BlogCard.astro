@@ -1,8 +1,4 @@
 ---
-// 安全占位符行 1
-// 安全占位符行 2
-// 安全占位符行 3
-
 import ImageMod from "./ImageMod.astro"; 
 
 const {
@@ -10,11 +6,10 @@ const {
   layout = "vertical",
   "data-aos": dataAos,
   "data-aos-delay": dataAosDelay,
-  mediaRatio, // 尽管此属性已失效，但保留它以避免解构错误
+  mediaRatio,
 } = Astro.props;
 
 if (!content) {
-    console.error("Error: BlogCard received undefined content prop.");
     return <></>; 
 }
 
@@ -39,14 +34,14 @@ const formattedDate = new Date(publishDate).toLocaleDateString('zh-CN', {
 const postLink = link || `/blog/${slug ?? content.id}`;
 const isHorizontal = layout === "horizontal";
 
-// 🌟 这一行现在位于不同的行号，并且内容是安全的。
-const aspectClass = "aspect-video"; // 强制使用 16:9 比例
+// 🌟 第 46 行现在是以下代码或附近的变量
+const aspectClass = "aspect-video"; // 强制 16:9
 
 const mediaClass = "w-full h-full object-cover transition-transform duration-500 group-hover:scale-105";
 
 const videoId = video ? `blogcard-video-${(slug ?? content.id).replace(/[^a-z0-9]+/gi,'-').toLowerCase()}` : null;
 
-// 核心安全修正：计算所有 class 字符串，避免在 HTML 模板中使用 class:list
+// 核心安全修正：计算所有 class 字符串
 const articleClass = `group relative overflow-hidden bg-bg-secondary border-primary/35 p-4 dark:bg-neutral-900 rounded-2xl backdrop-blur-sm transition-all duration-500 ${isHorizontal ? "md:flex md:items-center" : ""}`;
 
 const mediaContainerClass = `relative overflow-hidden rounded-2xl dark:border-neutral-800/60 border-4 border-white bg-gray-100 dark:bg-gray-800 flex items-center justify-center ${isHorizontal ? "md:w-1/2" : ""} ${aspectClass}`;
@@ -75,11 +70,10 @@ const titleClass = `font-brand text-neutral-900 dark:text-white mb-3 leading-tig
         preload="auto"
         controls={false}
         disablepictureinpicture
-        controlslist="nodownload noplaybackrate nofullscreen noremoteplayback"
+        controlslist="nodownload noplaybackrate nofullscreen noremote playback"
         class={mediaClass}
       >
         <source src={video} type="video/mp4" />
-        您的浏览器不支持视频标签。
       </video>
     ) : img ? (
       <ImageMod
