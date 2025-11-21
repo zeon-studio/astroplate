@@ -1,7 +1,6 @@
-import { slug } from "github-slugger";
 import { marked } from "marked";
 
-// 完全重写slugify，不使用github-slugger
+// slugify - 完全自定义，不依赖外部库
 export const slugify = (content: string) => {
   if (!content) return "";
   
