@@ -2,7 +2,7 @@ import { marked } from "marked";
 import realSlugify from "slugify"; // <-- 关键修正：将导入的库重命名为 realSlugify
 
 // slugifyTitle - 使用外部库来处理中文
-export const slugifyTitle = (title: string) => {
+export const slugifyTitle = (title) => {
   if (!title) return "";
   
   return realSlugify(title, { // <-- 使用重命名后的 realSlugify
@@ -19,11 +19,13 @@ export const slugify = slugifyTitle;
 
 // markdownify
 export const markdownify = (content, div) => {
+  if (!content) return ""; // 增加空内容检查
   return div ? marked.parse(content) : marked.parseInline(content);
 };
 
 // humanize
 export const humanize = (content) => {
+  if (!content) return "";
   return content
     .replace(/^[\s_]+|[\s_]+$/g, "")
     .replace(/[_\s]+/g, " ")
@@ -35,6 +37,7 @@ export const humanize = (content) => {
 
 // titleify
 export const titleify = (content) => {
+  if (!content) return "";
   const humanized = humanize(content);
   return humanized
     .split(" ")
@@ -44,6 +47,7 @@ export const titleify = (content) => {
 
 // plainify
 export const plainify = (content) => {
+  if (!content) return "";
   const parseMarkdown = marked.parse(content);
   const filterBrackets = parseMarkdown.replace(/<\/?[^>]+(>|$)/gm, "");
   const filterSpaces = filterBrackets.replace(/[\r\n]\s*[\r\n]/gm, "");
