@@ -10,15 +10,24 @@ const {
 }: { summary_length: number; blog_folder: string } = config.settings;
 const { data } = Astro.props;
 const { title, image, date, author, categories } = data.data;
+
+// 处理图片路径
+const getImageSrc = () => {
+  if (!image) return null;
+  // 远程图片直接使用
+  if (image.startsWith('http') || image.startsWith('//')) return image;
+  // 本地图片：确保路径正确
+  return image.startsWith('/') ? image : `/${image}`;
+};
+const imageSrc = getImageSrc();
 ---
 
 <div class="bg-body dark:bg-darkmode-body">
   {
-    image && (
-      <!-- 使用 object-cover 填充容器，移除白边 -->
-      <div class="mb-6 overflow-hidden rounded-lg bg-transparent">  <!-- 移除背景色 -->
+    imageSrc && (
+      <div class="mb-6 overflow-hidden rounded-lg bg-transparent">
         <img
-          src={image}
+          src={imageSrc}
           alt={title}
           class="w-full h-48 object-cover transition-transform duration-500 hover:scale-105"
           loading="lazy"
@@ -35,7 +44,7 @@ const { title, image, date, author, categories } = data.data;
   </h4>
   <ul class="mb-4">
     <li class="mr-4 inline-block">
-      <a href={`/authors/${slugify(author)}`} class="flex items-center text-text hover:text-primary text-base">  <!-- 恢复字号 -->
+      <a href={`/authors/${slugify(author)}`} class="flex items-center text-text hover:text-primary text-base">
         <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
         {humanize(author)}
       </a>
@@ -43,7 +52,7 @@ const { title, image, date, author, categories } = data.data;
     {
       categories && categories.length > 0 && (
         <li class="mr-4 inline-block">
-          <div class="flex items-center text-text text-base">  <!-- 恢复字号 -->
+          <div class="flex items-center text-text text-base">
             <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
             {
               categories.map((category: string, index: number) => (
@@ -57,28 +66,10 @@ const { title, image, date, author, categories } = data.data;
         </li>
       )
     }
-    {date && <li class="inline-block text-text text-base">{dateFormat(date)}</li>}  <!-- 恢复字号 -->
+    {date && <li class="inline-block text-text text-base">{dateFormat(date)}</li>}
   </ul>
-  <p class="mb-6 text-text text-base leading-relaxed">{plainify(data.body?.slice(0, Number(summary_length)))}</p>  <!-- 恢复字号 -->
+  <p class="mb-6 text-text text-base leading-relaxed">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
   <a class="btn btn-outline-primary btn-sm" href={`/${blog_folder}/${data.id}`}>
     浏览更多
   </a>
 </div>
-
-<style>
-  /* 确保图片在各种比例下都能良好显示 */
-  .bg-body img {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  /* 平滑的悬停效果 */
-  .bg-body div:first-child {
-    transition: all 0.3s ease;
-  }
-  
-  .bg-body div:first-child:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  }
-</style>
