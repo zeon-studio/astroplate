@@ -1,30 +1,121 @@
 ---
-import Base from "@/layouts/Base.astro";
-import PostSingle from "@/layouts/PostSingle.astro";
+import BlogCard from "@/components/BlogCard.astro";
+import Share from "@/components/Share.astro";
+import Disqus from "@/helpers/Disqus";
 import { getSinglePage } from "@/lib/contentParser.astro";
+import dateFormat from "@/lib/utils/dateFormat";
+import similarItems from "@/lib/utils/similarItems";
+// 🌟 关键修正：导入 slugifyTitle 以确保链接的兼容性
+import { humanize, markdownify, slugifyTitle } from "@/lib/utils/textConverter"; 
+import { render } from "astro:content";
+import { FaRegClock, FaRegFolder, FaRegUserCircle } from "react-icons/fa";
+import ImageMod from "./components/ImageMod.astro";
 
-export async function getStaticPaths() {
-  const BLOG_FOLDER = "blog";
-  const posts = await getSinglePage(BLOG_FOLDER);
-
-  const paths = posts.map((post) => ({
-    params: {
-      single: post.id,
-    },
-    props: { post },
-  }));
-  return paths;
-}
-
+const COLLECTION_FOLDER = "blog";
 const { post } = Astro.props;
-const { title, meta_title, description, image } = post.data;
+
+const posts = await getSinglePage(COLLECTION_FOLDER);
+const similarPosts = similarItems(post, posts);
+const { Content } = await render(post);
+const { title, description, author, categories, image, date, tags } = post.data;
 ---
 
-<Base
-  title={title}
-  meta_title={meta_title}
-  description={description}
-  image={image}
->
-  <PostSingle post={post} />
-</Base>
+<section class="section pt-7">
+  <div class="container">
+    <div class="row justify-center">
+      <article class="lg:col-10">
+        {
+          image && (
+            <div class="mb-10">
+              <ImageMod
+                src={image}
+                // 🌟 关键修正：移除固定的 width/height，实现图片自适应
+                // height={500}
+                // width={1200}
+                alt={title}
+                // 🌟 关键修正：添加 h-auto 和 object-cover 实现横竖图自适应
+                class="w-full rounded h-auto max-h-[80vh] object-cover" 
+                format="webp"
+              />
+            </div>
+          )
+        }
+        <h1 set:html={markdownify(title)} class="h2 mb-4" />
+        <ul class="mb-4">
+          <li class="mr-4 inline-block">
+            {/* 🌟 关键修正：使用 slugifyTitle 确保作者链接兼容性 */}
+            <a href={`/authors/${slugifyTitle(author)}`}>  
+              <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
+              {humanize(author)}
+            </a>
+          </li>
+          <li class="mr-4 inline-block">
+            <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
+            {
+              categories.map((category: string, index: number) => (
+                // 🌟 关键修正：使用 slugifyTitle 确保分类链接兼容性
+                <a href={`/categories/${slugifyTitle(category)}`}>  
+                  {humanize(category)}
+                  {index !== categories.length - 1 && ","}
+                </a>
+              ))
+            }
+          </li>
+          <li class="mr-4 inline-block">
+            <FaRegClock className={"mr-2 -mt-1 inline-block"} />
+            {dateFormat(date)}
+          </li>
+        </ul>
+        <div class="content mb-10">
+          <Content />
+        </div>
+        <div class="row items-start justify-between">
+          <div class="mb-10 flex items-center lg:col-5 lg:mb-0">
+            {/* 中文化修正 */}
+            <h5 class="mr-3">标签 :</h5>
+            <ul>
+              {
+                tags.map((tag: string) => (
+                  <li class="inline-block">
+                    <a
+                      class="m-1 block rounded bg-light px-3 py-1 hover:bg-primary hover:text-white dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark"
+                      // 🌟 关键修正：使用 slugifyTitle 确保标签链接兼容性
+                      href={`/tags/${slugifyTitle(tag)}`}
+                    >
+                      {humanize(tag)}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+          <div class="flex items-center lg:col-4">
+            {/* 中文化修正 */}
+            <h5 class="mr-3">分享 :</h5>
+            <Share
+              className="social-icons"
+              title={title}
+              description={description}
+              slug={post.id}
+            />
+          </div>
+        </div>
+        <Disqus className="mt-20" client:load />
+      </article>
+    </div>
+
+    {/* 中文化修正 */}
+    <div class="section pb-0">
+      <h2 class="h3 mb-12 text-center">相关文章</h2>
+      <div class="row justify-center">
+        {
+          similarPosts.map((post) => (
+            <div class="lg:col-4 md:col-6 mb-14">
+              <BlogCard data={post} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
