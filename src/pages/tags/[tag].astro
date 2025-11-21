@@ -12,15 +12,16 @@ export async function getStaticPaths() {
   const BLOG_FOLDER = "blog";
   const tags = await getTaxonomy(BLOG_FOLDER, "tags");
 
-  return tags.map((tag) => {
+  return tags.map((tag: string) => {
     return {
-      params: { tag },
+      params: { tag },  // 直接使用原始标签，不进行slugify
     };
   });
 }
 
 const { tag } = Astro.params;
 
+// 按标签获取文章
 const BLOG_FOLDER = "blog";
 const posts = await getSinglePage(BLOG_FOLDER);
 const filterByTags = taxonomyFilter(posts, "tags", tag!);
