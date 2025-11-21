@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "Astroplate",
-    "base_url": "https://astroplate.netlify.app",
+    "base_url": "https://rise.re",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
