@@ -12,15 +12,15 @@ const {
 const { data } = Astro.props;
 const { title, image, date, author, categories } = data.data;
 
-// 修复图片路径处理
-const isRemoteImage = image && (image.startsWith('http') || image.startsWith('//'));
+// 修复图片路径处理 - 简化逻辑
 const getImagePath = () => {
   if (!image) return null;
-  if (isRemoteImage) return image;
-  // 如果已经是 /images/ 开头的路径，直接使用
-  if (image.startsWith('/images/')) return image;
-  // 否则添加 /images/ 前缀
-  return `/images/${image}`;
+  // 如果是远程图片（http/https开头），直接使用
+  if (image.startsWith('http')) return image;
+  // 如果是 // 开头的协议相对URL
+  if (image.startsWith('//')) return `https:${image}`;
+  // 本地图片：如果已经以 / 开头，直接使用；否则添加 /images/ 前缀
+  return image.startsWith('/') ? image : `/images/${image}`;
 };
 const imagePath = getImagePath();
 ---
@@ -52,19 +52,23 @@ const imagePath = getImagePath();
         {humanize(author)}
       </a>
     </li>
-    <li class="mr-4 inline-block">
-      <div class="flex items-center text-text">
-        <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
-        {
-          categories && categories.map((category: string, index: number) => (
-            <a href={`/categories/${slugify(category)}`} class="hover:text-primary">
-              {humanize(category)}
-              {index !== categories.length - 1 && ","}
-            </a>
-          ))
-        }
-      </div>
-    </li>
+    {
+      categories && categories.length > 0 && (
+        <li class="mr-4 inline-block">
+          <div class="flex items-center text-text">
+            <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
+            {
+              categories.map((category: string, index: number) => (
+                <a href={`/categories/${slugify(category)}`} class="hover:text-primary">
+                  {humanize(category)}
+                  {index !== categories.length - 1 && ","}
+                </a>
+              ))
+            }
+          </div>
+        </li>
+      )
+    }
     {date && <li class="inline-block text-text">{dateFormat(date)}</li>}
   </ul>
   <p class="mb-6 text-text">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
