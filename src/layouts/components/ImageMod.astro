@@ -18,24 +18,23 @@ interface Props {
 // Destructuring Astro.props to get the component's props
 let { src, alt, width, height, loading, decoding, class: className, format, style } = Astro.props;
 
-// 修复：移除自动添加 /public 前缀的逻辑
-// src = `/public${src}`;  // 删除这行
-
 // 判断是否为远程图片
 const isRemoteImage = src.startsWith('http') || src.startsWith('//');
 
-// Glob pattern to load images from the /public/images folder
-const images = import.meta.glob("/public/images/**/*.{jpeg,jpg,png,gif,svg}");
+// 对于本地图片，需要从 public 目录加载
+let imageModule = null;
+if (!isRemoteImage) {
+  try {
+    // 移除开头的 / 并构建正确的导入路径
+    const imagePath = src.startsWith('/') ? src.slice(1) : src;
+    // 动态导入图片
+    imageModule = await import(`/public/${imagePath}`);
+  } catch (error) {
+    console.error(`\x1b[31mImage not found - ${src}.\x1b[0m Make sure the image is in the /public folder.`);
+  }
+}
 
-// 对于本地图片，构建正确的路径
-const localImagePath = `/public${src}`;
-
-// Check if the source path is valid (仅对本地图片检查)
-const isValidPath = isRemoteImage ? true : images[localImagePath] ? true : false;
-
-// Log a warning message in red if the image is not found
-!isValidPath && !isRemoteImage &&
-  console.error(`\x1b[31mImage not found - ${src}.\x1b[0m Make sure the image is in the /public/images folder.`);
+const isValidPath = isRemoteImage ? true : imageModule !== null;
 ---
 
 {
@@ -55,7 +54,7 @@ const isValidPath = isRemoteImage ? true : images[localImagePath] ? true : false
     ) : (
       <!-- 本地图片使用 Astro Image 组件 -->
       <Image
-        src={images[localImagePath]() as Promise<{ default: ImageMetadata }>}
+        src={imageModule.default}
         alt={alt}
         width={width}
         height={height}
