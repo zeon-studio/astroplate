@@ -1,74 +1,45 @@
 ---
-import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 
-interface Props {
-  src: string; // 本地路径 (/public/images/...) 或远程 URL (http://...)
-  alt: string;
-  width?: number; 
-  height?: number; 
-  loading?: "eager" | "lazy" | null | undefined;
-  decoding?: "async" | "auto" | "sync" | null | undefined;
-  format?: "auto" | "avif" | "jpeg" | "png" | "svg" | "webp";
-  class?: string;
-  style?: any;
-}
+const {
+  src,
+  alt,
+  width,
+  height,
+  format,
+  class: className,
+  style,
+} = Astro.props;
 
-let { src, alt, width, height, loading, decoding, class: className, format, style } = Astro.props;
+// 检查 src 是否是有效路径（非空，非 undefined，非 null）
+const isValidSrc = src && String(src).trim() !== '';
 
-// 检查是否为远程图片
-const isRemote = src.startsWith('http://') || src.startsWith('https://');
-
-let isValidPath = false;
-let imageMetadata: ImageMetadata | undefined;
-
-// --- 本地图片处理 ---
-if (!isRemote) {
-  // 使用 glob 导入 public/images 下的所有图片元数据
-  const images = import.meta.glob<ImageMetadata>("/public/images/**/*.{jpeg,jpg,png,gif,svg,webp}", { 
-    eager: true 
-  });
-  
-  // 检查传入的 src 是否存在于 glob 结果中
-  if (images[src]) {
-    imageMetadata = images[src] as ImageMetadata;
-    isValidPath = true;
-
-    // 自动获取图片的实际宽高（用于 Astro <Image> 组件优化）
-    width = width || imageMetadata.width;
-    height = height || imageMetadata.height;
-  }
-
-  if (!isValidPath) {
-    console.warn(`\x1b[33mWarning: Local image not found - ${src}.\x1b[0m Please verify the path and file type.`);
-  }
-}
+// 如果路径无效或路径指向 SVG（SVG 不需要 Image 组件处理），则使用 img 标签
+const useImageTag = !isValidSrc || String(src).endsWith(".svg"); 
 ---
 
 {
-  isRemote && (
+  // 如果路径无效或图片是 SVG，则使用标准的 <img> 标签
+  useImageTag ? (
     <img
       src={src}
       alt={alt}
-      loading={loading}
-      decoding={decoding}
-      class={className} 
+      width={width}
+      height={height}
+      class={className}
       style={style}
+      decoding="async"
+      loading="lazy"
     />
-  )
-}
-
-{
-  !isRemote && isValidPath && imageMetadata && (
+  ) : (
+    // 否则，使用 Astro 的 <Image> 组件进行优化
     <Image
-      src={imageMetadata}
+      src={src}
       alt={alt}
       width={width}
       height={height}
-      loading={loading}
-      decoding={decoding}
-      class={className}
       format={format}
+      class={className}
       style={style}
     />
   )
