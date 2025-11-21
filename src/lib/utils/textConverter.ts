@@ -1,6 +1,5 @@
----
 import { marked } from "marked";
-import realSlugify from "slugify";
+import realSlugify from "slugify"; 
 
 // slugifyTitle - 修复配置，移除 strict: true
 export const slugifyTitle = (title) => {
@@ -32,8 +31,8 @@ export const humanize = (content) => {
   // 确保只处理字符串
   if (typeof content !== 'string') return "";
   
+  // 修复：先将 slug 中的连字符转为空格，然后 humanize
   return content
-    // 修复：先将 slug 中的连字符转为空格，然后 humanize
     .replace(/^[-\s]+|[-\s]+$/g, "") // 移除开头和结尾的连字符或空格
     .replace(/[-\s]+/g, " ")       // 将所有连字符和空格转换为单个空格
     .replace(/^[a-z]/, function (m) {
