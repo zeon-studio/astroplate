@@ -16,9 +16,9 @@ if (postIndex.data.draft) {
   return Astro.redirect("/404");
 }
 const posts = await getSinglePage(BLOG_FOLDER);
-const allCategories = await getAllTaxonomy(BLOG_FOLDER, "categories");
-const categories = await getTaxonomy(BLOG_FOLDER, "categories");
-const tags = await getTaxonomy(BLOG_FOLDER, "tags");
+const allCategories = await getAllTaxonomy(BLOG_FOLDER, "分类");
+const categories = await getTaxonomy(BLOG_FOLDER, "分类");
+const tags = await getTaxonomy(BLOG_FOLDER, "标签");
 const sortedPosts = sortByDate(posts);
 const totalPages: number = Math.ceil(posts.length / config.settings.pagination);
 const currentPosts = sortedPosts.slice(0, config.settings.pagination);
