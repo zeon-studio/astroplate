@@ -11,20 +11,31 @@ const {
 const { data } = Astro.props;
 const { title, image, date, author, categories } = data.data;
 
-// 直接使用图片路径，不进行任何处理
-const imageSrc = image;
+// 修复图片路径处理
+const getImageSrc = () => {
+  if (!image) return null;
+  
+  // 远程图片直接使用
+  if (image.startsWith('http') || image.startsWith('//')) return image;
+  
+  // 本地图片：直接使用原路径（Astro会自动处理public目录）
+  return image;
+};
+
+const imageSrc = getImageSrc();
 ---
 
 <div class="bg-body dark:bg-darkmode-body">
   {
     imageSrc && (
-      <div class="mb-6 overflow-hidden rounded-lg aspect-[4/3] bg-gray-100 dark:bg-gray-800">
+      <!-- 完全自适应容器，不固定比例 -->
+      <div class="mb-6 overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800 min-h-[200px]">
         <img
           src={imageSrc}
           alt={title}
-          class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+          class="w-full h-auto max-h-64 object-contain transition-transform duration-300 hover:scale-105"
           loading="lazy"
-          onerror="this.style.display='none'"
+          style="display: block; margin: 0 auto;"
         />
       </div>
     )
@@ -65,9 +76,3 @@ const imageSrc = image;
     浏览更多
   </a>
 </div>
-
-<style>
-  .aspect-\[4\/3\] {
-    aspect-ratio: 4 / 3;
-  }
-</style>
