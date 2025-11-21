@@ -3,6 +3,8 @@ import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import PageHeader from "@/partials/PageHeader.astro";
 import { render } from "astro:content";
+// 🌟 关键修正：导入 slugifyTitle 以确保路径兼容性
+import { slugifyTitle } from "@/lib/utils/textConverter";
 
 // get static paths for all pages
 export async function getStaticPaths() {
@@ -12,7 +14,8 @@ export async function getStaticPaths() {
 
   const paths = pages.map((page) => ({
     params: {
-      regular: page.id,
+      // 🌟 关键修正：对 page.id (即文件名) 进行 slugify 处理，确保 URL 是兼容的
+      regular: slugifyTitle(page.id),
     },
     props: { page },
   }));
