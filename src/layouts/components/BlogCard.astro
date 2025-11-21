@@ -12,19 +12,26 @@ const {
 const { data } = Astro.props;
 const { title, image, date, author, categories } = data.data;
 
-// 判断图片是否为远程URL
+// 修复图片路径处理
 const isRemoteImage = image && (image.startsWith('http') || image.startsWith('//'));
-// 处理本地图片路径
-const localImagePath = image && !isRemoteImage ? `/images/${image}` : image;
+const getImagePath = () => {
+  if (!image) return null;
+  if (isRemoteImage) return image;
+  // 如果已经是 /images/ 开头的路径，直接使用
+  if (image.startsWith('/images/')) return image;
+  // 否则添加 /images/ 前缀
+  return `/images/${image}`;
+};
+const imagePath = getImagePath();
 ---
 
 <div class="bg-body dark:bg-darkmode-body">
   {
-    image && (
+    imagePath && (
       <div class="mb-6 overflow-hidden rounded">
         <ImageMod
           class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
-          src={isRemoteImage ? image : localImagePath}
+          src={imagePath}
           alt={title}
           width={445}
           height={230}
@@ -49,7 +56,7 @@ const localImagePath = image && !isRemoteImage ? `/images/${image}` : image;
       <div class="flex items-center text-text">
         <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
         {
-          categories.map((category: string, index: number) => (
+          categories && categories.map((category: string, index: number) => (
             <a href={`/categories/${slugify(category)}`} class="hover:text-primary">
               {humanize(category)}
               {index !== categories.length - 1 && ","}
@@ -65,11 +72,3 @@ const localImagePath = image && !isRemoteImage ? `/images/${image}` : image;
     浏览更多
   </a>
 </div>
-
-<style>
-  /* 确保图片容器自适应 */
-  .bg-body img {
-    max-width: 100%;
-    height: auto;
-  }
-</style>
