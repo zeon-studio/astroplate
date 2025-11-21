@@ -1,6 +1,6 @@
 // src/content/config.ts
 
-import { glob } from "@astrojs/content"; // <-- 关键修正：从 @astrojs/content 导入 glob
+
 import { defineCollection, z } from "astro:content";
 
 // 统一的通用字段定义，确保类型正确
