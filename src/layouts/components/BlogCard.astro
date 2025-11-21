@@ -12,15 +12,13 @@ const {
 const { data } = Astro.props;
 const { title, image, date, author, categories } = data.data;
 
-// 修复图片路径处理 - 简化逻辑
+// 简化图片路径处理
 const getImagePath = () => {
   if (!image) return null;
-  // 如果是远程图片（http/https开头），直接使用
-  if (image.startsWith('http')) return image;
-  // 如果是 // 开头的协议相对URL
-  if (image.startsWith('//')) return `https:${image}`;
-  // 本地图片：如果已经以 / 开头，直接使用；否则添加 /images/ 前缀
-  return image.startsWith('/') ? image : `/images/${image}`;
+  // 如果是远程图片，直接使用
+  if (image.startsWith('http') || image.startsWith('//')) return image;
+  // 本地图片：直接使用原路径（假设已经在 public 目录下）
+  return image;
 };
 const imagePath = getImagePath();
 ---
