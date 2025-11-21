@@ -4,8 +4,8 @@ import { Image } from "astro:assets";
 interface Props {
   src: string;
   alt?: string;
-  width?: number; // 保持可选
-  height?: number; // 保持可选
+  width?: number; 
+  height?: number; 
   loading?: "eager" | "lazy" | null | undefined;
   decoding?: "async" | "auto" | "sync" | null | undefined;
   format?: "auto" | "avif" | "jpeg" | "png" | "svg" | "webp";
@@ -32,7 +32,6 @@ const isRemoteImage = src.startsWith("http://") || src.startsWith("https://") ||
 let imageModule = null;
 
 if (!isRemoteImage) {
-  // 支持多种图片路径
   const images = import.meta.glob([
     "/public/images/**/*.{jpeg,jpg,png,avif,tiff,gif,webp,svg}",
     "/public/**/*.{jpeg,jpg,png,avif,tiff,gif,webp,svg}",
@@ -56,17 +55,17 @@ if (!isRemoteImage) {
 
 const isValidPath = isRemoteImage ? true : imageModule !== null;
 
-// 🌟 核心修复：确保只有当 width/height 明确传入时，才保持其值。
-// 否则，设置为 undefined，这样 Astro/HTML就不会渲染 width/height 属性。
-const finalWidth = (typeof width === 'number' && width > 0) ? width : undefined;
-const finalHeight = (typeof height === 'number' && height > 0) ? height : undefined;
+// 🌟 核心检查：如果 className 包含任何控制宽高的 CSS，我们认为它是自适应图片
+const isContained = className && (className.includes('object-cover') || className.includes('w-full') || className.includes('h-full'));
 
-// 对于自适应图片，我们只传递 CSS (className)，不传递尺寸。
-const isContained = className && (className.includes('object-cover') || className.includes('object-fill') || className.includes('w-full') || className.includes('h-full'));
+// 🌟 核心修复：只有当图片不是自适应容器的一部分时，才传递尺寸
+// 对于 Astro Image (<Image>), 如果我们不想让它固定尺寸，width/height 必须是 undefined
+const passWidth = isContained ? undefined : width;
+const passHeight = isContained ? undefined : height;
 
-// 只有在图片不是自适应容器的一部分时，才传递尺寸
-const passWidth = isContained ? undefined : finalWidth;
-const passHeight = isContained ? undefined : finalHeight;
+// 最终保险：如果传入的 width/height 是 0 或 null，也设为 undefined
+const finalPassWidth = (typeof passWidth === 'number' && passWidth > 0) ? passWidth : undefined;
+const finalPassHeight = (typeof passHeight === 'number' && passHeight > 0) ? passHeight : undefined;
 ---
 
 {
@@ -75,8 +74,8 @@ const passHeight = isContained ? undefined : finalHeight;
       <img
         src={src}
         alt={alt || ""}
-        width={passWidth}
-        height={passHeight}
+        width={finalPassWidth}
+        height={finalPassHeight}
         loading={loading}
         decoding={decoding}
         class={className}
@@ -87,8 +86,8 @@ const passHeight = isContained ? undefined : finalHeight;
       <Image
         src={imageModule}
         alt={alt || ""}
-        width={passWidth}
-        height={passHeight}
+        width={finalPassWidth}
+        height={finalPassHeight}
         loading={loading}
         decoding={decoding}
         format={format}
