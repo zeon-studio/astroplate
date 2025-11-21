@@ -14,9 +14,29 @@ let parts = [
 
 paths.forEach((label: string, i: number) => {
   const href = `/${paths.slice(0, i + 1).join("/")}`;
+  
+  // 跳过 "page" 路径，因为它只是分页标识
+  if (label === "page") return;
+  
+  let displayLabel = humanize(label.replace(".html", "").replace(/[-_]/g, " ")) || "";
+  
+  // 特殊处理博客相关路径
+  if (label === "blog") {
+    displayLabel = "博客";
+  } else if (paths[i - 1] === "blog" && paths[i] === "page" && paths[i + 1]) {
+    // 如果是博客分页，格式化为 "第 X 页"
+    const pageNum = paths[i + 1];
+    displayLabel = `第 ${pageNum} 页`;
+    // 跳过下一个元素（页码），因为已经在这一步处理了
+    return;
+  } else if (!isNaN(Number(label)) && paths[i - 1] === "page") {
+    // 如果是页码且前面是 "page"，跳过这个元素（因为在上一步已经处理了）
+    return;
+  }
+  
   label !== "页" &&
     parts.push({
-      label: humanize(label.replace(".html", "").replace(/[-_]/g, " ")) || "",
+      label: displayLabel,
       href,
       "aria-label": Astro.url.pathname === href ? "页" : undefined,
     });
