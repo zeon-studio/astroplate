@@ -22,23 +22,26 @@ const {
 
 const { theme_switcher }: { theme_switcher: boolean } = config.settings;
 
-// --- 关键修正 1: 确保 logo 路径包含 /public 前缀 ---
-let primaryLogoSrc = src ? src : logo;
-if (primaryLogoSrc && !primaryLogoSrc.startsWith('http') && !primaryLogoSrc.startsWith('/public')) {
-  primaryLogoSrc = `/public${primaryLogoSrc}`;
-}
+// --- 关键修正 1: 确保 logo 路径有效且包含 /public 前缀 ---
+let primaryLogoPath = src || logo;
+let primaryLogoSrc = primaryLogoPath && !primaryLogoPath.startsWith('http') && !primaryLogoPath.startsWith('/public') 
+                     ? `/public${primaryLogoPath}` 
+                     : primaryLogoPath;
 
-// --- 关键修正 2: 确保深色模式 logo 路径包含 /public 前缀 ---
-let darkmodeLogoSrc = srcDarkmode ? srcDarkmode : logo_darkmode;
-if (darkmodeLogoSrc && !darkmodeLogoSrc.startsWith('http') && !darkmodeLogoSrc.startsWith('/public')) {
-  darkmodeLogoSrc = `/public${darkmodeLogoSrc}`;
-}
-// ----------------------------------------------------
+// --- 关键修正 2: 确保深色模式 logo 路径有效且包含 /public 前缀 ---
+let darkmodeLogoPath = srcDarkmode || logo_darkmode;
+let darkmodeLogoSrc = darkmodeLogoPath && !darkmodeLogoPath.startsWith('http') && !darkmodeLogoPath.startsWith('/public')
+                      ? `/public${darkmodeLogoPath}`
+                      : darkmodeLogoPath;
+
+// --- 关键修正 3: 确保 width 和 height 是数字或有效的 CSS 值 ---
+const logoW = parseInt(logo_width.replace("px", "")) || 100;
+const logoH = parseInt(logo_height.replace("px", "")) || 30;
 ---
 
 <a href="/" class="navbar-brand inline-block">
   {
-    // --- 关键修正 3: 仅在 primaryLogoSrc 或 darkmodeLogoSrc 有效时才渲染图片 ---
+    // 检查是否有任何图片源 (primaryLogoSrc 或 darkmodeLogoSrc)
     (primaryLogoSrc || darkmodeLogoSrc) ? (
       <>
         {/* 常规模式 Logo (仅在 primaryLogoSrc 有效时渲染) */}
@@ -46,12 +49,12 @@ if (darkmodeLogoSrc && !darkmodeLogoSrc.startsWith('http') && !darkmodeLogoSrc.s
           <ImageMod
             src={primaryLogoSrc} 
             class={`inline-block ${theme_switcher && "dark:hidden"}`}
-            width={logo_width.replace("px", "") * 2}
-            height={logo_height.replace("px", "") * 2}
+            width={logoW * 2}
+            height={logoH * 2}
             alt={title}
             style={{
-              height: logo_height.replace("px", "") + "px",
-              width: logo_width.replace("px", "") + "px",
+              height: logoH + "px",
+              width: logoW + "px",
             }}
             format="webp"
           />
@@ -62,12 +65,12 @@ if (darkmodeLogoSrc && !darkmodeLogoSrc.startsWith('http') && !darkmodeLogoSrc.s
           <ImageMod
             src={darkmodeLogoSrc} 
             class={"hidden dark:inline-block"}
-            width={logo_width.replace("px", "") * 2}
-            height={logo_height.replace("px", "") * 2}
+            width={logoW * 2}
+            height={logoH * 2}
             alt={title}
             style={{
-              height: logo_height.replace("px", "") + "px",
-              width: logo_width.replace("px", "") + "px",
+              height: logoH + "px",
+              width: logoW + "px",
             }}
             format="webp"
           />
