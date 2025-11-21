@@ -1,8 +1,24 @@
 import { slug } from "github-slugger";
 import { marked } from "marked";
 
-// slugify
+// 修复中文slugify函数
 export const slugify = (content: string) => {
+  if (!content) return "";
+  
+  // 如果是中文，使用自定义slugify
+  if (/[\u4e00-\u9fa5]/.test(content)) {
+    return content
+      .toString()
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, "-") // 空格替换为连字符
+      .replace(/[^\w\u4e00-\u9fa5\-]+/g, "") // 保留中文和单词字符
+      .replace(/\-\-+/g, "-") // 合并多个连字符
+      .replace(/^-+/, "") // 移除开头的连字符
+      .replace(/-+$/, ""); // 移除结尾的连字符
+  }
+  
+  // 英文内容使用原来的github-slugger
   return slug(content);
 };
 
