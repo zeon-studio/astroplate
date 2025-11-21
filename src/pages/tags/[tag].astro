@@ -5,7 +5,8 @@ import { getSinglePage } from "@/lib/contentParser.astro";
 import { getTaxonomy } from "@/lib/taxonomyParser.astro";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import taxonomyFilter from "@/lib/utils/taxonomyFilter";
-import { humanize } from "@/lib/utils/textConverter";
+// 🌟 关键修正 1：导入 slugifyTitle 以便在 getStaticPaths 中使用
+import { humanize, slugifyTitle } from "@/lib/utils/textConverter"; 
 import PageHeader from "@/partials/PageHeader.astro";
 
 export async function getStaticPaths() {
@@ -14,7 +15,10 @@ export async function getStaticPaths() {
 
   return tags.map((tag: string) => {
     return {
-      params: { tag },  // 直接使用原始标签，不进行slugify
+      params: { 
+        // 🌟 关键修正 2：对标签进行 slugify 处理，确保 URL 是兼容的
+        tag: slugifyTitle(tag), 
+      },
     };
   });
 }
@@ -24,12 +28,18 @@ const { tag } = Astro.params;
 // 按标签获取文章
 const BLOG_FOLDER = "blog";
 const posts = await getSinglePage(BLOG_FOLDER);
-const filterByTags = taxonomyFilter(posts, "tags", tag!);
+// 🌟 关键修正 3：我们不能直接使用 tag (它是 slug 形式) 去过滤原始标签 (它是中文形式)。
+//    需要传入原始标签 humanize(tag!) 进行过滤。
+const originalTag = humanize(tag!);
+const filterByTags = taxonomyFilter(posts, "tags", originalTag); 
 const sortedPosts = sortByDate(filterByTags);
+
+// 确保页面标题显示原始标签名，而不是拼音
+const pageTitle = originalTag;
 ---
 
-<Base title={humanize(tag!)}>
-  <PageHeader title={humanize(tag!)} />
+<Base title={pageTitle}>
+  <PageHeader title={pageTitle} />
   <div class="section-sm pb-0">
     <div class="container">
       <div class="row">
