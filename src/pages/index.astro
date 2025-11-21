@@ -7,15 +7,18 @@ import CallToAction from "@/partials/CallToAction.astro";
 import Testimonial from "@/partials/Testimonial.astro";
 import { FaCheck } from "react-icons/fa";
 
+// ✅ 修正 1：将 'ctaSection' 更改为正确的集合名称 'sections'
+const call_to_action = await getListPage("sections", "call-to-action");
+
+// ✅ 修正 2：将 'testimonialSection' 更改为正确的集合名称 'sections'
+const testimonial = await getListPage("sections", "testimonial");
+
 const homepage = await getListPage("homepage", "-index");
-const call_to_action = await getListPage("ctaSection", "call-to-action");
-const testimonial = await getListPage("testimonialSection", "testimonial");
 
 const { banner, features } = homepage.data;
 ---
 
 <Base>
-  <!-- Banner -->
   <section class="section pt-14">
     <div class="container">
       <div class="row justify-center">
@@ -56,9 +59,6 @@ const { banner, features } = homepage.data;
       </div>
     </div>
   </section>
-  <!-- /Banner -->
-
-  <!-- Features -->
   {
     features.map((feature, index: number) => (
       <section class={`section-sm ${index % 2 === 0 && "bg-gradient"}`}>
@@ -97,8 +97,6 @@ const { banner, features } = homepage.data;
       </section>
     ))
   }
-  <!-- /Features -->
-
   <Testimonial testimonial={testimonial} />
   <CallToAction call_to_action={call_to_action} />
 </Base>
