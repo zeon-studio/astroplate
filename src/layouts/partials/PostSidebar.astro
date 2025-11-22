@@ -1,7 +1,7 @@
 ---
 import { humanize } from "@/lib/utils/textConverter";
 
-const { tags, categories, allCategories } = Astro.props;
+const { tags, category, allCategories } = Astro.props;
 ---
 
 <div class="lg:col-4">
@@ -11,7 +11,7 @@ const { tags, categories, allCategories } = Astro.props;
     <div class="rounded bg-light p-8 dark:bg-darkmode-light">
       <ul class="space-y-4">
         {
-          categories.map((category: any) => {
+          category.map((category: any) => {
             const count = allCategories.filter(
               (c: any) => c === category
             ).length;
