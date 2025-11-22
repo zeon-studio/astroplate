@@ -30,12 +30,12 @@
 
   "params": {
     "contact_form_action": "#",
-    "copyright": "by [Ouro.ch](https://ouro.ch)"
+    "copyright": "版权所有 © 2025 by [Ouro.ch](https://ouro.ch)"
   },
 
   "navigation_button": {
     "enable": true,
-    "label": "联系",
+    "label": "联系我们",
     "link": "https://sai.st"
   },
 
