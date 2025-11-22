@@ -3,19 +3,25 @@ import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import PageHeader from "@/partials/PageHeader.astro";
 import { render } from "astro:content";
-// 🌟 关键修正：导入 slugifyTitle 以确保路径兼容性
-import { slugifyTitle } from "@/lib/utils/textConverter";
+
+// ⚠️ 假设这个工具函数在主题中用于清理URL，我们暂时保留它，但实际应该使用 page.slug
+// import { slugifyTitle } from "@/lib/utils/textConverter"; 
+
+// 关键修复：由于 page.id 包含路径信息，使用 page.slug 才是生成干净 URL的正确选择
+// 它能将 'pages/elements.mdx' 转换为 'elements'。
 
 // get static paths for all pages
 export async function getStaticPaths() {
   const COLLECTION_FOLDER = "pages";
 
+  // 假设 getSinglePage 返回的是 Astro content collection entries
   const pages = await getSinglePage(COLLECTION_FOLDER);
 
   const paths = pages.map((page) => ({
     params: {
-      // 🌟 关键修正：对 page.id (即文件名) 进行 slugify 处理，确保 URL 是兼容的
-      regular: slugifyTitle(page.id),
+      // ✅ 修复：保留主题的键名 'regular'
+      // ✅ 修复：使用 page.slug 获取干净的 URL 片段 (如 'elements')
+      regular: page.slug,
     },
     props: { page },
   }));
