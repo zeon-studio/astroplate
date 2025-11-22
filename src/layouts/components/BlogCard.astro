@@ -5,30 +5,37 @@ import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
 import { FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./ImageMod.astro";
 
+// 从 config 中解构设置
 const {
   summary_length,
   blog_folder,
 }: { summary_length: number; blog_folder: string } = config.settings;
 
 const { data } = Astro.props;
-// 使用 category 字段（单数）
+// 确保使用 category 字段（单数）
 const { title, image, date, author, category } = data.data; 
 
 const readMoreText = "阅读更多";
 const defaultAuthorText = "作者"; 
 
-// 🚀 核心修复：将复杂的逻辑和变量定义移到脚本块 (---)
+// --- 摘要提取和清理逻辑 ---
 
-// 1. 定义用于清理 body 的正则表达式：匹配位于开头的 'import ... from ...;' 或 'export ...;' 语句
-// 注意：这个 regex 必须在脚本块中定义
+// 1. 定义用于清理 body 顶部的 import/export 语句的正则表达式
 const CLEANUP_REGEX = /^(import\s+[^;]+\s+from\s+[^;]+;|export\s+[^;]+;)\s*/g; 
 
-// 2. 清理 body
-// 如果 data.body 存在，则进行清理；否则使用空字符串
-const cleanedBody = data.body ? data.body.replace(CLEANUP_REGEX, '') : '';
+// 2. 定义用于移除所有 HTML/JSX 标签和 Markdown 图片/链接标记的正则表达式
+// 目标：移除 <.../> (HTML/JSX 标签) 和 ![]() (Markdown 图片标记)
+const TAG_REGEX = /<[^>]*>|!\[[^\]]*\]\([^)]*\)/g; 
 
-// 3. 截断和纯文本转换，并赋值给一个最终变量
-const summaryText = plainify(cleanedBody.slice(0, Number(summary_length)));
+// 3. 清理 body
+const bodyContent = data.body ? data.body.replace(CLEANUP_REGEX, '') : '';
+
+// 4. 关键：移除所有标签/组件/图片标记，只保留纯文本，然后截断。
+// 这样可以避免摘要在 Markdown/JSX 标记中间被截断
+const pureTextContent = bodyContent.replace(TAG_REGEX, '');
+
+// 5. 截断和纯文本转换
+const summaryText = plainify(pureTextContent.slice(0, Number(summary_length)));
 ---
 
 <div class="bg-body dark:bg-darkmode-body">
@@ -59,7 +66,7 @@ const summaryText = plainify(cleanedBody.slice(0, Number(summary_length)));
     <li class="mr-4 inline-block">
       <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
       {
-        // 使用 category 变量
+        // 确保使用 category 变量
         category && category.length > 0 && category.map((cat: string, index: number) => (
           <a href={`/categories/${slugify(cat)}`}>
             {humanize(cat)}
