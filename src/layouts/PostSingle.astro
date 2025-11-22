@@ -3,38 +3,46 @@ import BlogCard from "@/components/BlogCard.astro";
 import Share from "@/components/Share.astro";
 import Disqus from "@/helpers/Disqus";
 import { getSinglePage } from "@/lib/contentParser.astro";
+import { getTaxonomy } from "@/lib/taxonomyParser.js"; // 🌟 导入获取所有分类的函数
 import dateFormat from "@/lib/utils/dateFormat";
 import similarItems from "@/lib/utils/similarItems";
-// 🌟 关键修正 1：导入 slugifyTitle 确保中文链接兼容性
-import { humanize, markdownify, slugifyTitle } from "@/lib/utils/textConverter"; 
+import { humanize, markdownify, slugifyTitle } from "@/lib/utils/textConverter";
 import { render } from "astro:content";
 import { FaRegClock, FaRegFolder, FaRegUserCircle } from "react-icons/fa";
-// 🌟 关键修正 2：修复 ImageMod 的路径引用
 import ImageMod from "@/components/ImageMod.astro";
+
+// 🚀 假设侧边栏组件的路径是这个，请根据您的实际路径修改
+import PostSidebar from "@/partials/PostSidebar.astro"; 
 
 const COLLECTION_FOLDER = "blog";
 const { post } = Astro.props;
 
+// 1. 获取所有文章 (用于计算类似文章、所有分类列表)
 const posts = await getSinglePage(COLLECTION_FOLDER);
 const similarPosts = similarItems(post, posts);
 const { Content } = await render(post);
 const { title, description, author, category, image, date, tags } = post.data;
+
+// 🌟 2. 侧边栏数据修正：获取所有分类名 (用于侧边栏列表)
+// getTaxonomy 返回去重后的分类名列表，作为侧边栏的迭代数据
+const allCategoryNames = await getTaxonomy(COLLECTION_FOLDER, "category"); 
+
+// 🌟 3. 侧边栏数据修正：获取所有文章的分类列表 (用于侧边栏计数)
+// flatMap 得到一个包含所有分类名称的数组（包含重复项）
+const allCategoriesForCount = posts.flatMap(p => p.data.category || []); 
 ---
 
 <section class="section pt-7">
   <div class="container">
     <div class="row justify-center">
-      <article class="lg:col-10">
+
+      <article class="lg:col-8 mb-16 lg:mb-0"> 
         {
           image && (
             <div class="mb-10">
               <ImageMod
                 src={image}
-                // 🌟 关键修正 3：移除固定的 width/height，实现图片自适应
-                // height={500}
-                // width={1200}
                 alt={title}
-                // 🌟 关键修正 3：添加 CSS 类实现横竖图自适应
                 class="w-full rounded h-auto max-h-[80vh] object-cover" 
                 format="webp"
               />
@@ -44,7 +52,6 @@ const { title, description, author, category, image, date, tags } = post.data;
         <h1 set:html={markdownify(title)} class="h2 mb-4" />
         <ul class="mb-4">
           <li class="mr-4 inline-block">
-            {/* 🌟 关键修正 2：使用 slugifyTitle 确保作者链接兼容性 */}
             <a href={`/authors/${slugifyTitle(author)}`}>  
               <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
               {humanize(author)}
@@ -53,8 +60,8 @@ const { title, description, author, category, image, date, tags } = post.data;
           <li class="mr-4 inline-block">
             <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
             {
+              // 使用当前文章的 category 字段
               category.map((category: string, index: number) => (
-                // 🌟 关键修正 2：使用 slugifyTitle 确保分类链接兼容性
                 <a href={`/categories/${slugifyTitle(category)}`}>  
                   {humanize(category)}
                   {index !== category.length - 1 && ","}
@@ -70,9 +77,10 @@ const { title, description, author, category, image, date, tags } = post.data;
         <div class="content mb-10">
           <Content />
         </div>
+        
+        {/* 底部 tags and share section */}
         <div class="row items-start justify-between">
           <div class="mb-10 flex items-center lg:col-5 lg:mb-0">
-            {/* 中文化修正 */}
             <h5 class="mr-3">标签 :</h5>
             <ul>
               {
@@ -80,7 +88,6 @@ const { title, description, author, category, image, date, tags } = post.data;
                   <li class="inline-block">
                     <a
                       class="m-1 block rounded bg-light px-3 py-1 hover:bg-primary hover:text-white dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark"
-                      // 🌟 关键修正 2：使用 slugifyTitle 确保标签链接兼容性
                       href={`/tags/${slugifyTitle(tag)}`}
                     >
                       {humanize(tag)}
@@ -91,7 +98,6 @@ const { title, description, author, category, image, date, tags } = post.data;
             </ul>
           </div>
           <div class="flex items-center lg:col-4">
-            {/* 中文化修正 */}
             <h5 class="mr-3">分享 :</h5>
             <Share
               className="social-icons"
@@ -103,9 +109,20 @@ const { title, description, author, category, image, date, tags } = post.data;
         </div>
         <Disqus className="mt-20" client:load />
       </article>
+
+      <div class="lg:col-4">
+        <PostSidebar 
+            tags={tags} 
+            // 传递去重后的所有分类名称列表 (用于迭代显示)
+            category={allCategoryNames} 
+            // 传递所有分类列表 (用于计数)
+            allCategories={allCategoriesForCount}
+        />
+      </div>
+
     </div>
 
-    {/* 中文化修正 */}
+    {/* 相关文章 section */}
     <div class="section pb-0">
       <h2 class="h3 mb-12 text-center">相关文章</h2>
       <div class="row justify-center">
