@@ -11,9 +11,9 @@ import PageHeader from "@/partials/PageHeader.astro";
 // 获取所有分类的静态路径
 export async function getStaticPaths() {
   const BLOG_FOLDER = "blog";
-  const categories = await getTaxonomy(BLOG_FOLDER, "categories");
+  const category = await getTaxonomy(BLOG_FOLDER, "category");
 
-  return categories
+  return category
     // 过滤掉空字符串或仅包含空格的原始分类名
     .filter((category: string) => category && category.trim() !== "")
     .map((category: string) => {
@@ -43,7 +43,7 @@ const posts = await getSinglePage(BLOG_FOLDER);
 
 // 使用 humanize(category!) 恢复原始中文名进行内容过滤
 const originalCategory = humanize(category!); 
-const filterByCategories = taxonomyFilter(posts, "categories", originalCategory);
+const filterByCategories = taxonomyFilter(posts, "category", originalCategory);
 const sortedPosts = sortByDate(filterByCategories);
 
 // 确保页面标题显示原始分类名，而不是拼音
