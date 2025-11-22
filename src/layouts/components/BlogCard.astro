@@ -11,7 +11,8 @@ const {
 }: { summary_length: number; blog_folder: string } = config.settings;
 
 const { data } = Astro.props;
-const { title, image, date, author, categories } = data.data;
+// 🚀 核心修复：将 categories 替换为 category
+const { title, image, date, author, category } = data.data; 
 
 const readMoreText = "阅读更多";
 const defaultAuthorText = "作者"; 
@@ -46,10 +47,11 @@ const defaultAuthorText = "作者";
     <li class="mr-4 inline-block">
       <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
       {
-        categories.map((category: string, index: number) => (
-          <a href={`/categories/${slugify(category)}`}>
-            {humanize(category)}
-            {index !== categories.length - 1 && "，"} 
+        // 🚀 核心修复：使用 category 变量，并确保它是一个数组
+        category && category.length > 0 && category.map((cat: string, index: number) => (
+          <a href={`/categories/${slugify(cat)}`}> {/* ⚠️ 注意这里使用 cat 而不是 category */}
+            {humanize(cat)}
+            {index !== category.length - 1 && "，"} 
           </a>
         ))
       }
