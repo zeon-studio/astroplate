@@ -3,12 +3,12 @@ import { defineCollection, z } from "astro:content";
 // 统一的通用字段定义，确保类型正确
 const commonFields = {
   title: z.string(),
-  description: z.string().optional(), // description 设为 optional 更安全
-  meta_title: z.string().optional(),
+  description: z.string().optional(), // 页面描述
+  meta_title: z.string().optional(), // SEO 标题
   date: z.date().optional(),
-  // 关键：image 设为 optional，并保持 string 类型
+  // 关键：image 设为 optional，并保持 string 类型（适用于 /public/ 或 http 路径）
   image: z.string().optional(), 
-  draft: z.boolean().default(true).optional(), // draft 设为 optional 且默认 true 更安全
+  draft: z.boolean().default(true).optional(), // 是否为草稿
 };
 
 // --- Post collection schema (博客文章) ---
@@ -99,7 +99,7 @@ const homepageCollection = defineCollection({
   }),
 });
 
-// --- 🌟 关键修正：定义 'sections' 集合的子 schema ---
+// --- Sections 集合的子 schema ---
 
 // CTA 集合的 Schema
 const ctaSchema = z.object({
@@ -129,7 +129,7 @@ const testimonialSchema = z.object({
   ),
 });
 
-// 🌟 关键修正：Sections 集合定义。它必须匹配实际的文件夹名 'sections'
+// Sections 集合定义。它必须匹配实际的文件夹名 'sections'
 const sectionsCollection = defineCollection({
   type: 'content',
   // 使用 z.union 将 CTA 和 Testimonial 的结构合并为一个 Schema
@@ -147,6 +147,6 @@ export const collections = {
   about: aboutCollection,
   contact: contactCollection,
 
-  // 🌟 最终修正: 导出名为 'sections' 的集合
+  // 导出名为 'sections' 的集合
   sections: sectionsCollection,
 };
