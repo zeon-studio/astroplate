@@ -2,7 +2,7 @@
 title: Sai
 email: x@sai.st
 image: "/images/avatar.png"
-description: this is meta description
+description: Sai 的介绍
 social:
   - name: github
     icon: FaGithub
@@ -12,9 +12,6 @@ social:
     icon: FaTwitter
     link: https://twitter.com
 
-  - name: linkedin
-    icon: FaLinkedin
-    link: https://linkedin.com
 ---
 
-lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostr navigation et dolore magna aliqua.
+在这个空间，我记录我的发现与灵感，也希望分享给同样热爱探索、喜欢尝鲜的朋友。每一次点击、每一次出发，都是一场新的探险。
