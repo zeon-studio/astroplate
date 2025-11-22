@@ -5,6 +5,18 @@
       "url": "/"
     },
     {
+      "name": "博客",
+      "url": "/blog"
+    },
+    {
+      "name": "分类",
+      "url": "/categories"
+    },
+    {
+      "name": "标签",
+      "url": "/tags"
+    },
+    {
       "name": "关于",
       "url": "/about"
     },
@@ -22,24 +34,8 @@
           "url": "/contact"
         },
         {
-          "name": "博客",
-          "url": "/blog"
-        },
-        {
           "name": "作者",
           "url": "/authors"
-        },
-        {
-          "name": "分类",
-          "url": "/categories"
-        },
-        {
-          "name": "标签",
-          "url": "/tags"
-        },
-        {
-          "name": "404 Page",
-          "url": "/404"
         }
       ]
     }
