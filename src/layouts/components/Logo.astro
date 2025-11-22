@@ -22,21 +22,24 @@ const {
 
 const { theme_switcher }: { theme_switcher: boolean } = config.settings;
 
-// 1. 获取主 logo 路径，并确保路径有效且有 /public 前缀
+// 1. 获取主 logo 路径
 let primaryLogoPath = src || logo;
 let primaryLogoSrc = primaryLogoPath && String(primaryLogoPath).trim() !== ''
-                     ? (!primaryLogoPath.startsWith('http') && !primaryLogoPath.startsWith('/public') 
-                        ? `/public${primaryLogoPath}` 
+                     ? (!primaryLogoPath.startsWith('http') 
+                        // ✅ 修复核心问题：删除错误的 /public 拼接。
+                        // 确保路径以 / 开头，以便正确引用 public 文件夹下的静态资源。
+                        ? (primaryLogoPath.startsWith('/') ? primaryLogoPath : `/${primaryLogoPath}`)
                         : primaryLogoPath)
-                     : null; // 路径无效时强制设置为 null
+                     : null; // 路径无效时设置为 null
 
-// 2. 获取深色模式 logo 路径，并确保路径有效且有 /public 前缀
+// 2. 获取深色模式 logo 路径
 let darkmodeLogoPath = srcDarkmode || logo_darkmode;
 let darkmodeLogoSrc = darkmodeLogoPath && String(darkmodeLogoPath).trim() !== ''
-                      ? (!darkmodeLogoPath.startsWith('http') && !darkmodeLogoPath.startsWith('/public')
-                         ? `/public${darkmodeLogoPath}`
+                      ? (!darkmodeLogoPath.startsWith('http')
+                         // ✅ 修复核心问题：删除错误的 /public 拼接。
+                         ? (darkmodeLogoPath.startsWith('/') ? darkmodeLogoPath : `/${darkmodeLogoPath}`)
                          : darkmodeLogoPath)
-                      : null; // 路径无效时强制设置为 null
+                      : null; // 路径无效时设置为 null
 
 // 3. 安全解析 logo 尺寸，即使 config 中没有 'px'
 const logoW = parseInt(String(logo_width).replace("px", "")) || 100;
