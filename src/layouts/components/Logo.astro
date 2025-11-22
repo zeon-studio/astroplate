@@ -26,22 +26,21 @@ const { theme_switcher }: { theme_switcher: boolean } = config.settings;
 let primaryLogoPath = src || logo;
 let primaryLogoSrc = primaryLogoPath && String(primaryLogoPath).trim() !== ''
                      ? (!primaryLogoPath.startsWith('http') 
-                        // ✅ 修复核心问题：删除错误的 /public 拼接。
-                        // 确保路径以 / 开头，以便正确引用 public 文件夹下的静态资源。
+                        // 修复后的路径逻辑 (删除 /public)
                         ? (primaryLogoPath.startsWith('/') ? primaryLogoPath : `/${primaryLogoPath}`)
                         : primaryLogoPath)
-                     : null; // 路径无效时设置为 null
+                     : null; 
 
 // 2. 获取深色模式 logo 路径
 let darkmodeLogoPath = srcDarkmode || logo_darkmode;
 let darkmodeLogoSrc = darkmodeLogoPath && String(darkmodeLogoPath).trim() !== ''
                       ? (!darkmodeLogoPath.startsWith('http')
-                         // ✅ 修复核心问题：删除错误的 /public 拼接。
+                         // 修复后的路径逻辑 (删除 /public)
                          ? (darkmodeLogoPath.startsWith('/') ? darkmodeLogoPath : `/${darkmodeLogoPath}`)
                          : darkmodeLogoPath)
-                      : null; // 路径无效时设置为 null
+                      : null; 
 
-// 3. 安全解析 logo 尺寸，即使 config 中没有 'px'
+// 3. 安全解析 logo 尺寸
 const logoW = parseInt(String(logo_width).replace("px", "")) || 100;
 const logoH = parseInt(String(logo_height).replace("px", "")) || 30;
 ---
