@@ -1,46 +1,29 @@
 ---
-// 确保这个文件完全替换 /src/layouts/components/BlogCard.astro
 import config from "@/config/config.json";
 import dateFormat from "@/lib/utils/dateFormat";
 import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
 import { FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./ImageMod.astro";
 
-// 从配置文件获取设置
 const {
   summary_length,
   blog_folder,
 }: { summary_length: number; blog_folder: string } = config.settings;
 
-// 🌟 注意：BlogCard 使用的是 content 属性
-const { content } = Astro.props; 
-
-// 🌟 安全检查：确保 content 存在
-if (!content || !content.title) {
-    return <></>; 
-}
-
-// 🌟 注意：这里是 BlogCard 的数据结构
-const { title, img, publishDate, tags = [], video } = content;
-const image = img; // 将 img 映射为 image 以保持模板一致性
-const date = publishDate; // 将 publishDate 映射为 date
-const categories = tags; // 将 tags 映射为 categories 
-const author = content.author || "佚名"; // 确保 author 字段存在
+const { data } = Astro.props;
+const { title, image, date, author, categories } = data.data;
 
 const readMoreText = "阅读更多";
 const defaultAuthorText = "作者"; 
-const postLink = `/blog/${content.slug ?? content.id}`;
-
-const postBody = content.description || ""; // 使用 description 作为摘要来源
 ---
 
 <div class="bg-body dark:bg-darkmode-body">
   {
     image && (
-      // 使用您成功的版本结构：链接包裹图片，图片使用 h-auto
-      <a href={postLink} class="block mb-6 w-full overflow-hidden rounded">
+      <a href={`/${blog_folder}/${data.id}`} class="block mb-6 w-full overflow-hidden rounded">
+        {/* 🌟 核心修复：移除固定的 aspect-ratio，让图片按其内容比例显示 */}
         <ImageMod
-          class="w-full h-auto object-cover" 
+          class="w-full h-auto object-cover" // h-auto 确保图片按其原始比例显示
           src={image} 
           alt={title}
           format="webp"
@@ -49,7 +32,7 @@ const postBody = content.description || ""; // 使用 description 作为摘要�
     )
   }
   <h4 class="mb-3">
-    <a href={postLink}>
+    <a href={`/${blog_folder}/${data.id}`}>
       {title}
     </a>
   </h4>
@@ -60,27 +43,22 @@ const postBody = content.description || ""; // 使用 description 作为摘要�
         {humanize(author) || defaultAuthorText}
       </a>
     </li>
-    {/* 适配 categories/tags 的显示逻辑 */}
-    {categories && categories.length > 0 && (
-      <li class="mr-4 inline-block">
-        <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
-        {
-          categories.map((category: string, index: number) => (
-            <a href={`/categories/${slugify(category)}`} key={category}>
-              {humanize(category)}
-              {index !== categories.length - 1 && "，"} 
-            </a>
-          ))
-        }
-      </li>
-    )}
+    <li class="mr-4 inline-block">
+      <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
+      {
+        categories.map((category: string, index: number) => (
+          <a href={`/categories/${slugify(category)}`}>
+            {humanize(category)}
+            {index !== categories.length - 1 && "，"} 
+          </a>
+        ))
+      }
+    </li>
     {date && <li class="inline-block">{dateFormat(date)}</li>}
   </ul>
+  <p class="mb-6">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
   
-  {/* 使用 description/body 作为摘要 */}
-  <p class="mb-6">{plainify(postBody.slice(0, Number(summary_length)))}</p>
-  
-  <a class="btn btn-outline-primary btn-sm" href={postLink}>
+  <a class="btn btn-outline-primary btn-sm" href={`/${blog_folder}/${data.id}`}>
     {readMoreText}
   </a>
 </div>
