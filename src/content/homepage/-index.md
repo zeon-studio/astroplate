@@ -3,7 +3,7 @@
 banner:
   title: "标题建设中"
   content: "内容建设中"
-  image: "/images/banner.png"
+  image: "https://img.sorayt.cn/f/v0h6/DSC00763.BnP4sFeo.jpg"
   button:
     enable: true
     label: "Sai"
@@ -11,11 +11,11 @@ banner:
 
 # Features
 features:
-  - title: "What's Included in Astroplate"
-    image: "/images/service-1.png"
+  - title: "测试Featires"
+    image: "https://img.sorayt.cn/f/v0h6/DSC00763.BnP4sFeo.jpg"
     content: "Astroplate is a comprehensive starter template that includes everything you need to get started with your Astro project. What's Included in Astroplate"
     bulletpoints:
-      - "10+ Pre-build pages"
+      - "测试"
       - "95+ Google Pagespeed Score"
       - "Build with Astro and TailwindCSS for easy and customizable styling"
       - "Fully responsive on all devices"
@@ -23,11 +23,11 @@ features:
       - "**Open-source and free** for personal and commercial use"
     button:
       enable: false
-      label: "Get Started Now"
+      label: "马上开始"
       link: "#"
 
-  - title: "Discover the Key Features Of Astro"
-    image: "/images/service-2.png"
+  - title: "测试下半部分"
+    image: "https://img.sorayt.cn/f/v0h6/DSC00763.BnP4sFeo.jpg"
     content: "Astro is an all-in-one web framework for building fast, content-focused websites. It offers a range of exciting features for developers and website creators. Some of the key features are:"
     bulletpoints:
       - "Zero JS, by default: No JavaScript runtime overhead to slow you down."
@@ -36,10 +36,10 @@ features:
     button:
       enable: true
       label: "Get Started Now"
-      link: "https://github.com/zeon-studio/astroplate"
+      link: "https://sai.st"
 
-  - title: "The Top Reasons to Choose Astro for Your Next Project"
-    image: "/images/service-3.png"
+  - title: "测试第三部分"
+    image: "https://img.sorayt.cn/f/v0h6/DSC00763.BnP4sFeo.jpg"
     content: "With Astro, you can build modern and content-focused websites without sacrificing performance or ease of use."
     bulletpoints:
       - "Instantly load static sites for better user experience and SEO."
