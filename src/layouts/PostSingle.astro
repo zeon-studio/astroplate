@@ -53,11 +53,11 @@ const { title, description, author, category, image, date, tags } = post.data;
           <li class="mr-4 inline-block">
             <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
             {
-              categories.map((category: string, index: number) => (
+              category.map((category: string, index: number) => (
                 // 🌟 关键修正 2：使用 slugifyTitle 确保分类链接兼容性
                 <a href={`/categories/${slugifyTitle(category)}`}>  
                   {humanize(category)}
-                  {index !== categories.length - 1 && ","}
+                  {index !== category.length - 1 && ","}
                 </a>
               ))
             }
