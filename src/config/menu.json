@@ -21,17 +21,17 @@
       "url": "/about"
     },
     {
-      "name": "样式元素",
-      "url": "/elements"
-    },
+      "name": "联系",
+      "url": "/contact"
+    }
     {
       "name": "页面",
       "url": "",
       "hasChildren": true,
       "children": [
         {
-          "name": "联系",
-          "url": "/contact"
+          "name": "样式元素",
+          "url": "/elements"
         },
         {
           "name": "作者",
