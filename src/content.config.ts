@@ -21,8 +21,8 @@ const blogCollection = defineCollection({
     date: z.date().optional(),
     image: z.string().optional(),
     author: z.string().default("Sai"),
-    categories: z.array(z.string()).default(["others"]),
-    tags: z.array(z.string()).default(["others"]),
+    category: z.array(z.string()).default(["其它"]),
+    tags: z.array(z.string()).default(["其它"]),
     draft: z.boolean().optional(),
   }),
 });
