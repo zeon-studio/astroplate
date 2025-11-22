@@ -37,14 +37,15 @@ const passWidth = isContained ? undefined : width;
 const passHeight = isContained ? undefined : height;
 
 const finalPassWidth = (typeof passWidth === 'number' && passWidth > 0) ? passWidth : undefined;
-const finalPassHeight = (typeof passHeight === 'number' && passHeight > 0) ? finalPassHeight : undefined;
+// 🟢 关键修复：这里应该引用 passHeight，而不是 finalPassHeight 本身。
+const finalPassHeight = (typeof passHeight === 'number' && passHeight > 0) ? passHeight : undefined; 
 ---
 
 {
   !isStringSrc ? (
     <Image
       src={src as ImageMetadata}
-      alt={alt || "图片"} {/* 中文化 alt 默认值 */}
+      alt={alt || "图片"}
       width={finalPassWidth}
       height={finalPassHeight}
       loading={loading}
@@ -57,7 +58,7 @@ const finalPassHeight = (typeof passHeight === 'number' && passHeight > 0) ? fin
   ) : isRemoteImage || src.startsWith('/') ? (
     <img
       src={src as string}
-      alt={alt || "图片"} {/* 中文化 alt 默认值 */}
+      alt={alt || "图片"}
       width={finalPassWidth}
       height={finalPassHeight}
       loading={loading}
@@ -68,7 +69,7 @@ const finalPassHeight = (typeof passHeight === 'number' && passHeight > 0) ? fin
     />
   ) : (
     <div class={`bg-gray-200 dark:bg-gray-700 flex items-center justify-center ${className}`} style={style}>
-      <span class="text-gray-500 text-sm">图片错误或找不到</span> {/* 中文化提示文本 */}
+      <span class="text-gray-500 text-sm">图片错误或找不到</span>
     </div>
   )
 }
