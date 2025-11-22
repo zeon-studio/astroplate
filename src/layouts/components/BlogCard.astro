@@ -11,30 +11,32 @@ const {
 }: { summary_length: number; blog_folder: string } = config.settings;
 
 const { data } = Astro.props;
-// 🚀 核心修复：将 categories 替换为 category
+// 使用 category 字段（单数）
 const { title, image, date, author, category } = data.data; 
-const CLEANUP_REGEX = /^(import\s+[^;]+\s+from\s+[^;]+;|export\s+[^;]+;)\s*/g;
 
 const readMoreText = "阅读更多";
 const defaultAuthorText = "作者"; 
+
+// 🚀 核心修复：将复杂的逻辑和变量定义移到脚本块 (---)
+
+// 1. 定义用于清理 body 的正则表达式：匹配位于开头的 'import ... from ...;' 或 'export ...;' 语句
+// 注意：这个 regex 必须在脚本块中定义
+const CLEANUP_REGEX = /^(import\s+[^;]+\s+from\s+[^;]+;|export\s+[^;]+;)\s*/g; 
+
+// 2. 清理 body
+// 如果 data.body 存在，则进行清理；否则使用空字符串
+const cleanedBody = data.body ? data.body.replace(CLEANUP_REGEX, '') : '';
+
+// 3. 截断和纯文本转换，并赋值给一个最终变量
+const summaryText = plainify(cleanedBody.slice(0, Number(summary_length)));
 ---
-<p class="mb-6">
-  {
-    // 🚀 核心修复：先清理 data.body 中的所有顶部 import/export 语句
-    const cleanedBody = data.body?.replace(CLEANUP_REGEX, '');
-    
-    // 然后对清理后的文本进行截断和 plainify
-    plainify(cleanedBody?.slice(0, Number(summary_length)))
-  }
-</p>
 
 <div class="bg-body dark:bg-darkmode-body">
   {
     image && (
       <a href={`/${blog_folder}/${data.id}`} class="block mb-6 w-full overflow-hidden rounded">
-        {/* 🌟 核心修复：移除固定的 aspect-ratio，让图片按其内容比例显示 */}
         <ImageMod
-          class="w-full h-auto object-cover" // h-auto 确保图片按其原始比例显示
+          class="w-full h-auto object-cover" 
           src={image} 
           alt={title}
           format="webp"
@@ -57,9 +59,9 @@ const defaultAuthorText = "作者";
     <li class="mr-4 inline-block">
       <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
       {
-        // 🚀 核心修复：使用 category 变量，并确保它是一个数组
+        // 使用 category 变量
         category && category.length > 0 && category.map((cat: string, index: number) => (
-          <a href={`/categories/${slugify(cat)}`}> {/* ⚠️ 注意这里使用 cat 而不是 category */}
+          <a href={`/categories/${slugify(cat)}`}>
             {humanize(cat)}
             {index !== category.length - 1 && "，"} 
           </a>
@@ -68,7 +70,8 @@ const defaultAuthorText = "作者";
     </li>
     {date && <li class="inline-block">{dateFormat(date)}</li>}
   </ul>
-  <p class="mb-6">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
+  
+  <p class="mb-6">{summaryText}</p>
   
   <a class="btn btn-outline-primary btn-sm" href={`/${blog_folder}/${data.id}`}>
     {readMoreText}
