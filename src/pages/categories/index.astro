@@ -7,6 +7,7 @@ import PageHeader from "@/partials/PageHeader.astro";
 
 const BLOG_FOLDER = "blog";
 
+// 保持：这里定义为 category (单数)
 const category = await getTaxonomy(BLOG_FOLDER, "category");
 const allCategory = await getAllTaxonomy(BLOG_FOLDER, "category");
 ---
@@ -17,16 +18,17 @@ const allCategory = await getAllTaxonomy(BLOG_FOLDER, "category");
     <div class="container text-center">
       <ul>
         {
-          categories.map((category: string) => {
-            const count = allCategory.filter((c) => c === category).length;
+          // 🚀 核心修复：使用 category (单数) 变量进行迭代
+          category.map((cat: string) => { 
+            const count = allCategory.filter((c) => c === cat).length;
             return (
               <li class="m-3 inline-block">
                 <a
-                  // 🌟 关键修正：使用 slugifyTitle 生成兼容中文的 URL
-                  href={`/categories/${slugifyTitle(category)}`}
+                  // 使用 slugifyTitle 生成 URL
+                  href={`/categories/${slugifyTitle(cat)}`}
                   class="block rounded bg-light px-4 py-2 text-xl text-text-dark dark:bg-darkmode-light dark:text-darkmode-text-dark"
                 >
-                  {humanize(category)}{" "}
+                  {humanize(cat)}{" "}
                   <span class="ml-2 rounded bg-body px-2 dark:bg-darkmode-body">
                     {count}
                   </span>
