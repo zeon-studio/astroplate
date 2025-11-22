@@ -11,7 +11,7 @@ banner:
 
 # Features
 features:
-  - title: "测试Featires"
+  - title: "测试Features"
     image: "https://img.sorayt.cn/f/v0h6/DSC00763.BnP4sFeo.jpg"
     content: "Astroplate is a comprehensive starter template that includes everything you need to get started with your Astro project. What's Included in Astroplate"
     bulletpoints:
