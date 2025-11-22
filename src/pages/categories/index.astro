@@ -7,8 +7,8 @@ import PageHeader from "@/partials/PageHeader.astro";
 
 const BLOG_FOLDER = "blog";
 
-const categories = await getTaxonomy(BLOG_FOLDER, "categories");
-const allCategories = await getAllTaxonomy(BLOG_FOLDER, "categories");
+const category = await getTaxonomy(BLOG_FOLDER, "category");
+const allCategory = await getAllTaxonomy(BLOG_FOLDER, "category");
 ---
 
 <Base title="分类">
@@ -18,7 +18,7 @@ const allCategories = await getAllTaxonomy(BLOG_FOLDER, "categories");
       <ul>
         {
           categories.map((category: string) => {
-            const count = allCategories.filter((c) => c === category).length;
+            const count = allCategory.filter((c) => c === category).length;
             return (
               <li class="m-3 inline-block">
                 <a
