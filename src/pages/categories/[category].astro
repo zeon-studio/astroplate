@@ -11,13 +11,14 @@ import PageHeader from "@/partials/PageHeader.astro";
 // 获取所有分类的静态路径
 export async function getStaticPaths() {
   const BLOG_FOLDER = "blog";
+  // 获取所有分类名 (原始的中文名或英文名)
   const category = await getTaxonomy(BLOG_FOLDER, "category");
 
   return category
     // 过滤掉空字符串或仅包含空格的原始分类名
     .filter((category: string) => category && category.trim() !== "")
     .map((category: string) => {
-      // 🌟 关键加固：在 map 内部计算 slug，并检查它是否为空
+      // 🌟 关键：使用 slugifyTitle 生成兼容中文的 URL-friendly slug
       const categorySlug = slugifyTitle(category);
 
       // 如果 slug 是空字符串，则返回 null，在下一步进行过滤
@@ -27,7 +28,7 @@ export async function getStaticPaths() {
 
       return {
         params: { 
-          category: categorySlug, 
+          category: categorySlug, // 使用 slugified 名称作为 URL 参数
         },
       };
     })
@@ -35,14 +36,17 @@ export async function getStaticPaths() {
     .filter(Boolean); 
 }
 
+// 从 URL 参数中获取当前分类的 slugified 名称
 const { category } = Astro.params;
 
 // 按分类获取文章
 const BLOG_FOLDER = "blog";
-const posts = await getSinglePage(BLOG_FOLDER);
+// 获取所有文章，并提供默认值 [] 以增强鲁棒性
+const posts = await getSinglePage(BLOG_FOLDER) || []; 
 
-// 使用 humanize(category!) 恢复原始中文名进行内容过滤
+// 🌟 核心：将 URL slug (category) 还原为原始的中文名进行内容过滤
 const originalCategory = humanize(category!); 
+// 根据还原后的原始名称进行内容过滤
 const filterByCategories = taxonomyFilter(posts, "category", originalCategory);
 const sortedPosts = sortByDate(filterByCategories);
 
