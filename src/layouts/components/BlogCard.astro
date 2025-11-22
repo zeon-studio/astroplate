@@ -13,10 +13,20 @@ const {
 const { data } = Astro.props;
 // 🚀 核心修复：将 categories 替换为 category
 const { title, image, date, author, category } = data.data; 
+const CLEANUP_REGEX = /^(import\s+[^;]+\s+from\s+[^;]+;|export\s+[^;]+;)\s*/g;
 
 const readMoreText = "阅读更多";
 const defaultAuthorText = "作者"; 
 ---
+<p class="mb-6">
+  {
+    // 🚀 核心修复：先清理 data.body 中的所有顶部 import/export 语句
+    const cleanedBody = data.body?.replace(CLEANUP_REGEX, '');
+    
+    // 然后对清理后的文本进行截断和 plainify
+    plainify(cleanedBody?.slice(0, Number(summary_length)))
+  }
+</p>
 
 <div class="bg-body dark:bg-darkmode-body">
   {
