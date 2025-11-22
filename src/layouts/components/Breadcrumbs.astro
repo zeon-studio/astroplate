@@ -31,11 +31,13 @@ for (let i = 0; i < paths.length; i++) {
   let displayLabel = decodedSegment.replace(".html", "").replace(/[-_]/g, " ");
 
   // 🌟 核心修复 4：处理特定的英文路径，进行中文化
-  if (displayLabel.toLowerCase() === "blog") {
+  const lowerCaseLabel = displayLabel.toLowerCase();
+
+  if (lowerCaseLabel === "blog") {
     displayLabel = "博客";
-  } else if (displayLabel.toLowerCase() === "tags") {
+  } else if (lowerCaseLabel === "tags") {
     displayLabel = "标签";
-  } else if (displayLabel.toLowerCase() === "category") {
+  } else if (lowerCaseLabel === "category" || lowerCaseLabel === "categories") { // 🚀 关键修复：添加对 categories 的判断
     displayLabel = "分类";
   } 
   
