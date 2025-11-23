@@ -1,7 +1,8 @@
 ---
 import { humanize } from "@/lib/utils/textConverter";
 
-const { tags = [], category = [], allCategories } = Astro.props; 
+// 确保所有props都有默认值
+const { tags = [], category = [], allCategories = [] } = Astro.props; 
 ---
 
 <div class="lg:col-4">
