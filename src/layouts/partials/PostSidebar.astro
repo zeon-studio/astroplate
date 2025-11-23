@@ -1,8 +1,7 @@
----
 import { humanize } from "@/lib/utils/textConverter";
 
-// 🚀 核心修复：为 tags 和 category 设置默认值 [] (空数组)
-const { tags = [], category = [], allCategories } = Astro.props; 
+// 🚀 修复：更新 props 接口
+const { tags = [], category = [] } = Astro.props; 
 ---
 
 <div class="lg:col-4">
@@ -11,19 +10,14 @@ const { tags = [], category = [], allCategories } = Astro.props;
     <div class="rounded bg-light p-8 dark:bg-darkmode-light">
       <ul class="space-y-4">
         {
-          // 确保数组不为空时才进行迭代
           category.length > 0 && category.map((cat: any) => { 
-            // ⚠️ 内部迭代变量名改为 cat，防止与外部 category 冲突
-            const count = allCategories.filter(
-              (c: any) => c === cat
-            ).length;
             return (
               <li>
                 <a
                   class="flex justify-between hover:text-primary dark:hover:text-darkmode-primary"
-                  href={`/categories/${cat}`} // 使用 cat
+                  href={`/categories/${cat.name}`}
                 >
-                  {humanize(cat)} <span>({count})</span>
+                  {humanize(cat.name)} <span>({cat.count})</span>
                 </a>
               </li>
             );
@@ -37,7 +31,6 @@ const { tags = [], category = [], allCategories } = Astro.props;
     <div class="rounded bg-light p-6 dark:bg-darkmode-light">
       <ul>
         {
-          // 确保数组不为空时才进行迭代
           tags.length > 0 && tags.map((tag: any) => {
             return (
               <li class="inline-block">
@@ -55,3 +48,4 @@ const { tags = [], category = [], allCategories } = Astro.props;
     </div>
   </div>
 </div>
+EOF
