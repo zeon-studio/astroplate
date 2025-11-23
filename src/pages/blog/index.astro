@@ -4,7 +4,6 @@ import Pagination from "@/components/Pagination.astro";
 import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
 import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
-// 🌟 关键：使用修复后的 .js 文件
 import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.js"; 
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import PageHeader from "@/partials/PageHeader.astro";
@@ -15,22 +14,21 @@ const BLOG_FOLDER = "blog";
 // 获取博客索引页面的元数据
 const postIndex = await getListPage(BLOG_FOLDER, "-index");
 if (postIndex.data.draft) {
-  // 如果草稿，重定向（确保您的 blog 集合中有 -index 文件）
   return Astro.redirect("/404");
 }
 
 // 获取所有博客文章
 const posts = await getSinglePage(BLOG_FOLDER);
 
-// 获取分类和标签（使用修复后的 taxonomyParser.js）
-const allCategories = await getAllTaxonomy(BLOG_FOLDER, "categories");
-const categories = await getTaxonomy(BLOG_FOLDER, "categories");
+// 🚀 修复：使用 "category" 而不是 "categories"
+const allCategories = await getAllTaxonomy(BLOG_FOLDER, "category");
+const category = await getTaxonomy(BLOG_FOLDER, "category"); // 🚀 修复：变量名改为 category
 const tags = await getTaxonomy(BLOG_FOLDER, "tags");
 
 // 排序和分页逻辑
 const sortedPosts = sortByDate(posts);
 const totalPages: number = Math.ceil(posts.length / config.settings.pagination);
-const currentPosts = sortedPosts.slice(0, config.settings.pagination); // 第一页的文章
+const currentPosts = sortedPosts.slice(0, config.settings.pagination);
 
 ---
 
@@ -61,10 +59,11 @@ const currentPosts = sortedPosts.slice(0, config.settings.pagination); // 第一
           />
         </div>
 
+        {/* 🚀 修复：传递正确的 props 名称 */}
         <PostSidebar
-          categories={categories}
           tags={tags}
-          allCategories={allCategories}
+          category={category}           {/* 改为 category */}
+          allCategories={allCategories} {/* 改为 allCategories */}
         />
       </div>
     </div>
