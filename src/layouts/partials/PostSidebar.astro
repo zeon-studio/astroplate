@@ -1,7 +1,6 @@
 import { humanize } from "@/lib/utils/textConverter";
 
-// 🚀 修复：更新 props 接口
-const { tags = [], category = [] } = Astro.props; 
+const { tags = [], category = [], allCategories } = Astro.props; 
 ---
 
 <div class="lg:col-4">
@@ -11,13 +10,16 @@ const { tags = [], category = [] } = Astro.props;
       <ul class="space-y-4">
         {
           category.length > 0 && category.map((cat: any) => { 
+            const count = allCategories.filter(
+              (c: any) => c === cat
+            ).length;
             return (
               <li>
                 <a
                   class="flex justify-between hover:text-primary dark:hover:text-darkmode-primary"
-                  href={`/categories/${cat.name}`}
+                  href={`/categories/${cat}`}
                 >
-                  {humanize(cat.name)} <span>({cat.count})</span>
+                  {humanize(cat)} <span>({count})</span>
                 </a>
               </li>
             );
