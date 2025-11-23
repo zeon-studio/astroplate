@@ -1,6 +1,6 @@
 import { getSinglePage } from "@/lib/contentParser.astro";
-import { slugify } from "@/lib/utils/textConverter";
 
+// get taxonomy from frontmatter - 返回原始分类名
 export const getTaxonomy = async (collection, name) => {
   const singlePages = await getSinglePage(collection);
   const taxonomyPages = singlePages.map((page) => page.data[name]);
@@ -13,12 +13,9 @@ export const getTaxonomy = async (collection, name) => {
         for (let j = 0; j < categoryArray.length; j++) {
             const rawValue = categoryArray[j];
             
+            // 🚀 修复：直接返回原始值，不进行 slugify
             if (typeof rawValue === 'string' && rawValue.trim() !== "") {
-                const slugifiedValue = slugify(rawValue);
-                
-                if (slugifiedValue && slugifiedValue.trim() !== "") {
-                    taxonomies.push(slugifiedValue);
-                }
+                taxonomies.push(rawValue);
             }
         }
     }
@@ -28,6 +25,7 @@ export const getTaxonomy = async (collection, name) => {
   return taxonomy;
 };
 
+// get all taxonomies from frontmatter - 返回原始分类名
 export const getAllTaxonomy = async (collection, name) => {
   const singlePages = await getSinglePage(collection);
   const taxonomyPages = singlePages.map((page) => page.data[name]);
@@ -41,11 +39,7 @@ export const getAllTaxonomy = async (collection, name) => {
             const rawValue = categoryArray[j];
             
             if (typeof rawValue === 'string' && rawValue.trim() !== "") {
-                const slugifiedValue = slugify(rawValue);
-                
-                if (slugifiedValue && slugifiedValue.trim() !== "") {
-                    taxonomies.push(slugifiedValue);
-                }
+                taxonomies.push(rawValue);
             }
         }
     }
