@@ -1,10 +1,11 @@
 @import "tailwindcss";
-@plugin "../tailwind-plugin/tw-theme";
-@plugin "../tailwind-plugin/tw-bs-grid";
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
-
+@plugin 'tailwind-bootstrap-grid';
 @custom-variant dark (&:where(.dark, .dark *));
+
+/* Auto-generated theme from "theme.json"*/
+@import "./generated-theme.css";
 
 @import "./safe.css";
 @import "./utilities.css";
