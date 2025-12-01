@@ -1,14 +1,14 @@
 {
   "name": "astroplate-multilingual",
-  "version": "5.8.2",
+  "version": "5.10.0",
   "description": "Astro and Tailwindcss Multilingual boilerplate",
   "author": "zeon.studio",
   "license": "MIT",
   "type": "module",
   "packageManager": "yarn@1.22.22",
   "scripts": {
-    "dev": "yarn generate-json && astro dev",
-    "build": "yarn generate-json && astro build",
+    "dev": "concurrently \"node scripts/themeGenerator.js --watch\" \"yarn generate-json && astro dev\"",
+    "build": "node scripts/themeGenerator.js && yarn generate-json && astro build",
     "preview": "astro preview",
     "format": "prettier -w ./src",
     "check": "astro check",
@@ -37,6 +37,7 @@
     "react-icons": "^5.5.0",
     "remark-collapse": "^0.1.2",
     "remark-toc": "^9.0.0",
+    "sharp": "^0.34.5",
     "swiper": "^12.0.3",
     "vite": "^7.2.2"
   },
@@ -47,11 +48,12 @@
     "@types/node": "24.10.1",
     "@types/react": "19.2.6",
     "@types/react-dom": "19.2.3",
+    "concurrently": "^9.2.1",
     "eslint": "^9.39.1",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.7.1",
-    "sharp": "0.34.5",
+    "tailwind-bootstrap-grid": "^6.0.0",
     "tailwindcss": "^4.1.17",
     "typescript": "^5.9.3"
   }
