@@ -1,7 +1,38 @@
 ---
-import { markdownify } from "@/lib/utils/textConverter";
 import ImageMod from "@/components/ImageMod.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import {
+  Swiper,
+  SwiperPagination,
+  SwiperSlide,
+  SwiperWrapper,
+} from "astro-swiper";
+import type { SwiperOptions } from "swiper/types";
+
 const { testimonial } = Astro.props;
+
+const swiperOptions: SwiperOptions = {
+  spaceBetween: 24,
+  loop: true,
+  autoplay: {
+    delay: 2500,
+    disableOnInteraction: false,
+  },
+  pagination: {
+    el: ".testimonial-slider-pagination",
+    type: "bullets",
+    clickable: true,
+    dynamicBullets: false,
+  },
+  breakpoints: {
+    768: {
+      slidesPerView: 2,
+    },
+    992: {
+      slidesPerView: 3,
+    },
+  },
+};
 ---
 
 {
@@ -14,8 +45,8 @@ const { testimonial } = Astro.props;
             <p set:html={markdownify(testimonial.data.description)} />
           </div>
           <div class="col-12">
-            <div class="swiper testimonial-slider">
-              <div class="swiper-wrapper">
+            <Swiper options={swiperOptions} class="testimonial-slider">
+              <SwiperWrapper class={"mb-12"}>
                 {testimonial.data.testimonials.map(
                   (item: {
                     avatar: string;
@@ -23,7 +54,7 @@ const { testimonial } = Astro.props;
                     name: string;
                     designation: string;
                   }) => (
-                    <div class="swiper-slide">
+                    <SwiperSlide>
                       <div class="rounded-lg bg-light px-7 py-10 dark:bg-darkmode-light">
                         <div class="text-text-dark dark:text-white">
                           <svg
@@ -66,48 +97,15 @@ const { testimonial } = Astro.props;
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </SwiperSlide>
                   )
                 )}
-              </div>
-              <div class="testimonial-slider-pagination mt-9 flex items-center justify-center text-center" />
-            </div>
+              </SwiperWrapper>
+              <SwiperPagination class="testimonial-slider-pagination flex items-center justify-center" />
+            </Swiper>
           </div>
         </div>
       </div>
     </section>
   )
 }
-
-<script>
-  import { Swiper } from "swiper";
-  import "swiper/css";
-  import "swiper/css/pagination";
-  import { Autoplay, Pagination } from "swiper/modules";
-
-  // astro:page-load event is fired when the page is loaded
-  document.addEventListener("astro:page-load", () => {
-    new Swiper(".testimonial-slider", {
-      modules: [Pagination, Autoplay],
-      spaceBetween: 24,
-      loop: true,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: ".testimonial-slider-pagination",
-        type: "bullets",
-        clickable: true,
-      },
-      breakpoints: {
-        768: {
-          slidesPerView: 2,
-        },
-        992: {
-          slidesPerView: 3,
-        },
-      },
-    });
-  });
-</script>
