@@ -24,7 +24,8 @@ const { theme_switcher }: { theme_switcher: boolean } = config.settings;
 ---
 
 <a href="/" class="navbar-brand inline-block">
-  {
+  {logo_text}
+  <!-- {
     src || srcDarkmode || logo || logo_darkmode ? (
       <>
         <ImageMod
@@ -55,9 +56,9 @@ const { theme_switcher }: { theme_switcher: boolean } = config.settings;
         )}
       </>
     ) : logo_text ? (
-      logo_text
+      
     ) : (
       title
     )
-  }
+  } -->
 </a>
