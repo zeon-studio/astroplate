@@ -95,9 +95,9 @@ yarn run build
 ```bash
 docker build -t astroplate .
 # or
-# docker --build-arg INSTALLER=npm build -t astroplate .
+# docker build --build-arg INSTALLER=npm -t astroplate .
 # or
-# docker --build-arg INSTALLER=pnpm build -t astroplate .
+# docker build --build-arg INSTALLER=pnpm -t astroplate .
 
 docker run -p 3000:80 astroplate
 # or
