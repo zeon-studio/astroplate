@@ -1,15 +1,16 @@
 {
   "site": {
-    "title": "Tyler Goncalves",
+    "title": "TYGON",
     "base_url": "https://astroplate.netlify.app",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
+    "favicon_dark": "/images/favicon-darkmode.png",
     "logo": "/images/logo.png",
     "logo_darkmode": "/images/logo-darkmode.png",
-    "logo_width": "150",
-    "logo_height": "30",
-    "logo_text": "Tyler Goncalves"
+    "logo_width": "40",
+    "logo_height": "40",
+    "logo_text": "TYGON"
   },
 
   "settings": {
@@ -36,12 +37,6 @@
   "google_tag_manager": {
     "enable": false,
     "gtm_id": "GTM-XXXXXX"
-  },
-
-  "disqus": {
-    "enable": true,
-    "shortname": "themefisher-template",
-    "settings": {}
   },
 
   "metadata": {

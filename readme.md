@@ -36,7 +36,6 @@
 - 📱 Fully responsive
 - 📝 Write and update content in Markdown / MDX
 - 📎 Google Tag Manager
-- 💬 Disqus Comment
 - 🔳 Syntax Highlighting
 
 ### 📄 15+ Pre-designed Pages
