@@ -56,7 +56,8 @@ const { title, meta_title, description, image, noindex, canonical } =
       )
     }
     <!-- favicon -->
-    <link rel="shortcut icon" href={config.site.favicon} />
+    <link rel="shortcut icon" href={config.site.favicon} media="(prefers-color-scheme: light)" />
+    <link rel="shortcut icon" href={config.site.favicon_dark} media="(prefers-color-scheme: dark)" />
     <!-- theme meta -->
     <meta name="theme-name" content="astroplate" />
     <meta name="msapplication-TileColor" content="#000000" />

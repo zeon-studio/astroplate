@@ -1,15 +1,16 @@
 {
   "site": {
-    "title": "Astroplate",
+    "title": "TYGON",
     "base_url": "https://astroplate.netlify.app",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
+    "favicon_dark": "/images/favicon-darkmode.png",
     "logo": "/images/logo.png",
     "logo_darkmode": "/images/logo-darkmode.png",
-    "logo_width": "150",
-    "logo_height": "30",
-    "logo_text": "Astroplate"
+    "logo_width": "40",
+    "logo_height": "40",
+    "logo_text": "TYGON"
   },
 
   "settings": {
@@ -23,20 +24,14 @@
   },
 
   "announcement": {
-    "enable": true,
-    "content": "<span class='text-center block'>♥️ Loving Astroplate? <a class='underline' href='https://github.com/zeon-studio/astroplate' target='_blank' rel='noopener'>Please ⭐️ on Github</a></span>",
+    "enable": false,
+    "content": "",
     "expire_days": 7
   },
 
   "params": {
     "contact_form_action": "#",
-    "copyright": "Designed And Developed by [Zeon Studio](https://zeon.studio)"
-  },
-
-  "navigation_button": {
-    "enable": true,
-    "label": "Get Started",
-    "link": "https://github.com/zeon-studio/astroplate"
+    "copyright": "© 2025 Tyler Goncalves. Built with <a href='https://astro.build/' target='_blank'>Astro</a>."
   },
 
   "google_tag_manager": {
@@ -44,15 +39,9 @@
     "gtm_id": "GTM-XXXXXX"
   },
 
-  "disqus": {
-    "enable": true,
-    "shortname": "themefisher-template",
-    "settings": {}
-  },
-
   "metadata": {
-    "meta_author": "zeon.studio",
+    "meta_author": "tyler.goncalves",
     "meta_image": "/images/og-image.png",
-    "meta_description": "astro and tailwind boilerplate"
+    "meta_description": "e-portfolio"
   }
 }
