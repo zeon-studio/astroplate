@@ -9,6 +9,11 @@
       "name": "linkedin",
       "icon": "FaLinkedin",
       "link": "https://www.linkedin.com/in/n-tyler-goncalves/"
+    },
+    {
+      "name": "mail",
+      "icon": "FaEnvelope",
+      "link": "https://www.linkedin.com/in/n-tyler-goncalves/"
     }
   ]
 }

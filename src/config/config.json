@@ -1,6 +1,6 @@
 {
   "site": {
-    "title": "TYGON",
+    "title": "Tyler is missing",
     "base_url": "https://astroplate.netlify.app",
     "base_path": "/",
     "trailing_slash": false,
@@ -10,17 +10,17 @@
     "logo_darkmode": "/images/logo-darkmode.png",
     "logo_width": "40",
     "logo_height": "40",
-    "logo_text": "TYGON"
+    "logo_text": "Tyler is missing"
   },
 
   "settings": {
-    "search": true,
+    "search": false,
     "sticky_header": true,
-    "theme_switcher": true,
+    "theme_switcher": false,
     "default_theme": "system",
     "pagination": 2,
     "summary_length": 200,
-    "blog_folder": "blog"
+    "blog_folder": "posts"
   },
 
   "announcement": {

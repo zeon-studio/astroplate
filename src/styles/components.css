@@ -14,7 +14,7 @@
 
 /* social icons */
 .social-icons {
-  @apply space-x-4;
+  @apply space-x-2;
 }
 .social-icons li {
   @apply inline-block;
@@ -23,7 +23,7 @@
   @apply flex h-9 w-9 items-center justify-center rounded-sm bg-primary text-center leading-9 text-white dark:bg-darkmode-primary dark:text-text-dark;
 }
 .social-icons li a svg {
-  @apply h-5 w-5;
+  @apply h-6 w-6;
 }
 
 /* notice */
