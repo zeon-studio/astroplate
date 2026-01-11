@@ -111,6 +111,7 @@ To access the shell within the container:
 ```bash
 docker run -it --rm astroplate ash
 ```
+
 <!-- edit with sitepins -->
 
 ## 📝 Edit Content with CMS
