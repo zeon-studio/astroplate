@@ -6,8 +6,8 @@ banner:
   image: "/images/banner.png"
   button:
     enable: true
-    label: "Commencer gratuitement"
-    link: "https://github.com/zeon-studio/astroplate"
+    label: "Dupliquer, déployer et modifier en ligne 🚀"
+    link: "https://app.sitepins.com/new/clone?name=Astroplate&repository=https://github.com/zeon-studio/astroplate/tree/multilingual"
 
 # Features
 features:
