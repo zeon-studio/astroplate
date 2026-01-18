@@ -35,7 +35,7 @@
 
   "navigation_button": {
     "enable": true,
-    "label": "Get Started",
+    "label": "Github",
     "link": "https://github.com/zeon-studio/astroplate"
   },
 
