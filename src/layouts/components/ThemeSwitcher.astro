@@ -65,11 +65,58 @@ const { className }: { className?: string } = Astro.props;
     document.documentElement.classList.toggle("dark", isDarkTheme);
   }
 
+  async function animatedToggleTheme(switchElement: Element, newTheme: string) {
+    // Check if View Transition API is supported
+    if (!document.startViewTransition) {
+      // Fallback to regular toggle if not supported
+      localStorage.setItem("theme", newTheme);
+      toggleTheme(document.querySelectorAll("[data-theme-switcher]"));
+      return;
+    }
+
+    // Start the view transition
+    const transition = document.startViewTransition(() => {
+      localStorage.setItem("theme", newTheme);
+      toggleTheme(document.querySelectorAll("[data-theme-switcher]"));
+    });
+
+    // Wait for the transition to be ready
+    await transition.ready;
+
+    // Get the position of the theme switcher
+    const rect = switchElement.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+
+    // Calculate the maximum radius needed to cover the entire screen
+    const right = window.innerWidth - x;
+    const bottom = window.innerHeight - y;
+    const maxRadius = Math.hypot(
+      Math.max(x, right),
+      Math.max(y, bottom),
+    );
+
+    // Animate the clip-path
+    document.documentElement.animate(
+      {
+        clipPath: [
+          `circle(0px at ${x}px ${y}px)`,
+          `circle(${maxRadius}px at ${x}px ${y}px)`,
+        ],
+      },
+      {
+        duration: 500,
+        easing: 'ease-in-out',
+        pseudoElement: '::view-transition-new(root)',
+      }
+    );
+  }
+
   const setDarkMode = () => {
     const themeSwitch = document.querySelectorAll("[data-theme-switcher]");
     toggleTheme(themeSwitch);
     themeSwitch.forEach((sw) => {
-      sw.addEventListener("click", function () {
+      sw.addEventListener("click", async function (event) {
         const defaulTheme =
           settings.default_theme === "system"
             ? matchMedia.matches
@@ -78,8 +125,9 @@ const { className }: { className?: string } = Astro.props;
             : settings.default_theme;
         const currentTheme = localStorage.getItem("theme") || defaulTheme;
         const newTheme = currentTheme === "light" ? "dark" : "light";
-        localStorage.setItem("theme", newTheme);
-        toggleTheme(themeSwitch);
+        
+        // Use the animated toggle instead of the regular one
+        await animatedToggleTheme(sw, newTheme);
       });
     });
   };
