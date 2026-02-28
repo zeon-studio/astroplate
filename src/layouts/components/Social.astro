@@ -12,9 +12,7 @@ export interface ISocial {
 <ul class={className}>
   {
     source.map((social: ISocial) => {
-      // 1. 先判断是否是本地路径（以 / 开头）
       const isLocalPath = social.icon && social.icon.startsWith("/");
-      // 2. 只有不是路径，且包含冒号（标准的 iconify 格式，如 mdi:github）时才交给 Icon
       const isLibraryIcon = social.icon && social.icon.includes(":");
 
       return (
@@ -28,7 +26,6 @@ export interface ISocial {
             <span class="sr-only">{social.name}</span>
             
             {isLocalPath ? (
-              /* 路径情况：直接渲染图片，绝对不传给 Icon 组件 */
               <img 
                 src={social.icon} 
                 alt={social.name} 
@@ -36,7 +33,6 @@ export interface ISocial {
                 style="width:24px; height:24px; filter: grayscale(1) brightness(0.8);" 
               />
             ) : (
-              /* 库图标情况：只有符合格式才渲染，否则不渲染以防报错 */
               isLibraryIcon && <Icon name={social.icon} class="w-6 h-6" />
             )}
           </a>
