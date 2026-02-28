@@ -4,8 +4,11 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import AutoImport from "astro-auto-import";
 import { defineConfig } from "astro/config";
+import icon from "astro-icon";
 import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
+import remarkMath from "remark-math"; // md support math
+import rehypeKatex from "rehype-katex"; // md support math
 import sharp from "sharp";
 import config from "./src/config/config.json";
 import languagesJSON from "./src/config/language.json";
@@ -43,9 +46,22 @@ export default defineConfig({
       ],
     }),
     mdx(),
+    icon({
+      include: {
+        ph: ["*"],
+        devicon: ["*"],
+      }
+    }),
   ],
   markdown: {
-    remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
+    remarkPlugins: [
+      remarkToc, 
+      remarkMath, // md support math
+      [remarkCollapse, { test: "Table of contents" }]
+    ],
+    rehypePlugins: [
+      rehypeKatex // md support math
+    ],
     shikiConfig: { theme: "one-dark-pro", wrap: true },
     extendDefaultPlugins: true,
   },

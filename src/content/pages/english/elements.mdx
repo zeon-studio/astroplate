@@ -242,3 +242,35 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 ### Custom video
 
 <Video width="100%" src="https://www.w3schools.com/html/mov_bbb.mp4" />
+
+---
+
+### Katex
+
+$$
+\frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+$$
+
+$$
+\begin{pmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{pmatrix}
+$$
+
+| instruction | solution |
+|:---|:---|
+| leaq 9(%rdx), %rax        | %rax = 9 + d               |
+| leaq (%rdx, %rbx), %rax   | %rax = d + b               |
+| leaq (%rdx, %rbx, 3), %rax| %rax = d + 3b              |
+| leaq 2(%rbx, %rbx, 7), %rax| %rax = 2 + 8b             |
+| leaq 0xE(, %rdx, 3), %rax | %rax = 14 + 3d             |
+| leaq 6(%rbx, %rdx, 7), %rax| %rax = 6 + b + 7d         |
+
+| Instruction | Effect | Description |
+|:---|:---|:---|
+| INC D | D ← D + 1 | Increment |
+| DEC D | D ← D − 1 | Decrement |
+| NEG D | D ← −D | Negate |
+| NOT D | D ← ∼D | Complement (Bitwise NOT) |
