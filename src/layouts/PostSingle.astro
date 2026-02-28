@@ -168,27 +168,4 @@ const { title, description, author, categories, image, date, tags } = post.data;
     quotes: none !important;
   }
 
-  /* Styles for inline code ` ` within the article body */
-  .content :not(pre) > code {
-    /* Light Mode: Gray background with dark text */
-    background-color: #f3f4f6 !important; /* Light gray background (Gray 100) */
-    color: #1f2937 !important;            /* Dark gray/Black text (Gray 800) */
-    padding: 0.2rem 0.4rem;
-    border-radius: 4px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.9em;
-  }
-
-  /* Inline code styles for Dark Mode */
-  .dark .content :not(pre) > code {
-    /* Dark Mode: Dark gray background with white text */
-    background-color: #374151 !important; /* Dark gray background (Gray 700) */
-    color: #f9fafb !important;            /* Near-white text (Gray 50) */
-  }
-
-  /* Remove automatically generated backticks (if any) */
-  .content :not(pre) > code::before,
-  .content :not(pre) > code::after {
-    content: "" !important;
-  }
 </style>
