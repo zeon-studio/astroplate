@@ -1,0 +1,19 @@
+{
+  /**
+   * Cloudflare Pages deployment config
+   * Docs: https://docs.astro.build/en/guides/deploy/cloudflare/#cloudflare-pages
+   *
+   * Deploy:  npm run build && npx wrangler pages deploy ./dist
+   * Preview: npm run build && npx wrangler pages dev ./dist
+   *
+   * Or connect via the Cloudflare dashboard:
+   *   Framework preset: Astro
+   *   Build command:    npm run build
+   *   Build output dir: dist
+   *
+   * Update `compatibility_date` to today's date before deploying.
+   */
+  "name": "astroplate",
+  "compatibility_date": "2026-03-01",
+  "pages_build_output_dir": "./dist"
+}

@@ -1,0 +1,18 @@
+{
+  /**
+   * Cloudflare Workers — Static Assets deployment config
+   * Docs: https://docs.astro.build/en/guides/deploy/cloudflare/
+   *
+   * Deploy:  npm run build && npx wrangler deploy
+   * Preview: npm run build && npx wrangler dev
+   *
+   * Update `compatibility_date` to today's date before deploying.
+   */
+  "name": "astroplate",
+  "compatibility_date": "2026-03-01",
+  "assets": {
+    "directory": "./dist",
+    // Serve custom 404.html when a route is not found
+    "not_found_handling": "404-page"
+  }
+}

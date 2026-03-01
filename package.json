@@ -13,7 +13,11 @@
     "check": "astro check",
     "format": "prettier -w ./src",
     "generate-json": "node scripts/jsonGenerator.js",
-    "remove-darkmode": "node scripts/removeDarkmode.js && yarn format"
+    "remove-darkmode": "node scripts/removeDarkmode.js && yarn format",
+    "deploy:cf-workers": "npm run build && wrangler deploy",
+    "deploy:cf-pages": "npm run build && wrangler pages deploy ./dist",
+    "preview:cf-workers": "npm run build && wrangler dev",
+    "preview:cf-pages": "npm run build && wrangler pages dev ./dist"
   },
   "dependencies": {
     "@astrojs/check": "0.9.6",
@@ -54,6 +58,7 @@
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwind-bootstrap-grid": "^7.0.0",
     "tailwindcss": "^4.2.1",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "^3.114.4"
   }
 }
