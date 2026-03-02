@@ -7,7 +7,7 @@ import { markdownify } from "@/lib/utils/textConverter";
 import CallToAction from "@/partials/CallToAction.astro";
 import Testimonial from "@/partials/Testimonial.astro";
 import type { Feature } from "@/types";
-import type { ContentEntryMap } from "astro:content";
+
 import { FaCheck } from "react-icons/fa";
 
 export function getStaticPaths() {
@@ -18,18 +18,18 @@ export function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
-const homepage = await getListPage("homepage", lang as keyof ContentEntryMap);
+const homepage = await getListPage("homepage", lang);
 const { banner, features } = homepage[0].data;
 
 const testimonial = await getSinglePage(
   "testimonialSection",
-  lang as keyof ContentEntryMap,
+  lang,
   "testimonial"
 );
 
 const call_to_action = await getSinglePage(
   "ctaSection",
-  lang as keyof ContentEntryMap,
+  lang,
   "call-to-action"
 );
 ---

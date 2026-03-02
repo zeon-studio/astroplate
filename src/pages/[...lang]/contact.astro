@@ -4,7 +4,7 @@ import Base from "@/layouts/Base.astro";
 import { getListPage } from "@/lib/contentParser.astro";
 import { getTranslations, supportedLang } from "@/lib/utils/languageParser";
 import PageHeader from "@/partials/PageHeader.astro";
-import { type ContentEntryMap } from "astro:content";
+
 
 export function getStaticPaths() {
   const paths = supportedLang.map((lang) => ({
@@ -16,7 +16,7 @@ export function getStaticPaths() {
 const { lang } = Astro.params;
 const contactIndex = await getListPage(
   "contact",
-  lang as keyof ContentEntryMap
+  lang
 );
 if (contactIndex[0].data.draft) {
   return Astro.redirect("/404");
@@ -31,7 +31,7 @@ const {
   anything_else,
   contact_message_placeholder,
   submit,
-} = await getTranslations(lang as keyof ContentEntryMap);
+} = await getTranslations(lang!);
 ---
 
 <Base

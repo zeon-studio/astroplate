@@ -8,7 +8,7 @@ import { supportedLang } from "@/lib/utils/languageParser";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import taxonomyFilter from "@/lib/utils/taxonomyFilter";
 import PageHeader from "@/partials/PageHeader.astro";
-import type { ContentEntryMap } from "astro:content";
+
 
 // get all static paths for categories
 export async function getStaticPaths() {
@@ -17,7 +17,7 @@ export async function getStaticPaths() {
   const paths = await Promise.all(
     supportedLang.map(async (lang) => {
       const categories = await getTaxonomy(
-        lang as keyof ContentEntryMap,
+        lang,
         "categories"
       );
 
@@ -35,7 +35,7 @@ export async function getStaticPaths() {
 
   // Handle default path (no lang)
   const defaultCategories = await getTaxonomy(
-    default_language as keyof ContentEntryMap,
+    default_language,
     "categories"
   );
   const defaultPaths = defaultCategories.map((category) => ({
@@ -55,7 +55,7 @@ const { category, lang } = Astro.params;
 
 // get posts by category
 const BLOG_FOLDER = "blog";
-const posts = await getSinglePage(BLOG_FOLDER, lang as keyof ContentEntryMap);
+const posts = await getSinglePage(BLOG_FOLDER, lang);
 const filterByCategories = taxonomyFilter(posts, "categories", category!);
 const sortedPosts = sortByDate(filterByCategories);
 ---

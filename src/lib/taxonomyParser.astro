@@ -2,7 +2,7 @@
 import config from "@/config/config.json";
 import languages from "@/config/language.json";
 import { slugify } from "@/lib/utils/textConverter";
-import type { ContentEntryMap } from "astro:content";
+
 import { getCollection } from "astro:content";
 
 // get taxonomy from frontmatter
@@ -24,7 +24,7 @@ export const getTaxonomy = async (collection: string, name: string) => {
   }
 
   const singlePages = await getCollection(
-    "blog" as keyof ContentEntryMap,
+    "blog",
     ({ id }: any) => {
       return id.startsWith(actualCollection) && !id.endsWith("-index");
     }
@@ -60,7 +60,7 @@ export const getAllTaxonomy = async (collection: string, name: string) => {
   }
 
   const singlePages = await getCollection(
-    "blog" as keyof ContentEntryMap,
+    "blog",
     ({ id }: any) => {
       return id.startsWith(actualCollection) && !id.endsWith("-index");
     }

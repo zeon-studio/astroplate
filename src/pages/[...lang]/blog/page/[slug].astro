@@ -9,7 +9,7 @@ import { supportedLang } from "@/lib/utils/languageParser";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import PageHeader from "@/partials/PageHeader.astro";
 import PostSidebar from "@/partials/PostSidebar.astro";
-import type { ContentEntryMap } from "astro:content";
+
 const BLOG_FOLDER = "blog";
 const { default_language } = config.settings;
 
@@ -21,21 +21,21 @@ if (!lang) {
 
 const postIndex: any = await getListPage(
   BLOG_FOLDER,
-  lang as keyof ContentEntryMap
+  lang
 );
 if (postIndex[0].data.draft) {
   return Astro.redirect("/404");
 }
-const posts = await getSinglePage(BLOG_FOLDER, lang as keyof ContentEntryMap);
+const posts = await getSinglePage(BLOG_FOLDER, lang);
 const allCategories = await getAllTaxonomy(
-  lang as keyof ContentEntryMap,
+  lang,
   "categories"
 );
 const categories = await getTaxonomy(
-  lang as keyof ContentEntryMap,
+  lang,
   "categories"
 );
-const tags = await getTaxonomy(lang as keyof ContentEntryMap, "tags");
+const tags = await getTaxonomy(lang, "tags");
 const sortedPosts = sortByDate(posts);
 const totalPages = Math.ceil(posts.length / config.settings.pagination);
 const currentPage = slug && !isNaN(Number(slug)) ? Number(slug) : 1;
@@ -50,7 +50,7 @@ export async function getStaticPaths() {
     supportedLang.map(async (lang) => {
       const posts = await getSinglePage(
         BLOG_FOLDER,
-        lang as keyof ContentEntryMap
+        lang
       );
       const totalPages = Math.ceil(posts.length / config.settings.pagination);
       const langString = lang.toString();

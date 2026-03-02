@@ -8,7 +8,7 @@ import dateFormat from "@/lib/utils/dateFormat";
 import { slugSelector } from "@/lib/utils/languageParser";
 import similarItems from "@/lib/utils/similarItems";
 import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
-import { render, type ContentEntryMap } from "astro:content";
+import { render } from "astro:content";
 import { FaRegClock, FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./components/ImageMod.astro";
 const { default_language } = config.settings;
@@ -23,7 +23,7 @@ if (!lang) {
 
 const posts = await getSinglePage(
   COLLECTION_FOLDER,
-  lang as keyof ContentEntryMap
+  lang
 );
 const similarPosts = similarItems(post, posts);
 const { Content } = await render(post);

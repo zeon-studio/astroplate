@@ -1,4 +1,3 @@
-import { getRelativeLocaleUrl } from "astro:i18n";
 import config from "../../config/config.json";
 import languagesJSON from "../../config/language.json";
 const { default_language } = config.settings;
@@ -85,9 +84,15 @@ export const slugSelector = (url: string, lang: string) => {
   if (url === "/") {
     constructedUrl = lang === default_language ? "/" : `/${lang}`;
   } else {
-    constructedUrl = getRelativeLocaleUrl(lang, url, {
-      normalizeLocale: false,
-    });
+    // Manual implementation of getRelativeLocaleUrl
+    // Add language prefix for non-default languages
+    if (lang === default_language) {
+      constructedUrl = url.startsWith("/") ? url : `/${url}`;
+    } else {
+      constructedUrl = url.startsWith("/")
+        ? `/${lang}${url}`
+        : `/${lang}/${url}`;
+    }
   }
 
   // Add language path if necessary

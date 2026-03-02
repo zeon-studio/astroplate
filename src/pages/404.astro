@@ -7,7 +7,7 @@ import {
   slugSelector,
   supportedLang,
 } from "@/lib/utils/languageParser";
-import type { ContentEntryMap } from "astro:content";
+
 
 export function getStaticPaths() {
   const paths = supportedLang.map((lang) => ({
@@ -24,7 +24,7 @@ if (disabledLanguages.includes(lang)) {
 }
 
 const { page_not_found_content, page_not_found, back_to_home } =
-  await getTranslations(lang as keyof ContentEntryMap);
+  await getTranslations(lang);
 ---
 
 <Base title="Page Not Found">

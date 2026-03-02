@@ -3,13 +3,13 @@ import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import { supportedLang } from "@/lib/utils/languageParser";
 import PageHeader from "@/partials/PageHeader.astro";
-import type { ContentEntryMap } from "astro:content";
+
 import { render } from "astro:content";
 
 export async function getStaticPaths() {
   const paths = await Promise.all(
     supportedLang.map(async (lang) => {
-      const pages = await getSinglePage("pages", lang as keyof ContentEntryMap);
+      const pages = await getSinglePage("pages", lang);
 
       return pages.map((page) => ({
         params: {

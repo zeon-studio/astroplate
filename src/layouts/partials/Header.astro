@@ -8,16 +8,16 @@ import {
   getTranslations,
   slugSelector,
 } from "@/lib/utils/languageParser";
-import type { ContentEntryMap } from "astro:content";
+
 import { IoSearch } from "react-icons/io5";
 
 let lang = getLangFromUrl(Astro.url);
-const menu = await getTranslations(lang as keyof ContentEntryMap);
+const menu = await getTranslations(lang);
 
 const { navigation_button, settings } = config;
 const { default_language } = config.settings;
 const { pathname } = Astro.url;
-const { get_started } = await getTranslations(lang as keyof ContentEntryMap);
+const { get_started } = await getTranslations(lang);
 
 const disabledLanguages = config.settings.disable_languages as string[];
 if (disabledLanguages.includes(lang)) {
