@@ -1,6 +1,6 @@
 {
   "site": {
-    "title": "Tyler is missing",
+    "title": "N. Tyler Goncalves",
     "base_url": "https://astroplate.netlify.app",
     "base_path": "/",
     "trailing_slash": false,
@@ -10,7 +10,7 @@
     "logo_darkmode": "/images/logo-darkmode.png",
     "logo_width": "40",
     "logo_height": "40",
-    "logo_text": "Tyler is missing"
+    "logo_text": "N. Tyler Goncalves"
   },
 
   "settings": {

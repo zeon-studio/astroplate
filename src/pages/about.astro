@@ -1,17 +1,46 @@
 ---
 import ImageMod from "@/components/ImageMod.astro";
 import Base from "@/layouts/Base.astro";
-import { getListPage } from "@/lib/contentParser.astro";
 import { markdownify } from "@/lib/utils/textConverter";
-import { render } from "astro:content";
 
-const aboutIndex = await getListPage("about", "-index");
-const { Content } = await render(aboutIndex);
-const { title, description, meta_title, image } = aboutIndex.data;
+// title: 
 
-if (aboutIndex.data.draft) {
+// A graduate student in geomatics, guy passionate about computer vision, urban planning, and DIY engineering.
+
+// This is a continuation of what we started with...
+
+// ## Professional Experience
+
+// **Cassia Research Inc.** (03/21 to 09/24) \
+// *Software Engineer*
+
+// **University of British Columbia** (01/19 to 06/20) \
+// *Web Developer, Learning Technology Rover*
+
+// **TELUS Communications** (09/18 to 01/19) \
+// *Business Systems Analyst*
+
+
+// ## Education
+
+// **University of British Columbia**\
+// Master of Geomatics for Environmental Management
+// 
+// **University of British Columbia**\
+// Bachelor of Science – Computer Science
+
+//  ## More Cool Stuff 
+
+
+const title = "Hey! I'm Tyler";
+const meta_title = "About"
+const image = "/images/headshot.png"
+const description = "About Me - Tyler Goncalves"
+
+if (true) {
   return Astro.redirect("/404");
 }
+
 ---
 
 <Base
@@ -29,8 +58,8 @@ if (aboutIndex.data.draft) {
               <ImageMod
                 class="mx-auto mb-6 rounded-lg"
                 src={image}
-                width={200}
-                height={200}
+                width={400}
+                height={400}
                 alt={title}
                 format="webp"
               />
@@ -38,7 +67,9 @@ if (aboutIndex.data.draft) {
           }
           <h2 set:html={markdownify(title)} class="h3 mb-6" />
           <div class="content">
-            <Content />
+
+
+            <h2>Hey there</h2>
           </div>
         </div>
       </div>

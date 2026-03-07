@@ -54,30 +54,11 @@ const pagesCollection = defineCollection({
   }),
 });
 
-// about collection schema
-const aboutCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/about" }),
-  schema: z.object({
-    ...commonFields,
-  }),
-});
-
 // contact collection schema
 const contactCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/contact" }),
   schema: z.object({
     ...commonFields,
-  }),
-});
-
-// Homepage collection schema
-const homepageCollection = defineCollection({
-  loader: glob({ pattern: "**/-*.{md,mdx}", base: "src/content/homepage" }),
-  schema: z.object({
-    content: z.object({
-      title: z.string(),
-      logo: z.string(),
-    }),
   }),
 });
 
@@ -124,11 +105,9 @@ const testimonialSectionCollection = defineCollection({
 // Export collections
 export const collections = {
   // Pages
-  homepage: homepageCollection,
   posts: blogCollection,
   authors: authorsCollection,
   pages: pagesCollection,
-  about: aboutCollection,
   contact: contactCollection,
 
   // sections

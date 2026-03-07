@@ -1,4 +1,14 @@
 
+
+.avatar-wrapper {
+  @apply flex items-center justify-center p-2;
+}
+
+.avatar-circle {
+  @apply rounded-full object-cover border-4 border-white shadow-lg;
+}
+
+
 /* section style */
 .section {
   @apply py-24 xl:py-28;

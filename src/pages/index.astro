@@ -6,26 +6,27 @@ import { markdownify } from "@/lib/utils/textConverter";
 import Social from "@/components/Social.astro";
 import social from "@/config/social.json";
 
-const homepage = await getListPage("homepage", "-index");
+// const homepage = await getListPage("homepage", "-index");
 
-const { content } = homepage.data;
+// const { content } = homepage.data;
+
+const logo = '/images/headshot.png'
 ---
 
 <Base>
   <section class="section container flex grow justify-center">
     <div class="lg:col-7 md:col-9 mb-8 text-center">
-      <ImageMod
-        class="inline-block"
-        src={content.logo}
-        height={380}
-        width={380}
-        alt="logo"
-        format="png"
-      />
-      <h1
-        set:html={markdownify(content.title)}
-        class="mb-4 text-h3 lg:text-h1"
-      />
+      <div class="avatar-wrapper">
+        <ImageMod
+          class="avatar-circle"
+          src={logo}
+          height={380}
+          width={380}
+          alt="logo"
+          format="png"
+        />
+      </div>
+      <h1>Hey, I'm Tyler</h1>
       <Social source={social.main} className="social-icons" />
     </div>
   </section>
