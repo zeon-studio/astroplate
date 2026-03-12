@@ -1,53 +1,51 @@
 ---
 # Banner
 banner:
-  title: "The Ultimate Starter Template You Need To Start Your Astro Project"
-  content: "Astroplate is a free starter template built with Astro and TailwindCSS, providing everything you need to jumpstart your Astro project and save valuable time."
-  image: "/images/banner.png"
+  title: "在靈性的深淵中，尋找屬於你的光"
+  content: "占卜 · 能量療癒 · 靈性探索。陪你看見內在，找到方向。"
+  image: "/images/banner-light.png"
+  image_dark: "/images/banner-dark.png"
   button:
     enable: true
-    label: "Fork Deploy and Edit Online 🚀"
-    link: "https://app.sitepins.com/new/clone?name=Astroplate&repository=https://github.com/zeon-studio/astroplate/tree/multilingual"
+    label: "探索服務"
+    link: "/contact"
 
 # Features
 features:
-  - title: "What's Included in Astroplate"
+  - title: "占卜服務"
     image: "/images/service-1.png"
-    content: "Astroplate is a comprehensive starter template that includes everything you need to get started with your Astro project. What's Included in Astroplate"
+    content: "透過古老智慧與星宿的指引，為您的生命旅程提供清晰的方向與洞見。"
     bulletpoints:
-      - "10+ Pre-build pages"
-      - "95+ Google Pagespeed Score"
-      - "Build with Astro and TailwindCSS for easy and customizable styling"
-      - "Fully responsive on all devices"
-      - "SEO-optimized for better search engine rankings"
-      - "**Open-source and free** for personal and commercial use"
-    button:
-      enable: false
-      label: "Get Started Now"
-      link: "#"
-
-  - title: "Discover the Key Features Of Astro"
-    image: "/images/service-2.png"
-    content: "Astro is an all-in-one web framework for building fast, content-focused websites. It offers a range of exciting features for developers and website creators. Some of the key features are:"
-    bulletpoints:
-      - "Zero JS, by default: No JavaScript runtime overhead to slow you down."
-      - "Customizable: Tailwind, MDX, and 100+ other integrations to choose from."
-      - "UI-agnostic: Supports React, Preact, Svelte, Vue, Solid, Lit and more."
+      - "塔羅牌陣解析：解惑當下狀態與未來趨勢"
+      - "古典占星命盤：深入了解靈魂藍圖"
+      - "紫微斗數排盤：探究命運起伏與流年"
+      - "提供線上與線下實體預約諮詢"
     button:
       enable: true
-      label: "Get Started Now"
-      link: "https://github.com/zeon-studio/astroplate"
+      label: "預約占卜"
+      link: "/contact"
 
-  - title: "The Top Reasons to Choose Astro for Your Next Project"
-    image: "/images/service-3.png"
-    content: "With Astro, you can build modern and content-focused websites without sacrificing performance or ease of use."
+  - title: "能量療癒"
+    image: "/images/service-2.png"
+    content: "淨化磁場、平衡身心靈，讓生命能量重新流動，回歸平靜與和諧。"
     bulletpoints:
-      - "Instantly load static sites for better user experience and SEO."
-      - "Intuitive syntax and support for popular frameworks make learning and using Astro a breeze."
-      - "Use any front-end library or framework, or build custom components, for any project size."
-      - "Built on cutting-edge technology to keep your projects up-to-date with the latest web standards."
+      - "傳統臼井靈氣療癒"
+      - "水晶陣列與脈輪能量平衡"
+      - "頌缽音療與深層放鬆"
     button:
-      enable: false
-      label: ""
-      link: ""
+      enable: true
+      label: "了解療癒服務"
+      link: "/contact"
+
+  - title: "內容創作與知識分享"
+    image: "/images/service-3.png"
+    content: "深入淺出的玄學知識與靈性探討，陪伴您在日常生活中持續覺察與成長。"
+    bulletpoints:
+      - "定期更新的靈性覺察部落格"
+      - "每月星象運勢與能量解讀"
+      - "基礎神秘學原理教學文章"
+    button:
+      enable: true
+      label: "閱讀文章"
+      link: "/blog"
 ---

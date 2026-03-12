@@ -81,6 +81,7 @@ const homepageCollection = defineCollection({
       title: z.string(),
       content: z.string(),
       image: z.string(),
+      image_dark: z.string().optional(),
       button: z.object({
         enable: z.boolean(),
         label: z.string(),
