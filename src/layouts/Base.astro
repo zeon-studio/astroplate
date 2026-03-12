@@ -42,6 +42,15 @@ const language = lang || getLangFromUrl(Astro.url);
 <!doctype html>
 <html lang={language}>
   <head>
+    <script is:inline>
+      (function() {
+        const theme = localStorage.getItem('theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (theme === 'dark' || (!theme && systemDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
     <!-- google tag manager -->
     {
       config.google_tag_manager.enable && (
