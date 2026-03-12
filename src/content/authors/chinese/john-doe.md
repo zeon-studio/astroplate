@@ -1,6 +1,6 @@
 ---
-title: Guillaume Jacob
-email: williamjacob@email.com
+title: John Doe
+email: johndoe@email.com
 image: "/images/avatar.png"
 description: this is meta description
 social:
@@ -15,7 +15,6 @@ social:
   - name: linkedin
     icon: FaLinkedin
     link: https://linkedin.com
-
 draft: false
 ---
 

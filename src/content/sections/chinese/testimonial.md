@@ -1,27 +1,27 @@
 ---
 enable: true
-title: "Ce que disent les utilisateurs d'Astroplate"
-description: "Ne vous contentez pas de nous croire sur parole - écoutez certains de nos utilisateurs satisfaits ! Consultez quelques-uns de nos témoignages ci-dessous pour voir ce que les autres disent à propos d'Astroplate."
+title: "What Users Are Saying About Astroplate"
+description: "Don't just take our word for it - hear from some of our satisfied users!  Check out some of our testimonials below to see what others are saying about Astroplate."
 
 # Testimonials
 testimonials:
   - name: "Marvin McKinney"
-    designation: "Concepteur Web"
+    designation: "Web Designer"
     avatar: "/images/avatar-sm.png"
     content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto illo molestias, assumenda expedita commodi inventore non itaque molestiae voluptatum dolore, facilis sapiente, repellat veniam."
 
   - name: "Marvin McKinney"
-    designation: "Concepteur Web"
+    designation: "Web Designer"
     avatar: "/images/avatar-sm.png"
     content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto illo molestias, assumenda expedita commodi inventore non itaque molestiae voluptatum dolore, facilis sapiente, repellat veniam."
 
   - name: "Marvin McKinney"
-    designation: "Concepteur Web"
+    designation: "Web Designer"
     avatar: "/images/avatar-sm.png"
     content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto illo molestias, assumenda expedita commodi inventore non itaque molestiae voluptatum dolore, facilis sapiente, repellat veniam."
 
   - name: "Marvin McKinney"
-    designation: "Concepteur Web"
+    designation: "Web Designer"
     avatar: "/images/avatar-sm.png"
     content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto illo molestias, assumenda expedita commodi inventore non itaque molestiae voluptatum dolore, facilis sapiente, repellat veniam."
 ---

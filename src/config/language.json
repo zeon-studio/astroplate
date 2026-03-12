@@ -6,9 +6,9 @@
     "weight": 1
   },
   {
-    "languageName": "Fr",
-    "languageCode": "fr",
-    "contentDir": "french",
+    "languageName": "中文",
+    "languageCode": "zh-tw",
+    "contentDir": "chinese",
     "weight": 2
   }
 ]

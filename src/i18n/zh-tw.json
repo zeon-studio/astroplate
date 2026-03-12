@@ -1,0 +1,17 @@
+{
+  "full_name": "姓名",
+  "full_name_placeholder": "請輸入您的姓名",
+  "mail_placeholder": "your@email.com",
+  "message": "其他事項",
+  "message_placeholder": "請輸入您的訊息...",
+  "submit": "送出",
+  "read_more": "閱讀更多",
+  "page_not_found": "找不到頁面",
+  "working_mail": "電子信箱",
+  "anything_else": "其他事項",
+  "contact_message_placeholder": "請輸入您的訊息...",
+  "page_not_found_content": "您所尋找的頁面可能已被移除、重新命名，或暫時無法使用。",
+  "back_to_home": "回到首頁",
+  "get_started": "開始了解",
+  "announcement": "<span class='text-center block'>✨ 歡迎來到 Seeker In The Noetic — 靈性探索的起點</span>"
+}
