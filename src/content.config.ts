@@ -65,6 +65,22 @@ const aboutCollection = defineCollection({
   }),
 });
 
+// faq collection schema
+const faqCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/faq" }),
+  schema: z.object({
+    ...commonFields,
+    faqs: z
+      .array(
+        z.object({
+          question: z.string(),
+          answer: z.string(),
+        }),
+      )
+      .default(() => []),
+  }),
+});
+
 // contact collection schema
 const contactCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/contact" }),
@@ -152,6 +168,7 @@ export const collections = {
   authors: authorsCollection,
   pages: pagesCollection,
   about: aboutCollection,
+  faq: faqCollection,
   contact: contactCollection,
 
   // sections

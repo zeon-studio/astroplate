@@ -1,23 +1,26 @@
 {
   "main": [
     { "name": "首頁", "url": "/" },
-    { "name": "關於我", "url": "/about" },
+    { "name": "部落格", "url": "/blog" },
     {
-      "name": "頁面",
+      "name": "關於",
       "url": "",
       "hasChildren": true,
       "children": [
-        { "name": "聯絡我", "url": "/contact" },
-        { "name": "部落格", "url": "/blog" },
         { "name": "作者", "url": "/authors" },
-        { "name": "分類", "url": "/categories" },
-        { "name": "標籤", "url": "/tags" },
-        { "name": "404 頁面", "url": "/404" }
+        { "name": "聯絡我", "url": "/contact" },
+        { "name": "常見問題", "url": "/faq" }
       ]
     }
   ],
-  "footer": [
+  "hidden": [
+    { "name": "關於（封存）", "url": "/about" },
     { "name": "元素一覽", "url": "/elements" },
+    { "name": "分類", "url": "/categories" },
+    { "name": "標籤", "url": "/tags" },
+    { "name": "404 頁面", "url": "/404" }
+  ],
+  "footer": [
     { "name": "隱私政策", "url": "/privacy-policy" }
   ]
 }
