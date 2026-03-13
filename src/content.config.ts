@@ -203,6 +203,26 @@ const energyHealingCollection = defineCollection({
   }),
 });
 
+// shop collection schema
+const shopCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/shop" }),
+  schema: z.object({
+    ...commonFields,
+    products: z
+      .array(
+        z.object({
+          id: z.string(),
+          name: z.string(),
+          description: z.string(),
+          image: z.string().optional(),
+          price: z.string(),
+          icon: z.string().optional(),
+        }),
+      )
+      .default(() => []),
+  }),
+});
+
 // Homepage collection schema
 const homepageCollection = defineCollection({
   loader: glob({ pattern: "**/-*.{md,mdx}", base: "src/content/homepage" }),
@@ -289,6 +309,7 @@ export const collections = {
   "remote-viewing": remoteViewingCollection,
   "tarot-reading": tarotReadingCollection,
   "energy-healing": energyHealingCollection,
+  shop: shopCollection,
 
   // sections
   ctaSection: ctaSectionCollection,

@@ -17,11 +17,12 @@
       "url": "/services",
       "hasChildren": true,
       "children": [
-        { "name": "Remote Viewing", "url": "/services#divination" },
-        { "name": "Tarot Reading", "url": "/services#divination" },
+        { "name": "Remote Viewing", "url": "/services#remote-viewing" },
+        { "name": "Tarot Reading", "url": "/services#tarot-reading" },
         { "name": "Energy Healing", "url": "/services#healing" }
       ]
     },
+    { "name": "Shop", "url": "/shop" },
     { "name": "FAQ", "url": "/faq" },
     { "name": "Contact", "url": "/contact" },
     { "name": "About", "url": "/about" }

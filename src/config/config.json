@@ -32,11 +32,11 @@
 
   "params": {
     "contact_form_action": "#",
-    "copyright": "Designed And Developed by [Zeon Studio](https://zeon.studio)"
+    "copyright": "© 2026 Seeker In The Noetic. All rights reserved."
   },
 
   "navigation_button": {
-    "enable": true,
+    "enable": false,
     "label": "Github",
     "link": "https://github.com/zeon-studio/astroplate/tree/multilingual"
   },

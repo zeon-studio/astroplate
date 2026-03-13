@@ -17,11 +17,12 @@
       "url": "/services",
       "hasChildren": true,
       "children": [
-        { "name": "Remote Viewing", "url": "/services#divination" },
-        { "name": "塔羅占卜", "url": "/services#divination" },
+        { "name": "遙視觀測", "url": "/services#remote-viewing" },
+        { "name": "塔羅占卜", "url": "/services#tarot-reading" },
         { "name": "能量療癒", "url": "/services#healing" }
       ]
     },
+    { "name": "商店", "url": "/shop" },
     { "name": "常見問題", "url": "/faq" },
     { "name": "聯絡我", "url": "/contact" },
     { "name": "關於我", "url": "/about" }
