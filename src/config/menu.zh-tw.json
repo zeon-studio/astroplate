@@ -1,26 +1,37 @@
 {
   "main": [
-    { "name": "首頁", "url": "/" },
-    { "name": "部落格", "url": "/blog" },
     {
-      "name": "關於",
-      "url": "",
+      "name": "探索",
+      "url": "/blog",
       "hasChildren": true,
       "children": [
-        { "name": "作者", "url": "/authors" },
-        { "name": "聯絡我", "url": "/contact" },
-        { "name": "常見問題", "url": "/faq" }
+        { "name": "部落格", "url": "/blog" },
+        { "name": "資源連結", "url": "/resources" },
+        { "name": "Remote Viewing", "url": "/remote-viewing" },
+        { "name": "塔羅占卜", "url": "/tarot-reading" },
+        { "name": "能量療癒", "url": "/energy-healing" }
       ]
-    }
+    },
+    {
+      "name": "服務項目",
+      "url": "/services",
+      "hasChildren": true,
+      "children": [
+        { "name": "Remote Viewing", "url": "/services#divination" },
+        { "name": "塔羅占卜", "url": "/services#divination" },
+        { "name": "能量療癒", "url": "/services#healing" }
+      ]
+    },
+    { "name": "常見問題", "url": "/faq" },
+    { "name": "聯絡我", "url": "/contact" },
+    { "name": "關於我", "url": "/about" }
   ],
   "hidden": [
-    { "name": "關於（封存）", "url": "/about" },
+    { "name": "作者", "url": "/authors" },
     { "name": "元素一覽", "url": "/elements" },
     { "name": "分類", "url": "/categories" },
     { "name": "標籤", "url": "/tags" },
     { "name": "404 頁面", "url": "/404" }
   ],
-  "footer": [
-    { "name": "隱私政策", "url": "/privacy-policy" }
-  ]
+  "footer": [{ "name": "隱私政策", "url": "/privacy-policy" }]
 }

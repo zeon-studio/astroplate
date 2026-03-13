@@ -1,26 +1,37 @@
 {
   "main": [
-    { "name": "Home", "url": "/" },
-    { "name": "Blog", "url": "/blog" },
     {
-      "name": "About",
-      "url": "",
+      "name": "Explore",
+      "url": "/blog",
       "hasChildren": true,
       "children": [
-        { "name": "Authors", "url": "/authors" },
-        { "name": "Contact", "url": "/contact" },
-        { "name": "FAQ", "url": "/faq" }
+        { "name": "Blog", "url": "/blog" },
+        { "name": "Resources", "url": "/resources" },
+        { "name": "Remote Viewing", "url": "/remote-viewing" },
+        { "name": "Tarot Reading", "url": "/tarot-reading" },
+        { "name": "Energy Healing", "url": "/energy-healing" }
       ]
-    }
+    },
+    {
+      "name": "Services",
+      "url": "/services",
+      "hasChildren": true,
+      "children": [
+        { "name": "Remote Viewing", "url": "/services#divination" },
+        { "name": "Tarot Reading", "url": "/services#divination" },
+        { "name": "Energy Healing", "url": "/services#healing" }
+      ]
+    },
+    { "name": "FAQ", "url": "/faq" },
+    { "name": "Contact", "url": "/contact" },
+    { "name": "About", "url": "/about" }
   ],
   "hidden": [
-    { "name": "About (Archived)", "url": "/about" },
+    { "name": "Authors", "url": "/authors" },
     { "name": "Elements", "url": "/elements" },
     { "name": "Categories", "url": "/categories" },
     { "name": "Tags", "url": "/tags" },
     { "name": "404 Page", "url": "/404" }
   ],
-  "footer": [
-    { "name": "Privacy Policy", "url": "/privacy-policy" }
-  ]
+  "footer": [{ "name": "Privacy Policy", "url": "/privacy-policy" }]
 }

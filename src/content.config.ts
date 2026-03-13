@@ -62,6 +62,16 @@ const aboutCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/about" }),
   schema: z.object({
     ...commonFields,
+    role: z.string().optional(),
+    social: z
+      .array(
+        z.object({
+          name: z.string(),
+          icon: z.string(),
+          link: z.string(),
+        }),
+      )
+      .optional(),
   }),
 });
 
@@ -86,6 +96,110 @@ const contactCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/contact" }),
   schema: z.object({
     ...commonFields,
+  }),
+});
+
+// services collection schema
+const servicesCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/services" }),
+  schema: z.object({
+    ...commonFields,
+    services: z
+      .array(
+        z.object({
+          id: z.string(),
+          title: z.string(),
+          description: z.string(),
+          icon: z.string().optional(),
+          bulletpoints: z.array(z.string()),
+        }),
+      )
+      .default(() => []),
+  }),
+});
+
+// resources collection schema
+const resourcesCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/resources" }),
+  schema: z.object({
+    ...commonFields,
+    links: z
+      .array(
+        z.object({
+          category: z.string(),
+          items: z.array(
+            z.object({
+              name: z.string(),
+              url: z.string(),
+              description: z.string(),
+            }),
+          ),
+        }),
+      )
+      .default(() => []),
+  }),
+});
+
+// remote-viewing collection schema
+const remoteViewingCollection = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "src/content/remote-viewing",
+  }),
+  schema: z.object({
+    ...commonFields,
+    sections: z
+      .array(
+        z.object({
+          id: z.string(),
+          title: z.string(),
+          description: z.string(),
+          icon: z.string().optional(),
+          bulletpoints: z.array(z.string()),
+        }),
+      )
+      .default(() => []),
+  }),
+});
+
+// tarot-reading collection schema
+const tarotReadingCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/tarot-reading" }),
+  schema: z.object({
+    ...commonFields,
+    sections: z
+      .array(
+        z.object({
+          id: z.string(),
+          title: z.string(),
+          description: z.string(),
+          icon: z.string().optional(),
+          bulletpoints: z.array(z.string()),
+        }),
+      )
+      .default(() => []),
+  }),
+});
+
+// energy-healing collection schema
+const energyHealingCollection = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "src/content/energy-healing",
+  }),
+  schema: z.object({
+    ...commonFields,
+    sections: z
+      .array(
+        z.object({
+          id: z.string(),
+          title: z.string(),
+          description: z.string(),
+          icon: z.string().optional(),
+          bulletpoints: z.array(z.string()),
+        }),
+      )
+      .default(() => []),
   }),
 });
 
@@ -170,6 +284,11 @@ export const collections = {
   about: aboutCollection,
   faq: faqCollection,
   contact: contactCollection,
+  services: servicesCollection,
+  resources: resourcesCollection,
+  "remote-viewing": remoteViewingCollection,
+  "tarot-reading": tarotReadingCollection,
+  "energy-healing": energyHealingCollection,
 
   // sections
   ctaSection: ctaSectionCollection,

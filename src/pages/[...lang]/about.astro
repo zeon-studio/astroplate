@@ -1,10 +1,11 @@
 ---
-import ImageMod from "@/components/ImageMod.astro";
 import Base from "@/layouts/Base.astro";
+import AboutCard from "@/layouts/components/AboutCard.astro";
 import { getListPage } from "@/lib/contentParser.astro";
 import { render } from "astro:content";
 import { supportedLang } from "@/lib/utils/languageParser";
 import { markdownify } from "@/lib/utils/textConverter";
+import PageHeader from "@/partials/PageHeader.astro";
 
 
 export function getStaticPaths() {
@@ -21,7 +22,8 @@ if (about[0].data.draft) {
 }
 
 const { Content } = await render(about[0]);
-const { title, description, meta_title, image } = about[0].data;
+const aboutData = about[0].data as any;
+const { title, description, meta_title, image, role, social } = aboutData;
 ---
 
 <Base
@@ -30,24 +32,19 @@ const { title, description, meta_title, image } = about[0].data;
   description={description}
   image={image}
 >
+  <PageHeader title={title} />
   <section class="section-sm">
     <div class="container">
       <div class="row justify-center">
         <div class="md:col-10 lg:col-8">
-          {
-            image && (
-              <ImageMod
-                class="mx-auto mb-6 rounded"
-                src={image}
-                width={1200}
-                height={600}
-                alt={title}
-                format="webp"
-              />
-            )
-          }
-          <h2 set:html={markdownify(title)} class="h3 mb-6" />
-          <div class="content">
+          <AboutCard
+            name={title}
+            role={role}
+            image={image}
+            bio={description}
+            social={social}
+          />
+          <div class="content mt-8">
             <Content />
           </div>
         </div>
