@@ -1,51 +1,53 @@
 ---
 # Banner
 banner:
-  title: "在靈性的深淵中，尋找屬於你的光"
-  content: "占卜 · 能量療癒 · 靈性探索。陪你看見內在，找到方向。"
+  title: "Where Science Meets Spirit"
+  content: "Consciousness Exploration · Energy Healing · Remote Viewing. Bridging ancient wisdom with scientific inquiry."
   image: "/images/banner-light.png"
   image_dark: "/images/banner-dark.png"
   button:
     enable: true
-    label: "探索服務"
+    label: "Explore Services"
     link: "/contact"
 
 # Features
 features:
-  - title: "占卜服務"
+  - title: "Remote Viewing"
     image: "/images/service-1.png"
-    content: "透過古老智慧與星宿的指引，為您的生命旅程提供清晰的方向與洞見。"
+    content: "Perceive beyond space and time through expanded consciousness. Backed by decades of scientific research and controlled studies."
     bulletpoints:
-      - "塔羅牌陣解析：解惑當下狀態與未來趨勢"
-      - "古典占星命盤：深入了解靈魂藍圖"
-      - "紫微斗數排盤：探究命運起伏與流年"
-      - "提供線上與線下實體預約諮詢"
+      - "Targeted Location & Property Scans"
+      - "Missing Object Location"
+      - "Event Timeline Reconstruction"
+      - "Scientific Protocol-Based Sessions"
     button:
       enable: true
-      label: "預約占卜"
-      link: "/contact"
+      label: "Learn More"
+      link: "/remote-viewing"
 
-  - title: "能量療癒"
+  - title: "Tarot Reading"
     image: "/images/service-2.png"
-    content: "淨化磁場、平衡身心靈，讓生命能量重新流動，回歸平靜與和諧。"
+    content: "Ancient wisdom meets modern insight. Gain clarity on love, career, and life's big questions through professional tarot consultations."
     bulletpoints:
-      - "傳統臼井靈氣療癒"
-      - "水晶陣列與脈輪能量平衡"
-      - "頌缽音療與深層放鬆"
+      - "Comprehensive Card Spread Analysis"
+      - "Career & Financial Guidance"
+      - "Life Direction & Decision Support"
+      - "Past-Life Regression Insights"
     button:
       enable: true
-      label: "了解療癒服務"
-      link: "/contact"
+      label: "Book Reading"
+      link: "/tarot-reading"
 
-  - title: "內容創作與知識分享"
+  - title: "Energy Healing"
     image: "/images/service-3.png"
-    content: "深入淺出的玄學知識與靈性探討，陪伴您在日常生活中持續覺察與成長。"
+    content: "Restore balance to your energy field. Release blockages and return to your natural state of harmony."
     bulletpoints:
-      - "定期更新的靈性覺察部落格"
-      - "每月星象運勢與能量解讀"
-      - "基礎神秘學原理教學文章"
+      - "Usui Reiki Healing"
+      - "Crystal Healing Layouts"
+      - "Chakra Balancing"
+      - "Energy Field Clearing & Protection"
     button:
       enable: true
-      label: "閱讀文章"
-      link: "/blog"
+      label: "Explore Healing"
+      link: "/energy-healing"
 ---
