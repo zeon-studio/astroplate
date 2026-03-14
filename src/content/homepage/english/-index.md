@@ -24,6 +24,10 @@ features:
       enable: true
       label: "Learn More"
       link: "/remote-viewing"
+    button2:
+      enable: true
+      label: "Book Session"
+      link: "/services#remote-viewing"
 
   - title: "Numerology & Energy Reading"
     image: "/images/service-2.png"
@@ -35,8 +39,12 @@ features:
       - "Past-Life Regression Insights"
     button:
       enable: true
-      label: "Book Reading"
-      link: "/services"
+      label: "Learn More"
+      link: "/numerology"
+    button2:
+      enable: true
+      label: "Book Session"
+      link: "/services#numerology"
 
   - title: "Energy Healing"
     image: "/images/service-3.png"
@@ -48,6 +56,10 @@ features:
       - "Energy Field Clearing & Protection"
     button:
       enable: true
-      label: "Explore Healing"
+      label: "Learn More"
       link: "/energy-healing"
+    button2:
+      enable: true
+      label: "Book Session"
+      link: "/services#energy-healing"
 ---

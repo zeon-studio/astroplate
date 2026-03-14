@@ -24,6 +24,10 @@ features:
       enable: true
       label: "了解更多"
       link: "/zh/remote-viewing"
+    button2:
+      enable: true
+      label: "預約服務"
+      link: "/zh/services#remote-viewing"
 
   - title: "數字命理與能量解讀"
     image: "/images/service-2.png"
@@ -35,8 +39,12 @@ features:
       - "前世回溯洞察"
     button:
       enable: true
-      label: "預約解讀"
-      link: "/zh/services"
+      label: "了解更多"
+      link: "/zh/numerology"
+    button2:
+      enable: true
+      label: "預約服務"
+      link: "/zh/services#numerology"
 
   - title: "能量療癒"
     image: "/images/service-3.png"
@@ -48,6 +56,10 @@ features:
       - "能量場清理與保護"
     button:
       enable: true
-      label: "探索療癒"
+      label: "了解更多"
       link: "/zh/energy-healing"
+    button2:
+      enable: true
+      label: "預約服務"
+      link: "/zh/services#energy-healing"
 ---

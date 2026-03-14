@@ -139,7 +139,10 @@ const servicesCollection = defineCollection({
 
 // resources collection schema
 const resourcesCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/resources" }),
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "src/content/other-resources",
+  }),
   schema: z.object({
     ...commonFields,
     links: z
@@ -293,6 +296,13 @@ const homepageCollection = defineCollection({
           label: z.string(),
           link: z.string(),
         }),
+        button2: z
+          .object({
+            enable: z.boolean(),
+            label: z.string(),
+            link: z.string(),
+          })
+          .optional(),
       }),
     ),
   }),

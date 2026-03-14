@@ -15,9 +15,9 @@ services:
       - "Event Timeline Exploration"
       - "Crypto & Market Research"
   - id: "numerology"
-    title: "🃏 Numerology"
+    title: "☀️ Numerology"
     description: "Ancient wisdom meets modern insight. Discover your life path, personality traits, and destiny through the mystical power of numbers."
-    icon: "🔢"
+    icon: "☀️"
     bulletpoints:
       - "Life Path & Destiny Analysis"
       - "Career & Finance Guidance"

@@ -5,12 +5,12 @@
       "url": "/blog",
       "hasChildren": true,
       "children": [
-        { "name": "部落格", "url": "/blog" },
-        { "name": "資源連結", "url": "/resources" },
         { "name": "遙視觀測", "url": "/remote-viewing" },
         { "name": "數字命理", "url": "/numerology" },
         { "name": "能量解讀", "url": "/energy-reading" },
-        { "name": "能量療癒", "url": "/energy-healing" }
+        { "name": "能量療癒", "url": "/energy-healing" },
+        { "name": "部落格", "url": "/blog" },
+        { "name": "其他資源", "url": "/other-resources" }
       ]
     },
     {

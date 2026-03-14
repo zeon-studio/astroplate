@@ -38,41 +38,49 @@ const productsList = shopContent.products;
       <div class="row justify-center">
         <div class="col-12">
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {productsList.map((product: any) => (
-              <div class="shop-card bg-light dark:bg-darkmode-light rounded-lg overflow-hidden" id={product.id}>
-                {product.image && (
-                  <div class="shop-card-image">
-                    <ImageMod
-                      class="w-full h-48 object-cover"
-                      src={product.image}
-                      alt={product.name}
-                      width={400}
-                      height={300}
-                      format="webp"
-                    />
-                  </div>
-                )}
-                <div class="p-6">
-                  <div class="flex items-center gap-3 mb-3">
-                    <span class="text-3xl">{product.icon}</span>
-                    <h3 class="font-secondary text-xl font-semibold text-text-dark dark:text-darkmode-text-dark">
-                      {product.name}
-                    </h3>
-                  </div>
-                  <p class="text-text-light dark:text-darkmode-text text-sm mb-4 line-clamp-3">
-                    {product.description}
-                  </p>
-                  <div class="flex items-center justify-between">
-                    <span class="text-xl font-semibold text-primary dark:text-darkmode-primary">
-                      {product.price}
-                    </span>
-                    <button class="btn btn-outline-primary btn-sm" disabled>
-                      {product.price === "Coming Soon" || product.price === "即將推出" ? "Coming Soon" : "Buy with PayPal"}
-                    </button>
+            {
+              productsList.map((product: any) => (
+                <div
+                  class="shop-card bg-light dark:bg-darkmode-light rounded-lg overflow-hidden"
+                  id={product.id}
+                >
+                  {product.image && (
+                    <div class="shop-card-image">
+                      <ImageMod
+                        class="w-full h-48 object-cover"
+                        src={product.image}
+                        alt={product.name}
+                        width={400}
+                        height={300}
+                        format="webp"
+                      />
+                    </div>
+                  )}
+                  <div class="p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                      <span class="text-3xl">{product.icon}</span>
+                      <h3 class="font-secondary text-xl font-semibold text-text-dark dark:text-darkmode-text-dark">
+                        {product.name}
+                      </h3>
+                    </div>
+                    <p class="text-text-light dark:text-darkmode-text text-sm mb-4 line-clamp-3">
+                      {product.description}
+                    </p>
+                    <div class="flex items-center justify-between">
+                      <span class="text-xl font-semibold text-primary dark:text-darkmode-primary">
+                        {product.price}
+                      </span>
+                      <button class="btn btn-outline-primary btn-sm" disabled>
+                        {product.price === "Coming Soon" ||
+                        product.price === "即將推出"
+                          ? "Coming Soon"
+                          : "Buy with PayPal"}
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            }
           </div>
         </div>
       </div>

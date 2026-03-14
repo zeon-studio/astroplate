@@ -4,7 +4,6 @@ import { getListPage } from "@/lib/contentParser.astro";
 import { supportedLang } from "@/lib/utils/languageParser";
 import PageHeader from "@/partials/PageHeader.astro";
 
-
 export function getStaticPaths() {
   const paths = supportedLang.map((lang) => ({
     params: { lang: lang || undefined },
@@ -38,31 +37,45 @@ const servicesList = servicesContent.services;
       <div class="row justify-center">
         <div class="md:col-10 lg:col-8">
           <div class="row">
-            {servicesList.map((service: any) => (
-              <div class="mb-12 md:col-12" id={service.id}>
-                <div class="service-card bg-light dark:bg-darkmode-light p-8 rounded-lg">
-                  <div class="mb-4">
-                    <span class="text-4xl">{service.icon}</span>
+            {
+              servicesList.map((service: any) => (
+                <div class="mb-12 md:col-12" id={service.id}>
+                  <div class="service-card bg-light dark:bg-darkmode-light p-8 rounded-lg">
+                    <div class="mb-4">
+                      <span class="text-4xl">{service.icon}</span>
+                    </div>
+                    <h3 class="font-secondary text-2xl font-semibold text-text-dark dark:text-darkmode-text-dark mb-4">
+                      {service.title}
+                    </h3>
+                    <p class="text-text-light dark:text-darkmode-text mb-6">
+                      {service.description}
+                    </p>
+                    <ul class="service-features space-y-3">
+                      {service.bulletpoints.map((point: string) => (
+                        <li class="flex items-start">
+                          <svg
+                            class="h-5 w-5 text-primary mt-1 mr-3 flex-shrink-0"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                          <span class="text-text-light dark:text-darkmode-text">
+                            {point}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <h3 class="font-secondary text-2xl font-semibold text-text-dark dark:text-darkmode-text-dark mb-4">
-                    {service.title}
-                  </h3>
-                  <p class="text-text-light dark:text-darkmode-text mb-6">
-                    {service.description}
-                  </p>
-                  <ul class="service-features space-y-3">
-                    {service.bulletpoints.map((point: string) => (
-                      <li class="flex items-start">
-                        <svg class="h-5 w-5 text-primary mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span class="text-text-light dark:text-darkmode-text">{point}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
-              </div>
-            ))}
+              ))
+            }
           </div>
         </div>
       </div>

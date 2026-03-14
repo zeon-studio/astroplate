@@ -5,12 +5,12 @@
       "url": "/blog",
       "hasChildren": true,
       "children": [
-        { "name": "Blog", "url": "/blog" },
-        { "name": "Resources", "url": "/resources" },
         { "name": "Remote Viewing", "url": "/remote-viewing" },
         { "name": "Numerology", "url": "/numerology" },
         { "name": "Energy Reading", "url": "/energy-reading" },
-        { "name": "Energy Healing", "url": "/energy-healing" }
+        { "name": "Energy Healing", "url": "/energy-healing" },
+        { "name": "Blog", "url": "/blog" },
+        { "name": "Other Resources", "url": "/other-resources" }
       ]
     },
     {

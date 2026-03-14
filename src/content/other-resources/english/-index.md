@@ -1,6 +1,6 @@
 ---
-title: "Resources"
-meta_title: "Resources"
+title: "Other Resources"
+meta_title: "Other Resources"
 description: "Curated external resources related to spiritual exploration, metaphysics, and energy healing."
 image: "/images/image-placeholder.png"
 draft: false

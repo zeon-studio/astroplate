@@ -15,9 +15,9 @@ services:
       - "事件時間線探索"
       - "加密貨幣與市場研究"
   - id: "numerology"
-    title: "🃏 數字命理"
+    title: "☀️ 數字命理"
     description: "古老智慧結合現代洞察。透過數字的神秘力量發現你的人生道路、性格特質與命運。"
-    icon: "🔢"
+    icon: "☀️"
     bulletpoints:
       - "人生道路與命運分析"
       - "事業與財務指引"

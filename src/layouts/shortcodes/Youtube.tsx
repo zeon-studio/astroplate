@@ -14,7 +14,14 @@ const Youtube = ({
   }, []);
 
   // @ts-ignore
-  return <lite-youtube className="rounded-lg" videoid={id} videotitle={title} {...rest} />;
+  return (
+    <lite-youtube
+      className="rounded-lg"
+      videoid={id}
+      videotitle={title}
+      {...rest}
+    />
+  );
 };
 
 export default Youtube;

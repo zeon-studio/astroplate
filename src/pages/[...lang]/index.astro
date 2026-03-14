@@ -24,13 +24,13 @@ const { banner, features } = homepage[0].data;
 const testimonial = await getSinglePage(
   "testimonialSection",
   lang,
-  "testimonial"
+  "testimonial",
 );
 
 const call_to_action = await getSinglePage(
   "ctaSection",
   lang,
-  "call-to-action"
+  "call-to-action",
 );
 ---
 
@@ -40,26 +40,40 @@ const call_to_action = await getSinglePage(
     class="relative flex items-center justify-center min-h-[70vh] overflow-hidden hero-banner"
   >
     {/* Light Background */}
-    <div 
-      class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-500 hero-bg-light" 
+    <div
+      class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-500 hero-bg-light"
       style={`background-image: url('${banner.image}'); z-index: -2;`}
-    ></div>
-    
+    >
+    </div>
+
     {/* Dark Background */}
-    <div 
-      class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-500 hero-bg-dark" 
+    <div
+      class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-500 hero-bg-dark"
       style={`background-image: url('${banner.image_dark || banner.image}'); z-index: -2;`}
-    ></div>
+    >
+    </div>
 
     <style>
-      .hero-bg-light { opacity: 1; }
-      .hero-bg-dark { opacity: 0; }
-      :global(.dark) .hero-bg-light { opacity: 0; }
-      :global(.dark) .hero-bg-dark { opacity: 1; }
+      .hero-bg-light {
+        opacity: 1;
+      }
+      .hero-bg-dark {
+        opacity: 0;
+      }
+      :global(.dark) .hero-bg-light {
+        opacity: 0;
+      }
+      :global(.dark) .hero-bg-dark {
+        opacity: 1;
+      }
     </style>
-    
+
     {/* 半透明遮罩，確保文字在圖片上方依然清楚可讀 */}
-    <div class="absolute inset-0 bg-dark/20 dark:bg-dark/60" style="z-index: -1;"></div>
+    <div
+      class="absolute inset-0 bg-dark/20 dark:bg-dark/60"
+      style="z-index: -1;"
+    >
+    </div>
 
     <div class="container relative z-10 pt-20 pb-20">
       <div class="row justify-center">
@@ -123,6 +137,14 @@ const call_to_action = await getSinglePage(
               {feature.button.enable && (
                 <a class="btn btn-primary mt-5" href={feature.button.link}>
                   {feature.button.label}
+                </a>
+              )}
+              {feature.button2?.enable && (
+                <a
+                  class="btn btn-outline-primary mt-5 ms-3"
+                  href={feature.button2.link}
+                >
+                  {feature.button2.label}
                 </a>
               )}
             </div>

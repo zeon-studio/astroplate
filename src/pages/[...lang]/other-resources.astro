@@ -4,7 +4,6 @@ import { getListPage } from "@/lib/contentParser.astro";
 import { supportedLang } from "@/lib/utils/languageParser";
 import PageHeader from "@/partials/PageHeader.astro";
 
-
 export function getStaticPaths() {
   const paths = supportedLang.map((lang) => ({
     params: { lang: lang || undefined },
@@ -37,30 +36,32 @@ const links = resourcesContent.links;
     <div class="container">
       <div class="row justify-center">
         <div class="md:col-10 lg:col-8">
-          {links.map((category: any) => (
-            <div class="mb-12">
-              <h3 class="font-secondary text-xl font-semibold text-text-dark dark:text-darkmode-text-dark mb-6">
-                {category.category}
-              </h3>
-              <div class="space-y-4">
-                {category.items.map((item: any) => (
-                  <a
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="block p-6 bg-light dark:bg-darkmode-light rounded-lg hover:shadow-md transition-shadow"
-                  >
-                    <h4 class="font-semibold text-text-dark dark:text-darkmode-text-dark mb-2">
-                      {item.name}
-                    </h4>
-                    <p class="text-text-light dark:text-darkmode-text">
-                      {item.description}
-                    </p>
-                  </a>
-                ))}
+          {
+            links.map((category: any) => (
+              <div class="mb-12">
+                <h3 class="font-secondary text-xl font-semibold text-text-dark dark:text-darkmode-text-dark mb-6">
+                  {category.category}
+                </h3>
+                <div class="space-y-4">
+                  {category.items.map((item: any) => (
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="block p-6 bg-light dark:bg-darkmode-light rounded-lg hover:shadow-md transition-shadow"
+                    >
+                      <h4 class="font-semibold text-text-dark dark:text-darkmode-text-dark mb-2">
+                        {item.name}
+                      </h4>
+                      <p class="text-text-light dark:text-darkmode-text">
+                        {item.description}
+                      </p>
+                    </a>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
       </div>
     </div>

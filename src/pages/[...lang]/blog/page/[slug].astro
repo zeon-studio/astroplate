@@ -19,22 +19,13 @@ if (!lang) {
   lang = default_language;
 }
 
-const postIndex: any = await getListPage(
-  BLOG_FOLDER,
-  lang
-);
+const postIndex: any = await getListPage(BLOG_FOLDER, lang);
 if (postIndex[0].data.draft) {
   return Astro.redirect("/404");
 }
 const posts = await getSinglePage(BLOG_FOLDER, lang);
-const allCategories = await getAllTaxonomy(
-  lang,
-  "categories"
-);
-const categories = await getTaxonomy(
-  lang,
-  "categories"
-);
+const allCategories = await getAllTaxonomy(lang, "categories");
+const categories = await getTaxonomy(lang, "categories");
 const tags = await getTaxonomy(lang, "tags");
 const sortedPosts = sortByDate(posts);
 const totalPages = Math.ceil(posts.length / config.settings.pagination);
@@ -48,10 +39,7 @@ export async function getStaticPaths() {
 
   const paths = await Promise.all(
     supportedLang.map(async (lang) => {
-      const posts = await getSinglePage(
-        BLOG_FOLDER,
-        lang
-      );
+      const posts = await getSinglePage(BLOG_FOLDER, lang);
       const totalPages = Math.ceil(posts.length / config.settings.pagination);
       const langString = lang.toString();
       const langPaths = [];
@@ -66,7 +54,7 @@ export async function getStaticPaths() {
       }
 
       return langPaths;
-    })
+    }),
   );
 
   return paths.flat();

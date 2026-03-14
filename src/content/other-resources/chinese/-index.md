@@ -1,6 +1,6 @@
 ---
-title: "資源連結"
-meta_title: "資源連結"
+title: "其他資源"
+meta_title: "其他資源"
 description: "整理與靈性探索、玄學、能量療癒相關的外部資源與友站連結。"
 image: "/images/image-placeholder.png"
 draft: false

@@ -8,17 +8,13 @@ import { render } from "astro:content";
 import { supportedLang } from "@/lib/utils/languageParser";
 import { slugify } from "@/lib/utils/textConverter";
 
-
 // get all static paths for authors
 export async function getStaticPaths() {
   const COLLECTION_FOLDER = "authors";
 
   const paths = await Promise.all(
     supportedLang.map(async (lang) => {
-      const authors = await getSinglePage(
-        COLLECTION_FOLDER,
-        lang
-      );
+      const authors = await getSinglePage(COLLECTION_FOLDER, lang);
 
       return authors.map((author) => ({
         params: {
@@ -30,7 +26,7 @@ export async function getStaticPaths() {
           lang,
         },
       }));
-    })
+    }),
   );
   return paths.flat();
 }
@@ -43,7 +39,7 @@ const { Content } = await render(author);
 const BLOG_FOLDER = "blog";
 const posts = await getSinglePage(BLOG_FOLDER, lang);
 const postFilterByAuthor = posts.filter(
-  (post) => slugify(post.data.author) === slugify(title)
+  (post) => slugify(post.data.author) === slugify(title),
 );
 ---
 

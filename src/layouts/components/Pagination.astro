@@ -34,7 +34,7 @@ for (let i = 1; i <= totalPages; i++) {
               ? slugSelector(`/${section ? section : ""}`, lang)
               : slugSelector(
                   `/${section ? section : ""}/page/${currentPage - 1}`,
-                  lang
+                  lang,
                 )
           }
           class="rounded px-2 py-1.5 text-text-dark hover:bg-light dark:text-darkmode-text-dark dark:hover:bg-darkmode-light"
@@ -88,14 +88,14 @@ for (let i = 1; i <= totalPages; i++) {
               i === 0
                 ? `/${section ? section : ""}`
                 : `/${section ? section : ""}/page/${pagination}`,
-              lang
+              lang,
             )}
             aria-current="page"
             class="rounded px-4 py-2 text-text-dark hover:bg-light dark:text-darkmode-text-dark dark:hover:bg-darkmode-light"
           >
             {pagination}
           </a>
-        )
+        ),
       )}
 
       {/* next page */}
@@ -103,7 +103,7 @@ for (let i = 1; i <= totalPages; i++) {
         <a
           href={slugSelector(
             `/${section ? section : ""}/page/${currentPage + 1}`,
-            lang
+            lang,
           )}
           class="rounded px-2 py-1.5 text-text-dark hover:bg-light dark:text-darkmode-text-dark dark:hover:bg-darkmode-light"
         >
