@@ -7,8 +7,9 @@
       "children": [
         { "name": "部落格", "url": "/blog" },
         { "name": "資源連結", "url": "/resources" },
-        { "name": "Remote Viewing", "url": "/remote-viewing" },
-        { "name": "塔羅占卜", "url": "/tarot-reading" },
+        { "name": "遙視觀測", "url": "/remote-viewing" },
+        { "name": "數字命理", "url": "/numerology" },
+        { "name": "能量解讀", "url": "/energy-reading" },
         { "name": "能量療癒", "url": "/energy-healing" }
       ]
     },
@@ -18,14 +19,15 @@
       "hasChildren": true,
       "children": [
         { "name": "遙視觀測", "url": "/services#remote-viewing" },
-        { "name": "塔羅占卜", "url": "/services#tarot-reading" },
-        { "name": "能量療癒", "url": "/services#healing" }
+        { "name": "數字命理", "url": "/services#numerology" },
+        { "name": "能量解讀", "url": "/services#energy-reading" },
+        { "name": "能量療癒", "url": "/services#energy-healing" }
       ]
     },
     { "name": "商店", "url": "/shop" },
     { "name": "常見問題", "url": "/faq" },
-    { "name": "聯絡我", "url": "/contact" },
-    { "name": "關於我", "url": "/about" }
+    { "name": "聯絡我們", "url": "/contact" },
+    { "name": "關於我們", "url": "/about" }
   ],
   "hidden": [
     { "name": "作者", "url": "/authors" },

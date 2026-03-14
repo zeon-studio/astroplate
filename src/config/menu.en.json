@@ -8,7 +8,8 @@
         { "name": "Blog", "url": "/blog" },
         { "name": "Resources", "url": "/resources" },
         { "name": "Remote Viewing", "url": "/remote-viewing" },
-        { "name": "Tarot Reading", "url": "/tarot-reading" },
+        { "name": "Numerology", "url": "/numerology" },
+        { "name": "Energy Reading", "url": "/energy-reading" },
         { "name": "Energy Healing", "url": "/energy-healing" }
       ]
     },
@@ -18,8 +19,9 @@
       "hasChildren": true,
       "children": [
         { "name": "Remote Viewing", "url": "/services#remote-viewing" },
-        { "name": "Tarot Reading", "url": "/services#tarot-reading" },
-        { "name": "Energy Healing", "url": "/services#healing" }
+        { "name": "Numerology", "url": "/services#numerology" },
+        { "name": "Energy Reading", "url": "/services#energy-reading" },
+        { "name": "Energy Healing", "url": "/services#energy-healing" }
       ]
     },
     { "name": "Shop", "url": "/shop" },

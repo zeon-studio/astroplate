@@ -72,6 +72,25 @@ const aboutCollection = defineCollection({
         }),
       )
       .optional(),
+    members: z
+      .array(
+        z.object({
+          name: z.string(),
+          role: z.string(),
+          image: z.string().optional(),
+          bio: z.string().optional(),
+          social: z
+            .array(
+              z.object({
+                name: z.string(),
+                icon: z.string(),
+                link: z.string(),
+              }),
+            )
+            .optional(),
+        }),
+      )
+      .optional(),
   }),
 });
 
@@ -162,9 +181,34 @@ const remoteViewingCollection = defineCollection({
   }),
 });
 
-// tarot-reading collection schema
-const tarotReadingCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/tarot-reading" }),
+// numerology collection schema
+const numerologyCollection = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "src/content/numerology",
+  }),
+  schema: z.object({
+    ...commonFields,
+    sections: z
+      .array(
+        z.object({
+          id: z.string(),
+          title: z.string(),
+          description: z.string(),
+          icon: z.string().optional(),
+          bulletpoints: z.array(z.string()),
+        }),
+      )
+      .default(() => []),
+  }),
+});
+
+// energy-reading collection schema
+const energyReadingCollection = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "src/content/energy-reading",
+  }),
   schema: z.object({
     ...commonFields,
     sections: z
@@ -307,7 +351,8 @@ export const collections = {
   services: servicesCollection,
   resources: resourcesCollection,
   "remote-viewing": remoteViewingCollection,
-  "tarot-reading": tarotReadingCollection,
+  numerology: numerologyCollection,
+  "energy-reading": energyReadingCollection,
   "energy-healing": energyHealingCollection,
   shop: shopCollection,
 

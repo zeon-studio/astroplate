@@ -36,7 +36,7 @@ features:
     button:
       enable: true
       label: "Book Reading"
-      link: "/tarot-reading"
+      link: "/services"
 
   - title: "Energy Healing"
     image: "/images/service-3.png"

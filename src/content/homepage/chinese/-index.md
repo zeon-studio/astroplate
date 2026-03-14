@@ -27,7 +27,7 @@ features:
 
   - title: "數字命理與能量解讀"
     image: "/images/service-2.png"
-    content: "古老智慧結合現代洞察。透過專業塔羅牌諮詢釐清愛情、事業與人生大問題 — 或探索你的能量場。"
+    content: "古老智慧結合現代洞察。透過專業命理分析與能量解讀，釐清愛情、事業與人生大問題。"
     bulletpoints:
       - "人生道路與命運分析"
       - "事業與財務指引"
@@ -36,7 +36,7 @@ features:
     button:
       enable: true
       label: "預約解讀"
-      link: "/zh/tarot-reading"
+      link: "/zh/services"
 
   - title: "能量療癒"
     image: "/images/service-3.png"
