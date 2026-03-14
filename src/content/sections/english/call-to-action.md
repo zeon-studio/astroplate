@@ -1,7 +1,7 @@
 ---
 enable: true
 title: "Ready to Explore?"
-description: "Whether you seek answers, healing, or a deeper understanding of consciousness — I'm here to guide you on your journey."
+description: "Whether you seek answers, healing, or a deeper understanding of consciousness — we're here to help you on your journey."
 button:
   enable: true
   label: "Book a Session"

@@ -1,10 +1,10 @@
 ---
 enable: true
-title: "Ready to build your next project with Astro?"
-image: "/images/call-to-action.png"
-description: "Experience the future of web development with Astroplate and Astro. Build lightning-fast static sites with ease and flexibility."
+title: "準備好探索了嗎？"
+description: "無論你尋求答案、療癒，還是對意識有更深的理解 — 我們都在這裡幫助你踏上旅程。"
 button:
   enable: true
-  label: "Fork Deploy and Edit Online 🚀"
-  link: "https://app.sitepins.com/new/clone?name=Astroplate&repository=https://github.com/zeon-studio/astroplate/tree/multilingual"
+  label: "預約服務"
+  link: "/zh/contact"
+image: "/images/call-to-action.png"
 ---

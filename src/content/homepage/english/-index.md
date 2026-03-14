@@ -14,24 +14,24 @@ banner:
 features:
   - title: "Remote Viewing"
     image: "/images/service-1.png"
-    content: "Perceive beyond space and time through expanded consciousness. Backed by decades of scientific research and controlled studies."
+    content: "Perceive beyond space and time through expanded consciousness. Backed by decades of scientific research."
     bulletpoints:
-      - "Targeted Location & Property Scans"
+      - "Location & Property Scans"
       - "Missing Object Location"
       - "Event Timeline Reconstruction"
-      - "Scientific Protocol-Based Sessions"
+      - "Crypto & Market Research"
     button:
       enable: true
       label: "Learn More"
       link: "/remote-viewing"
 
-  - title: "Tarot Reading"
+  - title: "Numerology & Energy Reading"
     image: "/images/service-2.png"
-    content: "Ancient wisdom meets modern insight. Gain clarity on love, career, and life's big questions through professional tarot consultations."
+    content: "Ancient wisdom meets modern insight. Gain clarity on love, career, and life's big questions — or explore your energy field."
     bulletpoints:
-      - "Comprehensive Card Spread Analysis"
+      - "Life Path & Destiny Analysis"
       - "Career & Financial Guidance"
-      - "Life Direction & Decision Support"
+      - "Aura & Energy Readings"
       - "Past-Life Regression Insights"
     button:
       enable: true
@@ -42,8 +42,8 @@ features:
     image: "/images/service-3.png"
     content: "Restore balance to your energy field. Release blockages and return to your natural state of harmony."
     bulletpoints:
-      - "Usui Reiki Healing"
-      - "Crystal Healing Layouts"
+      - "Usui & Angelic Reiki"
+      - "Animal Reiki"
       - "Chakra Balancing"
       - "Energy Field Clearing & Protection"
     button:
