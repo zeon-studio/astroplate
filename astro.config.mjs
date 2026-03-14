@@ -23,7 +23,9 @@ function parseFontString(fontStr) {
     }
   }
 
-  return { name, weights };
+  // remove + from font name and add space
+  const cleanName = name.replace(/\+/g, " ");
+  return { name: cleanName, weights };
 }
 
 // Build fonts configuration from theme.json

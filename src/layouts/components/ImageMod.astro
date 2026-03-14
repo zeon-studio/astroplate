@@ -11,12 +11,24 @@ interface Props {
   loading?: "eager" | "lazy" | null | undefined;
   decoding?: "async" | "auto" | "sync" | null | undefined;
   format?: "auto" | "avif" | "jpeg" | "png" | "svg" | "webp";
+  fit?: "cover" | "contain" | "fill" | "none" | "scale-down";
   class?: string;
   style?: any;
 }
 
 // Destructuring Astro.props to get the component's props
-let { src, alt, width, height, loading, decoding, class: className, format, style } = Astro.props;
+let {
+  src,
+  alt,
+  width,
+  height,
+  loading,
+  decoding,
+  class: className,
+  format,
+  style,
+  fit,
+} = Astro.props;
 
 src = `/public${src}`;
 
@@ -28,7 +40,9 @@ const isValidPath = images[src] ? true : false;
 
 // Log a warning message in red if the image is not found
 !isValidPath &&
-  console.error(`\x1b[31mImage not found - ${src}.\x1b[0m Make sure the image is in the /public/images folder.`);
+  console.error(
+    `\x1b[31mImage not found - ${src}.\x1b[0m Make sure the image is in the /public/images folder.`,
+  );
 ---
 
 {
@@ -39,6 +53,7 @@ const isValidPath = images[src] ? true : false;
       width={width}
       height={height}
       loading={loading}
+      fit={fit ? fit : "contain"}
       decoding={decoding}
       class={className}
       format={format}
