@@ -3,7 +3,7 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import AutoImport from "astro-auto-import";
-import { defineConfig,fontProviders } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
 import sharp from "sharp";
@@ -21,7 +21,6 @@ const filteredSupportedLang = supportedLang.filter(
   (lang) => !disabledLanguages.includes(lang),
 );
 
-
 // Helper to parse font string format: "FontName:wght@400;500;600;700"
 function parseFontString(fontStr) {
   const [name, weightPart] = fontStr.split(":");
@@ -35,7 +34,9 @@ function parseFontString(fontStr) {
     }
   }
 
-  return { name, weights };
+  // remove + from font name and add space
+  const cleanName = name.replace(/\+/g, " ");
+  return { name: cleanName, weights };
 }
 
 // Build fonts configuration from theme.json
@@ -62,7 +63,7 @@ export default defineConfig({
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "ignore",
   vite: { plugins: [tailwindcss()] },
-   fonts: fontsConfig,
+  fonts: fontsConfig,
   i18n: { locales: filteredSupportedLang, defaultLocale: default_language },
   image: { service: sharp() },
   integrations: [
