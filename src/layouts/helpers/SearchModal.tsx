@@ -45,7 +45,6 @@ const SearchModal = ({ lang }: { lang: string | undefined }) => {
   // filter language specific search data
   const filterSearchData = searchData.filter((item) => item.lang === lang);
 
-
   // get search result
   const startTime = performance.now();
   const searchResult = doSearch(filterSearchData);

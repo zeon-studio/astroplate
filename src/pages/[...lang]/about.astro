@@ -1,11 +1,11 @@
 ---
-import ImageMod from "@/components/ImageMod.astro";
 import Base from "@/layouts/Base.astro";
+import AboutCard from "@/layouts/components/AboutCard.astro";
 import { getListPage } from "@/lib/contentParser.astro";
 import { render } from "astro:content";
 import { supportedLang } from "@/lib/utils/languageParser";
 import { markdownify } from "@/lib/utils/textConverter";
-
+import PageHeader from "@/partials/PageHeader.astro";
 
 export function getStaticPaths() {
   const paths = supportedLang.map((lang) => ({
@@ -21,33 +21,44 @@ if (about[0].data.draft) {
 }
 
 const { Content } = await render(about[0]);
-const { title, description, meta_title, image } = about[0].data;
+const aboutData = about[0].data as any;
+const { title, description, meta_title, members } = aboutData;
 ---
 
-<Base
-  title={title}
-  meta_title={meta_title}
-  description={description}
-  image={image}
->
+<Base title={title} meta_title={meta_title} description={description}>
+  <PageHeader title={title} />
   <section class="section-sm">
     <div class="container">
       <div class="row justify-center">
-        <div class="md:col-10 lg:col-8">
+        <div class="md:col-10">
           {
-            image && (
-              <ImageMod
-                class="mx-auto mb-6 rounded"
-                src={image}
-                width={1200}
-                height={600}
-                alt={title}
-                format="webp"
-              />
+            members && members.length > 0 ? (
+              <div class="row justify-center">
+                {members.map((member: any) => (
+                  <div class="mb-14 md:col-6 lg:col-4">
+                    <AboutCard
+                      name={member.name}
+                      role={member.role}
+                      image={member.image}
+                      bio={member.bio}
+                      social={member.social}
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div class="md:col-10 lg:col-8">
+                <AboutCard
+                  name={title}
+                  role={aboutData.role}
+                  image={aboutData.image}
+                  bio={description}
+                  social={aboutData.social}
+                />
+              </div>
             )
           }
-          <h2 set:html={markdownify(title)} class="h3 mb-6" />
-          <div class="content">
+          <div class="content mt-12">
             <Content />
           </div>
         </div>

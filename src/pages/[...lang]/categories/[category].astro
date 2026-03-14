@@ -9,17 +9,13 @@ import { sortByDate } from "@/lib/utils/sortFunctions";
 import taxonomyFilter from "@/lib/utils/taxonomyFilter";
 import PageHeader from "@/partials/PageHeader.astro";
 
-
 // get all static paths for categories
 export async function getStaticPaths() {
   const { default_language } = config.settings;
 
   const paths = await Promise.all(
     supportedLang.map(async (lang) => {
-      const categories = await getTaxonomy(
-        lang,
-        "categories"
-      );
+      const categories = await getTaxonomy(lang, "categories");
 
       return categories.map((category) => ({
         params: {
@@ -30,14 +26,11 @@ export async function getStaticPaths() {
           category,
         },
       }));
-    })
+    }),
   );
 
   // Handle default path (no lang)
-  const defaultCategories = await getTaxonomy(
-    default_language,
-    "categories"
-  );
+  const defaultCategories = await getTaxonomy(default_language, "categories");
   const defaultPaths = defaultCategories.map((category) => ({
     params: {
       lang: undefined,

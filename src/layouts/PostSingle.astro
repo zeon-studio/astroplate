@@ -21,10 +21,7 @@ if (!lang) {
   lang = default_language;
 }
 
-const posts = await getSinglePage(
-  COLLECTION_FOLDER,
-  lang
-);
+const posts = await getSinglePage(COLLECTION_FOLDER, lang);
 const similarPosts = similarItems(post, posts);
 const { Content } = await render(post);
 const { title, description, author, categories, image, date, tags } = post.data;

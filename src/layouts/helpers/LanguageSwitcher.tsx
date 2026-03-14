@@ -23,7 +23,9 @@ const LanguageSwitcher = ({
   const sortedLanguages = languages
     .filter(
       (language) =>
-        !(config.settings.disable_languages as string[]).includes(language.languageCode),
+        !(config.settings.disable_languages as string[]).includes(
+          language.languageCode,
+        ),
     )
     .sort((a, b) => a.weight - b.weight);
 

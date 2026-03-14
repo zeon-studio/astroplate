@@ -1,0 +1,40 @@
+{
+  "main": [
+    {
+      "name": "探索",
+      "url": "/blog",
+      "hasChildren": true,
+      "children": [
+        { "name": "遙視觀測", "url": "/remote-viewing" },
+        { "name": "數字命理", "url": "/numerology" },
+        { "name": "能量解讀", "url": "/energy-reading" },
+        { "name": "能量療癒", "url": "/energy-healing" },
+        { "name": "部落格", "url": "/blog" },
+        { "name": "其他資源", "url": "/other-resources" }
+      ]
+    },
+    {
+      "name": "服務項目",
+      "url": "/services",
+      "hasChildren": true,
+      "children": [
+        { "name": "遙視觀測", "url": "/services#remote-viewing" },
+        { "name": "數字命理", "url": "/services#numerology" },
+        { "name": "能量解讀", "url": "/services#energy-reading" },
+        { "name": "能量療癒", "url": "/services#energy-healing" }
+      ]
+    },
+    { "name": "商店", "url": "/shop" },
+    { "name": "常見問題", "url": "/faq" },
+    { "name": "聯絡我們", "url": "/contact" },
+    { "name": "關於我們", "url": "/about" }
+  ],
+  "hidden": [
+    { "name": "作者", "url": "/authors" },
+    { "name": "元素一覽", "url": "/elements" },
+    { "name": "分類", "url": "/categories" },
+    { "name": "標籤", "url": "/tags" },
+    { "name": "404 頁面", "url": "/404" }
+  ],
+  "footer": [{ "name": "隱私政策", "url": "/privacy-policy" }]
+}

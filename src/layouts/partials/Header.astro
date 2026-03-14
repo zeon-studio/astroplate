@@ -148,7 +148,7 @@ if (disabledLanguages.includes(lang)) {
       <ThemeSwitcher className="mr-5" />
 
       {/* Language switcher */}
-      <LanguageSwitcher client:load lang={lang} pathname={pathname} />
+      <LanguageSwitcher client:only="react" lang={lang} pathname={pathname} />
 
       {/* Navigation button */}
       {

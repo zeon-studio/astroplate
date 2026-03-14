@@ -1,24 +1,24 @@
 {
   "main": [
     {
-      "name": "facebook",
-      "icon": "FaFacebook",
-      "link": "https://www.facebook.com/"
+      "name": "instagram",
+      "icon": "FaInstagram",
+      "link": "https://www.instagram.com/seekernoetic/"
+    },
+    {
+      "name": "youtube",
+      "icon": "FaYoutube",
+      "link": "https://www.youtube.com/@SeekerNoetic"
+    },
+    {
+      "name": "threads",
+      "icon": "FaThreads",
+      "link": "https://www.threads.com/@seekernoetic"
     },
     {
       "name": "x",
       "icon": "FaXTwitter",
-      "link": "https://x.com/"
-    },
-    {
-      "name": "github",
-      "icon": "FaGithub",
-      "link": "https://www.github.com/"
-    },
-    {
-      "name": "linkedin",
-      "icon": "FaLinkedin",
-      "link": "https://www.linkedin.com/"
+      "link": "https://x.com/SeekerNoetic"
     }
   ]
 }

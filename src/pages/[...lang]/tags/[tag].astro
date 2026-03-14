@@ -9,7 +9,6 @@ import { sortByDate } from "@/lib/utils/sortFunctions";
 import taxonomyFilter from "@/lib/utils/taxonomyFilter";
 import PageHeader from "@/partials/PageHeader.astro";
 
-
 // get all static paths for tags
 export async function getStaticPaths() {
   const { default_language } = config.settings;
@@ -27,14 +26,11 @@ export async function getStaticPaths() {
           tag,
         },
       }));
-    })
+    }),
   );
 
   // Handle default path (no lang)
-  const defaultCategories = await getTaxonomy(
-    default_language,
-    "tags"
-  );
+  const defaultCategories = await getTaxonomy(default_language, "tags");
   const defaultPaths = defaultCategories.map((tag) => ({
     params: {
       lang: undefined,

@@ -1,0 +1,89 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getListPage } from "@/lib/contentParser.astro";
+import { supportedLang } from "@/lib/utils/languageParser";
+import PageHeader from "@/partials/PageHeader.astro";
+
+export function getStaticPaths() {
+  const paths = supportedLang.map((lang) => ({
+    params: { lang: lang || undefined },
+  }));
+  return paths;
+}
+
+const { lang } = Astro.params;
+const remoteViewingData = await getListPage("remote-viewing", lang);
+const content = remoteViewingData[0]?.data as any;
+if (!content || content.draft) {
+  return Astro.redirect("/404");
+}
+
+const title = content.title;
+const description = content.description;
+const meta_title = content.meta_title;
+const image = content.image;
+const sections = content.sections;
+---
+
+<Base
+  title={title}
+  meta_title={meta_title}
+  description={description}
+  image={image}
+>
+  <PageHeader title={title} />
+  <section class="section-sm">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="md:col-10 lg:col-8">
+          <div class="row">
+            {
+              sections.map((section: any) => (
+                <div class="mb-12 md:col-12" id={section.id}>
+                  <div class="bg-light dark:bg-darkmode-light p-8 rounded-lg">
+                    <div class="mb-4">
+                      <span class="text-4xl">{section.icon}</span>
+                    </div>
+                    {section.title && (
+                      <h3 class="font-secondary text-2xl font-semibold text-text-dark dark:text-darkmode-text-dark mb-4">
+                        {section.title}
+                      </h3>
+                    )}
+                    <p class="text-text-light dark:text-darkmode-text mb-6">
+                      {section.description}
+                    </p>
+                    {section.bulletpoints &&
+                      section.bulletpoints.length > 0 && (
+                        <ul class="space-y-3">
+                          {section.bulletpoints.map((point: string) => (
+                            <li class="flex items-start">
+                              <svg
+                                class="h-5 w-5 text-primary mt-1 mr-3 flex-shrink-0"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M5 13l4 4L19 7"
+                                />
+                              </svg>
+                              <span class="text-text-light dark:text-darkmode-text">
+                                {point}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

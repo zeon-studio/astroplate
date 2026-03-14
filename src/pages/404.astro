@@ -8,7 +8,6 @@ import {
   supportedLang,
 } from "@/lib/utils/languageParser";
 
-
 export function getStaticPaths() {
   const paths = supportedLang.map((lang) => ({
     params: { lang: lang || undefined },
