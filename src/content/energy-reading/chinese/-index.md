@@ -2,7 +2,7 @@
 title: "能量閱讀 (Energy Reading)"
 meta_title: "能量閱讀 (Energy Reading) - 靈魂與能量解剖學的深度掃描"
 description: "超越表層的情緒起伏。專業的能量閱讀能全面掃描你的能量解剖學——包含脈輪、氣場與能量索——找出影響你身心現實的深層根源。"
-image: "/images/image-placeholder.png"
+image: "/images/energy-reading/hero.png"
 draft: false
 sections:
   - id: "what-is"
@@ -11,7 +11,7 @@ sections:
       大眾文化經常將焦點放在「氣場閱讀 (Aura Reading)」上，這通常只著重於觀看人體外圍電磁場的顏色，藉此評估表層的情緒狀態。然而，「能量閱讀 (Energy Reading)」是一項遠比看顏色更深刻、更全面的診斷實踐。它本質上，就像是為你的靈魂進行一場 MRI（核磁共振）掃描。
       
       一場專業的能量閱讀，會評估你完整的「能量解剖學 (Energetic Anatomy)」。這包含了你各個脈輪 (Chakras) 的流動狀態、氣場的完整度，以及是否潛藏著未知的能量阻塞或過時的信念系統。透過調頻進入這些精微的頻率，我們能找出那些正在無形中形塑你身體健康、心理清晰度與生活現狀的潛藏力量。
-    image: "/images/image-placeholder.png"
+    image: "/images/energy-reading/what-is.png"
     bulletpoints: []
   - id: "how-it-works"
     title: "深層診斷的過程"
@@ -19,7 +19,7 @@ sections:
       能量閱讀不需要任何肢體接觸；它是透過進入一種擴展且同調的意識狀態來進行的。在一個平靜、接地的空間裡，閱讀者會化身為一個高度敏銳的接收器，調頻對齊你獨特的能量特徵 (Energetic Signature)。
       
       在解讀過程中，閱讀者會系統性地掃描你能量場的各個層次。我們會尋找生命力被困住的「停滯區」、導致你流失活力的「破洞」，以及那些可能在潛意識中，依然將你與過去的人際關係或創傷綑綁在一起的「能量索 (Energetic Cords)」。接著，這些感官數據會被轉譯成清晰、具備高度行動價值的洞見，讓你能夠輕易理解。
-    image: "/images/image-placeholder.png"
+    image: "/images/energy-reading/how-it-works.png"
     bulletpoints: []
   - id: "practical-applications"
     title: "找出問題的真正根源"
@@ -27,7 +27,7 @@ sections:
       能量閱讀真正的價值，在於它能夠繞過充滿邏輯與防禦機制的左腦，直搗生命中反覆出現之問題的「根源」。你是否明明休息了，卻依然感到慢性疲憊？你是否在不同的人際關係中，不斷重演相同的劇本？這些問題的答案，幾乎總是早在它們顯化於物理現實之前，就已經存在於你的能量場中了。
       
       這項實踐非常適合用來突破創作或事業上的瓶頸、解決莫名沉重的情緒，以及在經歷重大人生轉換期時，為你的能量系統做好準備。它能提供一份充滿策略性的地圖，標示出你哪裡的能量流動得非常順暢，而哪裡又迫切需要重新導向。
-    image: "/images/image-placeholder.png"
+    image: "/images/energy-reading/practical-applications.png"
     bulletpoints: []
   - id: "myths-vs-reality"
     title: "破除迷思：清晰勝過神秘"
@@ -35,7 +35,7 @@ sections:
       一個常見的迷思是，人們擔心能量閱讀者會「評判」他們，或是挖掘出什麼黑暗可怕的秘密。事實上，能量本身是完全中立的。它只是單純地顯示哪裡有流動、哪裡有阻力。一場專業的閱讀是極度充滿慈悲心且客觀的評估，不帶有任何道德批判。
       
       另一個誤解是，閱讀者會在診斷掃描的過程中，直接幫你「修復」所有的問題。雖然「將覺知帶入阻塞處」這個動作本身，通常就能啟動療癒的過程，但能量閱讀主要是一項「評估與診斷」的工具。它能為你帶來極其深刻的自我覺察，而這份覺察，正是讓你能夠重新掌握主導權、親自為自身的能量狀態與療癒旅程負起責任的關鍵。
-    image: "/images/image-placeholder.png"
+    image: "/images/energy-reading/myths-vs-reality.png"
     bulletpoints: []
   - id: "call-to-action"
     title: "取回你生命的力量"
@@ -43,6 +43,6 @@ sections:
       在你開口說話之前，你的能量就已經先介紹了你。當你的能量解剖學是清晰、平衡且充滿活力時，生活自然會充滿共時性與流暢感。如果你感到卡關、被消耗，或是與自己的人生目標失去了連結，這代表是時候往更深層的地方去探索了。
       
       立即預約一場深度的能量閱讀。發現你的能量場正在向世界放送什麼樣的頻率，找出那些無形中消耗你活力的漏洞，並獲得清晰、客觀的指引，幫助你取回生命的主導權，重新對齊你最高的潛能。
-    image: "/images/image-placeholder.png"
+    image: "/images/energy-reading/call-to-action.png"
     bulletpoints: []
 ---

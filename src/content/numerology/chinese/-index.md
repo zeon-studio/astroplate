@@ -2,7 +2,7 @@
 title: "生命靈數 (Numerology)"
 meta_title: "生命靈數 (Numerology) - 解碼你的靈魂藍圖與人生使命"
 description: "探索隱藏在你出生日期與姓名中的深層密碼。生命靈數（數字學）能揭示你的靈魂使命、天賦潛能，以及形塑你人生旅程的無形週期。"
-image: "/images/image-placeholder.png"
+image: "/images/numerology/Hero.png"
 draft: false
 sections:
   - id: "what-is"
@@ -11,7 +11,7 @@ sections:
       生命靈數（Numerology），或稱數字學，絕不僅僅是簡單的加減算術；它是一門古老且深奧的科學，專門探討數字及其蘊含的能量頻率。這門學問扎根於各大古老文明的智慧之中——從畢達哥拉斯的哲學到吠陀傳統——它主張整個宇宙是一個精密運作的系統，當我們將一切拆解到最基礎的層次時，留下來的便是「數字」。
       
       透過分析由你出生日期與姓名所組成的獨特數字密碼，我們能夠將這些無形的頻率，翻譯成一份具備高度可讀性的心理與靈性分析報告。它就像是一面純粹的鏡子，映照出你最核心的本質，並照亮你在受到社會世俗框架制約之前，原本注定要行走的那條道路。
-    image: "/images/image-placeholder.png"
+    image: "/images/numerology/what-is.png"
     bulletpoints: []
   - id: "how-it-works"
     title: "解碼你的靈魂藍圖"
@@ -19,7 +19,7 @@ sections:
       一場專業的生命靈數解讀，始於你生命中最固定不變的兩個資料點：你確切的出生日期，以及你出生時的全名。這些元素會被一套系統化的計算方式化簡為個位數（或是強大的「卓越數 Master Numbers」），從而構建出你的核心命盤。
       
       你的「命運數 (Life Path Number)」是這份藍圖的基石，揭示了你此生主要的人生課題與挑戰；「表現數 (Expression Number)」展現了你與生俱來的天賦才能；而「靈魂衝動數 (Soul Urge Number)」則看透了驅動你潛意識做出各種選擇的深層渴望。當這些元素被系統性地解碼後，你性格的精細架構與靈性目的將會完整地呈現在你眼前。
-    image: "/images/image-placeholder.png"
+    image: "/images/numerology/how-it-works.png"
     bulletpoints: []
   - id: "practical-applications"
     title: "掌握人生週期與潛能"
@@ -27,7 +27,7 @@ sections:
       了解自身的生命靈數，能為你的日常生活帶來極具實用價值的優勢。它能作為重大人生決策的羅盤，幫助你將職業選擇與自身的自然優勢對齊，而非逆流而上、徒勞無功。
       
       此外，透過比對伴侶之間的能量頻率，生命靈數能針對人際與親密關係的契合度提供深刻的洞見，指出彼此和諧共振與可能產生摩擦的區域。它還能繪製出你的「個人流年週期 (Personal Year Cycles)」，讓你預先了解某個特定年份是否最適合大膽開創、安靜內省，還是應該準備收割過去努力的財務豐收。
-    image: "/images/image-placeholder.png"
+    image: "/images/numerology/practical-applications.png"
     bulletpoints: []
   - id: "myths-vs-reality"
     title: "超越傳統的算命迷思"
@@ -35,7 +35,7 @@ sections:
       關於生命靈數，最常見的誤解是將它視為一種宿命論的工具，僅僅用來「預測」一個早已寫好的未來。事實上，它並不會武斷地決定你會發生什麼事；相反地，它透過揭示你手中握有什麼樣的原型能量，來賦予你力量。你始終擁有絕對的自由意志。
       
       另一個迷思是認為某些數字特別「幸運」或「倒霉」。在真正的神祕學研究中，沒有任何數字是天生好或壞的；每一個數字都擁有「光」與「影」的雙重光譜。一場專業的解讀絕不是給你一個死板的預言，而是提供一套充滿策略性的框架，協助你克服命盤中的低頻挑戰，並將自我提升至最高版本的潛能狀態。
-    image: "/images/image-placeholder.png"
+    image: "/images/numerology/myths-vs-reality.png"
     bulletpoints: []
   - id: "call-to-action"
     title: "開啟你的數字探索之旅"
@@ -43,6 +43,6 @@ sections:
       你準備好停止與生命的洪流對抗，並開始與你人生原本的自然節奏對齊了嗎？解開你的生命靈數藍圖，將會成為你獲得深刻自我認同與個人策略性成長的重要催化劑。
       
       立即預約一場深度的生命靈數解讀，發掘你的人生道路、理解你目前所處的流年週期，並針對你的事業、人際關係與靈魂使命，獲得具備高度行動價值的清晰指引。數字有故事要說——現在，是時候傾聽了。
-    image: "/images/image-placeholder.png"
+    image: "/images/numerology/call-to-action.png"
     bulletpoints: []
 ---
