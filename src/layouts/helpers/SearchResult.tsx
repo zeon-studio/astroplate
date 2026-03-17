@@ -35,13 +35,12 @@ export interface ISearchGroup {
 const SearchResult = ({
   searchResult,
   searchString,
-  lang
+  lang,
 }: {
   searchResult: ISearchItem[];
   searchString: string;
   lang: string;
 }) => {
-
   // generate search result group
   const generateSearchGroup = (searchResult: ISearchItem[]) => {
     const joinDataByGroup: ISearchGroup[] = searchResult.reduce(
@@ -87,7 +86,6 @@ const SearchResult = ({
       ),
     );
   };
-
 
   // match underline
   const matchUnderline = (text: string, substring: string) => {
@@ -196,8 +194,8 @@ const SearchResult = ({
                                   {matchUnderline(category, searchString)}
                                   {item.frontmatter.categories &&
                                     index !==
-                                    item.frontmatter.categories.length -
-                                    1 && <>, </>}
+                                      item.frontmatter.categories.length -
+                                        1 && <>, </>}
                                 </span>
                               ),
                             )}
@@ -219,7 +217,7 @@ const SearchResult = ({
                                 {matchUnderline(tag, searchString)}
                                 {item.frontmatter.tags &&
                                   index !==
-                                  item.frontmatter.tags.length - 1 && <>, </>}
+                                    item.frontmatter.tags.length - 1 && <>, </>}
                               </span>
                             ))}
                           </div>

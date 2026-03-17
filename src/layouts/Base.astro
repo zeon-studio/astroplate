@@ -42,6 +42,17 @@ const language = lang || getLangFromUrl(Astro.url);
 <!doctype html>
 <html lang={language}>
   <head>
+    <script is:inline>
+      (function () {
+        const theme = localStorage.getItem("theme");
+        const systemDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        if (theme === "dark" || (!theme && systemDark)) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
     <!-- google tag manager -->
     {
       config.google_tag_manager.enable && (
@@ -49,7 +60,11 @@ const language = lang || getLangFromUrl(Astro.url);
       )
     }
     <!-- favicon -->
-    <link rel="shortcut icon" href={config.site.favicon} />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <!-- theme meta -->
     <meta name="theme-name" content="astroplate" />
     <meta name="msapplication-TileColor" content="#000000" />
@@ -66,7 +81,7 @@ const language = lang || getLangFromUrl(Astro.url);
     <meta name="generator" content={Astro.generator} />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-  <!-- google font css - Astro 6 built-in Font API -->
+    <!-- google font css - Astro 6 built-in Font API -->
     {
       fontEntries.map(([key]) => {
         const cssVar = `--font-${key}` as any;
@@ -95,7 +110,7 @@ const language = lang || getLangFromUrl(Astro.url);
     <meta
       name="description"
       content={plainify(
-        description ? description : config.metadata.meta_description
+        description ? description : config.metadata.meta_description,
       )}
     />
 
@@ -108,7 +123,7 @@ const language = lang || getLangFromUrl(Astro.url);
     <meta
       property="og:title"
       content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title
+        meta_title ? meta_title : title ? title : config.site.title,
       )}
     />
 
@@ -116,7 +131,7 @@ const language = lang || getLangFromUrl(Astro.url);
     <meta
       property="og:description"
       content={plainify(
-        description ? description : config.metadata.meta_description
+        description ? description : config.metadata.meta_description,
       )}
     />
     <meta property="og:type" content="website" />
@@ -129,7 +144,7 @@ const language = lang || getLangFromUrl(Astro.url);
     <meta
       name="twitter:title"
       content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title
+        meta_title ? meta_title : title ? title : config.site.title,
       )}
     />
 
@@ -137,7 +152,7 @@ const language = lang || getLangFromUrl(Astro.url);
     <meta
       name="twitter:description"
       content={plainify(
-        description ? description : config.metadata.meta_description
+        description ? description : config.metadata.meta_description,
       )}
     />
 
@@ -167,9 +182,9 @@ const language = lang || getLangFromUrl(Astro.url);
     }
 
     <TwSizeIndicator />
-    <Announcement lang={language} client:load />
+    <Announcement lang={language} client:only="react" />
     <Header />
-    <SearchModal lang={language} client:load />
+    <SearchModal lang={language} client:only="react" />
     <main id="main-content">
       <slot />
     </main>

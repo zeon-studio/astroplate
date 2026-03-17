@@ -1,0 +1,85 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getListPage } from "@/lib/contentParser.astro";
+import { supportedLang, slugSelector } from "@/lib/utils/languageParser";
+import PageHeader from "@/partials/PageHeader.astro";
+import ImageMod from "@/components/ImageMod.astro";
+
+export function getStaticPaths() {
+  const paths = supportedLang.map((lang) => ({
+    params: { lang: lang || undefined },
+  }));
+  return paths;
+}
+
+const { lang } = Astro.params;
+const servicesData = await getListPage("services", lang);
+const servicesContent = servicesData[0]?.data as any;
+if (!servicesContent || servicesContent.draft) {
+  return Astro.redirect("/404");
+}
+
+const title = servicesContent.title;
+const description = servicesContent.description;
+const meta_title = servicesContent.meta_title;
+const image = servicesContent.image;
+const servicesList = servicesContent.services;
+---
+
+<Base
+  title={title}
+  meta_title={meta_title}
+  description={description}
+  image={image}
+>
+  <PageHeader title={title} />
+  <section class="section-sm">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="lg:col-10">
+          <p class="text-center text-lg mb-12 text-text-light dark:text-darkmode-text">
+            {description}
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {
+              servicesList.map((service: any) => (
+                <div class="service-card flex flex-col h-full bg-light dark:bg-darkmode-light rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden" id={service.id}>
+                  {service.image && (
+                    <div class="service-card-image">
+                      <ImageMod
+                        class="w-full h-56 object-cover"
+                        src={service.image}
+                        alt={service.title}
+                        width={600}
+                        height={400}
+                        format="webp"
+                      />
+                    </div>
+                  )}
+                  <div class="p-8 flex flex-col flex-grow">
+                    <h3 class="font-secondary text-2xl font-semibold text-text-dark dark:text-darkmode-text-dark mb-4">
+                      {service.title}
+                    </h3>
+                    <p class="text-text-light dark:text-darkmode-text mb-8 flex-grow">
+                      {service.description}
+                    </p>
+                    {service.link && (
+                      <div class="mt-auto flex gap-4">
+                        <a href={slugSelector(service.link, lang)} class="btn btn-outline-primary w-full text-center">
+                          {lang === 'zh-tw' ? '深入了解' : 'Learn More'}
+                        </a>
+                        <a href={slugSelector('/contact', lang)} class="btn btn-primary w-full text-center">
+                          {lang === 'zh-tw' ? '預約服務' : 'Book Session'}
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

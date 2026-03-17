@@ -5,7 +5,6 @@ import { getListPage } from "@/lib/contentParser.astro";
 import { getTranslations, supportedLang } from "@/lib/utils/languageParser";
 import PageHeader from "@/partials/PageHeader.astro";
 
-
 export function getStaticPaths() {
   const paths = supportedLang.map((lang) => ({
     params: { lang: lang || undefined },
@@ -14,10 +13,7 @@ export function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
-const contactIndex = await getListPage(
-  "contact",
-  lang
-);
+const contactIndex = await getListPage("contact", lang);
 if (contactIndex[0].data.draft) {
   return Astro.redirect("/404");
 }

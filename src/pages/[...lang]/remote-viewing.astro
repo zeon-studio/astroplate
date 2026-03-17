@@ -1,0 +1,50 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getListPage } from "@/lib/contentParser.astro";
+import { supportedLang } from "@/lib/utils/languageParser";
+import PageHeader from "@/partials/PageHeader.astro";
+import ServiceFeature from "@/layouts/components/ServiceFeature.astro";
+
+export function getStaticPaths() {
+  const paths = supportedLang.map((lang) => ({
+    params: { lang: lang || undefined },
+  }));
+  return paths;
+}
+
+const { lang } = Astro.params;
+const remoteViewingData = await getListPage("remote-viewing", lang);
+const content = remoteViewingData[0]?.data as any;
+if (!content || content.draft) {
+  return Astro.redirect("/404");
+}
+
+const title = content.title;
+const description = content.description;
+const meta_title = content.meta_title;
+const image = content.image;
+const sections = content.sections;
+---
+
+<Base
+  title={title}
+  meta_title={meta_title}
+  description={description}
+  image={image}
+>
+  <PageHeader title={title} />
+  
+  <div class="pb-16">
+    {sections.map((section: any, index: number) => (
+      <div id={section.id}>
+        <ServiceFeature 
+          index={index}
+          title={section.title}
+          description={section.description}
+          image={section.image}
+          bulletpoints={section.bulletpoints}
+        />
+      </div>
+    ))}
+  </div>
+</Base>

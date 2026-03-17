@@ -5,7 +5,6 @@ import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
 import { supportedLang } from "@/lib/utils/languageParser";
 import PageHeader from "@/partials/PageHeader.astro";
 
-
 const COLLECTION_FOLDER = "authors";
 
 export function getStaticPaths() {
@@ -16,17 +15,11 @@ export function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
-const authorIndex = await getListPage(
-  COLLECTION_FOLDER,
-  lang
-);
+const authorIndex = await getListPage(COLLECTION_FOLDER, lang);
 if (authorIndex[0].data.draft) {
   return Astro.redirect("/404");
 }
-const authors = await getSinglePage(
-  COLLECTION_FOLDER,
-  lang
-);
+const authors = await getSinglePage(COLLECTION_FOLDER, lang);
 ---
 
 <Base title={authorIndex[0].data.title}>

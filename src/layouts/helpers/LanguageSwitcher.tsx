@@ -23,7 +23,9 @@ const LanguageSwitcher = ({
   const sortedLanguages = languages
     .filter(
       (language) =>
-        !(config.settings.disable_languages as string[]).includes(language.languageCode),
+        !(config.settings.disable_languages as string[]).includes(
+          language.languageCode,
+        ),
     )
     .sort((a, b) => a.weight - b.weight);
 
@@ -36,14 +38,22 @@ const LanguageSwitcher = ({
           let newPath;
           const baseUrl = window.location.origin;
 
+          // Safely remove the current language prefix from the pathname
+          let pathWithoutLang = pathname;
+          if (pathname.startsWith(`/${lang}/`)) {
+            pathWithoutLang = pathname.substring(lang.length + 1);
+          } else if (pathname === `/${lang}`) {
+            pathWithoutLang = "/";
+          }
+
           if (selectedLang === default_language) {
             if (default_language_in_subdir) {
-              newPath = `${baseUrl}/${default_language}${removeTrailingSlash(pathname.replace(`/${lang}`, ""))}`;
+              newPath = `${baseUrl}/${default_language}${removeTrailingSlash(pathWithoutLang)}`;
             } else {
-              newPath = `${baseUrl}${removeTrailingSlash(pathname.replace(`/${lang}`, ""))}`;
+              newPath = `${baseUrl}${removeTrailingSlash(pathWithoutLang)}`;
             }
           } else {
-            newPath = `/${selectedLang}${removeTrailingSlash(pathname.replace(`/${lang}`, ""))}`;
+            newPath = `/${selectedLang}${removeTrailingSlash(pathWithoutLang)}`;
           }
 
           window.location.href = newPath;

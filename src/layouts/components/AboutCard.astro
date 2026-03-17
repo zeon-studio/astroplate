@@ -1,0 +1,37 @@
+---
+import ImageMod from "./ImageMod.astro";
+import Social from "./Social.astro";
+
+interface Props {
+  name: string;
+  role?: string;
+  image?: string;
+  bio?: string;
+  social?: Array<{
+    name: string;
+    icon: string;
+    link: string;
+  }>;
+}
+
+const { name, role, image, bio, social } = Astro.props;
+---
+
+<div class="rounded bg-light p-8 text-center dark:bg-darkmode-light">
+  {
+    image && (
+      <ImageMod
+        class="mx-auto mb-6 rounded"
+        src={image}
+        alt={name}
+        width={150}
+        height={150}
+        format="webp"
+      />
+    )
+  }
+  {role && <p class="text-sm text-primary mb-2">{role}</p>}
+  <h3 class="mb-3">{name}</h3>
+  {bio && <p class="mb-4 text-text-light dark:text-darkmode-text">{bio}</p>}
+  {social && <Social source={social} className="social-icons" />}
+</div>

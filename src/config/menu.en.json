@@ -1,24 +1,40 @@
 {
   "main": [
-    { "name": "Home", "url": "/" },
-    { "name": "About", "url": "/about" },
-    { "name": "Elements", "url": "/elements" },
     {
-      "name": "Pages",
-      "url": "",
+      "name": "Explore",
+      "url": "/blog",
       "hasChildren": true,
       "children": [
-        { "name": "Contact", "url": "/contact" },
+        { "name": "Remote Viewing", "url": "/remote-viewing" },
+        { "name": "Numerology", "url": "/numerology" },
+        { "name": "Energy Reading", "url": "/energy-reading" },
+        { "name": "Energy Healing", "url": "/energy-healing" },
         { "name": "Blog", "url": "/blog" },
-        { "name": "Authors", "url": "/authors" },
-        { "name": "Categories", "url": "/categories" },
-        { "name": "Tags", "url": "/tags" },
-        { "name": "404 Page", "url": "/404" }
+        { "name": "Other Resources", "url": "/other-resources" }
       ]
-    }
+    },
+    {
+      "name": "Services",
+      "url": "/services",
+      "hasChildren": true,
+      "children": [
+        { "name": "Remote Viewing", "url": "/services#remote-viewing" },
+        { "name": "Numerology", "url": "/services#numerology" },
+        { "name": "Energy Reading", "url": "/services#energy-reading" },
+        { "name": "Energy Healing", "url": "/services#energy-healing" }
+      ]
+    },
+    { "name": "Shop", "url": "/shop" },
+    { "name": "FAQ", "url": "/faq" },
+    { "name": "Contact", "url": "/contact" },
+    { "name": "About", "url": "/about" }
   ],
-  "footer": [
+  "hidden": [
+    { "name": "Authors", "url": "/authors" },
     { "name": "Elements", "url": "/elements" },
-    { "name": "Privacy Policy", "url": "/privacy-policy" }
-  ]
+    { "name": "Categories", "url": "/categories" },
+    { "name": "Tags", "url": "/tags" },
+    { "name": "404 Page", "url": "/404" }
+  ],
+  "footer": [{ "name": "Privacy Policy", "url": "/privacy-policy" }]
 }

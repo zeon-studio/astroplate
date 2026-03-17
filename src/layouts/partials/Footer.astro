@@ -10,7 +10,6 @@ import {
 } from "@/lib/utils/languageParser";
 import { markdownify } from "@/lib/utils/textConverter";
 
-
 const lang = getLangFromUrl(Astro.url);
 const menu = await getTranslations(lang);
 let footer: any = [];

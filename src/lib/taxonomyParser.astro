@@ -16,19 +16,16 @@ export const getTaxonomy = async (collection: string, name: string) => {
     actualCollection = language.contentDir;
   } else {
     const defaultLanguageMatch = languages.find(
-      (l) => l.languageCode === default_language
+      (l) => l.languageCode === default_language,
     );
     if (defaultLanguageMatch) {
       actualCollection = defaultLanguageMatch.contentDir;
     }
   }
 
-  const singlePages = await getCollection(
-    "blog",
-    ({ id }: any) => {
-      return id.startsWith(actualCollection) && !id.endsWith("-index");
-    }
-  );
+  const singlePages = await getCollection("blog", ({ id }: any) => {
+    return id.startsWith(actualCollection) && !id.endsWith("-index");
+  });
   const taxonomyPages = singlePages.map((page: any) => page.data[name]);
   let taxonomies: string[] = [];
   for (let i = 0; i < taxonomyPages.length; i++) {
@@ -52,19 +49,16 @@ export const getAllTaxonomy = async (collection: string, name: string) => {
     actualCollection = language.contentDir;
   } else {
     const defaultLanguageMatch = languages.find(
-      (l) => l.languageCode === default_language
+      (l) => l.languageCode === default_language,
     );
     if (defaultLanguageMatch) {
       actualCollection = defaultLanguageMatch.contentDir;
     }
   }
 
-  const singlePages = await getCollection(
-    "blog",
-    ({ id }: any) => {
-      return id.startsWith(actualCollection) && !id.endsWith("-index");
-    }
-  );
+  const singlePages = await getCollection("blog", ({ id }: any) => {
+    return id.startsWith(actualCollection) && !id.endsWith("-index");
+  });
   const taxonomyPages = singlePages.map((page: any) => page.data[name]);
   let taxonomies: string[] = [];
   for (let i = 0; i < taxonomyPages.length; i++) {
