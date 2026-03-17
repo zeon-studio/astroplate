@@ -131,6 +131,7 @@ const servicesCollection = defineCollection({
           description: z.string(),
           icon: z.string().optional(),
           image: z.string().optional(),
+          link: z.string().optional(),
           bulletpoints: z.array(z.string()),
         }),
       )
@@ -179,6 +180,7 @@ const remoteViewingCollection = defineCollection({
           description: z.string(),
           icon: z.string().optional(),
           image: z.string().optional(),
+          link: z.string().optional(),
           bulletpoints: z.array(z.string()),
         }),
       )
@@ -202,6 +204,7 @@ const numerologyCollection = defineCollection({
           description: z.string(),
           icon: z.string().optional(),
           image: z.string().optional(),
+          link: z.string().optional(),
           bulletpoints: z.array(z.string()),
         }),
       )
@@ -225,6 +228,7 @@ const energyReadingCollection = defineCollection({
           description: z.string(),
           icon: z.string().optional(),
           image: z.string().optional(),
+          link: z.string().optional(),
           bulletpoints: z.array(z.string()),
         }),
       )
@@ -248,6 +252,7 @@ const energyHealingCollection = defineCollection({
           description: z.string(),
           icon: z.string().optional(),
           image: z.string().optional(),
+          link: z.string().optional(),
           bulletpoints: z.array(z.string()),
         }),
       )

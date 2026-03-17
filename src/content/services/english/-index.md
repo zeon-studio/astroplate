@@ -1,44 +1,36 @@
 ---
 title: "Services"
-meta_title: "Services"
-description: "Professional services including numerology, energy reading, energy healing, and spiritual exploration to help you find direction and balance."
+meta_title: "Our Professional Services"
+description: "Professional services designed to uncover hidden truths, map your soul's blueprint, and restore energetic harmony. Choose a path below to begin your journey."
 image: "/images/image-placeholder.png"
 draft: false
 services:
   - id: "remote-viewing"
     title: "👁️ Remote Viewing"
-    description: "Perceive and describe distant or hidden locations, objects, or events through expanded consciousness."
+    description: "A scientifically validated, protocol-based mental ability to perceive and describe distant or unseen targets. Useful for business intelligence, locating lost objects, and exploring the unknown."
     icon: "👁️"
-    bulletpoints:
-      - "Location & Property Scans"
-      - "Missing Object Location"
-      - "Event Timeline Exploration"
-      - "Crypto & Market Research"
+    image: "/images/service-1.png"
+    link: "/remote-viewing"
+    bulletpoints: []
   - id: "numerology"
     title: "☀️ Numerology"
-    description: "Ancient wisdom meets modern insight. Discover your life path, personality traits, and destiny through the mystical power of numbers."
+    description: "Discover the profound insights encoded in your birth date and name. Reveal your soul's purpose, natural talents, and navigate the invisible cycles shaping your life's journey."
     icon: "☀️"
-    bulletpoints:
-      - "Life Path & Destiny Analysis"
-      - "Career & Finance Guidance"
-      - "Relationship Compatibility"
-      - "Personal Strengths & Challenges"
+    image: "/images/service-2.png"
+    link: "/numerology"
+    bulletpoints: []
   - id: "energy-reading"
     title: "🔮 Energy Reading"
-    description: "Explore your aura and energy field. Gain insights into your emotional, spiritual, and physical well-being through professional energy readings."
+    description: "Go beyond surface emotions. A deep diagnostic scan of your complete energetic anatomy to uncover the root causes of physical, emotional, and spiritual challenges."
     icon: "🔮"
-    bulletpoints:
-      - "Aura Color & Layer Analysis"
-      - "Emotional Body Assessment"
-      - "Chakra Evaluation"
-      - "Spiritual Connection Insights"
+    image: "/images/service-3.png"
+    link: "/energy-reading"
+    bulletpoints: []
   - id: "energy-healing"
     title: "🌿 Energy Healing"
-    description: "Gently restore balance to your body and energy field, releasing blockages and returning to harmony."
+    description: "Targeted, non-invasive therapy to repair energetic distortions, clear blockages, and restore the natural, harmonious flow of your life force."
     icon: "🌿"
-    bulletpoints:
-      - "Usui & Angelic Reiki"
-      - "Animal Reiki"
-      - "Chakra Balancing"
-      - "Energy Field Clearing & Protection"
+    image: "/images/service-4.png"
+    link: "/energy-healing"
+    bulletpoints: []
 ---
