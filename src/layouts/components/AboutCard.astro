@@ -30,7 +30,7 @@ const { name, role, image, bio, social } = Astro.props;
       />
     )
   }
-  {role && <p class="text-sm text-primary mb-2">{role}</p>}
+  {role && <p class="text-sm text-primary dark:text-darkmode-primary mb-2">{role}</p>}
   <h3 class="mb-3">{name}</h3>
   {bio && <p class="mb-4 text-text-light dark:text-darkmode-text">{bio}</p>}
   {social && <Social source={social} className="social-icons" />}
