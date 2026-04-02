@@ -60,9 +60,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     resolve: {
-      alias: {
-        zod: "zod/v4",
-      },
+      alias: [{ find: /^zod$/, replacement: "zod/v4" }],
     },
   },
   fonts: fontsConfig,
