@@ -1,13 +1,18 @@
 ---
 import Base from "@/layouts/Base.astro";
-import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
-import { humanize } from "@/lib/utils/textConverter";
+import { adaptPosts } from "@/lib/emdashAdapter";
+import { humanize, slugify } from "@/lib/utils/textConverter";
 import PageHeader from "@/partials/PageHeader.astro";
+import { getEmDashCollection } from "emdash";
 
-const BLOG_FOLDER = "blog";
+const { entries } = await getEmDashCollection("posts", { status: "published" });
+const allPosts = adaptPosts(entries ?? []);
 
-const categories = await getTaxonomy(BLOG_FOLDER, "categories");
-const allCategories = await getAllTaxonomy(BLOG_FOLDER, "categories");
+// Collect all category slugs from JSON field on each post
+const allCategories: string[] = allPosts.flatMap((p) =>
+  p ? (p.data.categories as string[]).map(slugify) : [],
+);
+const categories = [...new Set(allCategories)];
 ---
 
 <Base title={"Categories"}>

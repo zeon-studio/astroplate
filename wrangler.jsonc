@@ -4,8 +4,22 @@
   // Preview: npm run preview:cf-workers
   "name": "astroplate",
   "compatibility_date": "2026-03-02",
+  "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "404-page",
+    "not_found_handling": "404-page"
   },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "astroplate-db",
+      "database_id": "create-with-wrangler"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "MEDIA",
+      "bucket_name": "astroplate-media"
+    }
+  ]
 }

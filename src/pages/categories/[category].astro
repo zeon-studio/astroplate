@@ -1,35 +1,37 @@
 ---
 import BlogCard from "@/components/BlogCard.astro";
 import Base from "@/layouts/Base.astro";
-import { getSinglePage } from "@/lib/contentParser.astro";
-import { getTaxonomy } from "@/lib/taxonomyParser.astro";
+import { adaptPosts } from "@/lib/emdashAdapter";
 import { sortByDate } from "@/lib/utils/sortFunctions";
-import taxonomyFilter from "@/lib/utils/taxonomyFilter";
+import { slugify } from "@/lib/utils/textConverter";
 import PageHeader from "@/partials/PageHeader.astro";
+import { getEmDashCollection } from "emdash";
 
-// get static paths for all categories
-export async function getStaticPaths() {
-  const BLOG_FOLDER = "blog";
-  const categories = await getTaxonomy(BLOG_FOLDER, "categories");
-
-  return categories.map((category) => {
-    return {
-      params: { category },
-    };
-  });
-}
+export const prerender = false;
 
 const { category } = Astro.params;
 
-// get posts by category
-const BLOG_FOLDER = "blog";
-const posts = await getSinglePage(BLOG_FOLDER);
-const filterByCategories = taxonomyFilter(posts, "categories", category!);
-const sortedPosts = sortByDate(filterByCategories);
+let posts: any[] = [];
+try {
+  const { entries } = await getEmDashCollection("posts", {
+    status: "published",
+  });
+  if (entries) {
+    // categories are stored as a JSON array on each post — filter manually
+    posts = adaptPosts(entries).filter(
+      (p) =>
+        p !== null &&
+        (p.data.categories as string[]).map(slugify).includes(category!),
+    );
+  }
+} catch (e) {}
+
+const sortedPosts = sortByDate(posts);
+const categoryLabel = category ? category.replace(/-/g, " ") : "";
 ---
 
-<Base title={category}>
-  <PageHeader title={category} />
+<Base title={categoryLabel}>
+  <PageHeader title={categoryLabel} />
   <div class="section-sm pb-0">
     <div class="container">
       <div class="row">

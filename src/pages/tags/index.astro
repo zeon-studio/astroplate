@@ -1,13 +1,18 @@
 ---
 import Base from "@/layouts/Base.astro";
-import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
-import { humanize } from "@/lib/utils/textConverter";
+import { adaptPosts } from "@/lib/emdashAdapter";
+import { humanize, slugify } from "@/lib/utils/textConverter";
 import PageHeader from "@/partials/PageHeader.astro";
+import { getEmDashCollection } from "emdash";
 
-const BLOG_FOLDER = "blog";
+const { entries } = await getEmDashCollection("posts", { status: "published" });
+const allPosts = adaptPosts(entries ?? []);
 
-const tags = await getTaxonomy(BLOG_FOLDER, "tags");
-const allTags = await getAllTaxonomy(BLOG_FOLDER, "tags");
+// Collect all tag slugs from JSON field on each post
+const allTagSlugs: string[] = allPosts.flatMap((p) =>
+  p ? (p.data.tags as string[]).map(slugify) : [],
+);
+const tags = [...new Set(allTagSlugs)];
 ---
 
 <Base title={"Tags"}>
@@ -16,8 +21,8 @@ const allTags = await getAllTaxonomy(BLOG_FOLDER, "tags");
     <div class="container text-center">
       <ul>
         {
-          tags.map((tag: any) => {
-            const count = allTags.filter((c) => c === tag).length;
+          tags.map((tag: string) => {
+            const count = allTagSlugs.filter((t) => t === tag).length;
             return (
               <li class="m-3 inline-block">
                 <a

@@ -2,20 +2,20 @@
 import BlogCard from "@/components/BlogCard.astro";
 import Share from "@/components/Share.astro";
 import Disqus from "@/helpers/Disqus";
-import { getSinglePage } from "@/lib/contentParser.astro";
+import { adaptPosts } from "@/lib/emdashAdapter";
 import dateFormat from "@/lib/utils/dateFormat";
 import similarItems from "@/lib/utils/similarItems";
 import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
-import { render } from "astro:content";
+import { getEmDashCollection } from "emdash";
+import { PortableText } from "emdash/ui";
 import { FaRegClock, FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./components/ImageMod.astro";
 
-const COLLECTION_FOLDER = "blog";
 const { post } = Astro.props;
 
-const posts = await getSinglePage(COLLECTION_FOLDER);
-const similarPosts = similarItems(post, posts);
-const { Content } = await render(post);
+const { entries } = await getEmDashCollection("posts", { status: "published" });
+const allPosts = adaptPosts(entries ?? []);
+const similarPosts = similarItems(post, allPosts);
 const { title, description, author, categories, image, date, tags } = post.data;
 ---
 
@@ -62,7 +62,7 @@ const { title, description, author, categories, image, date, tags } = post.data;
           </li>
         </ul>
         <div class="content mb-10">
-          <Content />
+          <PortableText value={post.body ?? []} />
         </div>
         <div class="row items-start justify-between">
           <div class="mb-10 flex items-center lg:col-5 lg:mb-0">

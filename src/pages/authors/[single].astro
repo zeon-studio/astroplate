@@ -7,6 +7,8 @@ import { getSinglePage } from "@/lib/contentParser.astro";
 import { slugify } from "@/lib/utils/textConverter";
 import { render } from "astro:content";
 
+export const prerender = true;
+
 // get all static paths for authors
 export async function getStaticPaths() {
   const COLLECTION_FOLDER = "authors";
@@ -29,7 +31,7 @@ const { Content } = await render(author);
 const BLOG_FOLDER = "blog";
 const posts = await getSinglePage(BLOG_FOLDER);
 const postFilterByAuthor = posts.filter(
-  (post) => slugify(post.data.author) === slugify(title)
+  (post) => slugify(post.data.author) === slugify(title),
 );
 ---
 

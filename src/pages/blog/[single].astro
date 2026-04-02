@@ -1,22 +1,24 @@
 ---
 import Base from "@/layouts/Base.astro";
 import PostSingle from "@/layouts/PostSingle.astro";
-import { getSinglePage } from "@/lib/contentParser.astro";
+import { adaptPost } from "@/lib/emdashAdapter";
+import { getEmDashEntry } from "emdash";
 
-export async function getStaticPaths() {
-  const BLOG_FOLDER = "blog";
-  const posts = await getSinglePage(BLOG_FOLDER);
+export const prerender = false;
 
-  const paths = posts.map((post) => ({
-    params: {
-      single: post.id,
-    },
-    props: { post },
-  }));
-  return paths;
+const { single } = Astro.params;
+
+const { entry, error, isPreview } = await getEmDashEntry("posts", single!);
+
+if (error) {
+  return new Response("Server error", { status: 500 });
 }
 
-const { post } = Astro.props;
+if (!entry) {
+  return Astro.redirect("/404");
+}
+
+const post = adaptPost(entry)!;
 const { title, meta_title, description, image } = post.data;
 ---
 
@@ -26,5 +28,12 @@ const { title, meta_title, description, image } = post.data;
   description={description}
   image={image}
 >
+  {
+    isPreview && (
+      <div class="bg-yellow-100 border-l-4 border-yellow-500 p-3 text-sm text-yellow-800 text-center">
+        You are viewing a preview — this content is not yet published.
+      </div>
+    )
+  }
   <PostSingle post={post} />
 </Base>

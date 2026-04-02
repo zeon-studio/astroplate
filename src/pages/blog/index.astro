@@ -3,22 +3,66 @@ import BlogCard from "@/components/BlogCard.astro";
 import Pagination from "@/components/Pagination.astro";
 import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
-import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
+import { getListPage } from "@/lib/contentParser.astro";
+import { adaptPost, adaptPosts } from "@/lib/emdashAdapter";
 import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import PageHeader from "@/partials/PageHeader.astro";
 import PostSidebar from "@/partials/PostSidebar.astro";
+import { getEmDashCollection, getEmDashEntry } from "emdash";
 
 const BLOG_FOLDER = "blog";
 
-const postIndex = await getListPage(BLOG_FOLDER, "-index");
+// Fetch index metadata from EmDash or fallback to filesystem
+let postIndex;
+try {
+  const { entry: emIndex } = await getEmDashEntry("pages", "blog");
+  if (emIndex) {
+    postIndex = adaptPost(emIndex);
+  }
+} catch (e) {
+  console.log("EmDash blog index loading failed:", e);
+}
+
+if (!postIndex) {
+  postIndex = await getListPage(BLOG_FOLDER, "-index");
+}
+
 if (postIndex.data.draft) {
   return Astro.redirect("/404");
 }
-const posts = await getSinglePage(BLOG_FOLDER);
-const allCategories = await getAllTaxonomy(BLOG_FOLDER, "categories");
-const categories = await getTaxonomy(BLOG_FOLDER, "categories");
-const tags = await getTaxonomy(BLOG_FOLDER, "tags");
+
+let posts: any[] = [];
+let emCategories: string[] = [];
+let emTags: string[] = [];
+
+try {
+  const { entries } = await getEmDashCollection("posts", {
+    status: "published",
+  });
+  if (entries) {
+    posts = adaptPosts(entries);
+    // Extract unique categories and tags from EmDash posts
+    emCategories = [...new Set(posts.flatMap((p) => p.data.categories))].filter(
+      Boolean,
+    );
+    emTags = [...new Set(posts.flatMap((p) => p.data.tags))].filter(Boolean);
+  }
+} catch (e) {
+  console.log("EmDash posts loading failed:", e);
+}
+
+// Fallback to filesystem if EmDash is empty or fails
+const allCategories =
+  emCategories.length > 0
+    ? emCategories
+    : await getAllTaxonomy(BLOG_FOLDER, "categories");
+const categories =
+  emCategories.length > 0
+    ? emCategories
+    : await getTaxonomy(BLOG_FOLDER, "categories");
+const tags =
+  emTags.length > 0 ? emTags : await getTaxonomy(BLOG_FOLDER, "tags");
 const sortedPosts = sortByDate(posts);
 const totalPages: number = Math.ceil(posts.length / config.settings.pagination);
 const currentPosts = sortedPosts.slice(0, config.settings.pagination);

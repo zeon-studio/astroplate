@@ -3,11 +3,15 @@ import BlogCard from "@/components/BlogCard.astro";
 import Pagination from "@/components/Pagination.astro";
 import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
-import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
+import { getListPage } from "@/lib/contentParser.astro";
 import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import PageHeader from "@/partials/PageHeader.astro";
 import PostSidebar from "@/partials/PostSidebar.astro";
+import { getEmDashCollection } from "emdash";
+import { adaptPosts } from "@/lib/emdashAdapter";
+
+export const prerender = false;
 
 const BLOG_FOLDER = "blog";
 
@@ -18,7 +22,16 @@ if (postIndex.data.draft) {
   return Astro.redirect("/404");
 }
 
-const posts = await getSinglePage(BLOG_FOLDER);
+let posts: any[] = [];
+try {
+  const { entries } = await getEmDashCollection("posts", { status: "published" });
+  if (entries) {
+    posts = adaptPosts(entries);
+  }
+} catch (e) {
+  console.log("EmDash posts loading failed:", e);
+}
+
 const allCategories = await getAllTaxonomy(BLOG_FOLDER, "categories");
 const categories = await getTaxonomy(BLOG_FOLDER, "categories");
 const tags = await getTaxonomy(BLOG_FOLDER, "tags");
@@ -28,22 +41,6 @@ const currentPage = slug && !isNaN(Number(slug)) ? Number(slug) : 1;
 const indexOfLastPost = currentPage * config.settings.pagination;
 const indexOfFirstPost = indexOfLastPost - config.settings.pagination;
 const currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
-
-export async function getStaticPaths() {
-  const BLOG_FOLDER = "blog";
-  const posts = await getSinglePage(BLOG_FOLDER);
-  const totalPages = Math.ceil(posts.length / config.settings.pagination);
-  const paths = [];
-
-  for (let i = 1; i < totalPages; i++) {
-    paths.push({
-      params: {
-        slug: (i + 1).toString(),
-      },
-    });
-  }
-  return paths;
-}
 ---
 
 <Base

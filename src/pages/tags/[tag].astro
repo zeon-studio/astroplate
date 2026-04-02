@@ -1,34 +1,36 @@
 ---
 import BlogCard from "@/components/BlogCard.astro";
 import Base from "@/layouts/Base.astro";
-import { getSinglePage } from "@/lib/contentParser.astro";
-import { getTaxonomy } from "@/lib/taxonomyParser.astro";
+import { adaptPosts } from "@/lib/emdashAdapter";
 import { sortByDate } from "@/lib/utils/sortFunctions";
-import taxonomyFilter from "@/lib/utils/taxonomyFilter";
+import { slugify } from "@/lib/utils/textConverter";
 import PageHeader from "@/partials/PageHeader.astro";
+import { getEmDashCollection } from "emdash";
 
-export async function getStaticPaths() {
-  const BLOG_FOLDER = "blog";
-  const tags = await getTaxonomy(BLOG_FOLDER, "tags");
-
-  return tags.map((tag) => {
-    return {
-      params: { tag },
-    };
-  });
-}
+export const prerender = false;
 
 const { tag } = Astro.params;
 
-// get posts by tag
-const BLOG_FOLDER = "blog";
-const posts = await getSinglePage(BLOG_FOLDER);
-const filterByTags = taxonomyFilter(posts, "tags", tag!);
-const sortedPosts = sortByDate(filterByTags);
+let posts: any[] = [];
+try {
+  const { entries } = await getEmDashCollection("posts", {
+    status: "published",
+  });
+  if (entries) {
+    // tags are stored as a JSON array on each post — filter manually
+    posts = adaptPosts(entries).filter(
+      (p) =>
+        p !== null && (p.data.tags as string[]).map(slugify).includes(tag!),
+    );
+  }
+} catch (e) {}
+
+const sortedPosts = sortByDate(posts);
+const tagLabel = tag ? tag.replace(/-/g, " ") : "";
 ---
 
-<Base title={tag}>
-  <PageHeader title={tag} />
+<Base title={tagLabel}>
+  <PageHeader title={tagLabel} />
   <div class="section-sm pb-0">
     <div class="container">
       <div class="row">

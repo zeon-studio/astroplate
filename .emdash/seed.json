@@ -1,0 +1,94 @@
+{
+  "version": "1",
+  "collections": [
+    {
+      "slug": "posts",
+      "label": "Posts",
+      "fields": [
+        {
+          "slug": "title",
+          "label": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "slug": "slug",
+          "label": "Slug",
+          "type": "slug",
+          "source": "title",
+          "required": true,
+          "unique": true
+        },
+        {
+          "slug": "status",
+          "label": "Status",
+          "type": "select",
+          "required": true,
+          "defaultValue": "draft",
+          "validation": { "options": ["published", "draft"] }
+        },
+        { "slug": "published_at", "label": "Published At", "type": "datetime" },
+        { "slug": "meta_title", "label": "Meta Title", "type": "string" },
+        {
+          "slug": "description",
+          "label": "Description",
+          "type": "text",
+          "options": { "rows": 2 }
+        },
+        {
+          "slug": "excerpt",
+          "label": "Excerpt",
+          "type": "text",
+          "options": { "rows": 3 }
+        },
+        {
+          "slug": "featured_image",
+          "label": "Featured Image",
+          "type": "image"
+        },
+        { "slug": "content", "label": "Content", "type": "portableText" },
+        {
+          "slug": "author",
+          "label": "Author",
+          "type": "string",
+          "defaultValue": "Admin"
+        },
+        { "slug": "categories", "label": "Categories", "type": "json" },
+        { "slug": "tags", "label": "Tags", "type": "json" }
+      ]
+    },
+    {
+      "slug": "pages",
+      "label": "Pages",
+      "fields": [
+        {
+          "slug": "title",
+          "label": "Title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "slug": "slug",
+          "label": "Slug",
+          "type": "slug",
+          "source": "title",
+          "required": true,
+          "unique": true
+        },
+        { "slug": "meta_title", "label": "Meta Title", "type": "string" },
+        {
+          "slug": "description",
+          "label": "Description",
+          "type": "text",
+          "options": { "rows": 2 }
+        },
+        {
+          "slug": "featured_image",
+          "label": "Featured Image",
+          "type": "image"
+        },
+        { "slug": "content", "label": "Content", "type": "portableText" }
+      ]
+    }
+  ]
+}

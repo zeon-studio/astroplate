@@ -1,27 +1,49 @@
 ---
 import Base from "@/layouts/Base.astro";
-import { getSinglePage } from "@/lib/contentParser.astro";
 import PageHeader from "@/partials/PageHeader.astro";
-import { render } from "astro:content";
+import { getEntry, render } from "astro:content";
+import { getEmDashEntry } from "emdash";
+import { PortableText } from "emdash/ui";
 
-// get static paths for all pages
-export async function getStaticPaths() {
-  const COLLECTION_FOLDER = "pages";
+export const prerender = false;
 
-  const pages = await getSinglePage(COLLECTION_FOLDER);
+const { regular } = Astro.params;
 
-  const paths = pages.map((page) => ({
-    params: {
-      regular: page.id,
-    },
-    props: { page },
-  }));
-  return paths;
+// Try EmDash pages first (CMS-managed content)
+let emPage: any = null;
+try {
+  const { entry, error } = await getEmDashEntry("pages", regular!);
+  if (!error && entry) emPage = entry;
+} catch (e) {}
+
+// Fallback to filesystem pages (existing markdown files)
+let FsContent: any = null;
+let fsPageData: any = null;
+if (!emPage) {
+  try {
+    // @ts-ignore — content.config.ts defines this collection at runtime
+    const fsPage = await getEntry("pages", regular!);
+    if (fsPage) {
+      // @ts-ignore — render parameter narrowed to never until TS reloads config
+      const { Content } = await render(fsPage);
+      FsContent = Content;
+      fsPageData = (fsPage as any).data;
+    }
+  } catch (e) {}
 }
 
-const { page } = Astro.props;
-const { title, meta_title, description, image } = page.data;
-const { Content } = await render(page);
+if (!emPage && !FsContent) {
+  return Astro.redirect("/404");
+}
+
+const title = emPage ? emPage.data.title : fsPageData.title;
+const meta_title = emPage
+  ? (emPage.data.meta_title ?? emPage.data.title)
+  : fsPageData.meta_title;
+const description = emPage
+  ? (emPage.data.description ?? emPage.data.excerpt)
+  : fsPageData.description;
+const image = emPage ? emPage.data.featured_image?.src : fsPageData.image;
 ---
 
 <Base
@@ -36,7 +58,13 @@ const { Content } = await render(page);
       <div class="row justify-center">
         <div class="lg:col-10">
           <div class="content">
-            <Content />
+            {
+              emPage ? (
+                <PortableText value={emPage.data.content ?? []} />
+              ) : (
+                <FsContent />
+              )
+            }
           </div>
         </div>
       </div>
