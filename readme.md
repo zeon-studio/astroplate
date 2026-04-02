@@ -125,15 +125,100 @@ To access the shell within the container:
 docker run -it --rm astroplate ash
 ```
 
+<!-- edit with emdash -->
+
+## 📝 Edit Content with EmDash CMS
+
+This template is integrated with [**EmDash**](https://emdash.dev), a native Astro CMS with a built-in admin panel, SQLite database, and live content editing.
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org) v22+ (if you are on macOS and hit `climits` build errors, see the note below)
+- `better-sqlite3` requires native compilation. On **macOS 15 (Sequoia)** with the Command Line Tools SDK, run this once instead of a plain `npm rebuild`:
+
+  ```bash
+  CXXFLAGS="-isystem $(xcrun --sdk macosx --show-sdk-path)/usr/include/c++/v1 \
+    -isysroot $(xcrun --sdk macosx --show-sdk-path)" \
+    npm rebuild better-sqlite3
+  ```
+
+### 👉 Setup EmDash (first time)
+
+**1. Create your `.env` file:**
+
+```bash
+cp .env.example .env   # or create .env manually
+```
+
+Add the following variables:
+
+```env
+EMDASH_AUTH_SECRET=your_random_secret_at_least_32_chars
+EMDASH_PREVIEW_SECRET=your_random_preview_secret
+```
+
+You can generate secure secrets with:
+
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
+**2. Initialize the database:**
+
+```bash
+yarn emdash init
+```
+
+This creates `data.db` in the project root and runs all migrations.
+
+**3. Start the dev server and access the admin panel:**
+
+```bash
+yarn dev
+```
+
+Then open **`http://localhost:4321/_emdash/admin`** in your browser.
+
+> **First-time login (dev shortcut):** Navigate to `http://localhost:4321/_emdash/api/setup/dev-bypass?redirect=/_emdash/admin` — this creates a `dev@emdash.local` admin and logs you straight in.
+
+**4. Verify your setup at any time:**
+
+```bash
+yarn emdash doctor
+```
+
+### 👉 EmDash Admin Panel
+
+| URL | Purpose |
+|-----|---------|
+| `/_emdash/admin` | Admin login & dashboard |
+| `/_emdash/admin/posts` | Manage blog posts |
+| `/_emdash/admin/pages` | Manage static pages |
+| `/_emdash/admin/media` | Media library |
+| `/_emdash/admin/settings` | Site settings |
+
+### 👉 Content Architecture
+
+- **Blog posts** — managed in EmDash and queried via `getEmDashCollection("posts")`
+- **Pages** — managed in EmDash and queried via `getEmDashCollection("pages")`
+- **Static content** (homepage, about, contact, sections) — sourced from `src/content/` Markdown files via Astro Content Collections
+
+### 👉 Useful EmDash CLI Commands
+
+```bash
+yarn emdash init          # Initialize / re-run migrations
+yarn emdash doctor        # Check database health
+yarn emdash seed          # Apply a seed file
+yarn emdash export-seed   # Export current database as a seed
+yarn emdash schema        # Manage collections and fields
+yarn emdash content       # Manage content from the CLI
+```
+
 <!-- edit with sitepins -->
 
-## 📝 Edit Content with CMS
+## 📝 Edit Static Content with Sitepins
 
-This template comes pre-configured with [**Sitepins**](https://sitepins.com), a Git-based Headless CMS designed for seamless content management. You can update your website’s text, images, and configuration without touching a single line of code.
-
-**How to get started:**
-
-Click the Edit with Sitepins button below and follow the on-screen instructions to start editing your content visually.
+For Markdown-based static content (homepage, sections, etc.) you can also use [**Sitepins**](https://sitepins.com):
 
   <a target="_blank" href="https://app.sitepins.com/new/clone?name=Astroplate&repository=https://github.com/zeon-studio/astroplate/">
     <img src="https://sitepins.com/button.svg" alt="Edit with Sitepins">
