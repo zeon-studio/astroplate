@@ -12,6 +12,7 @@ import {
 } from "@digi4care/astro-google-tagmanager";
 import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
+import { getSiteSettings } from "emdash";
 import Announcement from "./helpers/Announcement";
 import SearchModal from "./helpers/SearchModal";
 
@@ -30,6 +31,13 @@ export interface Props {
   canonical?: string;
 }
 
+// fetch CMS settings with fallback to config.json
+const cmsSettings = await getSiteSettings();
+const siteTitle = cmsSettings?.title || config.site.title;
+const siteTagline = cmsSettings?.tagline || config.metadata.meta_description;
+const siteUrl = cmsSettings?.url || config.site.base_url;
+const siteFavicon = config.site.favicon;
+
 // destructure frontmatter
 const { title, meta_title, description, image, noindex, canonical } =
   Astro.props;
@@ -45,7 +53,7 @@ const { title, meta_title, description, image, noindex, canonical } =
       )
     }
     <!-- favicon -->
-    <link rel="shortcut icon" href={config.site.favicon} />
+    <link rel="shortcut icon" href={siteFavicon} />
     <!-- theme meta -->
     <meta name="theme-name" content="astroplate" />
     <meta name="msapplication-TileColor" content="#000000" />
@@ -78,7 +86,7 @@ const { title, meta_title, description, image, noindex, canonical } =
 
     <!-- title -->
     <title>
-      {plainify(meta_title ? meta_title : title ? title : config.site.title)}
+      {plainify(meta_title ? meta_title : title ? title : siteTitle)}
     </title>
 
     <!-- canonical url -->
@@ -91,7 +99,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta
       name="description"
       content={plainify(
-        description ? description : config.metadata.meta_description,
+        description ? description : siteTagline,
       )}
     />
 
@@ -104,7 +112,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta
       property="og:title"
       content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title,
+        meta_title ? meta_title : title ? title : siteTitle,
       )}
     />
 
@@ -112,20 +120,20 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta
       property="og:description"
       content={plainify(
-        description ? description : config.metadata.meta_description,
+        description ? description : siteTagline,
       )}
     />
     <meta property="og:type" content="website" />
     <meta
       property="og:url"
-      content={`${config.site.base_url}/${Astro.url.pathname.replace("/", "")}`}
+      content={`${siteUrl}/${Astro.url.pathname.replace("/", "")}`}
     />
 
     <!-- twitter-title -->
     <meta
       name="twitter:title"
       content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title,
+        meta_title ? meta_title : title ? title : siteTitle,
       )}
     />
 
@@ -133,14 +141,14 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta
       name="twitter:description"
       content={plainify(
-        description ? description : config.metadata.meta_description,
+        description ? description : siteTagline,
       )}
     />
 
     <!-- og-image -->
     <meta
       property="og:image"
-      content={`${config.site.base_url}${
+      content={`${siteUrl}${
         image ? image : config.metadata.meta_image
       }`}
     />
@@ -148,7 +156,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <!-- twitter-image -->
     <meta
       name="twitter:image"
-      content={`${config.site.base_url}${
+      content={`${siteUrl}${
         image ? image : config.metadata.meta_image
       }`}
     />

@@ -1,5 +1,6 @@
 ---
 import config from "@/config/config.json";
+import { getSiteSettings } from "emdash";
 import ImageMod from "./ImageMod.astro";
 
 const { src, srcDarkmode }: { src?: string; srcDarkmode?: string } =
@@ -10,7 +11,7 @@ const {
   logo_width,
   logo_height,
   logo_text,
-  title,
+  title: configTitle,
 }: {
   logo: string;
   logo_darkmode: string;
@@ -21,6 +22,10 @@ const {
 } = config.site;
 
 const { theme_switcher }: { theme_switcher: boolean } = config.settings;
+
+// Use CMS title if available
+const cmsSettings = await getSiteSettings();
+const title = cmsSettings?.title || configTitle;
 ---
 
 <a href="/" class="navbar-brand inline-block">

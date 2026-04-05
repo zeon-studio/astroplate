@@ -1,5 +1,18 @@
 {
   "version": "1",
+  "settings": {
+    "title": "Astroplate",
+    "tagline": "astro and tailwind boilerplate",
+    "url": "https://astroplate.netlify.app",
+    "postsPerPage": 2,
+    "dateFormat": "MMMM d, yyyy",
+    "social": {
+      "facebook": "https://www.facebook.com/",
+      "twitter": "https://x.com/",
+      "github": "https://www.github.com/",
+      "linkedin": "https://www.linkedin.com/"
+    }
+  },
   "collections": [
     {
       "slug": "posts",
