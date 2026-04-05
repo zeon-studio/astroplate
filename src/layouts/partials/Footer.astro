@@ -2,11 +2,12 @@
 import Logo from "@/components/Logo.astro";
 import Social from "@/components/Social.astro";
 import config from "@/config/config.json";
-import menu from "@/config/menu.json";
+import { getMenu } from "emdash";
 import social from "@/config/social.json";
 import { markdownify } from "@/lib/utils/textConverter";
 
-const { footer }: { footer: { name: string; url: string }[] } = menu;
+const menu = await getMenu("footer");
+const footer = menu ? menu.items : [];
 ---
 
 <footer class="bg-light dark:bg-darkmode-light">
@@ -20,7 +21,7 @@ const { footer }: { footer: { name: string; url: string }[] } = menu;
           {
             footer.map((menu) => (
               <li class="m-3 inline-block">
-                <a href={menu.url}>{menu.name}</a>
+                <a href={menu.url}>{menu.label}</a>
               </li>
             ))
           }

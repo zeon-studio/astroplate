@@ -90,5 +90,41 @@
         { "slug": "content", "label": "Content", "type": "portableText" }
       ]
     }
+  ],
+  "menus": [
+    {
+      "name": "main",
+      "label": "Main Navigation",
+      "items": [
+        { "type": "custom", "label": "Home", "url": "/" },
+        { "type": "custom", "label": "About", "url": "/about" },
+        { "type": "custom", "label": "Elements", "url": "/elements" },
+        {
+          "type": "custom",
+          "label": "Pages",
+          "url": "#",
+          "children": [
+            { "type": "custom", "label": "Contact", "url": "/contact" },
+            { "type": "custom", "label": "Blog", "url": "/blog" },
+            { "type": "custom", "label": "Authors", "url": "/authors" },
+            { "type": "custom", "label": "Categories", "url": "/categories" },
+            { "type": "custom", "label": "Tags", "url": "/tags" },
+            { "type": "custom", "label": "404 Page", "url": "/404" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "footer",
+      "label": "Footer Navigation",
+      "items": [
+        { "type": "custom", "label": "Elements", "url": "/elements" },
+        {
+          "type": "custom",
+          "label": "Privacy Policy",
+          "url": "/privacy-policy"
+        }
+      ]
+    }
   ]
 }

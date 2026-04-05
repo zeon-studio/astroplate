@@ -6,7 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 import AutoImport from "astro-auto-import";
 import { defineConfig, fontProviders } from "astro/config";
 import emdash, { local } from "emdash/astro";
-import { sqlite } from "emdash/db";
+import { libsql } from "emdash/db";
 import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
 import sharp from "sharp";
@@ -75,7 +75,7 @@ export default defineConfig({
     }),
     mdx(),
     emdash({
-      database: sqlite({ url: "file:./data.db" }),
+      database: libsql({ url: "file:./data.db" }),
       storage: local({
         directory: "./uploads",
         baseUrl: "/_emdash/api/media/file",

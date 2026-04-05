@@ -2,22 +2,11 @@
 import Logo from "@/components/Logo.astro";
 import ThemeSwitcher from "@/components/ThemeSwitcher.astro";
 import config from "@/config/config.json";
-import menu from "@/config/menu.json";
+import { getMenu } from "emdash";
 import { IoSearch } from "react-icons/io5";
 
-export interface ChildNavigationLink {
-  name: string;
-  url: string;
-}
-
-export interface NavigationLink {
-  name: string;
-  url: string;
-  hasChildren?: boolean;
-  children?: ChildNavigationLink[];
-}
-
-const { main }: { main: NavigationLink[] } = menu;
+const menu = await getMenu("main");
+const main = menu ? menu.items : [];
 const { navigation_button, settings } = config;
 const { pathname } = Astro.url;
 ---
@@ -53,15 +42,15 @@ const { pathname } = Astro.url;
       {
         main.map((menu) => (
           <>
-            {menu.hasChildren ? (
+            {menu.children.length > 0 ? (
               <li class="nav-item nav-dropdown group relative">
                 <input
                   type="checkbox"
-                  id={`submenu-${menu.name}`}
+                  id={`submenu-${menu.label}`}
                   class="peer hidden lg:hidden"
                 />
                 <label
-                  for={`submenu-${menu.name}`}
+                  for={`submenu-${menu.label}`}
                   class={`nav-link inline-flex items-center ${
                     menu.children?.map(({ url }) => url).includes(pathname) ||
                     menu.children
@@ -71,7 +60,7 @@ const { pathname } = Astro.url;
                       : ""
                   }`}
                 >
-                  {menu.name}
+                  {menu.label}
                   <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
                     <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                   </svg>
@@ -81,14 +70,14 @@ const { pathname } = Astro.url;
                     <li class="nav-dropdown-item">
                       <a
                         href={child.url}
-                        aria-label={child.name}
+                        aria-label={child.label}
                         class={`nav-dropdown-link block ${
                           (pathname === `${child.url}/` ||
                             pathname === child.url) &&
                           "active"
                         }`}
                       >
-                        {child.name}
+                        {child.label}
                       </a>
                     </li>
                   ))}
@@ -103,7 +92,7 @@ const { pathname } = Astro.url;
                     "active"
                   }`}
                 >
-                  {menu.name}
+                  {menu.label}
                 </a>
               </li>
             )}

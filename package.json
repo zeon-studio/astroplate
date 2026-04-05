@@ -26,6 +26,8 @@
     "@astrojs/sitemap": "3.7.1",
     "@digi4care/astro-google-tagmanager": "^1.6.0",
     "@justinribeiro/lite-youtube": "^1.9.0",
+    "@libsql/client": "^0.17.2",
+    "@libsql/kysely-libsql": "^0.4.1",
     "@tiptap/extension-collaboration": "^3.22.0",
     "@tiptap/y-tiptap": "^3.0.2",
     "astro": "6.0.4",

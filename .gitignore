@@ -29,3 +29,10 @@ package-lock.json
 .idea/
 
 emdash-docs/
+
+# SQLite temporary files
+data.db-shm
+data.db-wal
+
+# CMS Uploads
+uploads/
