@@ -1,16 +1,44 @@
 ---
 import {
   getCollection,
+  getEntry,
   type CollectionEntry,
   type CollectionKey,
 } from "astro:content";
 
+type PageData = {
+  title: string;
+  meta_title?: string;
+  description?: string;
+  image?: string;
+  draft?: boolean;
+};
+
 export const getSinglePage = async <C extends CollectionKey>(
-  collectionName: C,
+  collectionName: C
 ): Promise<CollectionEntry<C>[]> => {
-  const allPages = await getCollection(collectionName);
-  const removeIndex = allPages.filter((data) => data.id.match(/^(?!-)/));
-  const removeDrafts = removeIndex.filter((data) => !data.data.draft);
-  return removeDrafts;
+  const allPages = await getCollection(
+    collectionName,
+    ({ data, id }) => !(data as PageData)?.draft && !id.startsWith("-")
+  );
+  return allPages;
+};
+
+export const getListPage = async <C extends CollectionKey>(
+  collectionName: C,
+  documentId: "-index" | string
+): Promise<CollectionEntry<C>> => {
+  const data = (await getEntry(
+    collectionName,
+    documentId
+  )) as CollectionEntry<C> | null;
+
+  if (!data) {
+    throw new Error(
+      `No page found for the collection: ${collectionName} with filename: ${documentId}`
+    );
+  }
+
+  return data;
 };
 ---

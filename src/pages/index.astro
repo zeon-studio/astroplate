@@ -1,27 +1,17 @@
 ---
 import ImageMod from "@/components/ImageMod.astro";
 import Base from "@/layouts/Base.astro";
+import { getListPage } from "@/lib/contentParser.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 import CallToAction from "@/partials/CallToAction.astro";
 import Testimonial from "@/partials/Testimonial.astro";
-import type { Button, Feature } from "@/types";
-import { getEntry } from "astro:content";
 import { FaCheck } from "react-icons/fa";
 
-interface Homepage {
-  banner: {
-    title: string;
-    content: string;
-    image: string;
-    button: Button;
-  };
-  features: Feature[];
-}
+const homepage = await getListPage("homepage", "-index");
+const call_to_action = await getListPage("ctaSection", "call-to-action");
+const testimonial = await getListPage("testimonialSection", "testimonial");
 
-const homepage = await getEntry("homepage", "-index");
-const testimonial = await getEntry("sections", "testimonial");
-const call_to_action = await getEntry("sections", "call-to-action");
-const { banner, features }: Homepage = homepage.data;
+const { banner, features } = homepage.data;
 ---
 
 <Base>

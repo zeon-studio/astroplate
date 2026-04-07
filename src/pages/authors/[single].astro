@@ -5,6 +5,7 @@ import Social from "@/components/Social.astro";
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import { slugify } from "@/lib/utils/textConverter";
+import { render } from "astro:content";
 
 // get all static paths for authors
 export async function getStaticPaths() {
@@ -13,7 +14,7 @@ export async function getStaticPaths() {
 
   const paths = authors.map((author) => ({
     params: {
-      single: author.slug,
+      single: author.id,
     },
     props: { author },
   }));
@@ -22,13 +23,13 @@ export async function getStaticPaths() {
 
 const { author } = Astro.props;
 const { title, social, meta_title, description, image } = author.data;
-const { Content } = await author.render();
+const { Content } = await render(author);
 
 // get all posts by author
 const BLOG_FOLDER = "blog";
 const posts = await getSinglePage(BLOG_FOLDER);
 const postFilterByAuthor = posts.filter(
-  (post) => slugify(post.data.author) === slugify(title),
+  (post) => slugify(post.data.author) === slugify(title)
 );
 ---
 

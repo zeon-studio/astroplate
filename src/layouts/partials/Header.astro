@@ -32,7 +32,7 @@ const { pathname } = Astro.url;
     <input id="nav-toggle" type="checkbox" class="hidden" />
     <label
       for="nav-toggle"
-      class="order-3 cursor-pointer flex items-center lg:hidden text-dark dark:text-white lg:order-1"
+      class="order-3 cursor-pointer flex items-center lg:hidden text-text-dark dark:text-white lg:order-1"
     >
       <svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20">
         <title>Menu Open</title>
@@ -55,7 +55,13 @@ const { pathname } = Astro.url;
           <>
             {menu.hasChildren ? (
               <li class="nav-item nav-dropdown group relative">
-                <span
+                <input
+                  type="checkbox"
+                  id={`submenu-${menu.name}`}
+                  class="peer hidden lg:hidden"
+                />
+                <label
+                  for={`submenu-${menu.name}`}
                   class={`nav-link inline-flex items-center ${
                     menu.children?.map(({ url }) => url).includes(pathname) ||
                     menu.children
@@ -69,8 +75,8 @@ const { pathname } = Astro.url;
                   <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
                     <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                   </svg>
-                </span>
-                <ul class="nav-dropdown-list hidden group-hover:block lg:invisible lg:absolute lg:block lg:opacity-0 lg:group-hover:visible lg:group-hover:opacity-100">
+                </label>
+                <ul class="nav-dropdown-list hidden peer-checked:block lg:invisible lg:absolute lg:block lg:opacity-0 lg:group-hover:visible lg:group-hover:opacity-100">
                   {menu.children?.map((child) => (
                     <li class="nav-dropdown-item">
                       <a
@@ -110,6 +116,10 @@ const { pathname } = Astro.url;
             <a
               class="btn btn-outline-primary btn-sm"
               href={navigation_button.link}
+              target={
+                navigation_button.link.startsWith("http") ? "_blank" : "_self"
+              }
+              rel={navigation_button.link.startsWith("http") ? "noopener" : ""}
             >
               {navigation_button.label}
             </a>
@@ -121,7 +131,7 @@ const { pathname } = Astro.url;
       {
         settings.search && (
           <button
-            class="border-border text-dark hover:text-primary dark:border-darkmode-border mr-5 inline-block border-r pr-5 text-xl dark:text-white dark:hover:text-darkmode-primary"
+            class="border-border text-text-dark hover:text-primary dark:border-darkmode-border mr-5 inline-block border-r pr-5 text-xl dark:text-white dark:hover:text-darkmode-primary"
             aria-label="search"
             data-search-trigger
           >
@@ -135,6 +145,10 @@ const { pathname } = Astro.url;
           <a
             class="btn btn-outline-primary btn-sm hidden lg:inline-block"
             href={navigation_button.link}
+            target={
+              navigation_button.link.startsWith("http") ? "_blank" : "_self"
+            }
+            rel={navigation_button.link.startsWith("http") ? "noopener" : ""}
           >
             {navigation_button.label}
           </a>

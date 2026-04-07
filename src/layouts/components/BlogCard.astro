@@ -27,7 +27,7 @@ const { title, image, date, author, categories } = data.data;
     )
   }
   <h4 class="mb-3">
-    <a href={`/${blog_folder}/${data.slug}`}>
+    <a href={`/${blog_folder}/${data.id}`}>
       {title}
     </a>
   </h4>
@@ -52,10 +52,7 @@ const { title, image, date, author, categories } = data.data;
     {date && <li class="inline-block">{dateFormat(date)}</li>}
   </ul>
   <p class="mb-6">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
-  <a
-    class="btn btn-outline-primary btn-sm"
-    href={`/${blog_folder}/${data.slug}`}
-  >
+  <a class="btn btn-outline-primary btn-sm" href={`/${blog_folder}/${data.id}`}>
     read more
   </a>
 </div>

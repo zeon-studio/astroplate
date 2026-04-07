@@ -6,6 +6,7 @@ import { getSinglePage } from "@/lib/contentParser.astro";
 import dateFormat from "@/lib/utils/dateFormat";
 import similarItems from "@/lib/utils/similarItems";
 import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
+import { render } from "astro:content";
 import { FaRegClock, FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./components/ImageMod.astro";
 
@@ -14,7 +15,7 @@ const { post } = Astro.props;
 
 const posts = await getSinglePage(COLLECTION_FOLDER);
 const similarPosts = similarItems(post, posts);
-const { Content } = await post.render();
+const { Content } = await render(post);
 const { title, description, author, categories, image, date, tags } = post.data;
 ---
 
@@ -71,7 +72,7 @@ const { title, description, author, categories, image, date, tags } = post.data;
                 tags.map((tag: string) => (
                   <li class="inline-block">
                     <a
-                      class="m-1 block rounded bg-theme-light px-3 py-1 hover:bg-primary hover:text-white dark:bg-darkmode-theme-light dark:hover:bg-darkmode-primary dark:hover:text-dark"
+                      class="m-1 block rounded bg-light px-3 py-1 hover:bg-primary hover:text-white dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark"
                       href={`/tags/${slugify(tag)}`}
                     >
                       {humanize(tag)}
@@ -87,7 +88,7 @@ const { title, description, author, categories, image, date, tags } = post.data;
               className="social-icons"
               title={title}
               description={description}
-              slug={post.slug}
+              slug={post.id}
             />
           </div>
         </div>
@@ -101,7 +102,7 @@ const { title, description, author, categories, image, date, tags } = post.data;
       <div class="row justify-center">
         {
           similarPosts.map((post) => (
-            <div class="lg:col-4">
+            <div class="lg:col-4 md:col-6 mb-14">
               <BlogCard data={post} />
             </div>
           ))

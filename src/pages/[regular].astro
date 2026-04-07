@@ -2,6 +2,7 @@
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import PageHeader from "@/partials/PageHeader.astro";
+import { render } from "astro:content";
 
 // get static paths for all pages
 export async function getStaticPaths() {
@@ -11,7 +12,7 @@ export async function getStaticPaths() {
 
   const paths = pages.map((page) => ({
     params: {
-      regular: page.slug,
+      regular: page.id,
     },
     props: { page },
   }));
@@ -20,7 +21,7 @@ export async function getStaticPaths() {
 
 const { page } = Astro.props;
 const { title, meta_title, description, image } = page.data;
-const { Content } = await page.render();
+const { Content } = await render(page);
 ---
 
 <Base
