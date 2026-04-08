@@ -158,8 +158,10 @@ const language = lang || getLangFromUrl(Astro.url);
     />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
-  <body>
-    <!-- google tag manager (noscript) -->
+  <body
+    class="flex flex-col min-h-screen items-center *:w-full [&>footer]:mt-auto"
+  >
+    {/* google tag manager noscript */}
     {
       config.google_tag_manager.enable && (
         <GoogleTagmanagerNoscript id={config.google_tag_manager.gtm_id} />
@@ -167,9 +169,9 @@ const language = lang || getLangFromUrl(Astro.url);
     }
 
     <TwSizeIndicator />
-    <Announcement lang={language} client:load />
+    <Announcement lang={language} client:only="react" />
     <Header />
-    <SearchModal lang={language} client:load />
+    <SearchModal lang={language} client:only="react" />
     <main id="main-content">
       <slot />
     </main>
