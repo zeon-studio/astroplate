@@ -154,23 +154,20 @@ const { title, meta_title, description, image, noindex, canonical } =
     />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
-  <body
-    class="flex flex-col min-h-screen items-center *:w-full [&>footer]:mt-auto"
-  >
+  <body class="flex flex-col min-h-screen">
     {/* google tag manager noscript */}
     {
       config.google_tag_manager.enable && (
         <GoogleTagmanagerNoscript id={config.google_tag_manager.gtm_id} />
       )
     }
-
-    <TwSizeIndicator />
     <Announcement client:only="react" />
     <Header />
     <SearchModal client:only="react" />
-    <main id="main-content">
+    <main class="grow" id="main-content">
       <slot />
     </main>
     <Footer />
+    <TwSizeIndicator />
   </body>
 </html>
