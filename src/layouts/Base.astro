@@ -98,9 +98,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <!-- meta-description -->
     <meta
       name="description"
-      content={plainify(
-        description ? description : siteTagline,
-      )}
+      content={plainify(description ? description : siteTagline)}
     />
 
     <ClientRouter />
@@ -111,17 +109,13 @@ const { title, meta_title, description, image, noindex, canonical } =
     <!-- og-title -->
     <meta
       property="og:title"
-      content={plainify(
-        meta_title ? meta_title : title ? title : siteTitle,
-      )}
+      content={plainify(meta_title ? meta_title : title ? title : siteTitle)}
     />
 
     <!-- og-description -->
     <meta
       property="og:description"
-      content={plainify(
-        description ? description : siteTagline,
-      )}
+      content={plainify(description ? description : siteTagline)}
     />
     <meta property="og:type" content="website" />
     <meta
@@ -132,39 +126,29 @@ const { title, meta_title, description, image, noindex, canonical } =
     <!-- twitter-title -->
     <meta
       name="twitter:title"
-      content={plainify(
-        meta_title ? meta_title : title ? title : siteTitle,
-      )}
+      content={plainify(meta_title ? meta_title : title ? title : siteTitle)}
     />
 
     <!-- twitter-description -->
     <meta
       name="twitter:description"
-      content={plainify(
-        description ? description : siteTagline,
-      )}
+      content={plainify(description ? description : siteTagline)}
     />
 
     <!-- og-image -->
     <meta
       property="og:image"
-      content={`${siteUrl}${
-        image ? image : config.metadata.meta_image
-      }`}
+      content={`${siteUrl}${image ? image : config.metadata.meta_image}`}
     />
 
     <!-- twitter-image -->
     <meta
       name="twitter:image"
-      content={`${siteUrl}${
-        image ? image : config.metadata.meta_image
-      }`}
+      content={`${siteUrl}${image ? image : config.metadata.meta_image}`}
     />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
-  <body
-    class="flex flex-col min-h-screen items-center *:w-full [&>footer]:mt-auto"
-  >
+  <body class="flex flex-col min-h-screen">
     {/* google tag manager noscript */}
     {
       config.google_tag_manager.enable && (
@@ -172,13 +156,13 @@ const { title, meta_title, description, image, noindex, canonical } =
       )
     }
 
-    <TwSizeIndicator />
     <Announcement client:only="react" />
     <Header />
     <SearchModal client:only="react" />
-    <main id="main-content">
+    <main class="grow" id="main-content">
       <slot />
     </main>
     <Footer />
+    <TwSizeIndicator />
   </body>
 </html>
