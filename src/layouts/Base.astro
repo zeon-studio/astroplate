@@ -66,7 +66,7 @@ const language = lang || getLangFromUrl(Astro.url);
     <meta name="generator" content={Astro.generator} />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-  <!-- google font css - Astro 6 built-in Font API -->
+    <!-- google font css - Astro 6 built-in Font API -->
     {
       fontEntries.map(([key]) => {
         const cssVar = `--font-${key}` as any;
@@ -95,7 +95,7 @@ const language = lang || getLangFromUrl(Astro.url);
     <meta
       name="description"
       content={plainify(
-        description ? description : config.metadata.meta_description
+        description ? description : config.metadata.meta_description,
       )}
     />
 
@@ -108,7 +108,7 @@ const language = lang || getLangFromUrl(Astro.url);
     <meta
       property="og:title"
       content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title
+        meta_title ? meta_title : title ? title : config.site.title,
       )}
     />
 
@@ -116,7 +116,7 @@ const language = lang || getLangFromUrl(Astro.url);
     <meta
       property="og:description"
       content={plainify(
-        description ? description : config.metadata.meta_description
+        description ? description : config.metadata.meta_description,
       )}
     />
     <meta property="og:type" content="website" />
@@ -129,7 +129,7 @@ const language = lang || getLangFromUrl(Astro.url);
     <meta
       name="twitter:title"
       content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title
+        meta_title ? meta_title : title ? title : config.site.title,
       )}
     />
 
@@ -137,7 +137,7 @@ const language = lang || getLangFromUrl(Astro.url);
     <meta
       name="twitter:description"
       content={plainify(
-        description ? description : config.metadata.meta_description
+        description ? description : config.metadata.meta_description,
       )}
     />
 
@@ -158,9 +158,7 @@ const language = lang || getLangFromUrl(Astro.url);
     />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
-  <body
-    class="flex flex-col min-h-screen items-center *:w-full [&>footer]:mt-auto"
-  >
+  <body class="flex flex-col min-h-screen">
     {/* google tag manager noscript */}
     {
       config.google_tag_manager.enable && (
@@ -168,13 +166,13 @@ const language = lang || getLangFromUrl(Astro.url);
       )
     }
 
-    <TwSizeIndicator />
     <Announcement lang={language} client:only="react" />
     <Header />
     <SearchModal lang={language} client:only="react" />
-    <main id="main-content">
+    <main class="grow" id="main-content">
       <slot />
     </main>
     <Footer />
+    <TwSizeIndicator />
   </body>
 </html>
