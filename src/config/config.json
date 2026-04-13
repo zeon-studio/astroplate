@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "Astroplate",
-    "base_url": "https://astroplate.netlify.app",
+    "base_url": "https://owlcommweb2026.vercel.app/",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
@@ -11,7 +11,6 @@
     "logo_height": "30",
     "logo_text": "Astroplate"
   },
-
   "settings": {
     "search": true,
     "sticky_header": true,
@@ -21,35 +20,29 @@
     "summary_length": 200,
     "blog_folder": "blog"
   },
-
   "announcement": {
-    "enable": true,
+    "enable": false,
     "content": "<span class='text-center block'>♥️ Loving Astroplate? <a class='underline' href='https://github.com/zeon-studio/astroplate' target='_blank' rel='noopener'>Please ⭐️ on Github</a></span>",
     "expire_days": 7
   },
-
   "params": {
     "contact_form_action": "#",
     "copyright": "Designed And Developed by [Zeon Studio](https://zeon.studio)"
   },
-
   "navigation_button": {
     "enable": true,
     "label": "Github",
     "link": "https://github.com/zeon-studio/astroplate"
   },
-
   "google_tag_manager": {
     "enable": false,
     "gtm_id": "GTM-XXXXXX"
   },
-
   "disqus": {
     "enable": true,
     "shortname": "themefisher-template",
     "settings": {}
   },
-
   "metadata": {
     "meta_author": "zeon.studio",
     "meta_image": "/images/og-image.png",
