@@ -1,6 +1,6 @@
 {
   "name": "astroplate",
-  "version": "6.0.5",
+  "version": "1.0.0",
   "description": "Astro and Tailwindcss boilerplate",
   "author": "zeon.studio",
   "license": "MIT",
@@ -35,7 +35,7 @@
     "astro-swiper": "^2.5.0",
     "date-fns": "^4.1.0",
     "disqus-react": "^1.1.7",
-    "emdash": "^0.1.0",
+    "emdash": "^0.5.0",
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.3",
     "marked": "^17.0.6",

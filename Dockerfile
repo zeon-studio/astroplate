@@ -26,7 +26,6 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# RUN chmod u+x ./installer && ./installer
 ARG INSTALLER
 RUN \
   if [ "${INSTALLER}" == "yarn" ]; then yarn build; \
@@ -35,9 +34,25 @@ RUN \
   else echo "Valid installer not set." && exit 1; \
   fi
 
-# Production image, copy all the files and run nginx
-FROM nginx:alpine AS runner
-COPY ./config/nginx/nginx.conf /etc/nginx/nginx.conf
-COPY --from=builder /app/dist /usr/share/nginx/html
+# Production image - use Node.js runtime (not nginx!)
+# EmDash requires server-side processing for admin panel, API, and database
+FROM base AS runner
+WORKDIR /app
 
-WORKDIR /usr/share/nginx/html
+ENV NODE_ENV=production
+ENV PORT=4321
+
+# Copy built application
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+
+# Create directories for persistent data
+RUN mkdir -p /app/data /app/uploads
+
+# Expose the port Astro runs on
+EXPOSE 4321
+
+# Start the Node.js server
+# Uses the standalone output from @astrojs/node adapter
+CMD ["node", "./dist/server/entry.mjs"]
