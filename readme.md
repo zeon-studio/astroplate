@@ -10,8 +10,8 @@
 </h2>
 
 <p align=center>
-  <a href="https://github.com/withastro/astro/releases/tag/astro%406.0.4">
-    <img src="https://img.shields.io/static/v1?label=ASTRO&message=6.0.4&color=000&logo=astro"  alt="Astro Version 6.0.4"/>
+  <a href="https://github.com/withastro/astro/releases/tag/astro%406.1.9">
+    <img src="https://img.shields.io/static/v1?label=ASTRO&message=6.1.9&color=000&logo=astro"  alt="Astro Version 6.1.9"/>
   </a>
 
   <a href="https://github.com/zeon-studio/astroplate/blob/main/LICENSE">
@@ -35,6 +35,7 @@
 - 📞 Support contact form
 - 📱 Fully responsive
 - 📝 Write and update content in Markdown / MDX
+- 🤖 LLM-ready docs generation (`llms.txt`, `llms-full.txt`, and per-page `.md`)
 - 💬 Disqus Comment
 - 🔳 Syntax Highlighting
 
@@ -67,7 +68,7 @@
 
 ### 📦 Dependencies
 
-- astro v6.0.4
+- astro v6.1.9
 - node v22.12.0+ (see `.nvmrc`)
 - yarn v1.22+
 - tailwind v4+
@@ -89,6 +90,32 @@ yarn run dev
 ```bash
 yarn run build
 ```
+
+### 👉 Generate LLM Files
+
+After build, this project can generate LLM-friendly files from your `dist` HTML:
+
+- `llms.txt` (index of pages)
+- `llms-full.txt` (full combined content)
+- optional per-page Markdown files
+
+Use one of these ways:
+
+```bash
+# included in build
+yarn run build
+
+# or run manually after build
+yarn run generate-llms
+```
+
+Configuration is in `src/config/config.json` under `llms`:
+
+- `generate_llms_txt`: create `llms.txt`
+- `generate_llms_full_txt`: create `llms-full.txt`
+- `generate_individual_md`: create individual `.md` files
+- `include`: include only selected routes/globs (empty = all files). Examples: `/about`, `/blog/**` (all files in blog folder)
+- `exclude`: exclude routes/globs on top of defaults. Example: `/blog/index.html`
 
 ### 👉 Preview on Cloudflare Workers
 
