@@ -12,8 +12,8 @@
 </h2>
 
 <p align=center>
-  <a href="https://github.com/withastro/astro/releases/tag/astro%406.0.4">
-    <img src="https://img.shields.io/static/v1?label=ASTRO&message=6.0.4&color=000&logo=astro" alt="Astro Version 6.0.4"/>
+  <a href="https://github.com/withastro/astro/releases/tag/astro%406.1.9">
+    <img src="https://img.shields.io/static/v1?label=ASTRO&message=6.1.9&color=000&logo=astro" alt="Astro Version 6.1.9"/>
   </a>
   <a href="https://github.com/zeon-studio/astroplate/blob/main/LICENSE">
     <img src="https://img.shields.io/github/license/zeon-studio/astroplate" alt="license">
@@ -69,20 +69,20 @@ Go to **`http://localhost:4321/_emdash/admin`**
 
 ### 👉 Admin Panel URLs
 
-| URL | Purpose |
-|-----|---------|
-| `/_emdash/admin` | Admin login & dashboard |
-| `/_emdash/admin/posts` | Manage blog posts |
-| `/_emdash/admin/pages` | Manage static pages |
-| `/_emdash/admin/media` | Media library |
-| `/_emdash/admin/settings` | Site settings |
+| URL                       | Purpose                 |
+| ------------------------- | ----------------------- |
+| `/_emdash/admin`          | Admin login & dashboard |
+| `/_emdash/admin/posts`    | Manage blog posts       |
+| `/_emdash/admin/pages`    | Manage static pages     |
+| `/_emdash/admin/media`    | Media library           |
+| `/_emdash/admin/settings` | Site settings           |
 
 ### 👉 Content Architecture
 
-| Content Type | Source | Query Method |
-|---|---|---|
-| Blog posts | EmDash database | `getEmDashCollection("posts")` |
-| Pages | EmDash database | `getEmDashCollection("pages")` |
+| Content Type              | Source                  | Query Method                        |
+| ------------------------- | ----------------------- | ----------------------------------- |
+| Blog posts                | EmDash database         | `getEmDashCollection("posts")`      |
+| Pages                     | EmDash database         | `getEmDashCollection("pages")`      |
 | Homepage, About, Sections | `src/content/` Markdown | `getListPage()` / `getSinglePage()` |
 
 ### 👉 EmDash CLI Commands
@@ -119,6 +119,7 @@ CXXFLAGS="-isystem $(xcrun --sdk macosx --show-sdk-path)/usr/include/c++/v1 \
 - 📞 Support contact form
 - 📱 Fully responsive
 - 📝 Write and update content via the EmDash admin
+- 🤖 LLM-ready docs generation (`llms.txt`, `llms-full.txt`, and per-page `.md`)
 - 📎 Google Tag Manager
 - 💬 Disqus Comment
 - 🔳 Syntax Highlighting
@@ -140,6 +141,32 @@ CXXFLAGS="-isystem $(xcrun --sdk macosx --show-sdk-path)/usr/include/c++/v1 \
 - 🗂️ Categories
 - 🗂️ Category Single
 - 🔍 Search
+
+### 👉 Generate LLM Files
+
+After build, this project can generate LLM-friendly files from your `dist` HTML:
+
+- `llms.txt` (index of pages)
+- `llms-full.txt` (full combined content)
+- optional per-page Markdown files
+
+Use one of these ways:
+
+```bash
+# included in build
+yarn run build
+
+# or run manually after build
+yarn run generate-llms
+```
+
+Configuration is in `src/config/config.json` under `llms`:
+
+- `generate_llms_txt`: create `llms.txt`
+- `generate_llms_full_txt`: create `llms-full.txt`
+- `generate_individual_md`: create individual `.md` files
+- `include`: include only selected routes/globs (empty = all files). Examples: `/about`, `/blog/**` (all files in blog folder)
+- `exclude`: exclude routes/globs on top of defaults. Example: `/blog/index.html`
 
 ## 🔗 Integrations
 

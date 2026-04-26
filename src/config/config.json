@@ -54,5 +54,13 @@
     "meta_author": "zeon.studio",
     "meta_image": "/images/og-image.png",
     "meta_description": "astro and tailwind boilerplate"
+  },
+
+  "llms": {
+    "generate_llms_txt": true,
+    "generate_llms_full_txt": true,
+    "generate_individual_md": true,
+    "include": [],
+    "exclude": []
   }
 }
