@@ -1,6 +1,6 @@
 ---
-import config from "@/config/config.json";
 import ImageMod from "./ImageMod.astro";
+import { siteConfig } from "@/lib/siteConfig";
 
 const { src, srcDarkmode }: { src?: string; srcDarkmode?: string } =
   Astro.props;
@@ -18,9 +18,9 @@ const {
   logo_height: any;
   logo_text: string;
   title: string;
-} = config.site;
+} = siteConfig.site;
 
-const { theme_switcher }: { theme_switcher: boolean } = config.settings;
+const { theme_switcher }: { theme_switcher: boolean } = siteConfig.settings;
 ---
 
 <a href="/" class="navbar-brand inline-block">

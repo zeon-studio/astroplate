@@ -1,5 +1,5 @@
 ---
-import config from "@/config/config.json";
+import { siteConfig } from "@/lib/siteConfig";
 import {
   IoLogoFacebook,
   IoLogoLinkedin,
@@ -9,7 +9,7 @@ import {
 
 const siteUrl =
   Astro.site?.toString().replace(/\/$/, "") ||
-  config.site.base_url.replace(/\/$/, "");
+  siteConfig.site.base_url.replace(/\/$/, "");
 const {
   title,
   description,
