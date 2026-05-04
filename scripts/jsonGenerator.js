@@ -18,16 +18,14 @@ const getData = (folder, groupDepth) => {
 
     if (isFolder) {
       return getData(filepath, groupDepth);
-    } else if (filename.endsWith(".md") || filename.endsWith(".mdx")) {
+    } else if (filename.endsWith(".md")) {
       const file = fs.readFileSync(filepath, "utf-8");
       const { data, content } = matter(file);
       const pathParts = filepath.split(path.sep);
-      const slug =
-        data.slug ||
-        pathParts
-          .slice(CONTENT_DEPTH)
-          .join("/")
-          .replace(/\.[^/.]+$/, "");
+      const slug = pathParts
+        .slice(CONTENT_DEPTH)
+        .join("/")
+        .replace(/\.[^/.]+$/, "");
       const group = pathParts[groupDepth];
 
       return {

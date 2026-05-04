@@ -3,6 +3,7 @@ import BlogCard from "@/components/BlogCard.astro";
 import ImageMod from "@/components/ImageMod.astro";
 import Social from "@/components/Social.astro";
 import Base from "@/layouts/Base.astro";
+import { siteConfig } from "@/lib/siteConfig";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import { slugify } from "@/lib/utils/textConverter";
 import { render } from "astro:content";
@@ -28,9 +29,8 @@ const { Content } = await render(author);
 // get all posts by author
 const BLOG_FOLDER = "blog";
 const posts = await getSinglePage(BLOG_FOLDER);
-const postFilterByAuthor = posts.filter(
-  (post) => slugify(post.data.author) === slugify(title)
-);
+const postFilterByAuthor =
+  slugify(title) === slugify(siteConfig.metadata.meta_author) ? posts : [];
 ---
 
 <Base

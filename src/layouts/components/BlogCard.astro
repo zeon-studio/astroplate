@@ -2,7 +2,8 @@
 import config from "@/config/config.json";
 import dateFormat from "@/lib/utils/dateFormat";
 import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
-import { FaRegFolder, FaRegUserCircle } from "react-icons/fa";
+import { FaRegFolder } from "react-icons/fa";
+import { siteConfig } from "@/lib/siteConfig";
 import ImageMod from "./ImageMod.astro";
 
 const {
@@ -10,7 +11,7 @@ const {
   blog_folder,
 }: { summary_length: number; blog_folder: string } = config.settings;
 const { data } = Astro.props;
-const { title, image, date, author, categories } = data.data;
+const { title, image, date, categories } = data.data;
 ---
 
 <div class="bg-body dark:bg-darkmode-body">
@@ -32,12 +33,7 @@ const { title, image, date, author, categories } = data.data;
     </a>
   </h4>
   <ul class="mb-4">
-    <li class="mr-4 inline-block">
-      <a href={`/authors/${slugify(author)}`}>
-        <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
-        {humanize(author)}
-      </a>
-    </li>
+    <li class="mr-4 inline-block">{siteConfig.metadata.meta_author}</li>
     <li class="mr-4 inline-block">
       <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
       {
