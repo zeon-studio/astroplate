@@ -7,7 +7,9 @@ import {
   IoLogoTwitter,
 } from "react-icons/io5";
 
-const { base_url }: { base_url: string } = config.site;
+const siteUrl =
+  Astro.site?.toString().replace(/\/$/, "") ||
+  config.site.base_url.replace(/\/$/, "");
 const {
   title,
   description,
@@ -21,7 +23,7 @@ const {
   <li class="inline-block">
     <a
       aria-label="facebook share button"
-      href={`https://facebook.com/sharer/sharer.php?u=${base_url}/${slug}`}
+      href={`https://facebook.com/sharer/sharer.php?u=${siteUrl}/${slug}`}
       target="_blank"
       rel="noreferrer noopener"
     >
@@ -31,7 +33,7 @@ const {
   <li class="inline-block">
     <a
       aria-label="twitter share button"
-      href={`https://twitter.com/intent/tweet/?text=${title}&amp;url=${base_url}/${slug}`}
+      href={`https://twitter.com/intent/tweet/?text=${title}&amp;url=${siteUrl}/${slug}`}
       target="_blank"
       rel="noreferrer noopener"
     >
@@ -41,7 +43,7 @@ const {
   <li class="inline-block">
     <a
       aria-label="linkedin share button"
-      href={`https://www.linkedin.com/shareArticle?mini=true&url=${base_url}/${slug}&title=${title}&summary=${description}&source=${base_url}`}
+      href={`https://www.linkedin.com/shareArticle?mini=true&url=${siteUrl}/${slug}&title=${title}&summary=${description}&source=${siteUrl}`}
       target="_blank"
       rel="noreferrer noopener"
     >
@@ -51,7 +53,7 @@ const {
   <li class="inline-block">
     <a
       aria-label="pinterest share button"
-      href={`https://pinterest.com/pin/create/button/?url=${base_url}/${slug}&media=&description=${description}`}
+      href={`https://pinterest.com/pin/create/button/?url=${siteUrl}/${slug}&media=&description=${description}`}
       target="_blank"
       rel="noreferrer noopener"
     >

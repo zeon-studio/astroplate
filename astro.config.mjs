@@ -10,6 +10,27 @@ import sharp from "sharp";
 import config from "./src/config/config.json";
 import theme from "./src/config/theme.json";
 
+function normalizeSiteUrl(rawUrl) {
+  if (!rawUrl) return undefined;
+
+  const withProtocol = /^https?:\/\//.test(rawUrl)
+    ? rawUrl
+    : `https://${rawUrl}`;
+
+  try {
+    return new URL(withProtocol).toString();
+  } catch {
+    return undefined;
+  }
+}
+
+const resolvedSiteUrl =
+  normalizeSiteUrl(process.env.PUBLIC_SITE_URL) ||
+  normalizeSiteUrl(process.env.SITE_URL) ||
+  normalizeSiteUrl(process.env.CF_PAGES_URL) ||
+  normalizeSiteUrl(config.site.base_url) ||
+  "https://example.com/";
+
 // Helper to parse font string format: "FontName:wght@400;500;600;700"
 function parseFontString(fontStr) {
   const [name, weightPart] = fontStr.split(":");
@@ -48,7 +69,7 @@ const fontsConfig = Object.entries(theme.fonts.font_family)
 
 // https://astro.build/config
 export default defineConfig({
-  site: config.site.base_url ? config.site.base_url : "http://examplesite.com",
+  site: resolvedSiteUrl,
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
   image: { service: sharp() },

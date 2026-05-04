@@ -1,6 +1,7 @@
 ---
 import BlogCard from "@/components/BlogCard.astro";
 import Share from "@/components/Share.astro";
+import config from "@/config/config.json";
 import Disqus from "@/helpers/Disqus";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import dateFormat from "@/lib/utils/dateFormat";
@@ -92,7 +93,11 @@ const { title, description, author, categories, image, date, tags } = post.data;
             />
           </div>
         </div>
-        <Disqus className="mt-20" client:only="react" />
+        {
+          config.disqus.enable && (
+            <Disqus className="mt-20" client:only="react" />
+          )
+        }
       </article>
     </div>
 

@@ -139,7 +139,7 @@ const { pathname } = Astro.url;
           </button>
         )
       }
-      <ThemeSwitcher className="mr-5" />
+      {settings.theme_switcher && <ThemeSwitcher className="mr-5" />}
       {
         navigation_button.enable && (
           <a

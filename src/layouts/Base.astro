@@ -11,7 +11,6 @@ import {
   GoogleTagmanagerNoscript,
 } from "@digi4care/astro-google-tagmanager";
 import { Font } from "astro:assets";
-import { ClientRouter } from "astro:transitions";
 import Announcement from "./helpers/Announcement";
 import SearchModal from "./helpers/SearchModal";
 
@@ -28,11 +27,30 @@ export interface Props {
   image?: string;
   noindex?: boolean;
   canonical?: string;
+  og_type?: "website" | "article";
 }
 
 // destructure frontmatter
-const { title, meta_title, description, image, noindex, canonical } =
+const { title, meta_title, description, image, noindex, canonical, og_type } =
   Astro.props;
+
+const siteUrl =
+  Astro.site || (config.site.base_url ? new URL(config.site.base_url) : undefined);
+const seoTitle = plainify(
+  meta_title ? meta_title : title ? title : config.site.title,
+).trim();
+const seoDescription = plainify(
+  description ? description : config.metadata.meta_description,
+).trim();
+const canonicalUrl = siteUrl
+  ? canonical
+    ? new URL(canonical, siteUrl).toString()
+    : new URL(Astro.url.pathname, siteUrl).toString()
+  : canonical;
+const socialImage = siteUrl
+  ? new URL(image ? image : config.metadata.meta_image, siteUrl).toString()
+  : image || config.metadata.meta_image;
+const ogType = og_type || "website";
 ---
 
 <!doctype html>
@@ -77,12 +95,10 @@ const { title, meta_title, description, image, noindex, canonical } =
     />
 
     <!-- title -->
-    <title>
-      {plainify(meta_title ? meta_title : title ? title : config.site.title)}
-    </title>
+    <title>{seoTitle}</title>
 
     <!-- canonical url -->
-    {canonical && <link rel="canonical" href={canonical} item-prop="url" />}
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} item-prop="url" />}
 
     <!-- noindex robots -->
     {noindex && <meta name="robots" content="noindex,nofollow" />}
@@ -90,12 +106,8 @@ const { title, meta_title, description, image, noindex, canonical } =
     <!-- meta-description -->
     <meta
       name="description"
-      content={plainify(
-        description ? description : config.metadata.meta_description,
-      )}
+      content={seoDescription}
     />
-
-    <ClientRouter />
 
     <!-- author from config.json -->
     <meta name="author" content={config.metadata.meta_author} />
@@ -103,54 +115,39 @@ const { title, meta_title, description, image, noindex, canonical } =
     <!-- og-title -->
     <meta
       property="og:title"
-      content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title,
-      )}
+      content={seoTitle}
     />
 
     <!-- og-description -->
     <meta
       property="og:description"
-      content={plainify(
-        description ? description : config.metadata.meta_description,
-      )}
+      content={seoDescription}
     />
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:url"
-      content={`${config.site.base_url}/${Astro.url.pathname.replace("/", "")}`}
-    />
+    <meta property="og:type" content={ogType} />
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
 
     <!-- twitter-title -->
     <meta
       name="twitter:title"
-      content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title,
-      )}
+      content={seoTitle}
     />
 
     <!-- twitter-description -->
     <meta
       name="twitter:description"
-      content={plainify(
-        description ? description : config.metadata.meta_description,
-      )}
+      content={seoDescription}
     />
 
     <!-- og-image -->
     <meta
       property="og:image"
-      content={`${config.site.base_url}${
-        image ? image : config.metadata.meta_image
-      }`}
+      content={socialImage}
     />
 
     <!-- twitter-image -->
     <meta
       name="twitter:image"
-      content={`${config.site.base_url}${
-        image ? image : config.metadata.meta_image
-      }`}
+      content={socialImage}
     />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
@@ -161,9 +158,9 @@ const { title, meta_title, description, image, noindex, canonical } =
         <GoogleTagmanagerNoscript id={config.google_tag_manager.gtm_id} />
       )
     }
-    <Announcement client:only="react" />
+    {config.announcement.enable && <Announcement client:only="react" />}
     <Header />
-    <SearchModal client:only="react" />
+    {config.settings.search && <SearchModal client:only="react" />}
     <main class="grow" id="main-content">
       <slot />
     </main>
