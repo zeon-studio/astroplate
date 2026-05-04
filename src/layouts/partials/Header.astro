@@ -3,6 +3,7 @@ import Logo from "@/components/Logo.astro";
 import ThemeSwitcher from "@/components/ThemeSwitcher.astro";
 import { siteConfig } from "@/lib/siteConfig";
 import LanguageSwitcher from "@/helpers/LanguageSwitcher";
+import { getLocaleSwitchTargets } from "@/lib/utils/localeSwitchTargets";
 import {
   getLangFromUrl,
   getTranslations,
@@ -26,6 +27,7 @@ const lang = getLangFromUrl(Astro.url);
 const { main } = (await getTranslations(lang)) as { main: NavigationLink[] };
 const { navigation_button, settings } = siteConfig;
 const { pathname } = Astro.url;
+const switchTargets = await getLocaleSwitchTargets(pathname);
 ---
 
 <header class={`header z-30 ${settings.sticky_header && "sticky top-0"}`}>
@@ -142,7 +144,7 @@ const { pathname } = Astro.url;
         )
       }
       {settings.theme_switcher && <ThemeSwitcher className="mr-5" />}
-      <LanguageSwitcher client:load lang={lang} pathname={pathname} />
+      <LanguageSwitcher client:load lang={lang} switchTargets={switchTargets} />
       {
         navigation_button.enable && (
           <a

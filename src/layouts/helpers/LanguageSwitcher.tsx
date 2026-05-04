@@ -4,45 +4,17 @@ import React from "react";
 
 const LanguageSwitcher = ({
   lang,
-  pathname,
+  switchTargets,
 }: {
   lang: string;
-  pathname: string;
+  switchTargets: Record<string, string>;
 }) => {
-  const { default_language, default_language_in_subdir, disable_languages } =
-    config.settings;
+  const { default_language, disable_languages } = config.settings;
   const disabledLanguages = disable_languages as string[];
 
   const sortedLanguages = languages
     .filter(({ languageCode }) => !disabledLanguages.includes(languageCode))
     .sort((a, b) => a.weight - b.weight);
-
-  const removeTrailingSlash = (path: string) => {
-    if (config.site.trailing_slash) {
-      return path === "/" ? "/" : path.replace(/\/?$/, "/");
-    }
-
-    return path !== "/" ? path.replace(/\/$/, "") : path;
-  };
-
-  const removeCurrentLangPrefix = (path: string) => {
-    const prefix = `/${lang}`;
-    if (lang !== default_language && path.startsWith(prefix)) {
-      const withoutLang = path.slice(prefix.length) || "/";
-      return withoutLang.startsWith("/") ? withoutLang : `/${withoutLang}`;
-    }
-
-    if (
-      lang === default_language &&
-      default_language_in_subdir &&
-      path.startsWith(prefix)
-    ) {
-      const withoutLang = path.slice(prefix.length) || "/";
-      return withoutLang.startsWith("/") ? withoutLang : `/${withoutLang}`;
-    }
-
-    return path || "/";
-  };
 
   if (sortedLanguages.length < 2) {
     return null;
@@ -54,22 +26,8 @@ const LanguageSwitcher = ({
         className="border-dark text-text-dark rounded-sm border bg-transparent py-1 focus:border-dark focus:ring-0 dark:border-darkmode-primary dark:text-white dark:focus:border-darkmode-primary"
         onChange={(event) => {
           const selectedLang = event.target.value;
-          const pathWithoutLang = removeCurrentLangPrefix(pathname);
-
-          if (
-            selectedLang === default_language &&
-            !default_language_in_subdir
-          ) {
-            window.location.href = removeTrailingSlash(pathWithoutLang);
-            return;
-          }
-
-          const localizedPath =
-            pathWithoutLang === "/"
-              ? `/${selectedLang}`
-              : `/${selectedLang}${pathWithoutLang}`;
-
-          window.location.href = removeTrailingSlash(localizedPath);
+          window.location.href =
+            switchTargets[selectedLang] || switchTargets[default_language] || "/";
         }}
         value={lang}
       >
