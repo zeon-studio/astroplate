@@ -1,6 +1,7 @@
 ---
 import ImageMod from "./ImageMod.astro";
 import { siteConfig } from "@/lib/siteConfig";
+import { getLangFromUrl, slugSelector } from "@/lib/utils/languageParser";
 
 const { src, srcDarkmode }: { src?: string; srcDarkmode?: string } =
   Astro.props;
@@ -21,9 +22,10 @@ const {
 } = siteConfig.site;
 
 const { theme_switcher }: { theme_switcher: boolean } = siteConfig.settings;
+const lang = getLangFromUrl(Astro.url);
 ---
 
-<a href="/" class="navbar-brand inline-block">
+<a href={slugSelector("/", lang)} class="navbar-brand inline-block">
   {
     src || srcDarkmode || logo || logo_darkmode ? (
       <>

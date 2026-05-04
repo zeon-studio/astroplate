@@ -1,10 +1,13 @@
 ---
+import { getLangFromUrl, slugSelector } from "@/lib/utils/languageParser";
+
 type Pagination = {
   section?: string;
   currentPage?: number;
   totalPages?: number;
 };
 const { section, currentPage = 1, totalPages = 1 }: Pagination = Astro.props;
+const lang = getLangFromUrl(Astro.url);
 
 const indexPageLink = currentPage === 2;
 const hasPrevPage = currentPage > 1;
@@ -14,6 +17,16 @@ let pageList: number[] = [];
 for (let i = 1; i <= totalPages; i++) {
   pageList.push(i);
 }
+
+const sectionRoot = section ? `/${section}` : "/";
+const pagePath = (pageNumber: number) => {
+  if (pageNumber <= 1) {
+    return slugSelector(sectionRoot, lang);
+  }
+
+  const sectionPrefix = section ? `/${section}` : "";
+  return slugSelector(`${sectionPrefix}/page/${pageNumber}`, lang);
+};
 ---
 
 {
@@ -25,11 +38,7 @@ for (let i = 1; i <= totalPages; i++) {
       {/* previous */}
       {hasPrevPage ? (
         <a
-          href={
-            indexPageLink
-              ? `${section ? "/" + section : "/"}`
-              : `${section ? "/" + section : ""}/page/${currentPage - 1}`
-          }
+          href={indexPageLink ? pagePath(1) : pagePath(currentPage - 1)}
           class="rounded px-2 py-1.5 text-text-dark hover:bg-light dark:text-darkmode-text-dark dark:hover:bg-darkmode-light"
         >
           <span class="sr-only">Previous</span>
@@ -77,11 +86,7 @@ for (let i = 1; i <= totalPages; i++) {
           </span>
         ) : (
           <a
-            href={
-              i === 0
-                ? `${section ? "/" + section : "/"}`
-                : `${section ? "/" + section : ""}/page/${pagination}`
-            }
+            href={i === 0 ? pagePath(1) : pagePath(pagination)}
             aria-current="page"
             class="rounded px-4 py-2 text-text-dark hover:bg-light dark:text-darkmode-text-dark dark:hover:bg-darkmode-light"
           >
@@ -93,7 +98,7 @@ for (let i = 1; i <= totalPages; i++) {
       {/* next page */}
       {hasNextPage ? (
         <a
-          href={`${section ? "/" + section : ""}/page/${currentPage + 1}`}
+          href={pagePath(currentPage + 1)}
           class="rounded px-2 py-1.5 text-text-dark hover:bg-light dark:text-darkmode-text-dark dark:hover:bg-darkmode-light"
         >
           <span class="sr-only">Next</span>

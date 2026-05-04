@@ -1,0 +1,56 @@
+---
+import BlogCard from "@/components/BlogCard.astro";
+import Base from "@/layouts/Base.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { getTaxonomy } from "@/lib/taxonomyParser.astro";
+import { normalizeLang, supportedLang } from "@/lib/utils/languageParser";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import taxonomyFilter from "@/lib/utils/taxonomyFilter";
+import PageHeader from "@/partials/PageHeader.astro";
+
+export async function getStaticPaths() {
+  const BLOG_FOLDER = "blog";
+  const paths = [];
+
+  for (const routeLang of supportedLang) {
+    const lang = normalizeLang(routeLang);
+    const tags = await getTaxonomy(BLOG_FOLDER, lang, "tags");
+
+    paths.push(
+      ...tags.map((tag) => ({
+        params: {
+          lang: routeLang || undefined,
+          tag,
+        },
+      })),
+    );
+  }
+
+  return paths;
+}
+
+const lang = normalizeLang(Astro.params.lang);
+const { tag } = Astro.params;
+
+const BLOG_FOLDER = "blog";
+const posts = await getSinglePage(BLOG_FOLDER, lang);
+const filterByTags = taxonomyFilter(posts, "tags", tag!);
+const sortedPosts = sortByDate(filterByTags);
+---
+
+<Base title={tag} lang={lang}>
+  <PageHeader title={tag} />
+  <div class="section-sm pb-0">
+    <div class="container">
+      <div class="row">
+        {
+          sortedPosts.map((post) => (
+            <div class="mb-14 md:col-6 lg:col-4">
+              <BlogCard data={post} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</Base>

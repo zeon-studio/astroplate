@@ -2,6 +2,7 @@
 import TwSizeIndicator from "@/components/TwSizeIndicator.astro";
 import theme from "@/config/theme.json";
 import { siteConfig } from "@/lib/siteConfig";
+import { getLangFromUrl, getTranslations } from "@/lib/utils/languageParser";
 import { plainify } from "@/lib/utils/textConverter";
 import Footer from "@/partials/Footer.astro";
 import Header from "@/partials/Header.astro";
@@ -28,12 +29,22 @@ export interface Props {
   noindex?: boolean;
   canonical?: string;
   og_type?: "website" | "article";
+  lang?: string;
 }
 
 // destructure frontmatter
-const { title, meta_title, description, image, noindex, canonical, og_type } =
-  Astro.props;
+const {
+  title,
+  meta_title,
+  description,
+  image,
+  noindex,
+  canonical,
+  og_type,
+  lang,
+} = Astro.props;
 
+const language = lang || getLangFromUrl(Astro.url);
 const siteUrl =
   Astro.site ||
   (siteConfig.site.base_url ? new URL(siteConfig.site.base_url) : undefined);
@@ -52,10 +63,11 @@ const socialImage = siteUrl
   ? new URL(image ? image : siteConfig.metadata.meta_image, siteUrl).toString()
   : image || siteConfig.metadata.meta_image;
 const ogType = og_type || "website";
+const searchStrings = (await getTranslations(language)) as Record<string, string>;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={language}>
   <head>
     <!-- google tag manager -->
     {
@@ -161,7 +173,19 @@ const ogType = og_type || "website";
     }
     {siteConfig.announcement.enable && <Announcement client:only="react" />}
     <Header />
-    {siteConfig.settings.search && <SearchModal client:only="react" />}
+    {siteConfig.settings.search && (
+      <SearchModal
+        lang={language}
+        searchPlaceholder={searchStrings.search_placeholder}
+        searchEmpty={searchStrings.search_empty}
+        searchResultsLabel={searchStrings.search_results}
+        searchSecondsLabel={searchStrings.search_seconds}
+        searchNavigateLabel={searchStrings.search_to_navigate}
+        searchSelectLabel={searchStrings.search_to_select}
+        searchCloseLabel={searchStrings.search_to_close}
+        client:only="react"
+      />
+    )}
     <main class="grow" id="main-content">
       <slot />
     </main>

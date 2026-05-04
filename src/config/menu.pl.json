@@ -1,0 +1,37 @@
+{
+  "main": [
+    {
+      "name": "Strona glowna",
+      "url": "/"
+    },
+    {
+      "name": "O nas",
+      "url": "/about"
+    },
+    {
+      "name": "Strony",
+      "url": "",
+      "hasChildren": true,
+      "children": [
+        {
+          "name": "Kontakt",
+          "url": "/contact"
+        },
+        {
+          "name": "Kategorie",
+          "url": "/categories"
+        },
+        {
+          "name": "Tagi",
+          "url": "/tags"
+        }
+      ]
+    }
+  ],
+  "footer": [
+    {
+      "name": "Polityka prywatnosci",
+      "url": "/privacy-policy"
+    }
+  ]
+}

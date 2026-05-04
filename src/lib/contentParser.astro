@@ -5,6 +5,7 @@ import {
   type CollectionEntry,
   type CollectionKey,
 } from "astro:content";
+import { getContentDir } from "@/lib/utils/languageParser";
 
 type PageData = {
   title: string;
@@ -15,22 +16,35 @@ type PageData = {
 };
 
 export const getSinglePage = async <C extends CollectionKey>(
-  collectionName: C
+  collectionName: C,
+  lang?: string,
+  subCollectionName?: string,
 ): Promise<CollectionEntry<C>[]> => {
+  const contentDir = getContentDir(lang);
+  const contentPath = subCollectionName
+    ? `${contentDir}/${subCollectionName}`
+    : contentDir;
+
   const allPages = await getCollection(
     collectionName,
     ({ data, id }) => !(data as PageData)?.draft && !id.startsWith("-")
   );
-  return allPages;
+
+  return allPages.filter(({ id }) => {
+    const entryName = id.split("/").pop() || "";
+    return id.startsWith(contentPath) && !entryName.startsWith("-");
+  });
 };
 
 export const getListPage = async <C extends CollectionKey>(
   collectionName: C,
-  documentId: "-index" | string
+  lang?: string,
+  documentId: "-index" | string = "-index",
 ): Promise<CollectionEntry<C>> => {
+  const contentDir = getContentDir(lang);
   const data = (await getEntry(
     collectionName,
-    documentId
+    `${contentDir}/${documentId}`
   )) as CollectionEntry<C> | null;
 
   if (!data) {

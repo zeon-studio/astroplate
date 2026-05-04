@@ -1,7 +1,9 @@
+import { slugSelector } from "@/lib/utils/languageParser";
 import { plainify, titleify } from "@/lib/utils/textConverter";
 import React from "react";
 
 export interface ISearchItem {
+  lang: string;
   group: string;
   slug: string;
   frontmatter: {
@@ -33,9 +35,15 @@ export interface ISearchGroup {
 const SearchResult = ({
   searchResult,
   searchString,
+  lang,
+  emptyLabel = "No results for",
+  searchEmpty = "Type something to search...",
 }: {
   searchResult: ISearchItem[];
   searchString: string;
+  lang: string;
+  emptyLabel?: string;
+  searchEmpty?: string;
 }) => {
   // generate search result group
   const generateSearchGroup = (searchResult: ISearchItem[]) => {
@@ -153,7 +161,7 @@ const SearchResult = ({
                     )}
                     <div className="search-result-item-body">
                       <a
-                        href={`/${item.slug}`}
+                        href={slugSelector(`/${item.slug}`, lang)}
                         className="search-result-item-title search-result-item-link"
                       >
                         {matchUnderline(item.frontmatter.title, searchString)}
@@ -245,13 +253,13 @@ const SearchResult = ({
                 ></path>
               </svg>
               <p className="mt-4">
-                No results for &quot;<strong>{searchString}</strong>&quot;
+                {emptyLabel} &quot;<strong>{searchString}</strong>&quot;
               </p>
             </div>
           )}
         </div>
       ) : (
-        <div className="py-8 text-center">Type something to search...</div>
+        <div className="py-8 text-center">{searchEmpty}</div>
       )}
     </div>
   );

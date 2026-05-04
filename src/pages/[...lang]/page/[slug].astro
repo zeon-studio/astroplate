@@ -1,0 +1,92 @@
+---
+import BlogCard from "@/components/BlogCard.astro";
+import Pagination from "@/components/Pagination.astro";
+import config from "@/config/config.json";
+import Base from "@/layouts/Base.astro";
+import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
+import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
+import {
+  normalizeLang,
+  supportedLang,
+} from "@/lib/utils/languageParser";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import PageHeader from "@/partials/PageHeader.astro";
+import PostSidebar from "@/partials/PostSidebar.astro";
+
+const BLOG_FOLDER = "blog";
+
+export async function getStaticPaths() {
+  const BLOG_FOLDER = "blog";
+  const paths = [];
+
+  for (const routeLang of supportedLang) {
+    const lang = normalizeLang(routeLang);
+    const posts = await getSinglePage(BLOG_FOLDER, lang);
+    const totalPages = Math.ceil(posts.length / config.settings.pagination);
+
+    for (let page = 2; page <= totalPages; page++) {
+      paths.push({
+        params: {
+          lang: routeLang || undefined,
+          slug: page.toString(),
+        },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const lang = normalizeLang(Astro.params.lang);
+const { slug } = Astro.params;
+const postIndex = await getListPage(BLOG_FOLDER, lang, "-index");
+
+if (postIndex.data.draft) {
+  return Astro.redirect("/404");
+}
+
+const posts = await getSinglePage(BLOG_FOLDER, lang);
+const allCategories = await getAllTaxonomy(BLOG_FOLDER, lang, "categories");
+const categories = await getTaxonomy(BLOG_FOLDER, lang, "categories");
+const tags = await getTaxonomy(BLOG_FOLDER, lang, "tags");
+const sortedPosts = sortByDate(posts);
+const totalPages = Math.ceil(posts.length / config.settings.pagination);
+const currentPage = slug && !isNaN(Number(slug)) ? Number(slug) : 1;
+const indexOfLastPost = currentPage * config.settings.pagination;
+const indexOfFirstPost = indexOfLastPost - config.settings.pagination;
+const currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
+---
+
+<Base
+  title={postIndex.data.title}
+  meta_title={postIndex.data.meta_title}
+  image={postIndex.data.image}
+  description={postIndex.data.description}
+  lang={lang}
+>
+  <PageHeader title={postIndex.data.title} />
+  <section class="section">
+    <div class="container">
+      <div class="row gx-5">
+        <div class="lg:col-8">
+          <div class="row">
+            {
+              currentPosts.map((post) => (
+                <div class="mb-14 md:col-6">
+                  <BlogCard data={post} />
+                </div>
+              ))
+            }
+          </div>
+          <Pagination currentPage={currentPage} totalPages={totalPages} />
+        </div>
+
+        <PostSidebar
+          categories={categories}
+          tags={tags}
+          allCategories={allCategories}
+        />
+      </div>
+    </div>
+  </section>
+</Base>

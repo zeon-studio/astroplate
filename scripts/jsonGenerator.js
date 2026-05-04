@@ -2,9 +2,14 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 
-const CONTENT_DEPTH = 2;
 const JSON_FOLDER = "./.json";
 const BLOG_FOLDER = "src/content/blog";
+const languages = JSON.parse(
+  fs.readFileSync(new URL("../src/config/language.json", import.meta.url), "utf8"),
+);
+const localeByContentDir = new Map(
+  languages.map(({ contentDir, languageCode }) => [contentDir, languageCode]),
+);
 
 // get data from markdown
 const getData = (folder, groupDepth) => {
@@ -21,15 +26,17 @@ const getData = (folder, groupDepth) => {
     } else if (filename.endsWith(".md")) {
       const file = fs.readFileSync(filepath, "utf-8");
       const { data, content } = matter(file);
-      const pathParts = filepath.split(path.sep);
-      const slug = pathParts
-        .slice(CONTENT_DEPTH)
-        .join("/")
-        .replace(/\.[^/.]+$/, "");
-      const group = pathParts[groupDepth];
+      const relativePath = path.relative(BLOG_FOLDER, filepath);
+      const [contentDir, ...slugParts] = relativePath.split(path.sep);
+      const slug = path
+        .join("blog", ...slugParts)
+        .replace(/\.[^/.]+$/, "")
+        .replace(/\\/g, "/");
+      const lang = localeByContentDir.get(contentDir);
 
       return {
-        group: group,
+        lang,
+        group: "blog",
         slug: slug,
         frontmatter: data,
         content: content,
@@ -39,7 +46,7 @@ const getData = (folder, groupDepth) => {
     }
   });
 
-  return getPaths.filter((page) => !page.frontmatter?.draft && page);
+  return getPaths.filter((page) => page?.lang && !page.frontmatter?.draft);
 };
 
 try {

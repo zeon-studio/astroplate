@@ -105,7 +105,7 @@ const homepageCollection = defineCollection({
 // Call to Action collection schema
 const ctaSectionCollection = defineCollection({
   loader: glob({
-    pattern: "call-to-action.{md,mdx}",
+    pattern: "**/call-to-action.{md,mdx}",
     base: "src/content/sections",
   }),
   schema: z.object({
@@ -124,7 +124,7 @@ const ctaSectionCollection = defineCollection({
 // Testimonials Section collection schema
 const testimonialSectionCollection = defineCollection({
   loader: glob({
-    pattern: "testimonial.{md,mdx}",
+    pattern: "**/testimonial.{md,mdx}",
     base: "src/content/sections",
   }),
   schema: z.object({

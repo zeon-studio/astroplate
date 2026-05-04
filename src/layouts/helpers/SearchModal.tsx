@@ -1,8 +1,30 @@
 import searchData from ".json/search.json";
+import config from "@/config/config.json";
 import React, { useEffect, useState } from "react";
 import SearchResult, { type ISearchItem } from "./SearchResult";
 
-const SearchModal = () => {
+const { default_language } = config.settings;
+
+const SearchModal = ({
+  lang,
+  searchPlaceholder = "Search...",
+  searchEmpty = "Type something to search...",
+  searchResultsLabel = "results",
+  searchSecondsLabel = "seconds",
+  searchNavigateLabel = "to navigate",
+  searchSelectLabel = "to select",
+  searchCloseLabel = "to close",
+}: {
+  lang?: string;
+  searchPlaceholder?: string;
+  searchEmpty?: string;
+  searchResultsLabel?: string;
+  searchSecondsLabel?: string;
+  searchNavigateLabel?: string;
+  searchSelectLabel?: string;
+  searchCloseLabel?: string;
+}) => {
+  const activeLang = lang || default_language;
   const [searchString, setSearchString] = useState("");
 
   // handle input change
@@ -40,8 +62,12 @@ const SearchModal = () => {
   };
 
   // get search result
+  const typedSearchData = searchData as unknown as ISearchItem[];
+  const filterSearchData = typedSearchData.filter(
+    (item) => item.lang === activeLang,
+  );
   const startTime = performance.now();
-  const searchResult = doSearch(searchData);
+  const searchResult = doSearch(filterSearchData);
   const endTime = performance.now();
   const totalTime = ((endTime - startTime) / 1000).toFixed(3);
 
@@ -163,7 +189,7 @@ const SearchModal = () => {
           </label>
           <input
             id="searchInput"
-            placeholder="Search..."
+            placeholder={searchPlaceholder}
             className="search-wrapper-header-input"
             type="input"
             name="search"
@@ -172,7 +198,12 @@ const SearchModal = () => {
             autoComplete="off"
           />
         </div>
-        <SearchResult searchResult={searchResult} searchString={searchString} />
+        <SearchResult
+          searchResult={searchResult}
+          searchString={searchString}
+          lang={activeLang}
+          searchEmpty={searchEmpty}
+        />
         <div className="search-wrapper-footer">
           <span className="flex items-center">
             <kbd>
@@ -195,7 +226,7 @@ const SearchModal = () => {
                 <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 001.506.0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 00-.753 1.659z"></path>
               </svg>
             </kbd>
-            to navigate
+            {searchNavigateLabel}
           </span>
           <span className="flex items-center">
             <kbd>
@@ -211,16 +242,16 @@ const SearchModal = () => {
                 ></path>
               </svg>
             </kbd>
-            to select
+            {searchSelectLabel}
           </span>
           {searchString && (
             <span>
-              <strong>{searchResult.length} </strong> results - in{" "}
-              <strong>{totalTime} </strong> seconds
+              <strong>{searchResult.length} </strong> {searchResultsLabel} - in{" "}
+              <strong>{totalTime} </strong> {searchSecondsLabel}
             </span>
           )}
           <span>
-            <kbd>ESC</kbd> to close
+            <kbd>ESC</kbd> {searchCloseLabel}
           </span>
         </div>
       </div>

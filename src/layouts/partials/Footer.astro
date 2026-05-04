@@ -1,11 +1,18 @@
 ---
 import Logo from "@/components/Logo.astro";
 import Social from "@/components/Social.astro";
-import menu from "@/config/menu.json";
 import { siteConfig, socialConfig } from "@/lib/siteConfig";
+import {
+  getLangFromUrl,
+  getTranslations,
+  slugSelector,
+} from "@/lib/utils/languageParser";
 import { markdownify } from "@/lib/utils/textConverter";
 
-const { footer }: { footer: { name: string; url: string }[] } = menu;
+const lang = getLangFromUrl(Astro.url);
+const { footer } = (await getTranslations(lang)) as {
+  footer: { name: string; url: string }[];
+};
 ---
 
 <footer class="bg-light dark:bg-darkmode-light">
@@ -19,7 +26,7 @@ const { footer }: { footer: { name: string; url: string }[] } = menu;
           {
             footer.map((menu) => (
               <li class="m-3 inline-block">
-                <a href={menu.url}>{menu.name}</a>
+                <a href={slugSelector(menu.url, lang)}>{menu.name}</a>
               </li>
             ))
           }

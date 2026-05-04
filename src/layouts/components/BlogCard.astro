@@ -1,5 +1,11 @@
 ---
 import config from "@/config/config.json";
+import {
+  getLangFromUrl,
+  getTranslations,
+  slugSelector,
+  stripLocaleFromId,
+} from "@/lib/utils/languageParser";
 import dateFormat from "@/lib/utils/dateFormat";
 import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
 import { FaRegFolder } from "react-icons/fa";
@@ -12,6 +18,11 @@ const {
 }: { summary_length: number; blog_folder: string } = config.settings;
 const { data } = Astro.props;
 const { title, image, date, categories } = data.data;
+const lang = getLangFromUrl(Astro.url);
+const { read_more } = (await getTranslations(lang)) as unknown as {
+  read_more: string;
+};
+const postSlug = stripLocaleFromId(data.id);
 ---
 
 <div class="bg-body dark:bg-darkmode-body">
@@ -28,7 +39,7 @@ const { title, image, date, categories } = data.data;
     )
   }
   <h4 class="mb-3">
-    <a href={`/${blog_folder}/${data.id}`}>
+    <a href={slugSelector(`/${blog_folder}/${postSlug}`, lang)}>
       {title}
     </a>
   </h4>
@@ -38,7 +49,7 @@ const { title, image, date, categories } = data.data;
       <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
       {
         categories.map((category: string, index: number) => (
-          <a href={`/categories/${slugify(category)}`}>
+          <a href={slugSelector(`/categories/${slugify(category)}`, lang)}>
             {humanize(category)}
             {index !== categories.length - 1 && ","}
           </a>
@@ -48,7 +59,10 @@ const { title, image, date, categories } = data.data;
     {date && <li class="inline-block">{dateFormat(date)}</li>}
   </ul>
   <p class="mb-6">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
-  <a class="btn btn-outline-primary btn-sm" href={`/${blog_folder}/${data.id}`}>
-    read more
+  <a
+    class="btn btn-outline-primary btn-sm"
+    href={slugSelector(`/${blog_folder}/${postSlug}`, lang)}
+  >
+    {read_more}
   </a>
 </div>

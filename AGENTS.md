@@ -29,9 +29,10 @@
 - `npm run dev` runs `themeGenerator.js` in watch mode and runs `jsonGenerator.js` before starting `astro dev`.
 - `npm run build` runs `themeGenerator.js`, then `jsonGenerator.js`, then `astro build`, then `llmsGenerator.js`.
 - Changes to theme, JSON generation, or build output may affect downstream generated artifacts. Review the corresponding script before editing related behavior.
-- Blog posts are authored directly in `src/content/blog` as Markdown `.md` files.
-- Post URLs come from filenames. For example, `src/content/blog/my-post.md` becomes `/blog/my-post`.
-- Use `src/content/blog/-template.md` as the starting point for new posts.
+- Blog posts are authored directly in `src/content/blog/<language>` as Markdown `.md` files.
+- English posts live in `src/content/blog/english/` and Polish posts live in `src/content/blog/polish/`.
+- Post URLs come from filenames. For example, `src/content/blog/english/my-post.md` becomes `/blog/my-post`, and `src/content/blog/polish/my-post.md` becomes `/pl/blog/my-post`.
+- Use `src/content/blog/english/-template.md` or `src/content/blog/polish/-template.md` as the starting point for new posts.
 - Blog post frontmatter should include only `title`, `description`, `date`, `image`, `categories`, `tags`, and `draft`.
 - Keep post images in `public/images/` and reference them with absolute paths like `/images/cover.png`.
 - Use `draft: true` for unpublished work. Draft posts should stay out of routes, search JSON, and sitemap output.

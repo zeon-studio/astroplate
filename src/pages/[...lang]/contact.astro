@@ -1,0 +1,95 @@
+---
+import Base from "@/layouts/Base.astro";
+import { siteConfig } from "@/lib/siteConfig";
+import { getListPage } from "@/lib/contentParser.astro";
+import {
+  getTranslations,
+  normalizeLang,
+  supportedLang,
+} from "@/lib/utils/languageParser";
+import PageHeader from "@/partials/PageHeader.astro";
+
+export function getStaticPaths() {
+  return supportedLang.map((lang) => ({
+    params: { lang: lang || undefined },
+  }));
+}
+
+const lang = normalizeLang(Astro.params.lang);
+const contactIndex = await getListPage("contact", lang, "-index");
+const { contact_form_action }: { contact_form_action: string } =
+  siteConfig.params;
+const { title, description, meta_title, image } = contactIndex.data;
+const {
+  full_name,
+  full_name_placeholder,
+  working_mail,
+  mail_placeholder,
+  message,
+  contact_message_placeholder,
+  submit,
+} = (await getTranslations(lang)) as Record<string, string>;
+
+if (contactIndex.data.draft) {
+  return Astro.redirect("/404");
+}
+---
+
+<Base
+  title={title}
+  meta_title={meta_title}
+  description={description}
+  image={image}
+  lang={lang}
+>
+  <PageHeader title={title} />
+  <section class="section-sm">
+    <div class="container">
+      <div class="row">
+        <div class="mx-auto md:col-10 lg:col-6">
+          <form action={contact_form_action} method="POST">
+            <div class="mb-6">
+              <label for="name" class="form-label">
+                {full_name} <span class="text-red-500">*</span>
+              </label>
+              <input
+                id="name"
+                name="name"
+                class="form-input"
+                placeholder={full_name_placeholder}
+                type="text"
+                required
+              />
+            </div>
+            <div class="mb-6">
+              <label for="email" class="form-label">
+                {working_mail} <span class="text-red-500">*</span>
+              </label>
+              <input
+                id="email"
+                name="email"
+                class="form-input"
+                placeholder={mail_placeholder}
+                type="email"
+                required
+              />
+            </div>
+            <div class="mb-6">
+              <label for="message" class="form-label">
+                {message} <span class="text-red-500">*</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                class="form-input"
+                placeholder={contact_message_placeholder}
+                required
+                rows="8"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">{submit}</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

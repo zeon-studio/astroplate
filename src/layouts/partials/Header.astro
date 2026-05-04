@@ -1,8 +1,13 @@
 ---
 import Logo from "@/components/Logo.astro";
 import ThemeSwitcher from "@/components/ThemeSwitcher.astro";
-import menu from "@/config/menu.json";
 import { siteConfig } from "@/lib/siteConfig";
+import LanguageSwitcher from "@/helpers/LanguageSwitcher";
+import {
+  getLangFromUrl,
+  getTranslations,
+  slugSelector,
+} from "@/lib/utils/languageParser";
 import { IoSearch } from "react-icons/io5";
 
 export interface ChildNavigationLink {
@@ -17,7 +22,8 @@ export interface NavigationLink {
   children?: ChildNavigationLink[];
 }
 
-const { main }: { main: NavigationLink[] } = menu;
+const lang = getLangFromUrl(Astro.url);
+const { main } = (await getTranslations(lang)) as { main: NavigationLink[] };
 const { navigation_button, settings } = siteConfig;
 const { pathname } = Astro.url;
 ---
@@ -63,9 +69,8 @@ const { pathname } = Astro.url;
                 <label
                   for={`submenu-${menu.name}`}
                   class={`nav-link inline-flex items-center ${
-                    menu.children?.map(({ url }) => url).includes(pathname) ||
                     menu.children
-                      ?.map(({ url }) => `${url}/`)
+                      ?.map(({ url }) => slugSelector(url, lang))
                       .includes(pathname)
                       ? "active"
                       : ""
@@ -80,12 +85,10 @@ const { pathname } = Astro.url;
                   {menu.children?.map((child) => (
                     <li class="nav-dropdown-item">
                       <a
-                        href={child.url}
+                        href={slugSelector(child.url, lang)}
                         aria-label={child.name}
                         class={`nav-dropdown-link block ${
-                          (pathname === `${child.url}/` ||
-                            pathname === child.url) &&
-                          "active"
+                          pathname === slugSelector(child.url, lang) && "active"
                         }`}
                       >
                         {child.name}
@@ -97,10 +100,9 @@ const { pathname } = Astro.url;
             ) : (
               <li class="nav-item">
                 <a
-                  href={menu.url}
+                  href={slugSelector(menu.url, lang)}
                   class={`nav-link block ${
-                    (pathname === `${menu.url}/` || pathname === menu.url) &&
-                    "active"
+                    pathname === slugSelector(menu.url, lang) && "active"
                   }`}
                 >
                   {menu.name}
@@ -140,6 +142,7 @@ const { pathname } = Astro.url;
         )
       }
       {settings.theme_switcher && <ThemeSwitcher className="mr-5" />}
+      <LanguageSwitcher client:load lang={lang} pathname={pathname} />
       {
         navigation_button.enable && (
           <a

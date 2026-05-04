@@ -1,0 +1,15 @@
+---
+import {
+  normalizeLang,
+  slugSelector,
+  supportedLang,
+} from "@/lib/utils/languageParser";
+
+export function getStaticPaths() {
+  return supportedLang.map((lang) => ({
+    params: { lang: lang || undefined },
+  }));
+}
+
+return Astro.redirect(slugSelector("/", normalizeLang(Astro.params.lang)), 301);
+---

@@ -1,0 +1,58 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import {
+  normalizeLang,
+  stripLocaleFromId,
+  supportedLang,
+} from "@/lib/utils/languageParser";
+import PageHeader from "@/partials/PageHeader.astro";
+import { render } from "astro:content";
+
+export async function getStaticPaths() {
+  const COLLECTION_FOLDER = "pages";
+  const paths = [];
+
+  for (const routeLang of supportedLang) {
+    const lang = normalizeLang(routeLang);
+    const pages = await getSinglePage(COLLECTION_FOLDER, lang);
+
+    paths.push(
+      ...pages.map((page) => ({
+        params: {
+          lang: routeLang || undefined,
+          regular: stripLocaleFromId(page.id),
+        },
+        props: { page, lang },
+      })),
+    );
+  }
+
+  return paths;
+}
+
+const { page, lang } = Astro.props;
+const { title, meta_title, description, image } = page.data;
+const { Content } = await render(page);
+---
+
+<Base
+  title={title}
+  meta_title={meta_title}
+  description={description}
+  image={image}
+  lang={lang}
+>
+  <PageHeader title={title} />
+  <section class="section-sm">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="lg:col-10">
+          <div class="content">
+            <Content />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
