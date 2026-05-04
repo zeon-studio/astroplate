@@ -13,9 +13,9 @@
   },
 
   "settings": {
-    "search": false,
+    "search": true,
     "sticky_header": true,
-    "theme_switcher": false,
+    "theme_switcher": true,
     "default_theme": "system",
     "pagination": 2,
     "summary_length": 200,
