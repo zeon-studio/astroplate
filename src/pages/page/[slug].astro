@@ -11,17 +11,39 @@ import PostSidebar from "@/partials/PostSidebar.astro";
 
 const BLOG_FOLDER = "blog";
 
+const { slug } = Astro.params;
 const postIndex = await getListPage(BLOG_FOLDER, "-index");
+
 if (postIndex.data.draft) {
   return Astro.redirect("/404");
 }
+
 const posts = await getSinglePage(BLOG_FOLDER);
 const allCategories = await getAllTaxonomy(BLOG_FOLDER, "categories");
 const categories = await getTaxonomy(BLOG_FOLDER, "categories");
 const tags = await getTaxonomy(BLOG_FOLDER, "tags");
 const sortedPosts = sortByDate(posts);
-const totalPages: number = Math.ceil(posts.length / config.settings.pagination);
-const currentPosts = sortedPosts.slice(0, config.settings.pagination);
+const totalPages = Math.ceil(posts.length / config.settings.pagination);
+const currentPage = slug && !isNaN(Number(slug)) ? Number(slug) : 1;
+const indexOfLastPost = currentPage * config.settings.pagination;
+const indexOfFirstPost = indexOfLastPost - config.settings.pagination;
+const currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+export async function getStaticPaths() {
+  const BLOG_FOLDER = "blog";
+  const posts = await getSinglePage(BLOG_FOLDER);
+  const totalPages = Math.ceil(posts.length / config.settings.pagination);
+  const paths = [];
+
+  for (let i = 1; i < totalPages; i++) {
+    paths.push({
+      params: {
+        slug: (i + 1).toString(),
+      },
+    });
+  }
+  return paths;
+}
 ---
 
 <Base
@@ -30,7 +52,7 @@ const currentPosts = sortedPosts.slice(0, config.settings.pagination);
   image={postIndex.data.image}
   description={postIndex.data.description}
 >
-  <PageHeader title={postIndex?.data.title} />
+  <PageHeader title={postIndex.data.title} />
   <section class="section">
     <div class="container">
       <div class="row gx-5">
@@ -44,7 +66,7 @@ const currentPosts = sortedPosts.slice(0, config.settings.pagination);
               ))
             }
           </div>
-          <Pagination currentPage={1} totalPages={totalPages} />
+          <Pagination currentPage={currentPage} totalPages={totalPages} />
         </div>
 
         <PostSidebar
