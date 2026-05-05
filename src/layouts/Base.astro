@@ -2,6 +2,7 @@
 import TwSizeIndicator from "@/components/TwSizeIndicator.astro";
 import theme from "@/config/theme.json";
 import { siteConfig } from "@/lib/siteConfig";
+import { getLocaleAlternates } from "@/lib/utils/localeAlternates";
 import { getLangFromUrl, getTranslations } from "@/lib/utils/languageParser";
 import { plainify } from "@/lib/utils/textConverter";
 import Footer from "@/partials/Footer.astro";
@@ -64,6 +65,22 @@ const socialImage = siteUrl
   : image || siteConfig.metadata.meta_image;
 const ogType = og_type || "website";
 const searchStrings = (await getTranslations(language)) as Record<string, string>;
+const shouldEmitAlternates =
+  !noindex && Astro.url.pathname !== "/404" && Boolean(siteUrl);
+const localeAlternates = shouldEmitAlternates
+  ? await getLocaleAlternates(Astro.url.pathname)
+  : undefined;
+const alternateUrls =
+  siteUrl && localeAlternates && Object.keys(localeAlternates.alternates).length > 1
+    ? Object.entries(localeAlternates.alternates).map(([locale, path]) => ({
+        locale,
+        href: new URL(path, siteUrl).toString(),
+      }))
+    : [];
+const xDefaultUrl =
+  siteUrl && localeAlternates?.defaultPath && alternateUrls.length > 1
+    ? new URL(localeAlternates.defaultPath, siteUrl).toString()
+    : undefined;
 ---
 
 <!doctype html>
@@ -112,6 +129,14 @@ const searchStrings = (await getTranslations(language)) as Record<string, string
 
     <!-- canonical url -->
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} item-prop="url" />}
+    {
+      alternateUrls.map(({ locale, href }) => (
+        <link rel="alternate" hreflang={locale} href={href} />
+      ))
+    }
+    {xDefaultUrl && (
+      <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
+    )}
 
     <!-- noindex robots -->
     {noindex && <meta name="robots" content="noindex,nofollow" />}
