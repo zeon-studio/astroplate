@@ -1,6 +1,6 @@
 import searchData from ".json/search.json";
 import config from "@/config/config.json";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import SearchResult, { type ISearchItem } from "./SearchResult";
 
 const { default_language } = config.settings;
@@ -26,6 +26,7 @@ const SearchModal = ({
 }) => {
   const activeLang = lang || default_language;
   const [searchString, setSearchString] = useState("");
+  const selectedIndexRef = useRef(-1);
 
   // handle input change
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,70 +72,94 @@ const SearchModal = ({
   const endTime = performance.now();
   const totalTime = ((endTime - startTime) / 1000).toFixed(3);
 
+  const getSearchResultItems = () =>
+    Array.from(document.querySelectorAll<HTMLElement>("#searchItem"));
+
+  const updateSelection = () => {
+    const searchResultItems = getSearchResultItems();
+
+    searchResultItems.forEach((item, index) => {
+      if (index === selectedIndexRef.current) {
+        item.classList.add("search-result-item-active");
+      } else {
+        item.classList.remove("search-result-item-active");
+      }
+    });
+
+    searchResultItems[selectedIndexRef.current]?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+    });
+  };
+
+  useEffect(() => {
+    selectedIndexRef.current = -1;
+    updateSelection();
+  }, [searchString, activeLang]);
+
   // search dom manipulation
   useEffect(() => {
     const searchModal = document.getElementById("searchModal");
     const searchInput = document.getElementById("searchInput");
     const searchModalOverlay = document.getElementById("searchModalOverlay");
-    const searchResultItems = document.querySelectorAll("#searchItem");
     const searchModalTriggers = document.querySelectorAll(
       "[data-search-trigger]",
     );
 
-    // search modal open
-    searchModalTriggers.forEach((button) => {
-      button.addEventListener("click", function () {
-        const searchModal = document.getElementById("searchModal");
-        searchModal!.classList.add("show");
-        searchInput!.focus();
-      });
-    });
+    if (!searchModal || !searchInput || !searchModalOverlay) {
+      return;
+    }
 
-    // search modal close
-    searchModalOverlay!.addEventListener("click", function () {
-      searchModal!.classList.remove("show");
-    });
-
-    // keyboard navigation
-    let selectedIndex = -1;
-
-    const updateSelection = () => {
-      searchResultItems.forEach((item, index) => {
-        if (index === selectedIndex) {
-          item.classList.add("search-result-item-active");
-        } else {
-          item.classList.remove("search-result-item-active");
-        }
-      });
-
-      searchResultItems[selectedIndex]?.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-      });
+    const openModal = () => {
+      searchModal.classList.add("show");
+      searchInput.focus();
+      selectedIndexRef.current = -1;
+      updateSelection();
     };
 
-    document.addEventListener("keydown", function (event) {
+    const closeModal = () => {
+      searchModal.classList.remove("show");
+      selectedIndexRef.current = -1;
+      updateSelection();
+    };
+
+    const handleTriggerClick = () => {
+      openModal();
+    };
+
+    const handleOverlayClick = () => {
+      closeModal();
+    };
+
+    const handleKeydown = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key === "k") {
-        searchModal!.classList.add("show");
-        searchInput!.focus();
-        updateSelection();
+        event.preventDefault();
+        openModal();
+        return;
       }
+
+      if (!searchModal.classList.contains("show")) {
+        return;
+      }
+
+      if (event.key === "Escape") {
+        closeModal();
+        return;
+      }
+
+      const searchResultItems = getSearchResultItems();
 
       if (event.key === "ArrowUp" || event.key === "ArrowDown") {
         event.preventDefault();
       }
 
-      if (event.key === "Escape") {
-        searchModal!.classList.remove("show");
-      }
-
-      if (event.key === "ArrowUp" && selectedIndex > 0) {
-        selectedIndex--;
+      if (event.key === "ArrowUp" && selectedIndexRef.current > 0) {
+        selectedIndexRef.current--;
       } else if (
         event.key === "ArrowDown" &&
-        selectedIndex < searchResultItems.length - 1
+        selectedIndexRef.current < searchResultItems.length - 1
       ) {
-        selectedIndex++;
+        selectedIndexRef.current++;
       } else if (event.key === "Enter") {
         const activeLink = document.querySelector(
           ".search-result-item-active a",
@@ -145,8 +170,22 @@ const SearchModal = ({
       }
 
       updateSelection();
+    };
+
+    searchModalTriggers.forEach((button) => {
+      button.addEventListener("click", handleTriggerClick);
     });
-  }, [searchString]);
+    searchModalOverlay.addEventListener("click", handleOverlayClick);
+    document.addEventListener("keydown", handleKeydown);
+
+    return () => {
+      searchModalTriggers.forEach((button) => {
+        button.removeEventListener("click", handleTriggerClick);
+      });
+      searchModalOverlay.removeEventListener("click", handleOverlayClick);
+      document.removeEventListener("keydown", handleKeydown);
+    };
+  }, []);
 
   return (
     <div id="searchModal" className="search-modal">
