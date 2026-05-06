@@ -1,7 +1,6 @@
 ---
 title: "Contact"
-description: "this is meta description"
-meta_title: ""
+description: "Skontaktuj sie z zespolem Astroplate w sprawie pytan, wspolpracy lub projektu."
 image: ""
 draft: false
 ---

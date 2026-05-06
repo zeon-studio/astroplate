@@ -2,7 +2,7 @@
 title: John Doe
 email: johndoe@email.com
 image: "/images/avatar.png"
-description: this is meta description
+description: John Doe writes practical articles about software architecture, product systems, and modern web development.
 social:
   - name: github
     icon: FaGithub

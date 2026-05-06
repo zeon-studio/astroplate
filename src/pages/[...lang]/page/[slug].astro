@@ -5,10 +5,7 @@ import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
 import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
 import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
-import {
-  normalizeLang,
-  supportedLang,
-} from "@/lib/utils/languageParser";
+import { normalizeLang, supportedLang } from "@/lib/utils/languageParser";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import PageHeader from "@/partials/PageHeader.astro";
 import PostSidebar from "@/partials/PostSidebar.astro";
@@ -55,13 +52,18 @@ const currentPage = slug && !isNaN(Number(slug)) ? Number(slug) : 1;
 const indexOfLastPost = currentPage * config.settings.pagination;
 const indexOfFirstPost = indexOfLastPost - config.settings.pagination;
 const currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
+const archiveTitle = `${postIndex.data.title} - Page ${currentPage}`;
+const archiveDescription =
+  postIndex.data.description === "this is meta description"
+    ? `Browse page ${currentPage} of the latest articles from ${config.site.title}, organized by topic and published in reverse chronological order.`
+    : `${postIndex.data.description} Page ${currentPage}.`;
 ---
 
 <Base
-  title={postIndex.data.title}
-  meta_title={postIndex.data.meta_title}
+  title={archiveTitle}
+  meta_title={archiveTitle}
   image={postIndex.data.image}
-  description={postIndex.data.description}
+  description={archiveDescription}
   lang={lang}
 >
   <PageHeader title={postIndex.data.title} />

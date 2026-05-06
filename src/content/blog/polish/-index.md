@@ -1,7 +1,6 @@
 ---
 title: "Blog Posts"
-meta_title: ""
-description: "this is meta description"
+description: "Czytaj najnowsze artykuly, przewodniki tematyczne i praktyczne zasoby z bloga Astroplate."
 date: 2026-01-01T00:00:00Z
 image: "/images/og-image.png"
 categories: ["blog"]

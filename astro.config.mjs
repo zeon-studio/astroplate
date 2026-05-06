@@ -23,22 +23,26 @@ function normalizeSiteUrl(rawUrl) {
     : `https://${rawUrl}`;
 
   try {
-    return new URL(withProtocol).toString();
+    const url = new URL(withProtocol);
+    return url.hostname === "example.com" ? undefined : url.toString();
   } catch {
     return undefined;
   }
 }
 
+const fallbackSiteUrl = "http://localhost:4321/";
 const resolvedSiteUrl =
   normalizeSiteUrl(process.env.PUBLIC_SITE_URL) ||
   normalizeSiteUrl(process.env.SITE_URL) ||
   normalizeSiteUrl(process.env.CF_PAGES_URL) ||
   normalizeSiteUrl(config.site.base_url) ||
-  "https://example.com/";
+  fallbackSiteUrl;
 
 const enabledLocales = languages
   .map(({ languageCode }) => languageCode)
-  .filter((languageCode) => !config.settings.disable_languages.includes(languageCode));
+  .filter(
+    (languageCode) => !config.settings.disable_languages.includes(languageCode),
+  );
 const enabledLocalePrefixes = enabledLocales.filter(
   (locale) =>
     locale !== config.settings.default_language ||

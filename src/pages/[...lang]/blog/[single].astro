@@ -2,8 +2,10 @@
 import Base from "@/layouts/Base.astro";
 import PostSingle from "@/layouts/PostSingle.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
+import { siteConfig } from "@/lib/siteConfig";
 import {
   normalizeLang,
+  slugSelector,
   stripLocaleFromId,
   supportedLang,
 } from "@/lib/utils/languageParser";
@@ -31,16 +33,83 @@ export async function getStaticPaths() {
 }
 
 const { post, lang } = Astro.props;
-const { title, meta_title, description, image } = post.data;
+const { title, description, image, date, categories, tags } = post.data;
+const postSlug = stripLocaleFromId(post.id);
+const siteUrl =
+  Astro.site ||
+  (siteConfig.site.base_url ? new URL(siteConfig.site.base_url) : undefined);
+const siteRootUrl = siteUrl ? new URL("/", siteUrl).toString() : undefined;
+const canonicalPath = slugSelector(`/blog/${postSlug}`, lang);
+const canonicalUrl = siteUrl
+  ? new URL(canonicalPath, siteUrl).toString()
+  : canonicalPath;
+const imageUrl = siteUrl && image ? new URL(image, siteUrl).toString() : image;
+const organizationId = siteRootUrl ? `${siteRootUrl}#organization` : undefined;
+const publishedDate = date instanceof Date ? date : new Date(date);
+const articleJsonLd = [
+  {
+    "@type": "BlogPosting",
+    "@id": `${canonicalUrl}#article`,
+    headline: title,
+    description,
+    image: imageUrl,
+    datePublished: publishedDate.toISOString(),
+    dateModified: publishedDate.toISOString(),
+    author: {
+      "@type": "Person",
+      name: siteConfig.metadata.meta_author,
+    },
+    publisher: organizationId
+      ? {
+          "@id": organizationId,
+        }
+      : {
+          "@type": "Organization",
+          name: siteConfig.metadata.meta_author || siteConfig.site.title,
+        },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": canonicalUrl,
+    },
+    url: canonicalUrl,
+    articleSection: categories[0],
+    keywords: tags.join(", "),
+    inLanguage: lang,
+  },
+  {
+    "@type": "BreadcrumbList",
+    "@id": `${canonicalUrl}#breadcrumb`,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: siteConfig.site.title,
+        item: siteRootUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: title,
+        item: canonicalUrl,
+      },
+    ],
+  },
+];
 ---
 
 <Base
   title={title}
-  meta_title={meta_title}
   description={description}
   image={image}
+  canonical={canonicalPath}
   og_type="article"
   lang={lang}
+  jsonLd={articleJsonLd}
+  articlePublishedTime={publishedDate}
+  articleModifiedTime={publishedDate}
+  articleSection={categories[0]}
+  articleTags={tags}
+  articleAuthor={siteConfig.metadata.meta_author}
 >
   <PostSingle post={post} />
 </Base>

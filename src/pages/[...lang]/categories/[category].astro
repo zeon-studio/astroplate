@@ -5,6 +5,7 @@ import { getSinglePage } from "@/lib/contentParser.astro";
 import { getTaxonomy } from "@/lib/taxonomyParser.astro";
 import { normalizeLang, supportedLang } from "@/lib/utils/languageParser";
 import { sortByDate } from "@/lib/utils/sortFunctions";
+import { humanize } from "@/lib/utils/textConverter";
 import taxonomyFilter from "@/lib/utils/taxonomyFilter";
 import PageHeader from "@/partials/PageHeader.astro";
 
@@ -36,10 +37,20 @@ const BLOG_FOLDER = "blog";
 const posts = await getSinglePage(BLOG_FOLDER, lang);
 const filterByCategories = taxonomyFilter(posts, "categories", category!);
 const sortedPosts = sortByDate(filterByCategories);
+const categoryTitle = humanize(category || "");
+const pageTitle = `${categoryTitle} Articles`;
+const pageDescription = `Explore ${sortedPosts.length} ${categoryTitle} article${
+  sortedPosts.length === 1 ? "" : "s"
+} from the ${categoryTitle} topic archive.`;
 ---
 
-<Base title={category} lang={lang}>
-  <PageHeader title={category} />
+<Base
+  title={pageTitle}
+  meta_title={pageTitle}
+  description={pageDescription}
+  lang={lang}
+>
+  <PageHeader title={categoryTitle} />
   <div class="section-sm pb-0">
     <div class="container">
       <div class="row">

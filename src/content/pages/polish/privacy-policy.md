@@ -1,7 +1,6 @@
 ---
 title: "Privacy"
-meta_title: ""
-description: "this is meta description"
+description: "Przeczytaj polityke prywatnosci Astroplate, w tym informacje o obsludze danych i odpowiedzialnosci autorow."
 draft: false
 ---
 

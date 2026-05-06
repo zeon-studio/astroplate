@@ -1,7 +1,6 @@
 ---
-title: "How to build an Application with modern Technology"
-meta_title: ""
-description: "this is meta description"
+title: "Notatki architektoniczne dla skalowalnych platform"
+description: "Przejrzyj zasady architektury platform webowych z jasnymi granicami, szybkimi stronami i miejscem na wzrost."
 date: 2022-04-04T05:00:00Z
 image: "/images/image-placeholder.png"
 categories: ["Architecture"]

@@ -1,7 +1,6 @@
 ---
-title: "How to build an Application with modern Technology"
-meta_title: ""
-description: "this is meta description"
+title: "Wzorce oprogramowania dla trwalych interfejsow"
+description: "Zobacz wzorce oprogramowania, ktore ulatwiaja rozwoj, dokumentowanie i ponowne uzycie interfejsow."
 date: 2022-04-04T05:00:00Z
 image: "/images/image-placeholder.png"
 categories: ["Software"]

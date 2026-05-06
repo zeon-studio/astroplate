@@ -169,3 +169,7 @@
   @apply prose-tr:border-border dark:prose-tr:border-darkmode-border;
   @apply prose-td:relative prose-td:z-10 prose-td:px-3 prose-td:py-[18px] dark:prose-td:text-darkmode-text;
 }
+
+.content :where(h2, h3) {
+  scroll-margin-top: 6rem;
+}

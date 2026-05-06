@@ -1,7 +1,6 @@
 ---
-title: "How to build an Application with modern Technology"
-meta_title: ""
-description: "this is meta description"
+title: "How to Build a Modern Application Stack"
+description: "Learn how to structure a modern application stack with practical choices for frontend, data, and delivery."
 date: 2022-04-04T05:00:00Z
 image: "/images/image-placeholder.png"
 categories: ["Application", "Data"]

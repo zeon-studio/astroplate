@@ -44,6 +44,31 @@ function getConfig() {
   return config;
 }
 
+function normalizeSiteUrl(rawUrl) {
+  if (!rawUrl) return undefined;
+
+  const withProtocol = /^https?:\/\//.test(rawUrl)
+    ? rawUrl
+    : `https://${rawUrl}`;
+
+  try {
+    const url = new URL(withProtocol);
+    return url.hostname === "example.com" ? undefined : url.toString();
+  } catch {
+    return undefined;
+  }
+}
+
+function resolveSiteUrl(config) {
+  return (
+    normalizeSiteUrl(process.env.PUBLIC_SITE_URL) ||
+    normalizeSiteUrl(process.env.SITE_URL) ||
+    normalizeSiteUrl(process.env.CF_PAGES_URL) ||
+    normalizeSiteUrl(config.site.base_url) ||
+    "http://localhost:4321/"
+  );
+}
+
 async function getAstroI18nConfig() {
   const astroPath = path.join(__dirname, "../astro.config.mjs");
   if (!fs.existsSync(astroPath)) return null;
@@ -616,7 +641,7 @@ async function generateLlmsFiles() {
     `📂 Output mode: ${isSSR ? "SSR (dist/client)" : "Static (dist)"}`,
   );
 
-  const siteUrl = config.site.base_url.replace(/\/$/, "");
+  const siteUrl = resolveSiteUrl(config).replace(/\/$/, "");
   const basePath = (config.site.base_path || "/").replace(/\/$/, "") || "/";
   const siteName = config.site.title;
   const siteDescription = config.metadata?.meta_description || "";

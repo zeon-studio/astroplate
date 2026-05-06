@@ -1,0 +1,45 @@
+---
+type Heading = {
+  depth: number;
+  slug: string;
+  text: string;
+};
+
+const {
+  headings = [],
+  title = "Table of contents",
+}: {
+  headings?: Heading[];
+  title?: string;
+} = Astro.props;
+
+const tocHeadings = headings.filter(
+  (heading) => heading.depth >= 2 && heading.depth <= 3,
+);
+const shouldRender = tocHeadings.length > 0;
+---
+
+{
+  shouldRender && (
+    <nav
+      aria-labelledby="table-of-contents-heading"
+      class="mb-10 border-l border-border pl-5 dark:border-darkmode-border"
+    >
+      <h2 id="table-of-contents-heading" class="h5 mb-4">
+        {title}
+      </h2>
+      <ol class="space-y-2">
+        {tocHeadings.map((heading) => (
+          <li class={heading.depth === 3 ? "pl-4" : undefined}>
+            <a
+              class="text-text hover:text-primary dark:text-darkmode-text dark:hover:text-darkmode-primary"
+              href={`#${heading.slug}`}
+            >
+              {heading.text}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}

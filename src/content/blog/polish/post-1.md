@@ -1,7 +1,6 @@
 ---
-title: "How to build an Application with modern Technology"
-meta_title: ""
-description: "this is meta description"
+title: "Jak zbudowac nowoczesny stos aplikacji"
+description: "Poznaj praktyczny sposob projektowania nowoczesnego stosu aplikacji dla frontendu, danych i publikacji."
 date: 2022-04-04T05:00:00Z
 image: "/images/image-placeholder.png"
 categories: ["Application", "Data"]

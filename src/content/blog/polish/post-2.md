@@ -1,7 +1,6 @@
 ---
-title: "How to build an Application with modern Technology"
-meta_title: ""
-description: "this is meta description"
+title: "Wybory technologiczne, ktore daja elastycznosc"
+description: "Porownaj decyzje technologiczne, ktore pomagaja zespolom szybciej wdrazac produkt bez kruchych zaleznosci."
 date: 2022-04-04T05:00:00Z
 image: "/images/image-placeholder.png"
 categories: ["Technology", "Data"]

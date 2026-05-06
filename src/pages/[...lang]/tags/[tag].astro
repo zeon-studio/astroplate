@@ -5,6 +5,7 @@ import { getSinglePage } from "@/lib/contentParser.astro";
 import { getTaxonomy } from "@/lib/taxonomyParser.astro";
 import { normalizeLang, supportedLang } from "@/lib/utils/languageParser";
 import { sortByDate } from "@/lib/utils/sortFunctions";
+import { humanize } from "@/lib/utils/textConverter";
 import taxonomyFilter from "@/lib/utils/taxonomyFilter";
 import PageHeader from "@/partials/PageHeader.astro";
 
@@ -36,10 +37,20 @@ const BLOG_FOLDER = "blog";
 const posts = await getSinglePage(BLOG_FOLDER, lang);
 const filterByTags = taxonomyFilter(posts, "tags", tag!);
 const sortedPosts = sortByDate(filterByTags);
+const tagTitle = humanize(tag || "");
+const pageTitle = `${tagTitle} Articles`;
+const pageDescription = `Explore ${sortedPosts.length} article${
+  sortedPosts.length === 1 ? "" : "s"
+} tagged ${tagTitle}, with related posts from the blog archive.`;
 ---
 
-<Base title={tag} lang={lang}>
-  <PageHeader title={tag} />
+<Base
+  title={pageTitle}
+  meta_title={pageTitle}
+  description={pageDescription}
+  lang={lang}
+>
+  <PageHeader title={tagTitle} />
   <div class="section-sm pb-0">
     <div class="container">
       <div class="row">

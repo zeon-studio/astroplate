@@ -8,14 +8,22 @@ tags: ["tag-one", "tag-two"]
 draft: true
 ---
 
-Write your post in Markdown.
+Napisz wpis w Markdown.
 
-## Suggested structure
+Zacznij od krotkiego wprowadzenia, ktore pokazuje czytelnikowi, czego sie nauczy i dlaczego to wazne.
 
-Start with a short introduction that tells the reader what they will learn.
+## Pierwsza glowna sekcja
 
-Add clear headings, concise paragraphs, and internal links to related posts when relevant.
+Uzywaj sekcji H2 dla glownych intencji wyszukiwania oraz H3 dla punktow pomocniczych. Strona wpisu buduje spis tresci automatycznie z naglowkow H2 i H3.
 
-- Use `draft: true` while writing.
-- Rename the file to control the final URL.
-- Keep images in `public/images/` and reference them with absolute paths like `/images/your-cover-image.png`.
+### Punkt pomocniczy
+
+Pisz zwiezle akapity, odpowiadaj na kolejne pytanie czytelnika i dodawaj linki wewnetrzne do powiazanych wpisow, gdy ma to sens.
+
+## Lista SEO
+
+- Uzywaj `draft: true` podczas pisania.
+- Zmien nazwe pliku, aby kontrolowac finalny URL.
+- Trzymaj obrazy w `public/images/` i odwoluj sie do nich absolutnie, np. `/images/your-cover-image.png`.
+- Zastap opisy tymczasowe konkretnym jednozdaniowym podsumowaniem.
+- Uzywaj kategorii jako hubow tematycznych, a tagow tylko jako przydatnych linkow krzyzowych.

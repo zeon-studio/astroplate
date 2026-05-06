@@ -1,7 +1,6 @@
 ---
-title: "How to build an Application with modern Technology"
-meta_title: ""
-description: "this is meta description"
+title: "Technology Choices That Keep Products Flexible"
+description: "Compare practical technology decisions that help product teams ship faster without locking themselves into brittle systems."
 date: 2022-04-04T05:00:00Z
 image: "/images/image-placeholder.png"
 categories: ["Technology", "Data"]

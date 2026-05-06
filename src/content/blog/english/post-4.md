@@ -1,7 +1,6 @@
 ---
-title: "How to build an Application with modern Technology"
-meta_title: ""
-description: "this is meta description"
+title: "Architecture Notes for Scalable Web Platforms"
+description: "Review architecture principles for web platforms that need clear boundaries, fast pages, and room to scale."
 date: 2022-04-04T05:00:00Z
 image: "/images/image-placeholder.png"
 categories: ["Architecture"]

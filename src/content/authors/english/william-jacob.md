@@ -2,7 +2,7 @@
 title: William Jacob
 email: williamjacob@email.com
 image: "/images/avatar.png"
-description: this is meta description
+description: William Jacob shares articles about scalable platforms, development workflow, and software delivery.
 social:
   - name: github
     icon: FaGithub

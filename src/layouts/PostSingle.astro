@@ -1,6 +1,7 @@
 ---
 import BlogCard from "@/components/BlogCard.astro";
 import Share from "@/components/Share.astro";
+import TableOfContents from "@/components/TableOfContents.astro";
 import Disqus from "@/helpers/Disqus";
 import { siteConfig } from "@/lib/siteConfig";
 import { getSinglePage } from "@/lib/contentParser.astro";
@@ -11,10 +12,11 @@ import {
   stripLocaleFromId,
 } from "@/lib/utils/languageParser";
 import dateFormat from "@/lib/utils/dateFormat";
+import readingTime from "@/lib/utils/readingTime";
 import similarItems from "@/lib/utils/similarItems";
 import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
 import { render } from "astro:content";
-import { FaRegClock, FaRegFolder } from "react-icons/fa";
+import { FaRegClock, FaRegFolder, FaRegUser } from "react-icons/fa";
 import ImageMod from "./components/ImageMod.astro";
 
 const COLLECTION_FOLDER = "blog";
@@ -23,16 +25,24 @@ const { post } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const posts = await getSinglePage(COLLECTION_FOLDER, lang);
 const similarPosts = similarItems(post, posts);
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
 const { title, description, categories, image, date, tags } = post.data;
-const { tags: tagsLabel, related_posts, share } = (await getTranslations(
-  lang,
-)) as unknown as {
+const {
+  tags: tagsLabel,
+  related_posts,
+  share,
+  table_of_contents,
+  reading_time,
+} = (await getTranslations(lang)) as unknown as {
   tags: string;
   related_posts: string;
   share: string;
+  table_of_contents: string;
+  reading_time: string;
 };
 const postSlug = stripLocaleFromId(post.id);
+const publishedDate = date instanceof Date ? date : new Date(date);
+const readTime = readingTime(post.body || "");
 ---
 
 <section class="section pt-7">
@@ -54,13 +64,18 @@ const postSlug = stripLocaleFromId(post.id);
           )
         }
         <h1 set:html={markdownify(title)} class="h2 mb-4" />
-        <ul class="mb-4">
-          <li class="mr-4 inline-block">{siteConfig.metadata.meta_author}</li>
+        <ul class="mb-8">
+          <li class="mr-4 inline-block">
+            <FaRegUser className={"mr-2 -mt-1 inline-block"} />
+            <span>{siteConfig.metadata.meta_author}</span>
+          </li>
           <li class="mr-4 inline-block">
             <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
             {
               categories.map((category: string, index: number) => (
-                <a href={slugSelector(`/categories/${slugify(category)}`, lang)}>
+                <a
+                  href={slugSelector(`/categories/${slugify(category)}`, lang)}
+                >
                   {humanize(category)}
                   {index !== categories.length - 1 && ","}
                 </a>
@@ -69,9 +84,16 @@ const postSlug = stripLocaleFromId(post.id);
           </li>
           <li class="mr-4 inline-block">
             <FaRegClock className={"mr-2 -mt-1 inline-block"} />
-            {dateFormat(date)}
+            <time datetime={publishedDate.toISOString()}>
+              {dateFormat(publishedDate)}
+            </time>
+          </li>
+          <li class="mr-4 inline-block">
+            <FaRegClock className={"mr-2 -mt-1 inline-block"} />
+            <span aria-label={reading_time}>{readTime}</span>
           </li>
         </ul>
+        <TableOfContents headings={headings} title={table_of_contents} />
         <div class="content mb-10">
           <Content />
         </div>

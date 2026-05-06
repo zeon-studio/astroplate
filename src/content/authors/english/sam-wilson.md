@@ -2,7 +2,7 @@
 title: Sam Wilson
 email: samwilson@email.com
 image: "/images/avatar.png"
-description: this is meta description
+description: Sam Wilson contributes guides and notes about technology decisions, application design, and maintainable systems.
 social:
   - name: github
     icon: FaGithub
