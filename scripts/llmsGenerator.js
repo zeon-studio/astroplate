@@ -712,7 +712,7 @@ async function generateLlmsFiles() {
         } else {
           console.log(
             "   ⚠️  No server available. SSR pages will be skipped.\n" +
-              "       Run 'yarn preview' before 'yarn generate-llms' to include them.",
+              "       Run 'pnpm preview' before 'pnpm generate-llms' to include them.",
           );
         }
       }
