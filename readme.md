@@ -2,14 +2,16 @@
 
 <p align=center>Astroplate is a free starter template built with Astro, TailwindCSS & TypeScript, providing everything you need to jumpstart your Astro project and save valuable time.</p>
 
-<p align=center>Made with ♥ by <a href="https://zeon.studio/">Zeon Studio</a></p>
-
-<p align=center> If you find this project useful, please give it a ⭐ to show your support. </p>
+<img width="1600" height="900" alt="astroplate-free-astro-starter-template" src="https://github.com/user-attachments/assets/f7216b22-2c39-4963-a069-c25ea3488c6a" />
 
 <h2 align="center"> <a target="_blank" href="https://astroplate.netlify.app/" rel="nofollow">👀 Demo</a> | <a target="_blank" href="https://astroplate-multilang.netlify.app/" rel="nofollow">👀 Demo Multilang</a> | <a  target="_blank" href="https://pagespeed.web.dev/analysis/https-astroplate-netlify-app/yzx3foum3w?form_factor=desktop">Page Speed (100%)🚀</a> |   <a target="_blank" href="https://app.sitepins.com/new/clone?name=Astroplate&repository=https://github.com/zeon-studio/astroplate?aff=astroplate">
     <img src="https://sitepins.com/button.svg" alt="Edit with Sitepins">
   </a>
 </h2>
+
+<p align=center>Made with ♥ by <a href="https://zeon.studio/?ref=astroplate-github">Zeon Studio</a></p>
+
+<p align=center> If you find this project useful, please give it a ⭐ to show your support. </p>
 
 <p align=center>
   <a href="https://github.com/withastro/astro/releases/tag/astro%406.1.9">
@@ -176,7 +178,7 @@ If your problem or idea has not been addressed yet, feel free to [open a new iss
 
 ## 📝 License
 
-Copyright (c) 2023 - Present, Designed & Developed by [Zeon Studio](https://zeon.studio/)
+Copyright (c) 2023 - Present, Designed & Developed by [Zeon Studio](https://zeon.studio/?ref=astroplate-github)
 
 **Code License:** Released under the [MIT](https://github.com/zeon-studio/astroplate/blob/main/LICENSE) license.
 
@@ -184,4 +186,4 @@ Copyright (c) 2023 - Present, Designed & Developed by [Zeon Studio](https://zeon
 
 ## 💻 Need Custom Development Services?
 
-If you need a custom theme, theme customization, or complete website development services from scratch you can [Hire Us](https://zeon.studio/).
+If you need a custom theme, theme customization, or complete website development services from scratch you can [Hire Us](https://zeon.studio/?ref=astroplate-github).
