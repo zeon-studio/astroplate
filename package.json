@@ -14,7 +14,7 @@
     "format": "prettier -w ./src",
     "generate-json": "node scripts/jsonGenerator.js",
     "generate-llms": "node scripts/llmsGenerator.js",
-    "remove-darkmode": "node scripts/removeDarkmode.js && yarn format",
+    "remove-darkmode": "node scripts/removeDarkmode.js && pnpm format",
     "deploy:cf-workers": "npm run build && wrangler deploy",
     "preview:cf-workers": "npm run build && wrangler dev"
   },

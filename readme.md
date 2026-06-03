@@ -73,25 +73,24 @@
 
 - astro v6.1.9
 - node v22.12.0+ (see `.nvmrc`)
-- yarn v1.22+
 - tailwind v4+
 
 ### 👉 Install Dependencies
 
 ```bash
-yarn install
+pnpm install
 ```
 
 ### 👉 Development Command
 
 ```bash
-yarn run dev
+pnpm run dev
 ```
 
 ### 👉 Build Command
 
 ```bash
-yarn run build
+pnpm run build
 ```
 
 ### 👉 Generate LLM Files
@@ -106,10 +105,10 @@ Use one of these ways:
 
 ```bash
 # included in build
-yarn run build
+pnpm run build
 
 # or run manually after build
-yarn run generate-llms
+pnpm run generate-llms
 ```
 
 Configuration is in `src/config/config.json` under `llms`:
@@ -123,13 +122,13 @@ Configuration is in `src/config/config.json` under `llms`:
 ### 👉 Preview on Cloudflare Workers
 
 ```bash
-yarn run preview:cf-workers
+pnpm run preview:cf-workers
 ```
 
 ### 👉 Deploy to Cloudflare Workers
 
 ```bash
-yarn run deploy:cf-workers
+pnpm run deploy:cf-workers
 ```
 
 ### 👉 Build and Run With Docker
