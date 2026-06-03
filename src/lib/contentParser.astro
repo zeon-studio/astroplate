@@ -21,6 +21,10 @@ export const getSinglePage = async <C extends CollectionKey>(
     (l: any) => l.languageCode === selectedLanguageCode
   );
 
+  const buildDrafts = process.argv.includes("--buildDrafts");
+  const buildFuture = process.argv.includes("--buildFuture");
+  const now = new Date();
+
   if (!language) {
     throw new Error("Language not found");
   }
@@ -33,15 +37,21 @@ export const getSinglePage = async <C extends CollectionKey>(
 
   const pages: CollectionEntry<C>[] = (await getCollection(
     collectionName as any,
-    ({ id }: any) => {
+    ({ data, id }: any) => {
+      if (!buildDrafts && (data as PageData)?.draft) {
+        return false;
+      }
+      if (!buildFuture && (data as any)?.date) {
+        const postDate = new Date((data as any).date);
+        if (postDate > now) {
+          return false;
+        }
+      }
       return id.startsWith(path) && !id.endsWith("-index");
     }
   )) as CollectionEntry<C>[];
 
-  // @ts-ignore
-  const removeDrafts = pages.filter((data) => !data.data.draft);
-
-  return removeDrafts;
+  return pages;
 };
 
 export const getListPage = async <C extends CollectionKey>(

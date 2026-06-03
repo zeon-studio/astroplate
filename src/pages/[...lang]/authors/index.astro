@@ -14,13 +14,14 @@ export function getStaticPaths() {
   }));
   return paths;
 }
+const buildDrafts = process.argv.includes("--buildDrafts");
 
 const { lang } = Astro.params;
 const authorIndex = await getListPage(
   COLLECTION_FOLDER,
   lang
 );
-if (authorIndex[0].data.draft) {
+if (!buildDrafts && authorIndex[0].data.draft) {
   return Astro.redirect("/404");
 }
 const authors = await getSinglePage(

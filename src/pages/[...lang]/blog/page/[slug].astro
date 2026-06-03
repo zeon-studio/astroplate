@@ -18,12 +18,13 @@ let { slug, lang } = Astro.params;
 if (!lang) {
   lang = default_language;
 }
+const buildDrafts = process.argv.includes("--buildDrafts");
 
 const postIndex: any = await getListPage(
   BLOG_FOLDER,
   lang
 );
-if (postIndex[0].data.draft) {
+if (!buildDrafts && postIndex[0].data.draft) {
   return Astro.redirect("/404");
 }
 const posts = await getSinglePage(BLOG_FOLDER, lang);

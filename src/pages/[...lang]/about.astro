@@ -15,8 +15,9 @@ export function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
+const buildDrafts = process.argv.includes("--buildDrafts");
 const about = await getListPage("about", lang);
-if (about[0].data.draft) {
+if (!buildDrafts && about[0].data.draft) {
   return Astro.redirect("/404");
 }
 

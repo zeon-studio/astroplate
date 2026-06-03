@@ -14,11 +14,12 @@ export function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
+const buildDrafts = process.argv.includes("--buildDrafts");
 const contactIndex = await getListPage(
   "contact",
   lang
 );
-if (contactIndex[0].data.draft) {
+if (!buildDrafts && contactIndex[0].data.draft) {
   return Astro.redirect("/404");
 }
 

@@ -19,8 +19,9 @@ export function getStaticPaths() {
 }
 const { lang } = Astro.params;
 const BLOG_FOLDER = "blog";
+const buildDrafts = process.argv.includes("--buildDrafts");
 const postIndex = await getListPage(BLOG_FOLDER, lang);
-if (postIndex[0].data.draft) {
+if (!buildDrafts && postIndex[0].data.draft) {
   return Astro.redirect("/404");
 }
 const langCollection = lang!;

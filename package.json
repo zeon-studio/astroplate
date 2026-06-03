@@ -1,11 +1,11 @@
 {
   "name": "astroplate-multilingual",
-  "version": "6.1.0",
+  "version": "6.2.0",
   "description": "Astro and Tailwindcss Multilingual boilerplate",
   "author": "zeon.studio",
   "license": "MIT",
   "type": "module",
-  "packageManager": "yarn@1.22.22",
+  "packageManager": "pnpm@11.5.1",
   "scripts": {
     "dev": "concurrently \"node scripts/themeGenerator.js --watch\" \"node scripts/jsonGenerator.js && astro dev\"",
     "build": "node scripts/themeGenerator.js && node scripts/jsonGenerator.js && astro build && node scripts/llmsGenerator.js",
