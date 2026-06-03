@@ -17,9 +17,24 @@ type PageData = {
 export const getSinglePage = async <C extends CollectionKey>(
   collectionName: C
 ): Promise<CollectionEntry<C>[]> => {
+  const buildDrafts = process.argv.includes("--buildDrafts");
+  const buildFuture = process.argv.includes("--buildFuture");
+  const now = new Date();
+
   const allPages = await getCollection(
     collectionName,
-    ({ data, id }) => !(data as PageData)?.draft && !id.startsWith("-")
+    ({ data, id }) => {
+      if (!buildDrafts && (data as PageData)?.draft) {
+        return false;
+      }
+      if (!buildFuture && (data as any)?.date) {
+        const postDate = new Date((data as any).date);
+        if (postDate > now) {
+          return false;
+        }
+      }
+      return !id.startsWith("-");
+    }
   );
   return allPages;
 };

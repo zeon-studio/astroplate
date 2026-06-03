@@ -6,7 +6,8 @@ import PageHeader from "@/partials/PageHeader.astro";
 
 const authorIndex = await getListPage("authors", "-index");
 
-if (authorIndex.data.draft) {
+const buildDrafts = process.argv.includes("--buildDrafts");
+if (!buildDrafts && authorIndex.data.draft) {
   return Astro.redirect("/404");
 }
 
