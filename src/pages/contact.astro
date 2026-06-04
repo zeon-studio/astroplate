@@ -8,7 +8,8 @@ const contactIndex = await getListPage("contact", "-index");
 const { contact_form_action }: { contact_form_action: string } = config.params;
 const { title, description, meta_title, image } = contactIndex.data;
 
-if (contactIndex.data.draft) {
+const buildDrafts = process.argv.includes("--buildDrafts");
+if (!buildDrafts && contactIndex.data.draft) {
   return Astro.redirect("/404");
 }
 ---

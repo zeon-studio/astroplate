@@ -18,7 +18,8 @@ const BLOG_FOLDER = "blog";
 const { slug } = Astro.params;
 const postIndex = await getListPage(BLOG_FOLDER, "-index");
 
-if (postIndex.data.draft) {
+const buildDrafts = process.argv.includes("--buildDrafts");
+if (!buildDrafts && postIndex.data.draft) {
   return Astro.redirect("/404");
 }
 

@@ -50,7 +50,7 @@ EMDASH_PREVIEW_SECRET=your_random_preview_secret
 **2. Initialize the database:**
 
 ```bash
-yarn emdash init
+pnpm emdash init
 ```
 
 This creates `data.db` in the project root and runs all migrations.
@@ -58,7 +58,7 @@ This creates `data.db` in the project root and runs all migrations.
 **3. Start the dev server:**
 
 ```bash
-yarn dev
+pnpm dev
 ```
 
 **4. Open the admin panel:**
@@ -88,17 +88,17 @@ Go to **`http://localhost:4321/_emdash/admin`**
 ### 👉 EmDash CLI Commands
 
 ```bash
-yarn emdash init          # Initialize database & run migrations
-yarn emdash doctor        # Check database health
-yarn emdash seed          # Apply a seed file
-yarn emdash export-seed   # Export current database as a seed file
-yarn emdash schema        # Manage collections and fields
-yarn emdash content       # Manage content from the CLI
+pnpm emdash init          # Initialize database & run migrations
+pnpm emdash doctor        # Check database health
+pnpm emdash seed          # Apply a seed file
+pnpm emdash export-seed   # Export current database as a seed file
+pnpm emdash schema        # Manage collections and fields
+pnpm emdash content       # Manage content from the CLI
 ```
 
 ### ⚠️ macOS Build Note
 
-`better-sqlite3` requires native C++ compilation. On **macOS 15 (Sequoia)**, if you hit a `'climits' file not found` error after `yarn install`, run this once:
+`better-sqlite3` requires native C++ compilation. On **macOS 15 (Sequoia)**, if you hit a `'climits' file not found` error after `pnpm install`, run this once:
 
 ```bash
 CXXFLAGS="-isystem $(xcrun --sdk macosx --show-sdk-path)/usr/include/c++/v1 \
@@ -142,6 +142,7 @@ CXXFLAGS="-isystem $(xcrun --sdk macosx --show-sdk-path)/usr/include/c++/v1 \
 - 🗂️ Category Single
 - 🔍 Search
 
+
 ### 👉 Generate LLM Files
 
 After build, this project can generate LLM-friendly files from your `dist` HTML:
@@ -154,10 +155,10 @@ Use one of these ways:
 
 ```bash
 # included in build
-yarn run build
+pnpm run build
 
 # or run manually after build
-yarn run generate-llms
+pnpm run generate-llms
 ```
 
 Configuration is in `src/config/config.json` under `llms`:
@@ -175,6 +176,36 @@ Configuration is in `src/config/config.json` under `llms`:
 - astro/tailwind
 - EmDash CMS
 - Cloudflare Workers (optional deployment)
+
+### 👉 Preview on Cloudflare Workers
+
+```bash
+pnpm run preview:cf-workers
+```
+
+### 👉 Deploy to Cloudflare Workers
+
+```bash
+pnpm run deploy:cf-workers
+```
+
+### 👉 Build and Run With Docker
+
+```bash
+docker build -t astroplate .
+# or
+# docker --build-arg INSTALLER=pnpm build -t astroplate .
+
+docker run -p 3000:80 astroplate
+# or
+# docker run --rm -p 3000:80 astroplate
+```
+
+To access the shell within the container:
+
+```bash
+docker run -it --rm astroplate ash
+```
 
 ## 🐞 Reporting Issues
 

@@ -10,6 +10,9 @@ export interface Page {
   slug: string | null;
   status: string;
   title: string;
+  meta_title?: string;
+  description?: string;
+  featured_image?: { id: string; src?: string; alt?: string; width?: number; height?: number };
   content?: PortableTextBlock[];
   createdAt: Date;
   updatedAt: Date;
@@ -22,9 +25,14 @@ export interface Post {
   slug: string | null;
   status: string;
   title: string;
+  meta_title?: string;
+  description?: string;
+  excerpt?: string;
   featured_image?: { id: string; src?: string; alt?: string; width?: number; height?: number };
   content?: PortableTextBlock[];
-  excerpt?: string;
+  author?: string;
+  categories?: unknown;
+  tags?: unknown;
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;

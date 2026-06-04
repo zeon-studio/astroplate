@@ -9,7 +9,8 @@ const aboutIndex = await getListPage("about", "-index");
 const { Content } = await render(aboutIndex);
 const { title, description, meta_title, image } = aboutIndex.data;
 
-if (aboutIndex.data.draft) {
+const buildDrafts = process.argv.includes("--buildDrafts");
+if (!buildDrafts && aboutIndex.data.draft) {
   return Astro.redirect("/404");
 }
 ---

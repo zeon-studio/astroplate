@@ -24,23 +24,6 @@
           "type": "string",
           "required": true
         },
-        {
-          "slug": "slug",
-          "label": "Slug",
-          "type": "slug",
-          "source": "title",
-          "required": true,
-          "unique": true
-        },
-        {
-          "slug": "status",
-          "label": "Status",
-          "type": "select",
-          "required": true,
-          "defaultValue": "draft",
-          "validation": { "options": ["published", "draft"] }
-        },
-        { "slug": "published_at", "label": "Published At", "type": "datetime" },
         { "slug": "meta_title", "label": "Meta Title", "type": "string" },
         {
           "slug": "description",
@@ -79,14 +62,6 @@
           "label": "Title",
           "type": "string",
           "required": true
-        },
-        {
-          "slug": "slug",
-          "label": "Slug",
-          "type": "slug",
-          "source": "title",
-          "required": true,
-          "unique": true
         },
         { "slug": "meta_title", "label": "Meta Title", "type": "string" },
         {
