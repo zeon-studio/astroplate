@@ -1,4 +1,75 @@
+# ─── Content Signals Policy ──────────────────────────────────────────────────
+# Declares AI content usage preferences per contentsignals.org and
+# draft-romm-aipref-contentsignals. These signals communicate our
+# preferences for how content may be used by automated systems.
+#
+# (a)  If a content-signal = yes, you may collect content for the
+#      corresponding use.
+# (b)  If a content-signal = no, you may not collect content for the
+#      corresponding use.
+# (c)  If the website operator does not include a content signal for a
+#      corresponding use, the website operator neither grants nor
+#      restricts permission via content signal.
+#
+# The content signals and their meanings are:
+#   search:   Building a search index and providing search results.
+#   ai-input: Inputting content into AI models (RAG, grounding, etc.).
+#   ai-train: Training or fine-tuning AI models.
+
+# ─── General Crawler Rules ──────────────────────────────────────────────────
 User-agent: *
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+Allow: /
+Disallow: /api/*
+
+# ─── AI Bot Rules (RFC 9309) ────────────────────────────────────────────────
+# Explicit entries for AI-specific crawlers. A wildcard User-agent: * block
+# alone is not sufficient — explicit AI bot entries are required per the
+# is-it-agent-ready.com validation requirements.
+
+# OpenAI crawlers
+User-agent: GPTBot
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Allow: /
 
-Disallow: /api/*
+User-agent: OAI-SearchBot
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+Allow: /
+
+# Anthropic crawlers
+User-agent: Claude-Web
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+Allow: /
+
+User-agent: anthropic-ai
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+Allow: /
+
+# Google AI crawler
+User-agent: Google-Extended
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+Allow: /
+
+# Amazon crawler
+User-agent: Amazonbot
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+Allow: /
+
+# ByteDance crawler
+User-agent: Bytespider
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+Allow: /
+
+# Common Crawl crawler
+User-agent: CCBot
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+Allow: /
+
+# Apple AI crawler
+User-agent: Applebot-Extended
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+Allow: /
+
+# ─── Sitemap ────────────────────────────────────────────────────────────────
+# Astro's sitemap integration emits the canonical sitemap index during build.
+Sitemap: https://astroplate.netlify.app/sitemap-index.xml

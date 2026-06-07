@@ -45,7 +45,7 @@ const swiperOptions: SwiperOptions = {
             <p set:html={markdownify(testimonial.data.description)} />
           </div>
           <div class="col-12">
-            <Swiper options={swiperOptions} class="testimonial-slider">
+            <Swiper options={swiperOptions as any} class="testimonial-slider">
               <SwiperWrapper class={"mb-12"}>
                 {testimonial.data.testimonials.map(
                   (item: {

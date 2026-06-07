@@ -1,4 +1,6 @@
+import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
+import node from "@astrojs/node";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
@@ -48,9 +50,11 @@ const fontsConfig = Object.entries(theme.fonts.font_family)
 
 // https://astro.build/config
 export default defineConfig({
+  output: "server",
   site: config.site.base_url ? config.site.base_url : "http://examplesite.com",
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
+  adapter: node({ mode: "standalone" }),
   image: { service: sharp() },
   vite: { plugins: [tailwindcss()] },
   fonts: fontsConfig,
@@ -71,7 +75,12 @@ export default defineConfig({
     mdx(),
   ],
   markdown: {
-    remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
+    processor: unified({
+      remarkPlugins: [
+        remarkToc,
+        [remarkCollapse, { test: "Table of contents" }],
+      ],
+    }),
     shikiConfig: { theme: "one-dark-pro", wrap: true },
   },
 });

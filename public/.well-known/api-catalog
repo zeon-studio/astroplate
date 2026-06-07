@@ -1,0 +1,27 @@
+{
+  "@context": "https://schema.org",
+  "@type": "APICatalog",
+  "name": "Astroplate Agent Discovery Catalog",
+  "description": "Machine-readable resources for AI agent discovery",
+  "url": "https://astroplate.netlify.app/.well-known/api-catalog",
+  "provider": {
+    "@type": "Organization",
+    "name": "Astroplate"
+  },
+  "service": [
+    {
+      "@type": "Service",
+      "name": "Sitemap",
+      "serviceType": "sitemap",
+      "url": "https://astroplate.netlify.app/sitemap-index.xml",
+      "description": "XML sitemap for search engine and agent crawling"
+    },
+    {
+      "@type": "Service",
+      "name": "Robots Policy",
+      "serviceType": "robots",
+      "url": "https://astroplate.netlify.app/robots.txt",
+      "description": "Crawl rules and content signals for automated systems"
+    }
+  ]
+}
