@@ -1,0 +1,64 @@
+{
+  "version": "5",
+  "remote": {
+    "https://edge.netlify.com/": "fd941d61d88673d5f28aab283fb86fcc50f08a3bc80ee5470498fcfa88c65cfb",
+    "https://edge.netlify.com/bootstrap/config.ts": "6a2ce0e544e15e8f8883a5c18da5948e37fd0f2619f68cb31f3af53c51817025",
+    "https://edge.netlify.com/bootstrap/context.ts": "e97240232121e2f369f6546ce961490f34d961ea1ea54be3ff09633e3f08373f",
+    "https://edge.netlify.com/bootstrap/cookie.ts": "8b0baae708989ca183c6f3b4ab3d029e6abcbc2e43f93edeb0ff447b3bbc3a05",
+    "https://edge.netlify.com/bootstrap/edge_function.ts": "b8253e86aa83c67341f5cfedeba5049d77fbf84dcab7eceff7566b7728ae9b39",
+    "https://edge.netlify.com/bootstrap/globals/types.ts": "eaa6148ded3121d8dee62dd91c86e7fe76601df0f3ca8d7962243a30f4c8935f"
+  },
+  "workspace": {
+    "packageJson": {
+      "dependencies": [
+        "npm:@astrojs/check@0.9.8",
+        "npm:@astrojs/markdown-remark@^7.2.0",
+        "npm:@astrojs/mdx@5.0.3",
+        "npm:@astrojs/netlify@^7.0.12",
+        "npm:@astrojs/node@^10.1.3",
+        "npm:@astrojs/react@5.0.3",
+        "npm:@astrojs/sitemap@3.7.2",
+        "npm:@digi4care/astro-google-tagmanager@^1.6.0",
+        "npm:@justinribeiro/lite-youtube@^1.9.0",
+        "npm:@tailwindcss/forms@~0.5.11",
+        "npm:@tailwindcss/typography@~0.5.19",
+        "npm:@tailwindcss/vite@^4.2.2",
+        "npm:@types/node@25.5.2",
+        "npm:@types/react-dom@19.2.3",
+        "npm:@types/react@19.2.14",
+        "npm:astro-auto-import@~0.5.1",
+        "npm:astro-swiper@^2.5.0",
+        "npm:astro@6.4.4",
+        "npm:concurrently@^9.2.1",
+        "npm:date-fns@^4.1.0",
+        "npm:disqus-react@^1.1.7",
+        "npm:eslint@^10.2.0",
+        "npm:github-slugger@2",
+        "npm:glob@^13.0.6",
+        "npm:gray-matter@^4.0.3",
+        "npm:marked@^17.0.6",
+        "npm:node-html-parser@^7.1.0",
+        "npm:prettier-plugin-astro@~0.14.1",
+        "npm:prettier-plugin-tailwindcss@~0.7.2",
+        "npm:prettier@^3.8.1",
+        "npm:prop-types@^15.8.1",
+        "npm:react-dom@^19.2.4",
+        "npm:react-icons@^5.6.0",
+        "npm:react@^19.2.4",
+        "npm:remark-collapse@~0.1.2",
+        "npm:remark-toc@9",
+        "npm:sharp@~0.34.5",
+        "npm:tailwind-bootstrap-grid@7",
+        "npm:tailwindcss@^4.2.2",
+        "npm:turndown@^7.2.4",
+        "npm:typescript@^6.0.2",
+        "npm:vite@^7.1.5",
+        "npm:wrangler@^4.80.0"
+      ],
+      "overrides": {
+        "typescript": "$typescript",
+        "astro": "$astro"
+      }
+    }
+  }
+}

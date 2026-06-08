@@ -1,6 +1,6 @@
-function toMarkdownUrl(requestUrl: URL): string {
-  const path = requestUrl.pathname.replace(/\/$/, "") || "/";
-  return `${requestUrl.origin}${path === "/" ? "/index.md" : `${path}.md`}`;
+function toMarkdownPath(pathname: string): string {
+  const path = pathname.replace(/\/$/, "") || "/";
+  return path === "/" ? "/index.md" : `${path}.md`;
 }
 
 export default async function handler(req: Request, context: any) {
@@ -10,11 +10,17 @@ export default async function handler(req: Request, context: any) {
     return context.next();
   }
 
-  const requestUrl = new URL(req.url);
-  const mdUrl = toMarkdownUrl(requestUrl);
+  const url = new URL(req.url);
+  const mdPath = toMarkdownPath(url.pathname);
+
+  // Use the same origin but fetch the static .md file directly
+  const mdUrl = `${url.origin}${mdPath}`;
 
   try {
-    const mdResponse = await fetch(mdUrl);
+    const mdResponse = await fetch(mdUrl, {
+      headers: { Accept: "text/plain" }, // avoid infinite loop
+    });
+
     if (mdResponse.ok) {
       const markdown = await mdResponse.text();
       return new Response(markdown, {
