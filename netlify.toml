@@ -1,3 +1,9 @@
 [build]
 publish = "dist"
 command = "pnpm build"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Vary = "Accept"
+    Cache-Control = "no-cache"
