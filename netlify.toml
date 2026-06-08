@@ -1,5 +1,5 @@
 [build]
-publish = "dist/client"
+publish = "dist"
 command = "pnpm build"
 
 [[edge_functions]]
