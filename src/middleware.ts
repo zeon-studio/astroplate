@@ -18,9 +18,9 @@ function toMarkdownUrl(requestUrl: URL): string {
 }
 
 export const onRequest: MiddlewareHandler = async (context, next) => {
-  const { request, isPrerendered } = context;
+  const { request } = context;
   const { pathname } = new URL(request.url);
-  const accept = isPrerendered ? "" : (request.headers.get("Accept") ?? "");
+  const accept = request.headers.get("Accept") ?? "";
   const wantsMarkdown = accept.includes("text/markdown");
   const wantsHtml = accept.includes("text/html");
   const normalizedPath = normalizePathname(pathname);
