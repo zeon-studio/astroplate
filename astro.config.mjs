@@ -1,6 +1,5 @@
 import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
-import node from "@astrojs/node";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
@@ -48,13 +47,19 @@ const fontsConfig = Object.entries(theme.fonts.font_family)
     };
   });
 
+const isNetlify = process.env.NETLIFY === "true";
+
+const { default: adapter } = isNetlify
+  ? await import("@astrojs/netlify")
+  : await import("@astrojs/node");
+
 // https://astro.build/config
 export default defineConfig({
   output: "server",
   site: config.site.base_url ? config.site.base_url : "http://examplesite.com",
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
-  adapter: node({ mode: "standalone" }),
+  adapter: isNetlify ? adapter() : adapter({ mode: "standalone" }),
   image: { service: sharp() },
   vite: { plugins: [tailwindcss()] },
   fonts: fontsConfig,
