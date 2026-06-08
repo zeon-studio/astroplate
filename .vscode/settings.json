@@ -2,5 +2,12 @@
   "files.associations": {
     "*.mdx": "markdown"
   },
-  "tailwindCSS.experimental.configFile": "src/styles/main.css"
+  "tailwindCSS.experimental.configFile": "src/styles/main.css",
+  "deno.enable": true,
+  "deno.enablePaths": [
+    "netlify/edge-functions"
+  ],
+  "deno.unstable": true,
+  "deno.importMap": ".netlify/edge-functions-import-map.json",
+  "deno.path": "/Users/shuvo/Library/Preferences/netlify/deno-cli/deno"
 }

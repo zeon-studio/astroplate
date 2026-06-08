@@ -1,7 +1,6 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "baseUrl": ".",
     "target": "es6",
     "allowJs": true,
     "strict": true,
@@ -16,6 +15,7 @@
       "@/shortcodes/*": ["./src/layouts/shortcodes/*"],
       "@/helpers/*": ["./src/layouts/helpers/*"],
       "@/partials/*": ["./src/layouts/partials/*"],
+      "@/json/*": ["./.json/*"],
       "@/*": ["./src/*"]
     }
   },

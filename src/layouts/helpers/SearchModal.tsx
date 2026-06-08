@@ -1,4 +1,4 @@
-import searchData from ".json/search.json";
+import searchData from "@/json/search.json";
 import React, { useEffect, useState } from "react";
 import SearchResult, { type ISearchItem } from "./SearchResult";
 
