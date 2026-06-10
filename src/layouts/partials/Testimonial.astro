@@ -6,12 +6,12 @@ import {
   SwiperPagination,
   SwiperSlide,
   SwiperWrapper,
+  type AstroSwiperOptions,
 } from "astro-swiper";
-import type { SwiperOptions } from "swiper/types";
 
 const { testimonial } = Astro.props;
 
-const swiperOptions: SwiperOptions = {
+const swiperOptions: AstroSwiperOptions = {
   spaceBetween: 24,
   loop: true,
   autoplay: {
@@ -98,7 +98,7 @@ const swiperOptions: SwiperOptions = {
                         </div>
                       </div>
                     </SwiperSlide>
-                  )
+                  ),
                 )}
               </SwiperWrapper>
               <SwiperPagination class="testimonial-slider-pagination flex items-center justify-center" />
