@@ -30,18 +30,26 @@ If the page is mainly text and images (like an "About" or "Privacy Policy" page)
 
 If the page requires custom layout structures, heavy data fetching, or multiple distinct React islands:
 
+**Important for AI Agents:** When creating a custom page, you **must analyze existing custom pages** in `src/pages/` to follow the current design system.
+
+- **Do not guess** the layout structure or component usage.
+- Examine how existing pages implement page headers, wrappers, and specific UI elements, and mimic their structure.
+
 1. **Create the `.astro` file**: Create a file directly in `src/pages/` (e.g., `src/pages/my-custom-page.astro`).
 2. **Structure the Page**: Use the `Base.astro` component to wrap your page so it inherits the header, footer, and SEO.
 
    ```astro
    ---
    import Base from "@/layouts/Base.astro";
+   import PageHeader from "@/partials/PageHeader.astro";
+
+   const title = "My Custom Page";
    ---
 
-   <Base title="My Custom Page" description="Custom description">
+   <Base title={title} description="Custom description">
+     <PageHeader title={title} />
      <section class="section">
        <div class="container">
-         <h1 class="text-h2">My Custom Page</h1>
          <p>Custom Astro code goes here.</p>
        </div>
      </section>
@@ -61,3 +69,4 @@ If the page requires custom layout structures, heavy data fetching, or multiple 
 - **DO NOT** create a `page.tsx` file for routing. This is not Next.js App Router. Pages must be `.astro` files located in `src/pages/` or markdown files rendered via `[regular].astro`.
 - **DO NOT** forget to wrap your custom Astro pages with `<Base>`. Without it, the page will lack the global stylesheets, header, footer, and SEO tags.
 - **DO NOT** manually create `.astro` routes in `src/pages/` for markdown files that are already handled by `[regular].astro`, as this will cause route conflicts.
+- **DO NOT** guess the component structure for page headers or layouts. Always verify how existing custom `.astro` pages implement them to ensure you are using the correct top-level components (rather than incorrectly using sub-components).
