@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # ignore .astro directory
 .astro
+
+# skills
+.agents/skills/skill-creator

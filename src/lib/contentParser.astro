@@ -38,7 +38,7 @@ export const getSinglePage = async <C extends CollectionKey>(
   const pages: CollectionEntry<C>[] = (await getCollection(
     collectionName as any,
     ({ data, id }: any) => {
-      if (!buildDrafts && (data as PageData)?.draft) {
+      if (!buildDrafts && (data as any)?.draft) {
         return false;
       }
       if (!buildFuture && (data as any)?.date) {
