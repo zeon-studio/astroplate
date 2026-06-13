@@ -24,7 +24,8 @@ If the page is mainly text and images (like an "About" or "Privacy Policy" page)
    ---
    Your markdown content goes here.
    ```
-3. **How it renders**: The file `src/pages/[regular].astro` acts as a catch-all route for pages defined in the `pages` content collection. It automatically reads the markdown file, passes it to the `Base.astro` layout, and renders the content using Astro's `<Content />` component.
+3. **Using Shortcodes**: Before using any shortcodes or custom components in your markdown, you **must** read and review the available shortcodes in the `src/layouts/shortcodes` directory to avoid MDX errors.
+4. **How it renders**: The file `src/pages/[regular].astro` acts as a catch-all route for pages defined in the `pages` content collection. It automatically reads the markdown file, passes it to the `Base.astro` layout, and renders the content using Astro's `<Content />` component.
 
 ### Method 2: Adding a Custom Astro Page
 
