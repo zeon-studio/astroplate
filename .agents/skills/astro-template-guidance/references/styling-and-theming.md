@@ -6,7 +6,8 @@ This template uses **Tailwind CSS v4** combined with a custom **dynamic theming 
 
 The color palette and typography are controlled centrally via `src/config/theme.json`.
 
-**Important for AI Agents:** The exact schema of `theme.json` may have been customized. **Always read `src/config/theme.json` to see the current color and font structure before making changes.**
+> [!IMPORTANT]
+> **Theming Verification Required:** Because this skill is used across multiple templates, the styling configurations and `theme.json` schema described below are **JUST EXAMPLES**. The theming engine might be configured differently or use different file paths. **You MUST ALWAYS verify the actual theming structure by reading `src/config/theme.json` and inspecting `src/styles/` before making any styling changes.**
 
 ### How it works
 

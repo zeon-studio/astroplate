@@ -11,7 +11,8 @@ There are two main ways to add a page.
 
 If the page is mainly text and images (like an "About" or "Privacy Policy" page):
 
-**Important for AI Agents:** Check which folder represents standard standalone pages (often `src/content/pages/` or similar) before creating the file.
+> [!IMPORTANT]
+> **Structure Verification Required:** Because this skill is used across multiple templates, the paths and routing strategies described below are **JUST EXAMPLES**. Folders like `src/content/pages/` or `src/pages/` may be named or structured differently depending on the specific template you are working with. **You MUST ALWAYS verify the actual routing and content structure by exploring `src/pages/` and `src/content/` before adding new pages.**
 
 1. **Create the Content File**: Create a new markdown file in `src/content/pages/` (e.g., `src/content/pages/my-new-page.md`).
 2. **Add Frontmatter**:

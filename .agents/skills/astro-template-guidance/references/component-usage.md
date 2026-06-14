@@ -9,7 +9,10 @@ Components are grouped into two primary folders within `src/layouts/`:
 1. **`src/layouts/components/`**: Smaller, reusable UI elements.
 2. **`src/layouts/partials/`**: Larger page sections or layout wrappers.
 
-**Important for AI Agents:** The exact components available may vary. **Always list the contents of `src/layouts/components/` and `src/layouts/partials/` to discover what components exist in the current project.**
+> [!IMPORTANT]
+> **Component Verification Required:** Because this skill is used across multiple templates, the components listed below are **JUST EXAMPLES**. Components may be missing, renamed, or structured differently depending on the specific template you are working with. **You MUST ALWAYS verify component existence and read their actual implementation by checking `src/layouts/components/` and `src/layouts/partials/` before attempting to use or modify them.**
+
+## Example Components (Verify Before Use)
 
 Common examples often found here include:
 
@@ -52,5 +55,6 @@ When extending components:
 
 ## Common Mistakes / What NOT to do
 
+- **DO NOT** assume a component exists just because it is listed in this document. Always verify its existence in the codebase before using it.
 - **DO NOT** use React hooks (`useState`, `useEffect`) inside an `.astro` file. They are purely server-side. Move interactive logic into a `.tsx` file.
 - **DO NOT** forget to add a `client:*` directive (like `client:load`) when rendering an interactive React component inside an `.astro` file. If omitted, the component will render as static HTML and its interactive features won't work.

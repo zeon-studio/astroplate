@@ -1,5 +1,5 @@
 ---
-name: template-guidance
+name: astro-template-guidance
 description: Use this skill whenever you need to understand how the template works, including adding new pages, managing content, configuring pages, using components, understanding project architecture, using scripts, or styling and theming. Use it for ANY question related to the structure, usage, and customization of the project template.
 ---
 

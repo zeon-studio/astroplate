@@ -6,7 +6,10 @@ This skill explains how to configure global settings, navigation, social links, 
 
 The primary configuration files are located in `src/config/`. These are JSON files that control various aspects of the site.
 
-**Important for AI Agents:** The exact schema and available keys in these JSON files may vary. **Always read the contents of the files in `src/config/` (e.g. `config.json`, `menu.json`) to discover what settings are currently available.**
+> [!IMPORTANT]
+> **Configuration Verification Required:** Because this skill is used across multiple templates, the JSON files and schemas listed below are **JUST EXAMPLES**. Configuration files may be missing, renamed, or contain completely different keys depending on the specific template. **You MUST ALWAYS verify the existence of files in `src/config/` and read their actual contents before attempting to read or modify any configuration values.**
+
+## Example Configuration Files (Verify Before Use)
 
 Common examples often found here include:
 
