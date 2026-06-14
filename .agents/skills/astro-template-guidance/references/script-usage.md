@@ -2,7 +2,10 @@
 
 This skill explains the custom Node.js scripts and `pnpm` commands available in this Astro template ecosystem.
 
-## Available pnpm Commands (`package.json`)
+> [!IMPORTANT]
+> **Script Verification Required:** Because this skill is used across multiple templates, the scripts and `pnpm` commands listed below are **JUST EXAMPLES**. The actual scripts may be missing, renamed, or perform different tasks depending on the specific template. **You MUST ALWAYS verify the available scripts by reading `package.json` and checking the `scripts/` directory before executing them or assuming their behavior.**
+
+## Example pnpm Commands (Verify Before Use)
 
 ### `pnpm dev`
 

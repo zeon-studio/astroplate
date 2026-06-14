@@ -1,6 +1,12 @@
 {
   "version": 1,
   "skills": {
+    "astro-template-guidance": {
+      "source": "zeon-studio/template-skills",
+      "sourceType": "github",
+      "skillPath": "skills/astro-template-guidance/SKILL.md",
+      "computedHash": "f242fb356fc08feb2797b9216f50cc5958254bb6225db7df5dffe8626f264e44"
+    },
     "find-skills": {
       "source": "vercel-labs/skills",
       "sourceType": "github",

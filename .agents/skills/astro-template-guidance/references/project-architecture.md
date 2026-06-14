@@ -4,7 +4,10 @@ This skill provides a high-level map of the Astro template ecosystem, built on A
 
 ## High-Level Folder Structure
 
-**Important for AI Agents:** The exact subdirectories may vary. **Always list the root directory and `src/` to understand the specific structure of the current fork.**
+> [!IMPORTANT]
+> **Architecture Verification Required:** Because this skill is used across multiple templates, the directory structures described below are **JUST EXAMPLES**. The actual architecture may vary significantly depending on the specific template you are working with. **You MUST ALWAYS verify the project structure by listing the root directory and `src/` before making assumptions about where files are located.**
+
+## Example Folder Structure (Verify Before Use)
 
 Common architecture examples include:
 
