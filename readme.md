@@ -133,6 +133,12 @@ pnpm run preview:cf-workers
 pnpm run deploy:cf-workers
 ```
 
+### 👉 Deploy to Wasmer Edge
+
+`pnpm run build` outputs a static site to `dist`. To deploy it on Wasmer Edge, import this repository. The import does not create a copy in your GitHub account, so import your own fork to deploy your customized site.
+
+[![Deploy to Wasmer](https://img.shields.io/badge/Deploy%20to-Wasmer-171717?logo=wasmer&logoColor=white)](https://wasmer.io/apps/create?github=zeon-studio%2Fastroplate)
+
 ### 👉 Build and Run With Docker
 
 ```bash
